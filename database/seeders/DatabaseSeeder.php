@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Tenant;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +18,18 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'johndoe@example.com',
+            'role_id' => 1,
+            'status' => 1,
+            'password' => Hash::make("secret"),
+        ]);
+
+        $tenant = Tenant::create([
+            'id' => 'quotegen',
+        ]);
+
+        $tenant->domains()->create([
+            'domain' => 'test.localhost',
         ]);
     }
 }

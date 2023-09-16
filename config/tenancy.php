@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Models\Tenant;
 use Stancl\Tenancy\Database\Models\Domain;
-use Stancl\Tenancy\Database\Models\Tenant;
 
 return [
     'tenant_model' => Tenant::class,
@@ -17,7 +17,7 @@ return [
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
     'central_domains' => [
-        '127.0.0.1',
+        'monties.test',
         'localhost',
     ],
 
@@ -62,13 +62,13 @@ return [
             'mysql' => Stancl\Tenancy\TenantDatabaseManagers\MySQLDatabaseManager::class,
             'pgsql' => Stancl\Tenancy\TenantDatabaseManagers\PostgreSQLDatabaseManager::class,
 
-        /**
+            /**
          * Use this database manager for MySQL to have a DB user created for each tenant database.
          * You can customize the grants given to these users by changing the $grants property.
          */
             // 'mysql' => Stancl\Tenancy\TenantDatabaseManagers\PermissionControlledMySQLDatabaseManager::class,
 
-        /**
+            /**
          * Disable the pgsql manager above, and enable the one below if you
          * want to separate tenant DBs by schemas rather than databases.
          */
@@ -167,8 +167,8 @@ return [
         // Stancl\Tenancy\Features\TelescopeTags::class,
         // Stancl\Tenancy\Features\UniversalRoutes::class,
         // Stancl\Tenancy\Features\TenantConfig::class, // https://tenancyforlaravel.com/docs/v3/features/tenant-config
-        // Stancl\Tenancy\Features\CrossDomainRedirect::class, // https://tenancyforlaravel.com/docs/v3/features/cross-domain-redirect
-        // Stancl\Tenancy\Features\ViteBundler::class,
+        Stancl\Tenancy\Features\CrossDomainRedirect::class, // https://tenancyforlaravel.com/docs/v3/features/cross-domain-redirect
+        Stancl\Tenancy\Features\ViteBundler::class,
     ],
 
     /**
