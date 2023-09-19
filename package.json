@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "jquery": "^3.7.1",
+        "mailhog": "^4.16.0",
         "material-icons": "^1.13.11"
     }
 }

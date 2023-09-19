@@ -19,11 +19,9 @@ use Spatie\Activitylog\Models\Activity;
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-        // return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
-    });
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 });
 
 Auth::routes();
