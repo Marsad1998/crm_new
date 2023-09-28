@@ -109,6 +109,7 @@
                     }
                 }).on('change', function () {  
                     var id = $("#fields:checked").text();
+                    alert()
                     $(".sortable").append('<li>'+id+'</li>');
                 });
 
