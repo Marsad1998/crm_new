@@ -53,16 +53,32 @@
 
 		{{-- Sweet Alert --}}
 		<link href="{{ global_asset('assets/plugins/sweet-alert/sweetalert.css') }}" rel="stylesheet">
+		
+		{{-- Tree View --}}
+		<link href="{{ global_asset('assets/plugins/treeview/treeview.css') }}" rel="stylesheet">
+		
+		{{-- Animate css --}}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+		{{-- draggable --}}
+		<link href="{{ global_asset('assets/plugins/darggable/jquery-ui-darggable.css') }}" rel="stylesheet">
 
 		<!-- Scripts -->
 		@vite([])
+		<style>
+			.bg-primary, .btn-primary, .table-primary, #back-to-top, .page-item.active .page-link {
+				background-color: #51B3DE !important;
+				color: #fff !important;
+				border-color: #51B3DE !important;
+			}
+		</style>
 	</head>
 
 	<body class="horizontalmenu">
 
 		<!-- Loader -->
 		<div id="global-loader">
-			<img src="assets/img/loader.svg" class="loader-img" alt="Loader">
+			<img src="{{ global_asset('assets/img/loader.svg') }}" class="loader-img" alt="Loader">
 		</div>
 		<!-- End Loader -->
 
@@ -154,11 +170,15 @@
 
 		{{-- Notification --}}
 		<script src="{{ global_asset('assets/plugins/notify/js/notifIt.js') }}"></script>
-		<script src="{{ global_asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
 		{{-- Sweet Alert --}}
 		<script src="{{ global_asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-		<script src="{{ global_asset('assets/plugins/sweet-alert/jquery.sweet-alert.js') }}"></script>
+		
+		{{-- Treeview --}}
+		<script src="{{ global_asset('assets/plugins/treeview/treeview.js') }}"></script>
+
+		{{-- Draggable --}}
+		<script src="{{ global_asset('assets/plugins/darggable/jquery-ui-darggable.min.js') }}"></script>
 
 		<script>
 			$.ajaxSetup({

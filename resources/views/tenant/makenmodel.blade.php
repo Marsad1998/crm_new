@@ -4,7 +4,7 @@
 
     <div class="container-fluid">
         <div class="inner-body">
-            <div class="card mt-3">
+            <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
                 <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">
                     Makes & Models
                 </div>
@@ -31,14 +31,14 @@
         </div>
     </div>
 
-    <div class="modal fade" id="makesModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="/makes" method="post" class="formData" id="makes" data-table="makenModal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="makeTitle">Add a Make</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+    <div class="modal animate__animated animate__zoomIn animate__faster" id="makesModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="makeTitle">Add a Make</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/makes" method="post" class="formData" id="makes" data-table="makenModal">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="make_name" class="form-label">Name</label>
@@ -50,19 +50,19 @@
                         <button type="submit" class="btn btn-primary saveData">Save</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div class="modal fade" id="modelsModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="/models" method="post" class="formData" id="models" data-table="makenModal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modelTitle">Add a model</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+    <div class="modal animate__animated animate__zoomIn animate__faster" id="modelsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modelTitle">Add a model</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/models" method="post" class="formData" id="models" data-table="makenModal">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="model_name" class="form-label">Name</label>
@@ -81,8 +81,8 @@
                         <button type="submit" class="btn btn-primary saveData">Save</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -129,6 +129,7 @@
                                 $(".formData").each(function () {
                                     this.reset();
                                 });
+                                $(".formData").attr('action', '/makes').attr('method', 'post')
                                 $("#makesModal").modal('show');
                             }
                         },
@@ -140,6 +141,7 @@
                                     this.reset();
                                     $(this).find("select").val(null).trigger("change");
                                 });
+                                $(".formData").attr('action', '/models').attr('method', 'post')
                                 $("#modelsModal").modal('show')
                             }
                         },

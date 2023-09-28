@@ -171,6 +171,7 @@ return [
 
         App\Providers\TenancyServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
     ])->toArray(),
 

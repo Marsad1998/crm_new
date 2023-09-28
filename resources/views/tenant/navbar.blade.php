@@ -4,14 +4,14 @@
         <div class="main-header-left">
             <a class="main-header-menu-icon d-lg-none" href="" id="mainNavShow"><span></span></a>
             <a class="main-logo" href="index.html">
-                <img src="assets/img/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
-                <img src="assets/img/brand/logo-light.png" class="header-brand-img desktop-logo theme-logo" alt="logo">
+                <img src="{{ global_asset('assets/img/brand/logo.png') }}" class="header-brand-img desktop-logo" alt="logo">
+                <img src="{{ global_asset('assets/img/brand/logo-light.png') }}" class="header-brand-img desktop-logo theme-logo" alt="logo">
             </a>
         </div>
         <div class="main-header-center">
             <div class="responsive-logo">
-                <a href="index.html"><img src="assets/img/brand/logo.png" class="mobile-logo" alt="logo"></a>
-                <a href="index.html"><img src="assets/img/brand/logo-light.png" class="mobile-logo-dark" alt="logo"></a>
+                <a href="index.html"><img src="{{ global_asset('assets/img/brand/logo.png') }}" class="mobile-logo" alt="logo"></a>
+                <a href="index.html"><img src="{{ global_asset('assets/img/brand/logo-light.png') }}" class="mobile-logo-dark" alt="logo"></a>
             </div>
             <div class="input-group">
                 <input type="search" class="form-control rounded-0" placeholder="Search for anything...">
@@ -43,19 +43,19 @@
                     </div>
                     <div class="main-notification-list">
                         <div class="media new">
-                            <div class="main-img-user online"><img alt="avatar" src="assets/img/users/5.jpg"></div>
+                            <div class="main-img-user online"><img alt="avatar" src="{{ global_asset('assets/img/users/5.jpg') }}"></div>
                             <div class="media-body">
                                 <p>Congratulate <strong>Olivia James</strong> for New template start</p><span>Oct 15 12:32pm</span>
                             </div>
                         </div>
                         <div class="media">
-                            <div class="main-img-user"><img alt="avatar" src="assets/img/users/2.jpg"></div>
+                            <div class="main-img-user"><img alt="avatar" src="{{ global_asset('assets/img/users/2.jpg') }}"></div>
                             <div class="media-body">
                                 <p><strong>Joshua Gray</strong> New Message Received</p><span>Oct 13 02:56am</span>
                             </div>
                         </div>
                         <div class="media">
-                            <div class="main-img-user online"><img alt="avatar" src="assets/img/users/3.jpg"></div>
+                            <div class="main-img-user online"><img alt="avatar" src="{{ global_asset('assets/img/users/3.jpg') }}"></div>
                             <div class="media-body">
                                 <p><strong>Elizabeth Lewis</strong> added new schedule realease</p><span>Oct 12 10:40pm</span>
                             </div>
@@ -68,12 +68,12 @@
             </div>
             <div class="dropdown main-profile-menu">
                 <a class="d-flex" href="">
-                    <span class="main-img-user" ><img alt="avatar" src="assets/img/users/1.jpg"></span>
+                    <span class="main-img-user" ><img alt="avatar" src="{{ global_asset('assets/img/users/1.jpg') }}"></span>
                 </a>
                 <div class="dropdown-menu">
                     <div class="header-navheading">
-                        <h6 class="main-notification-title">Sonia Taylor</h6>
-                        <p class="main-notification-text">Web Designer</p>
+                        <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
+                        <p class="main-notification-text">{{ auth()->user()->role->name }}</p>
                     </div>
                     <a class="dropdown-item border-top" href="profile.html">
                         <i class="fe fe-user"></i> My Profile
@@ -140,19 +140,19 @@
                         </div>
                         <div class="main-notification-list">
                             <div class="media new">
-                                <div class="main-img-user online"><img alt="avatar" src="assets/img/users/5.jpg"></div>
+                                <div class="main-img-user online"><img alt="avatar" src="{{ global_asset('assets/img/users/5.jpg') }}"></div>
                                 <div class="media-body">
                                     <p>Congratulate <strong>Olivia James</strong> for New template start</p><span>Oct 15 12:32pm</span>
                                 </div>
                             </div>
                             <div class="media">
-                                <div class="main-img-user"><img alt="avatar" src="assets/img/users/2.jpg"></div>
+                                <div class="main-img-user"><img alt="avatar" src="{{ global_asset('assets/img/users/2.jpg') }}"></div>
                                 <div class="media-body">
                                     <p><strong>Joshua Gray</strong> New Message Received</p><span>Oct 13 02:56am</span>
                                 </div>
                             </div>
                             <div class="media">
-                                <div class="main-img-user online"><img alt="avatar" src="assets/img/users/3.jpg"></div>
+                                <div class="main-img-user online"><img alt="avatar" src="{{ global_asset('assets/img/users/3.jpg') }}"></div>
                                 <div class="media-body">
                                     <p><strong>Elizabeth Lewis</strong> added new schedule realease</p><span>Oct 12 10:40pm</span>
                                 </div>
@@ -166,12 +166,12 @@
 
                 <div class="dropdown main-profile-menu">
                     <a class="d-flex" href="#">
-                        <span class="main-img-user" ><img alt="avatar" src="assets/img/users/1.jpg"></span>
+                        <span class="main-img-user" ><img alt="avatar" src="{{ global_asset('assets/img/users/1.jpg') }}"></span>
                     </a>
                     <div class="dropdown-menu">
                         <div class="header-navheading">
                             <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
-                            <p class="main-notification-text">Web Designer</p>
+                            <p class="main-notification-text">{{ auth()->user()->role->name }}</p>
                         </div>
                         <a class="dropdown-item border-top" href="profile.html">
                             <i class="fe fe-user"></i> My Profile
@@ -211,36 +211,73 @@
                         'icon' => 'ti-home',
                         'option' => [],
                         'path' => '/home',
-                        'access' => '',#Auth::user()->can('View Dashboard') == 1 ? '' : 'd-none',
+                        'access' => auth()->user()->can('View Dashboard') == 1 ? '' : 'd-none',
                         'class' => request()->is('dashboard') ? 'active' : '',
                     ],
                     [
                         'name' => 'Basic Modules',
                         'icon' => 'ti-package',
+                        'class' => request()->is('users') || request()->is('manage_roles') || request()->is('assign_permission') ? 'active' : '',
+                        'class2' => request()->is('users') || request()->is('manage_roles') || request()->is('assign_permission') ? 'show active' : '',
+                        'option' => [
+                            [
+                                'name' => 'Manage Staff',
+                                'path' => '/users',
+                                'class' => request()->is('users') ? 'active' : '',
+                                'access' => auth()->user()->can('View Staff') == 1 ? '' : 'd-none',
+                            ],
+                            [
+                                'name' => 'Staff Roles',
+                                'path' => '/manage_roles',
+                                'class' => request()->is('manage_roles') ? 'active' : '',
+                                'access' => auth()->user()->can('View Role') == 1 ? '' : 'd-none',
+                            ],
+                            [
+                                'name' => 'Assign Permissions',
+                                'path' => '/assign_permission',
+                                'class' => request()->is('assign_permission') ? 'active' : '',
+                                'access' => auth()->user()->can('View Permission') == 1 ? '' : 'd-none',
+                            ],
+                            [
+                                'name' => 'Activity Logs',
+                                'path' => '/activity_logs',
+                                'class' => request()->is('activity_logs') ? 'active' : '',
+                                'access' => auth()->user()->can('Logs Permission') == 1 ? '' : 'd-none',
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Settings',
+                        'icon' => 'ti-package',
                         'class' => request()->is('makes_n_models') || request()->is('services') ? 'active' : '',
                         'class2' => request()->is('makes_n_models') || request()->is('services') ? 'show active' : '',
-                        // 'chevron' => request()->is('makes_n_models') ? 'chevron-up' : 'chevron-down',
                         'option' => [
+                            [
+                                'name' => 'Category',
+                                'path' => '/category',
+                                'class' => request()->is('category') ? 'active' : '',
+                                'access' => auth()->user()->can('View Category') == 1 ? '' : 'd-none',
+                            ],
                             [
                                 'name' => 'Makes & Models',
                                 'path' => '/makes_n_models',
                                 'class' => request()->is('makes_n_models') ? 'active' : '',
-                                'access' => '',#Auth::user()->can('View Users') == 1 ? '' : 'd-none',
+                                'access' => auth()->user()->can('View Make n Model') == 1 ? '' : 'd-none',
                             ],
                             [
-                                'name' => 'Manage Staff',
-                                'path' => '/users',
-                                'class' => request()->is('services') ? 'active' : '',
-                                'access' => '',#Auth::user()->can('View Users') == 1 ? '' : 'd-none',
+                                'name' => 'Options',
+                                'path' => route('option.index'),
+                                'class' => request()->is('option.index') ? 'active' : '',
+                                'access' => auth()->user()->can('View Options') == 1 ? '' : 'd-none',
                             ],
                             [
-                                'name' => 'Services',
-                                'path' => '/services',
-                                'class' => request()->is('services') ? 'active' : '',
-                                'access' => '',#Auth::user()->can('View Users') == 1 ? '' : 'd-none',
+                                'name' => 'Quote Configurator',
+                                'path' => route('quote.config'),
+                                'class' => request()->is('quote.config') ? 'active' : '',
+                                'access' => auth()->user()->can('View Options') == 1 ? '' : 'd-none',
                             ],
-                        ],
-                    ],
+                        ]
+                    ]
                 ];
             @endphp
 

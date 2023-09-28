@@ -32,5 +32,13 @@ class DatabaseSeeder extends Seeder
         $tenant->domains()->create([
             'domain' => 'test.localhost',
         ]);
+
+        $tenant = Tenant::create([
+            'id' => 'quotegen1',
+        ]);
+
+        $tenant->domains()->create([
+            'domain' => 'test1.localhost',
+        ]);
     }
 }

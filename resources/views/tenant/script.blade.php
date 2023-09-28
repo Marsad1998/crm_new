@@ -24,13 +24,14 @@
                         bottom: "10",
                     });
                     
-                    $("#"+form.attr('id')).attr('action', form.attr('id'))
+                    $("#"+form.attr('id')).attr('action', form.attr('id')).attr('post')
                     $("#" + form.data("table")).DataTable().ajax.reload();
                     $(".formData").each(function () {
                         this.reset();
                         $(this).find("select").val(null).trigger("change");
                     });
                     $(".saveData").prop("disabled", false);
+                    $(".error").text('');
                 },
                 error: function (jqXhr) {
                     $(".saveData").prop("disabled", false);

@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 100)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255)->nullable();
-            $table->enum('category', ['Automotive', 'Buildings'])->nullable()->default('Automotive');
-            $table->tinyInteger('flat_charge');
-            $table->enum('type', ['regular', 'flat_rate', 'option_based'])->nullable();
-            $table->enum('operator', ['additive', 'multiplicative'])->nullable();
-            $table->decimal('price', 8, 2)->nullable();
-            $table->enum('choices', ['key_type_id', 'pts', 'oem', 'akl'])->nullable();
-            $table->integer('order')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -31,6 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('categories');
         Schema::dropIfExists('services');
     }
 };

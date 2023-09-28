@@ -45,6 +45,7 @@ class MakesController extends Controller
                         <button class="delete btn btn-sm ripple btn-outline-danger" data-tbl="makenModal" id="makes/' . Crypt::encrypt($row->id) . '">
                             <i class="fe fe-trash"></i>
                         </button>
+                        
                         <button class="show-models btn btn-sm ripple btn-outline-info" id="row_' . $row->id . '" data-class="hide">
                             <i class="fe fe-plus"></i>
                         </button>';

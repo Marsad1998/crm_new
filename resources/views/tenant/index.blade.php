@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="inner-body">
             <!-- Row -->
-            <div class="row m-3 row-sm">
+            <div class="row mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
                 <div class="col-sm-6 col-md-6 col-xl-3">
                     <div class="card custom-card">
                         <div class="card-body text-center">

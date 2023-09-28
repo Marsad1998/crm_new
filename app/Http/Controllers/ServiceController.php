@@ -9,27 +9,47 @@ use Illuminate\Support\Facades\Crypt;
 
 class ServiceController extends Controller
 {
-    public function index()
+    public function services(Request $request, $id)
     {
-        return view('tenant.services');
+        $request->validate([
+            'service_name' => 'required',
+        ]);
+
+        Service::create([
+            'name' => $request->service_name,
+            'category_id' => Crypt::decrypt($id)
+        ]);
+        return response()->json(['msg' => 'Service added Successfully', 'sts' => 'success']);
+    }
+
+    public function modify(Request $request)
+    {
+        $id = substr(base64_decode($request->id), 5, -5);
+        if ($request->type == 'delete') {
+            Service::findOrFail($id)->delete();
+            return response()->json(['msg' => 'Service Deleted', 'sts' => 'success']);
+        } else {
+            return Service::with('category')->findOrFail($id);
+        }
+    }
+
+    public function update(Request $request, $service_id)
+    {
+        $request->validate([
+            'service_name' => 'required',
+        ]);
+        $service_id = substr(base64_decode($service_id), 5, -5);
+        Service::findOrFail($service_id)->update([
+            'name' => $request->service_name,
+        ]);
+
+        return response()->json(['msg' => 'Service Updated Successfully', 'sts' => 'success']);
     }
 
     public function show()
     {
         $data = Service::get();
         return Datatables::of($data)
-            ->editColumn('type', function ($row) {
-                if ($row->type == 'regular') {
-                    return '<span class="badge bg-info">Regular</span>';
-                } else if ($row->type == 'flat_rate') {
-                    return '<span class="badge bg-primary">Flat Rate</span>';
-                } else if ($row->type == 'option_based') {
-                    return '<span class="badge text-white bg-warning">Option Based</span>';
-                }
-            })
-            ->editColumn('price', function ($row) {
-                return "$" . number_format($row->price, 2);
-            })
             ->addColumn('action', function ($row) {
                 $btn = "";
                 $btn .= '<button class="edit btn btn-sm ripple btn-outline-warning" id="services/' . Crypt::encrypt($row->id) . '">

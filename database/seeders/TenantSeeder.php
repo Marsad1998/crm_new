@@ -5,28 +5,32 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Makes;
 use App\Models\Models;
+use App\Models\Option;
 use App\Models\Service;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TenantSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        User::factory()->create([
+        $role = Role::insertGetId([
+            'name' => 'Super Admin',
+            'guard_name' => 'web'
+        ]);
+
+        $user = User::factory()->create([
             'name' => 'Marsad Akbar',
             'email' => 'marsadakbar1@gmail.com',
-            'role_id' => 1,
+            'role_id' => $role,
             'status' => 1,
             'password' => Hash::make("secret"),
         ]);
+        $user->syncRoles([$role]);
 
-        Service::factory(10)->create();
+        Service::factory(2)->create();
+        Option::factory(2)->create();
 
         $names = [
             'Alfa',
@@ -1037,7 +1041,6 @@ class TenantSeeder extends Seeder
             'Sundance' => 'Plymouth',
             'M4' => 'BMW',
         ];
-
         foreach ($models as $x => $model) {
             $data = Makes::where('name', $model)->first();
             if (!is_null($data)) {

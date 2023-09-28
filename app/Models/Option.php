@@ -8,15 +8,15 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Service extends Model
+class Option extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity;
 
-    protected $fillable = ['name', 'category_id'];
+    protected $fillable = ['name', 'type'];
 
-    public function category()
+    public function option_values()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(OptionValue::class);
     }
 
     public function getActivitylogOptions(): LogOptions
