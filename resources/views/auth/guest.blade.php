@@ -9,32 +9,34 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-	<link href="{{ url('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
-	<script src="{{ url('assets/plugins/jquery/jquery.min.js') }}"></script>
-    
+	<link href="{{ global_asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+	<link href="{{ global_asset('assets/plugins/web-fonts/font-awesome/font-awesome.min.css') }}" rel="stylesheet">
+	
+	<link rel="stylesheet" href="{{ global_asset('assets/logins/css/util.css') }}">
+	<link rel="stylesheet" href="{{ global_asset('assets/logins/css/main.css') }}">
+	
+	<style>
+		@media (max-width: 992px) {
+			.login100-pic {
+				padding-top: 25px;
+			}
+		}
+	</style>
 </head>
 <body>
-    <div id="wrapper">
-        <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-dark border-bottom" style="padding: 0.570rem 1.25rem;">
-                <a class="navbar-brand text-white" href="#">Monty Tenant</a>
+    @yield('content')    
+    
+	<script src="{{ global_asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+	<script src="{{ global_asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <main class="py-4">
-                @yield('content')
-            </main>
-        </div>
-    </div>
+	<script src="{{ global_asset('assets/logins/vendor/jquery/tilt.jquery.min.js') }}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<script src="{{ global_asset('assets/logins/js/main.js') }}"></script>
+
 </body>
 </html>

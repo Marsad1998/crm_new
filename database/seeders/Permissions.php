@@ -39,7 +39,7 @@ class Permissions extends Seeder
         Permission::create(['name' => 'Add Makes', 'guard_name' => 'web', 'model_name' => 'Makes & Models']);
         Permission::create(['name' => 'Edit Makes', 'guard_name' => 'web', 'model_name' => 'Makes & Models']);
         Permission::create(['name' => 'Add Models', 'guard_name' => 'web', 'model_name' => 'Makes & Models']);
-        Permission::create(['name' => 'Edit Models', 'guard_name' => 'web', 'model_name' => 'Makes & Models']);
+        // Permission::create(['name' => 'Edit Models', 'guard_name' => 'web', 'model_name' => 'Makes & Models']);
 
         Permission::create(['name' => 'Add Category', 'guard_name' => 'web', 'model_name' => 'Category']);
         Permission::create(['name' => 'View Category', 'guard_name' => 'web', 'model_name' => 'Category']);
@@ -55,5 +55,13 @@ class Permissions extends Seeder
         Permission::create(['name' => 'View Option Value', 'guard_name' => 'web', 'model_name' => 'Option Values']);
         Permission::create(['name' => 'Edit Option Value', 'guard_name' => 'web', 'model_name' => 'Option Values']);
         Permission::create(['name' => 'Delete Option Value', 'guard_name' => 'web', 'model_name' => 'Option Values']);
+
+        Permission::create(['name' => 'Add Quote Config', 'guard_name' => 'web', 'model_name' => 'Quote Config']);
+        // Permission::create(['name' => 'Add Quote category', 'guard_name' => 'web', 'model_name' => 'Quote Config']);
+        // Permission::create(['name' => 'Add Quote Fields', 'guard_name' => 'web', 'model_name' => 'Quote Config']);
+        // Permission::create(['name' => 'Load Quotes', 'guard_name' => 'web', 'model_name' => 'Quote Config']);
+        Permission::create(['name' => 'Add Quotes Fields', 'guard_name' => 'web', 'model_name' => 'Quote Config']);
+        Permission::create(['name' => 'Edit Quotes Fields', 'guard_name' => 'web', 'model_name' => 'Quote Config']);
+        Permission::create(['name' => 'Delete Quotes Fields', 'guard_name' => 'web', 'model_name' => 'Quote Config']);
     }
 }

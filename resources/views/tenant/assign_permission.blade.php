@@ -53,7 +53,7 @@
                                         @endphp
                                         @foreach ($permissions as $x => $item)
                                             <tr>
-                                                <td> {{ $item->model_name }} </td>
+                                                <td class="bg-info"> {{ $item->model_name }} </td>
                                                 @foreach (Permission::where('model_name', $item->model_name)->get() as $per)
                                                     <td>
                                                         <div class="d-flex justify-content-between"> 

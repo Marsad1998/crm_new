@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="modal animate__animated animate__zoomIn" id="servicesModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal animate__animated animate__zoomIn animate__faster" id="servicesModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('quote_configs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('service_id')->nullable();
+            $table->unsignedBigInteger('option_id')->nullable();
+            $table->bigInteger('sort_no')->nullable();
+
+            $table->foreign('option_id')->references('id')->on('options')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign('service_id')->references('id')->on('services')->onUpdate('restrict')->onDelete('restrict');
+
             $table->timestamps();
         });
     }

@@ -179,6 +179,8 @@
 
 		{{-- Draggable --}}
 		<script src="{{ global_asset('assets/plugins/darggable/jquery-ui-darggable.min.js') }}"></script>
+		{{-- <script src="{{ global_asset('assets/plugins/jquery-sortable/source/js/jquery-sortable.js') }}"></script> --}}
+		{{-- <script src="{{ global_asset('assets/plugins/jquery-sortable/source/js/jquery-sortable.min.js') }}"></script> --}}
 
 		<script>
 			$.ajaxSetup({

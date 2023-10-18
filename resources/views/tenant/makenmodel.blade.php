@@ -209,11 +209,9 @@
                                 
                                 $("#make_id").empty();
                                 var option = new Option(response[0].make.name, response[0].make.id, false, false);
-                                $("#make_id").append(option);
+                                $("#make_id").append(option).trigger('change');
                                 $("#make_id").trigger('change');
                             }
-
-
                         }
                     });
                 });

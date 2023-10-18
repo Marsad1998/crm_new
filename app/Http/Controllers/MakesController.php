@@ -30,7 +30,7 @@ class MakesController extends Controller
     public function show()
     {
         $data = Makes::select('name', 'id')->get();
-        $test = Models::all();
+        $models = Models::all();
         return Datatables::of($data)
             ->addColumn('type', function () {
                 return '<span class="badge bg-light text-primary">Makes</span>';
@@ -54,7 +54,7 @@ class MakesController extends Controller
             })
             ->addIndexColumn()
             ->rawColumns(['action', 'type'])
-            ->with('models', $test)
+            ->with('models', $models)
             ->make(true);
     }
 

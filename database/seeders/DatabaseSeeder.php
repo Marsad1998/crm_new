@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $tenant->domains()->create([
-            'domain' => 'test.montyslocksmith.ca',
+            'domain' => 'test.localhost',
         ]);
     }
 }

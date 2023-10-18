@@ -145,6 +145,10 @@ Route::middleware([
             Route::get('/config', [QuoteConfigController::class, 'config'])->name('config')->middleware(['can:Add Quote Config']);
             Route::post('/category', [QuoteConfigController::class, 'category'])->name('category')->middleware(['can:Add Quote category']);
             Route::post('/fields', [QuoteConfigController::class, 'fields'])->name('fields')->middleware(['can:Add Quote Fields']);
+            Route::post('/load', [QuoteConfigController::class, 'load'])->name('load')->middleware(['can:Load Quotes']);
+            Route::post('/save', [QuoteConfigController::class, 'create'])->name('create')->middleware(['can:Add Quotes Fields']);
+            Route::post('/edit/{id}', [QuoteConfigController::class, 'edit'])->name('edit')->middleware(['can:Edit Quotes Fields']);
+            Route::post('/delete/{id}', [QuoteConfigController::class, 'destroy'])->name('delete')->middleware(['can:Delete Quotes Fields']);
         });
     });
 

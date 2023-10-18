@@ -44,7 +44,7 @@
                             data: 'id'
                         },
                         {
-                            data: 'log_name'
+                            data: 'subject_type'
                         },
                         {
                             data: 'event'
