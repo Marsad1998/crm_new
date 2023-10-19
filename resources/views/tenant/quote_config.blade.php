@@ -227,6 +227,7 @@
                     var text = $("#category_services option:selected").text();
                     $("#serviceName").text(text.trim())
                     getData(id);
+                    
                 });
 
                 $(document).on("click", ".edit", function() {
