@@ -223,7 +223,6 @@
                     }
                 }).on('select2:select', function (e) {
                     e.preventDefault();
-                    e.stopPropagation();
                     var id = $(this).val();
                     var text = $("#category_services option:selected").text();
                     $("#serviceName").text(text.trim())
