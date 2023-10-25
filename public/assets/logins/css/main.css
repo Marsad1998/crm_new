@@ -489,9 +489,11 @@ iframe {
   height: auto;
   display: flex;
   align-items: center;
-  color: #FF0000;
 }
 .logo img{
-  width: 150px;
+  width: 220px;
   height: 60px;
+  background-color: rgba(81, 179, 222, 0.6);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 15px 5px;
 }

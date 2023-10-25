@@ -5,7 +5,7 @@
         <div class="inner-body">
             <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
                 <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">
-                    Users
+                    <i class="fas fa-users"></i> Users
                 </div>
                 <div class="card-body">
                     <div class="row row-sm">
@@ -34,7 +34,7 @@
     
     <div class="modal fade" id="usersModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content br-radius-10">
                 <div class="modal-header">
                     <h5 class="modal-title" id="userTitle">Add a user</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -5,3 +5,7 @@
 .tenant-btn{
     background-color: #51B3DE !important;
 }
+
+.br-radius-10 {
+    border-radius: 10px;
+}
