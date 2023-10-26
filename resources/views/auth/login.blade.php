@@ -8,7 +8,7 @@
             <span id="dot"></span>
             <span id="dot2"></span>
             <div class="logo p-b-20">
-                <img src="{{ global_asset('assets/logins/images/montys-logo-inv.png') }}" alt="IMG">
+                <img src="{{ global_asset('assets/logins/images/montys-logo.png') }}" alt="IMG">
             </div>
 
             <div class="login100-pic js-tilt" data-tilt>

@@ -4,14 +4,14 @@
         <div class="main-header-left">
             <a class="main-header-menu-icon d-lg-none" href="" id="mainNavShow"><span></span></a>
             <a class="main-logo" href="index.html">
-                <img src="{{ global_asset('assets/img/brand/logo.png') }}" class="header-brand-img desktop-logo" alt="logo">
-                <img src="{{ global_asset('assets/img/brand/logo-light.png') }}" class="header-brand-img desktop-logo theme-logo" alt="logo">
+                <img src="{{ global_asset('assets/img/brand/montys-logo.png') }}" style="width:137px;" class="header-brand-img desktop-logo" alt="logo">
+                <!-- <img src="{{ global_asset('assets/img/brand/logo-light.png') }}" class="header-brand-img desktop-logo theme-logo" alt="logo"> -->
             </a>
         </div>
         <div class="main-header-center">
             <div class="responsive-logo">
-                <a href="index.html"><img src="{{ global_asset('assets/img/brand/logo.png') }}" class="mobile-logo" alt="logo"></a>
-                <a href="index.html"><img src="{{ global_asset('assets/img/brand/logo-light.png') }}" class="mobile-logo-dark" alt="logo"></a>
+                <a href="index.html"><img src="{{ global_asset('assets/img/brand/montys-logo.png') }}" style="width:137px;" class="mobile-logo" alt="logo"></a>
+                <!-- <a href="index.html"><img src="{{ global_asset('assets/img/brand/logo-light.png') }}" class="mobile-logo-dark" alt="logo"></a> -->
             </div>
             <div class="input-group">
                 <input type="search" class="form-control rounded-0" placeholder="Search for anything...">
