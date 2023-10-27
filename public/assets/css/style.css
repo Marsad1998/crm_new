@@ -74806,7 +74806,7 @@ a.tag-addon:hover {
     color: #a8afc7;
 }
 
-.main-navbar .nav-link.with-sub::before {
+/* .main-navbar .nav-link.with-sub::before {
     content: '';
     position: absolute;
     top: 37px;
@@ -74821,7 +74821,7 @@ a.tag-addon:hover {
     background-color: #ffffff;
     z-index: 901;
     display: none;
-}
+} */
 
 .main-navbar .nav-sub {
     display: none;

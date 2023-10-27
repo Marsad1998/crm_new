@@ -68,6 +68,12 @@
 }
 
 @media (max-width: 991px) {
+    .svg-wrap {
+        display: none;
+    }
+    svg.link-svgline {
+        display: none;
+    }
     .main-header-right .nav-input-group-lg {
         display: none;
     }
@@ -118,59 +124,91 @@
     text-decoration-color: #51B3DE;
 }
 
-.svg-wrap {
-    position: absolute;
-    width: 0px;
-    height: 0px;
-    overflow: hidden;
-}
-  
-.sec-link-svgline {
-    line-height: 3;
-    position: relative;
-    z-index: 1; /* needed for setting pseudo-element z-index */
-    overflow: hidden;
-    backface-visibility: hidden;
-}
-  
-.sec-link-svgline a {
-    position: relative;
-    display: inline-block;
-    outline: none;
-    color: #404d5b;
-    vertical-align: bottom;
-    text-decoration: none;
-    white-space: nowrap;
-}
-  
-.sec-link-svgline a::before,
-.sec-link-svgline a::after {
-    pointer-events: none;
-    backface-visibility: hidden;
-    font-smoothing: antialiased;
-}
-  
-.link-svgline a svg.link-svgline {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    overflow: hidden;
-    margin: 0;
-    width: 60%;
-    height: 22px; 
-    transition: stroke-dashoffset 0.3s ease-in-out;
-    transform: translateY(-90%);
-    fill: none;
-    stroke: #51B3DE;
-    stroke-width: 2;
-    stroke-dasharray: 400px; 
-    stroke-dashoffset: 400px;
-}
-  
-.link-svgline a:hover svg.link-svgline {
-    stroke-dashoffset: 0px; 
+@media (min-width: 992px) {
+    .svg-wrap {
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        overflow: hidden;
+    }
+      
+    .sec-link-svgline {
+        line-height: 3;
+        position: relative;
+        z-index: 1; /* needed for setting pseudo-element z-index */
+        overflow: hidden;
+        backface-visibility: hidden;
+    }
+      
+    .sec-link-svgline a {
+        position: relative;
+        display: inline-block;
+        outline: none;
+        color: #404d5b;
+        vertical-align: bottom;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+      
+    .sec-link-svgline a::before,
+    .sec-link-svgline a::after {
+        pointer-events: none;
+        backface-visibility: hidden;
+        font-smoothing: antialiased;
+    }
+      
+    .link-svgline a svg.link-svgline {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        overflow: hidden;
+        margin: 0;
+        width: 60%;
+        height: 22px; 
+        transition: stroke-dashoffset 0.3s ease-in-out;
+        transform: translateY(-90%);
+        fill: none;
+        stroke: #51B3DE;
+        stroke-width: 2;
+        stroke-dasharray: 400px; 
+        stroke-dashoffset: 400px;
+    }
+      
+    .link-svgline a:hover svg.link-svgline {
+        stroke-dashoffset: 0px; 
+    }
+    
+    .link-svgline a:hover{
+        color: #51B3DE !important; 
+    }
 }
 
-.link-svgline a:hover{
-    color: #51B3DE !important; 
+.cstm-profile-dropdown-menu a:hover{
+    border-bottom: 2px solid #51B3DE;
+    border-radius:10px
 }
+
+
+.uno > .uno-a:before {
+    content: "";
+    position: absolute;
+    width: 100% !important;
+    height: 3px !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    background: #9CF5A6 !important;
+    visibility: hidden !important;
+    border-radius: 5px !important;
+    transform: scaleX(0) !important;
+    transition: .25s linear !important;
+}
+.uno > .uno-a:hover:before,
+.uno > .uno-a:focus:before {
+    visibility: visible !important;
+    transform: scaleX(1) !important;
+}
+.uno .uno-a:before {
+    background: rgba(0,0,0,0) !important;
+    box-shadow: 0 0 5px 2px #fff !important;  
+}
+  

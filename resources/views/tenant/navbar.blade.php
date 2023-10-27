@@ -71,7 +71,7 @@
                 <a class="d-flex" href="">
                     <span class="main-img-user" ><img alt="avatar" src="{{ global_asset('assets/img/users/1.jpg') }}"></span>
                 </a>
-                <div class="dropdown-menu br-radius-15">
+                <div class="dropdown-menu br-radius-15 cstm-profile-dropdown-menu">
                     <div class="header-navheading">
                         <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
                         <p class="main-notification-text">{{ auth()->user()->role->name }}</p>
@@ -169,7 +169,7 @@
                     <a class="d-flex" href="#">
                         <span class="main-img-user" ><img alt="avatar" src="{{ global_asset('assets/img/users/1.jpg') }}"></span>
                     </a>
-                    <div class="dropdown-menu br-radius-15">
+                    <div class="dropdown-menu br-radius-15 cstm-profile-dropdown-menu">
                         <div class="header-navheading">
                             <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
                             <p class="main-notification-text">{{ auth()->user()->role->name }}</p>
@@ -284,8 +284,8 @@
 
             @foreach ($mains as $main)
                 @if (empty($main['option']))
-                    <li class="nav-item text-capitalize">
-                        <a class="nav-link" href="{{$main['path']}}">
+                    <li class="nav-item text-capitalize uno">
+                        <a class="nav-link uno-a" href="{{$main['path']}}">
                             <span class="shape1"></span>
                             <span class="shape2"></span>
                             <i class="{{$main['icon']}} sidemenu-icon"></i>
@@ -295,8 +295,8 @@
                         </a>
                     </li>
                 @else
-                    <li class="nav-item text-capitalize">
-                        <a class="nav-link with-sub" href="#">
+                    <li class="nav-item text-capitalize uno">
+                        <a class="nav-link with-sub uno-a" href="#">
                             <span class="shape1"></span>
                             <span class="shape2"></span>
                             <i class="{{ $main['icon'] }} sidemenu-icon"></i> {{$main['name']}}
