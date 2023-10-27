@@ -4,21 +4,22 @@
         <div class="main-header-left">
             <a class="main-header-menu-icon d-lg-none" href="" id="mainNavShow"><span></span></a>
             <a class="main-logo" href="index.html">
-                <img src="{{ global_asset('assets/img/brand/montys-logo.png') }}" style="width:137px;" class="header-brand-img desktop-logo" alt="logo">
+                <img src="{{ global_asset('assets/img/brand/montys-logo.png') }}" class="width-137 header-brand-img desktop-logo" alt="logo">
                 <!-- <img src="{{ global_asset('assets/img/brand/logo-light.png') }}" class="header-brand-img desktop-logo theme-logo" alt="logo"> -->
             </a>
         </div>
         <div class="main-header-center">
             <div class="responsive-logo">
-                <a href="index.html"><img src="{{ global_asset('assets/img/brand/montys-logo.png') }}" style="width:137px;" class="mobile-logo" alt="logo"></a>
+                <a href="index.html"><img src="{{ global_asset('assets/img/brand/montys-logo.png') }}" class="width-137 mobile-logo" alt="logo"></a>
                 <!-- <a href="index.html"><img src="{{ global_asset('assets/img/brand/logo-light.png') }}" class="mobile-logo-dark" alt="logo"></a> -->
-            </div>
-            <div class="input-group">
-                <input type="search" class="form-control rounded-0" placeholder="Search for anything...">
-                <button class="btn search-btn tenant-btn"><i class="fe fe-search"></i></button>
             </div>
         </div>
         <div class="main-header-right">
+            <div class="input-group nav-input-group-lg">
+                <input type="search" class="input100 form-control nav-form-control-lg rounded-0" placeholder="Search for anything...">
+                <span class="focus-input100"></span>
+                <button class="btn search-btn nav-search-btn-lg tenant-btn "><i class="fe fe-search"></i></button>
+            </div>
             <div class="dropdown header-search">
                 <a class="nav-link icon header-search">
                     <i class="fe fe-search"></i>
@@ -70,7 +71,7 @@
                 <a class="d-flex" href="">
                     <span class="main-img-user" ><img alt="avatar" src="{{ global_asset('assets/img/users/1.jpg') }}"></span>
                 </a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu br-radius-10">
                     <div class="header-navheading">
                         <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
                         <p class="main-notification-text">{{ auth()->user()->role->name }}</p>
@@ -168,7 +169,7 @@
                     <a class="d-flex" href="#">
                         <span class="main-img-user" ><img alt="avatar" src="{{ global_asset('assets/img/users/1.jpg') }}"></span>
                     </a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu br-radius-10">
                         <div class="header-navheading">
                             <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
                             <p class="main-notification-text">{{ auth()->user()->role->name }}</p>
