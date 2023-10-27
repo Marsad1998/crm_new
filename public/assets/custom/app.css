@@ -107,6 +107,70 @@
 
 
 /* Utilities */
-.br-radius-10 {border-radius: 10px;}
+.br-radius-10 {border-radius: 10px !important;}
+.br-radius-15 {border-radius: 15px !important;}
+
+.padding-top-10 {padding-top: 10px;}
 
 .width-137 {width:137px;}
+
+.open-url {
+    text-decoration-color: #51B3DE;
+}
+
+.svg-wrap {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+}
+  
+.sec-link-svgline {
+    line-height: 3;
+    position: relative;
+    z-index: 1; /* needed for setting pseudo-element z-index */
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+  
+.sec-link-svgline a {
+    position: relative;
+    display: inline-block;
+    outline: none;
+    color: #404d5b;
+    vertical-align: bottom;
+    text-decoration: none;
+    white-space: nowrap;
+}
+  
+.sec-link-svgline a::before,
+.sec-link-svgline a::after {
+    pointer-events: none;
+    backface-visibility: hidden;
+    font-smoothing: antialiased;
+}
+  
+.link-svgline a svg.link-svgline {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    overflow: hidden;
+    margin: 0;
+    width: 60%;
+    height: 22px; 
+    transition: stroke-dashoffset 0.3s ease-in-out;
+    transform: translateY(-90%);
+    fill: none;
+    stroke: #51B3DE;
+    stroke-width: 2;
+    stroke-dasharray: 400px; 
+    stroke-dashoffset: 400px;
+}
+  
+.link-svgline a:hover svg.link-svgline {
+    stroke-dashoffset: 0px; 
+}
+
+.link-svgline a:hover{
+    color: #51B3DE !important; 
+}

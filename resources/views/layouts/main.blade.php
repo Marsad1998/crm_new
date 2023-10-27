@@ -89,6 +89,9 @@
 
 			<!-- Main Content-->
 			<div class="main-content pt-0">
+				<div class="container-fluid padding-top-10">
+					#Dashboard > <ins class="open-url">Basic Modules</ins>
+				</div>
                 @yield('content')
 			</div>
 			<!-- End Main Content-->

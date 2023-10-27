@@ -38,7 +38,7 @@
                     <i class="fe fe-bell header-icons"></i>
                     <span class="badge bg-danger nav-link-badge">4</span>
                 </a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu br-radius-15">
                     <div class="header-navheading">
                         <p class="main-notification-text">You have 1 unread notification<span class="badge bg-pill bg-primary ms-3">View all</span></p>
                     </div>
@@ -71,7 +71,7 @@
                 <a class="d-flex" href="">
                     <span class="main-img-user" ><img alt="avatar" src="{{ global_asset('assets/img/users/1.jpg') }}"></span>
                 </a>
-                <div class="dropdown-menu br-radius-10">
+                <div class="dropdown-menu br-radius-15">
                     <div class="header-navheading">
                         <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
                         <p class="main-notification-text">{{ auth()->user()->role->name }}</p>
@@ -135,7 +135,7 @@
                         <i class="fe fe-bell header-icons"></i>
                         <span class="badge bg-danger nav-link-badge">4</span>
                     </a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu br-radius-15">
                         <div class="header-navheading">
                             <p class="main-notification-text">You have 1 unread notification<span class="badge bg-pill bg-primary ms-3">View all</span></p>
                         </div>
@@ -169,7 +169,7 @@
                     <a class="d-flex" href="#">
                         <span class="main-img-user" ><img alt="avatar" src="{{ global_asset('assets/img/users/1.jpg') }}"></span>
                     </a>
-                    <div class="dropdown-menu br-radius-10">
+                    <div class="dropdown-menu br-radius-15">
                         <div class="header-navheading">
                             <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
                             <p class="main-notification-text">{{ auth()->user()->role->name }}</p>
@@ -301,10 +301,15 @@
                             <span class="shape2"></span>
                             <i class="{{ $main['icon'] }} sidemenu-icon"></i> {{$main['name']}}
                         </a>
-                        <ul class="nav-sub">
+                        <div class="svg-wrap">
+                            <svg viewBox="0 0 400 20" xmlns="http://www.w3.org/2000/svg">
+                            <path id="svg_line" d="m 1.986,8.91 c 55.429038,4.081 111.58111,5.822 167.11781,2.867 22.70911,-1.208 45.39828,-0.601 68.126,-0.778 28.38173,-0.223 56.76079,-1.024 85.13721,-1.33 24.17379,-0.261 48.42731,0.571 72.58115,0.571"></path>
+                            </svg>
+                        </div>
+                        <ul class="nav-sub br-radius-15">
                             @foreach ($main['option'] as $option)
-                                <li class="nav-sub-item {{ $option['access'] }}" style="color:black">
-                                    <a class="nav-sub-link" href="{{ $option['path'] }}"> {{ $option['name'] }} </a>
+                                <li class="nav-sub-item {{ $option['access'] }} link-svgline sec-link-svgline" style="color:black">
+                                        <a class="nav-sub-link cstm-nsb" href="{{ $option['path'] }}">{{ $option['name'] }}<svg class="link-svgline"><use xlink:href="#svg_line"></use></svg></a>
                                 </li>
                             @endforeach
                         </ul>
