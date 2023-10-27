@@ -285,7 +285,7 @@
             @foreach ($mains as $main)
                 @if (empty($main['option']))
                     <li class="nav-item text-capitalize uno">
-                        <a class="nav-link uno-a" href="{{$main['path']}}">
+                        <a class="nav-link uno-a" href="{{$main['path']}}" cstmname="{{$main['name']}}" cstmParname="false">
                             <span class="shape1"></span>
                             <span class="shape2"></span>
                             <i class="{{$main['icon']}} sidemenu-icon"></i>
@@ -309,7 +309,7 @@
                         <ul class="nav-sub br-radius-15">
                             @foreach ($main['option'] as $option)
                                 <li class="nav-sub-item {{ $option['access'] }} link-svgline sec-link-svgline" style="color:black">
-                                        <a class="nav-sub-link cstm-nsb" href="{{ $option['path'] }}">{{ $option['name'] }}<svg class="link-svgline"><use xlink:href="#svg_line"></use></svg></a>
+                                        <a class="nav-sub-link cstm-nsb" href="{{ $option['path'] }}" cstmname="{{ $option['name'] }}" cstmParname="{{$main['name']}}">{{ $option['name'] }}<svg class="link-svgline"><use xlink:href="#svg_line"></use></svg></a>
                                 </li>
                             @endforeach
                         </ul>

@@ -90,7 +90,7 @@
 			<!-- Main Content-->
 			<div class="main-content pt-0">
 				<div class="container-fluid padding-top-10">
-					#<span class="open-url text-capitalize">{{ str_replace('_', ' ', Request::path());}}</span>
+					# <span class="open_urlPar"></span><span class="open-url text-capitalize"></span>
 				</div>
                 @yield('content')
 			</div>
@@ -190,6 +190,18 @@
 				headers: {
 					"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
 				},
+			});
+
+			$(document).ready(function(){
+				var open_url = '{{Request::path()}}'
+				var open_urlREC = $('a[href*="/'+open_url+'"]').attr("cstmname")
+				var open_urlParREC = $('a[href*="/'+open_url+'"]').attr("cstmParname")
+				if (open_urlParREC != 'false') {
+					$('.open_urlPar').html(open_urlParREC+' > ');
+				}else{
+					$('.open_urlPar').html('');
+				}
+				$('.open-url').html(open_urlREC);
 			});
 		</script>
 		@stack('script')
