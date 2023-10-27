@@ -90,7 +90,7 @@
 			<!-- Main Content-->
 			<div class="main-content pt-0">
 				<div class="container-fluid padding-top-10">
-					#Dashboard > <ins class="open-url">Basic Modules</ins>
+					#<span class="open-url text-capitalize">{{ str_replace('_', ' ', Request::path());}}</span>
 				</div>
                 @yield('content')
 			</div>

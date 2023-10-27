@@ -121,7 +121,18 @@
 .width-137 {width:137px;}
 
 .open-url {
-    text-decoration-color: #51B3DE;
+    /* text-decoration:underline; I didn't use this because gap is low */
+    position:relative;
+}
+.open-url:before{
+    content:'';
+    position:absolute;
+    bottom:-2px;
+    left:0;
+    width:100%;
+    height:1px;
+    background:#51B3DE;
+    box-shadow:0 0 7px #51B3DE;
 }
 
 @media (min-width: 992px) {
