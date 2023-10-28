@@ -4,10 +4,8 @@
 
     <div class="container-fluid">
         <div class="inner-body">
-            <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
-                <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">
-                    Makes & Models
-                </div>
+            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70"><i class="fas fa-car-alt"></i> Makes & Models</h3>
+            <div class="card">
                 <div class="card-body">
                     <div class="row row-sm">
                         <div class="table-responsive mt-3">
@@ -42,13 +40,13 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="make_name" class="form-label">Name</label>
-                            <input type="text" name="make_name" id="make_name" class="form-control">
+                            <input type="text" name="make_name" id="make_name" class="form-control form-control-c">
                             <small id="make_name_error" class="text-danger error"></small>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary saveData">Save</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-c btn-primary saveData">Save</button>
+                        <button type="button" class="btn btn-c btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -66,20 +64,20 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="model_name" class="form-label">Name</label>
-                            <input type="text" name="model_name" id="model_name" class="form-control">
+                            <input type="text" name="model_name" id="model_name" class="form-control form-control-c">
                             <small id="model_name_error" class="text-danger error"></small>
                         </div>
                         <div class="mb-3">
                             <label for="make_id" class="form-label">Makes</label>
-                            <select class="form-control" name="make_id" id="make_id">
+                            <select class="form-control form-control-c" name="make_id" id="make_id">
                             </select>
                             <small id="make_id_error" class="text-danger error"></small>
                         </div>
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary saveData">Save</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-c btn-primary saveData">Save</button>
+                        <button type="button" class="btn btn-c btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -123,7 +121,7 @@
                     dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
                     buttons: [
                         {
-                            className: "mx-2",
+                            className: "mx-2 btn-c",
                             text: '<i class="fas fa-plus-circle"></i> Add Makes',
                             action: function (e, dt, node, config) {
                                 $(".formData").each(function () {
@@ -134,7 +132,7 @@
                             }
                         },
                         {
-                            className: "mx-2",
+                            className: "mx-2 btn-c",
                             text: '<i class="fas fa-plus-circle"></i> Add Models',
                             action: function (e, dt, node, config) {
                                 $(".formData").each(function () {

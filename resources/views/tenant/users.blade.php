@@ -95,7 +95,7 @@
                     dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
                     buttons: [
                         {
-                            className: "mx-2",
+                            className: "mx-2 btn-c",
                             text: '<i class="fas fa-plus-circle"></i> Add Users',
                             action: function (e, dt, node, config) {
                                 $(".formData").each(function () {

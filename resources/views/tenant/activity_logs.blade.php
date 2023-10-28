@@ -7,8 +7,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
-                <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">Activity Logs</div>
+            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">Activity Logs</h3>
+            <div class="card">
                 <div class="card-body">
                     <div class="table-responsive mt-3">
                         <table class="table table-striped table-hover table-bordered align-middle" id="logTable">

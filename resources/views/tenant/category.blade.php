@@ -7,24 +7,24 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
-                <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">Manage Categories</div>
+            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70"><i class="fas fa-link"></i> Manage Categories</h3>
+            <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-4">
                             <form action="/add_categories" class="formData" method="post">
                                 <div class="form-group">
                                     <label for="">Category Name</label>
-                                    <input type="text" class="form-control" placeholder="Category Name" name="name" id="name"> 
+                                    <input type="text" class="form-control form-control-c" placeholder="Category Name" name="name" id="name"> 
                                 </div>
-                                <button type="submit" id="saveData" class="btn ripple btn-primary btn-block">Save</button>
+                                <button type="submit" id="saveData" class="btn btn-c btn-primary btn-block">Save</button>
                             </form>
                         </div> {{-- inner col-4 --}}
                         <div class="col-sm-8">
                             <div class="table-responsive mt-3">
                                 <table class="table table-striped table-hover table-bordered align-middle" id="categoryTbl">
                                     <thead>
-                                        <tr>
+                                        <tr class="bg-primary">
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Action</th>
@@ -52,7 +52,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="service_name" class="form-label">Service Name</label>
-                            <input type="text" id="service_name" required class="form-control">
+                            <input type="text" id="service_name" required class="form-control form-control-c">
                             <small id="service_name_error" class="text-danger error"></small>
                         </div>                        
                     </div>

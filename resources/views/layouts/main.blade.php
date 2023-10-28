@@ -76,31 +76,45 @@
 				border-radius: 0px !important;
 				height: 40px !important;
 				font-size: 16px !important;
-				color: #353535 !important;	
+				color: #353535 !important;
 			}
 			.select2-selection {
 				border: 1px solid gray !important;
 				border-radius: 0px !important;
 				height: 40px !important;
 				font-size: 16px !important;
-				color: #353535 !important;	
+				color: #353535 !important;
 			}
 			.btn-c{
 				font-size: 18px !important;
 				border-radius: 0px !important;
 			}
+			.dataTables_filter input{
+				border: 1px solid gray !important;
+				border-radius: 0px !important;
+				color: #353535 !important;
+			}
+
+			.dataTables_length select{
+				border: 1px solid gray !important;
+				border-radius: 0px !important;
+				color: #353535 !important;
+			}
+
+			.table-bordered > thead > tr > th{
+				color: white !important;
+			}
 			
-			.table {
+			/* .table {
 				border: 0.5px solid grey;
 			}
-			.table-bordered > thead > tr > th,
 			.table-bordered > tbody > tr > th,
 			.table-bordered > tfoot > tr > th,
 			.table-bordered > thead > tr > td,
 			.table-bordered > tbody > tr > td,
 			.table-bordered > tfoot > tr > td {
 				border: 0.1px solid grey;
-			}
+			} */
 		</style>
 	</head>
 
@@ -223,6 +237,7 @@
 			});
 
 			$(document).ready(function(){
+	
 				var open_url = '{{Request::path()}}'
 				var open_urlREC = $('a[href*="/'+open_url+'"]').attr("cstmname")
 				var open_urlParREC = $('a[href*="/'+open_url+'"]').attr("cstmParname")
