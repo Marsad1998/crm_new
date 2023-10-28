@@ -253,6 +253,10 @@
 					language: { 
                         search: "", searchPlaceholder: "Search...",
                     },
+					lengthMenu: [
+                        [50, 100, 500, -1],
+                        [50, 100, 500, 'All']
+                    ],
 				});
 	
 				var open_url = '{{Request::path()}}'

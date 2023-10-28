@@ -74,7 +74,7 @@ class OptionController extends Controller
                     foreach ($row->option_values as $x => $value) {
                         $options .= '<option value="">' . $value->name . '</option>';
                     }
-                    return '<select class="form-control bd-gray-900" readonly><option value="">Seletable Option</option>' . $options . '</select>';
+                    return '<select class="form-control form-control-sm bd-gray-900" readonly><option value="">Seletable Option</option>' . $options . '</select>';
                 } elseif ($row->type == 'radio') {
                     return '<div class="d-flex justify-content-center"><input type="radio" name="radio"> This is Radio Checkbox</div>';
                 } elseif ($row->type == 'switch') {

@@ -88,10 +88,6 @@
                 var users = $("#usersTbl").DataTable({
                     stateSave: true,
                     responsive: true,
-                    lengthMenu: [
-                        [50, 100, 500, -1],
-                        [50, 100, 500, 'All']
-                    ],
                     dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
                     buttons: [
                         {
