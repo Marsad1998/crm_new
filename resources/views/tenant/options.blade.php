@@ -269,6 +269,7 @@
 
                 var optionTable = $("#optionTable").DataTable({
                     stateSave: true,
+
                     "ajax": {
                         url: "{{ route('option.load') }}", // json datasource
                         type: 'post', // method  , by default get

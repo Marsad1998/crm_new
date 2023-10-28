@@ -66,11 +66,14 @@
 		<!-- Scripts -->
 		@vite([])
 		<style>
+			/* Customized the Default Primary */
 			.bg-primary, .btn-primary, .table-primary, #back-to-top, .page-item.active .page-link {
 				background-color: #51B3DE !important;
 				color: #fff !important;
 				border-color: #51B3DE !important;
 			}
+
+			/* Custom Input */
 			.form-control-c{
 				border: 1px solid gray !important;
 				border-radius: 0px !important;
@@ -78,6 +81,8 @@
 				font-size: 16px !important;
 				color: #353535 !important;
 			}
+
+			/* Custom Select */
 			.select2-selection {
 				border: 1px solid gray !important;
 				border-radius: 0px !important;
@@ -85,22 +90,28 @@
 				font-size: 16px !important;
 				color: #353535 !important;
 			}
+
+			/* Custom Btn */
 			.btn-c{
 				font-size: 18px !important;
 				border-radius: 0px !important;
 			}
+
+			/* Custom Datatable Filter */
 			.dataTables_filter input{
 				border: 1px solid gray !important;
 				border-radius: 0px !important;
 				color: #353535 !important;
 			}
 
+			/* Custom Length Datatable */
 			.dataTables_length select{
 				border: 1px solid gray !important;
 				border-radius: 0px !important;
 				color: #353535 !important;
 			}
 
+			/* Custom Color Thead of all Tables */
 			.table-bordered > thead > tr > th{
 				color: white !important;
 			}
@@ -237,6 +248,12 @@
 			});
 
 			$(document).ready(function(){
+
+				$.extend(true, $.fn.dataTable.defaults, {
+					language: { 
+                        search: "", searchPlaceholder: "Search...",
+                    }
+				});
 	
 				var open_url = '{{Request::path()}}'
 				var open_urlREC = $('a[href*="/'+open_url+'"]').attr("cstmname")
