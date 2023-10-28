@@ -3,24 +3,33 @@
     use Illuminate\Support\Facades\Auth;
 @endphp
 @extends('layouts.main')
-
+<style>
+    .form-control-new{
+        border: 1px solid gray !important;
+        border-radius: 0px !important;
+        height: 40px !important;
+        font-size: 16px !important;
+    }
+</style>
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
-                <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">Manage Options</div>
+            <div class="card bg-light-transparent mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
+                {{-- <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">Manage Options</div> --}}
                 <div class="card-body">
+                    <h3>Manage Options</h3>
+                    <br>
                     <div class="row">
                         <div class="col-sm-4">
                             <form action="{{ route('option.add') }}" class="formData" method="post">
                                 <div class="form-group">
                                     <label for="option_name">Parameter Name</label>
-                                    <input type="text" class="form-control" placeholder="Parameter Name" name="option_name" id="option_name" required>
+                                    <input type="text" class="form-control form-control-new" placeholder="Parameter Name" name="option_name" id="option_name" required>
                                     <small id="option_name_error" class="text-danger error"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="option_type">Parameter Type</label>
-                                    <select class="form-control" name="option_type" id="option_type" required>
+                                    <select class="form-control form-control-new" name="option_type" id="option_type" required>
                                         <option>~~ SELECT ~~</option>
                                         <option value="input">Text Field / Input Field</option>
                                         <option value="select">Selectable Field</option>
@@ -31,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="option_category">Category</label>
-                                    <select class="form-control" name="option_category" id="option_category" required>
+                                    <select class="form-control form-control-new" name="option_category" id="option_category" required>
                                         <option>~~ SELECT ~~</option>
                                         <option value="automotive">Automotive</option>
                                         <option value="other">Others</option>
@@ -39,7 +48,7 @@
                                 </div>
                                 <div class="mb-3 option1Div">
                                     <label for="">Operaters</label>
-                                    <select class="form-control" id="option_operator" name="option_operator">
+                                    <select class="form-control form-control-new" id="option_operator" name="option_operator">
                                         <option value="">~~ SELECT ~~</option>
                                         <option value="additive">+ / - (e.g. -$50)</option>
                                         <option value="multiplicative">% (e.g. 120%)</option>
@@ -92,12 +101,12 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="option_value_name" class="form-label">Parameters Values</label>
-                            <input type="text" id="option_value_name" required class="form-control" autofocus="true">
+                            <input type="text" id="option_value_name" required class="form-control form-control-new" autofocus="true">
                             <small id="option_value_name_error" class="text-danger error"></small>
                         </div>
                         <div class="mb-3 optionDiv">
                             <label for="option_value_amount" class="form-label">Amount</label>
-                            <input type="text" id="option_value_amount" class="form-control">
+                            <input type="text" id="option_value_amount" class="form-control form-control-new">
                             <small id="option_value_amount_error" class="text-danger error"></small>
                         </div>
                     </div>

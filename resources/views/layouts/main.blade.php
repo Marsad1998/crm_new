@@ -74,7 +74,7 @@
 		</style>
 	</head>
 
-	<body class="horizontalmenu">
+	<body class="horizontalmenu bg-light">
 
 		<!-- Loader -->
 		<div id="global-loader">

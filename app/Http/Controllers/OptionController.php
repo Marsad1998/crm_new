@@ -49,14 +49,14 @@ class OptionController extends Controller
                         ';
 
                 if ($row->type == 'select') {
-                    $btn .= '<button class="show-models btn btn-sm ripple btn-outline-info" id="row_' . $row->id . '" data-class="hide">
+                    $btn .= '<button class="show-models btn btn-sm btn-outline-info" id="row_' . $row->id . '" data-class="hide">
                                 <i class="fe fe-plus"></i>
                             </button>
                             <button class="addSelectOptions btn btn-sm btn-outline-danger mr-5" id="' . Crypt::encrypt($row->id) . '">
                                 Add Selectable Options
                             </button>';
                 } elseif ($row->type == 'radio') {
-                    $btn .= '<button class="show-models btn btn-sm ripple btn-outline-info" id="row_' . $row->id . '" data-class="hide">
+                    $btn .= '<button class="show-models btn btn-sm btn-outline-info" id="row_' . $row->id . '" data-class="hide">
                                 <i class="fe fe-plus"></i>
                             </button>
                             <button class="addSelectOptions btn btn-sm btn-outline-danger mr-5" id="' . Crypt::encrypt($row->id) . '">
