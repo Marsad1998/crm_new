@@ -126,7 +126,7 @@
 
                     $(".optionDiv").hide();
                     $("#option_value_amount").removeAttr('required')
-                    if (third == 'other') {
+                    if (third != 'automotive') {
                         $(".optionDiv").hide();
                         $("#option_value_amount").removeAttr('required');
                     }else{
@@ -143,7 +143,7 @@
                 $(document).on('change', '#option_category', function () {
                     var type = $(this).val()
 
-                    if (type == 'other') {
+                    if (type != 'automotive') {
                         $(".option1Div").hide();
                         $("#option_operator").removeAttr('required').val('');
                     }else{

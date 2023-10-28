@@ -83,7 +83,7 @@ class OptionController extends Controller
                 }
             })
             ->addColumn('option_category', function ($row) {
-                if ($row->option_category == 'other') {
+                if ($row->option_category == 'automotive') {
                     return $row->option_category;
                 } else {
                     if ($row->operator == 'additive') {
@@ -105,7 +105,6 @@ class OptionController extends Controller
 
     public function update(Request $request, $id)
     {
-        return Crypt::decrypt($id);
         $request->validate([
             'option_name' => 'required',
             'option_type' => 'required',

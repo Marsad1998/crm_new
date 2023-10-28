@@ -17,6 +17,7 @@ class OptionValueController extends Controller
 
         OptionValue::create([
             'name' => $request->option_value_name,
+            'amount' => $request->option_value_amount,
             'slug' => Str::slug($request->option_value_name),
             'option_id' => Crypt::decrypt($id),
         ]);
