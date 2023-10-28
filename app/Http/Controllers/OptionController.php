@@ -21,6 +21,7 @@ class OptionController extends Controller
             'option_name' => 'required',
             'option_type' => 'required',
             'option_category' => 'required',
+            'option_operator' => 'required',
         ]);
         Option::create([
             'name' => $request->option_name,
@@ -52,14 +53,14 @@ class OptionController extends Controller
                     $btn .= '<button class="show-models btn btn-sm btn-outline-info" id="row_' . $row->id . '" data-class="hide">
                                 <i class="fe fe-plus"></i>
                             </button>
-                            <button class="addSelectOptions btn btn-sm btn-outline-danger mr-5" id="' . Crypt::encrypt($row->id) . '">
+                            <button class="addSelectOptions btn btn-sm btn-outline-danger mr-5" id="' . Crypt::encrypt($row->id) . '" data-type="' . $row->operator . '">
                                 Add Selectable Options
                             </button>';
                 } elseif ($row->type == 'radio') {
                     $btn .= '<button class="show-models btn btn-sm btn-outline-info" id="row_' . $row->id . '" data-class="hide">
                                 <i class="fe fe-plus"></i>
                             </button>
-                            <button class="addSelectOptions btn btn-sm btn-outline-danger mr-5" id="' . Crypt::encrypt($row->id) . '">
+                            <button class="addSelectOptions btn btn-sm btn-outline-danger mr-5" id="' . Crypt::encrypt($row->id) . '" data-type="' . $row->operator . '">
                                 Add Radio Options
                             </button>';
                 }
@@ -83,14 +84,12 @@ class OptionController extends Controller
                 }
             })
             ->addColumn('option_category', function ($row) {
-                if ($row->option_category == 'automotive') {
-                    return $row->option_category;
+                if ($row->operator == 'additive') {
+                    return $row->option_category . " (+/-)";
+                } else if ($row->operator == 'multiplicative') {
+                    return $row->option_category . " (%)";
                 } else {
-                    if ($row->operator == 'additive') {
-                        return $row->option_category . " (+/-)";
-                    } else {
-                        return $row->option_category . " (%)";
-                    }
+                    return $row->option_category . " (No Effect)";
                 }
             })
             ->rawColumns(['action', 'type'])
@@ -109,6 +108,7 @@ class OptionController extends Controller
             'option_name' => 'required',
             'option_type' => 'required',
             'option_category' => 'required',
+            'option_operator' => 'required',
         ]);
 
         Option::findOrfail(Crypt::decrypt($id))->update([

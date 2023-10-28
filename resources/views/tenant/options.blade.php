@@ -39,8 +39,8 @@
                                 </div>
                                 <div class="mb-3 option1Div">
                                     <label for="">Operaters</label>
-                                    <select class="form-control form-control-c" id="option_operator" name="option_operator">
-                                        <option value="">~~ SELECT ~~</option>
+                                    <select class="form-control form-control-c" id="option_operator" name="option_operator" required>
+                                        <option value="no_effect">No Effect</option>
                                         <option value="additive">+ / - (e.g. -$50)</option>
                                         <option value="multiplicative">% (e.g. 120%)</option>
                                     </select>
@@ -122,15 +122,17 @@
                     // Get the second td value within the parent tr
                     var secondTdValue = tr.find('td:nth-child(2)').text();
                     $("#options_name").html(secondTdValue)
-                    var third = tr.find('td:nth-child(3)').text();
+                    var third = $(this).data('type');
 
                     $(".optionDiv").hide();
                     $("#option_value_amount").removeAttr('required')
-                    if (third != 'automotive') {
+                    if (third == 'no_effect') {
                         $(".optionDiv").hide();
                         $("#option_value_amount").removeAttr('required');
+                        console.log('if');
                     }else{
                         $(".optionDiv").show();
+                        console.log('ifelse');
                         $("#option_value_amount").prop('required', true);
                     }
 
@@ -138,20 +140,20 @@
                     $("#optionsVModal").modal('show');
                 });
                 
-                $(".option1Div").hide();
-                $("#option_operator").removeAttr('required')
-                $(document).on('change', '#option_category', function () {
-                    var type = $(this).val()
+                // $(".option1Div").hide();
+                // $("#option_operator").removeAttr('required')
+                // $(document).on('change', '#option_category', function () {
+                //     var type = $(this).val()
 
-                    if (type != 'automotive') {
-                        $(".option1Div").hide();
-                        $("#option_operator").removeAttr('required').val('');
-                    }else{
-                        $(".option1Div").show();
-                        $("#option_operator").prop('required', true);
-                    }
+                //     if (type == 'automotive') {
+                //         $(".option1Div").hide();
+                //         $("#option_operator").removeAttr('required').val('');
+                //     }else{
+                //         $(".option1Div").show();
+                //         $("#option_operator").prop('required', true);
+                //     }
 
-                });
+                // });
 
                 $(document).on('click', '.main-toggle', function() {
                     $(this).toggleClass('on');
@@ -325,10 +327,16 @@
                         var rand1 = Math.floor(Math.random()*90000) + 10000;
                         var rand2 = Math.floor(Math.random()*90000) + 10000;
                         var did = rand1+""+models[i].id+""+rand2
+
+                        if (amount > 0) {
+                            var amount = models[i].amount
+                        }else{
+                            var amount = 'N/A';
+                        }
                         table += '<tr class="'+id+'">\
                                     <td></td>\
                                     <td><span class="badge bg-light text-danger">Values</span></td><td>' + models[i].name + '</td>\
-                                    <td>'+models[i].amount+'</td>\
+                                    <td>'+amount+'</td>\
                                     <td>\
                                         <button class="modifyOptions btn btn-sm ripple btn-outline-info" data-type="edit" id="'+ btoa(did) +'">\
                                             <i class="fe fe-edit-2"></i>\
@@ -354,7 +362,7 @@
 
                             $("#option_name").val(response.name)
                             $("#option_type").val(response.type)
-                            $("#option_category").val(response.option_category).trigger('change')
+                            $("#option_category").val(response.option_category)
                             $("#option_operator").val(response.operator);
                         }, 
                         error: function (response) {

@@ -252,7 +252,7 @@
 				$.extend(true, $.fn.dataTable.defaults, {
 					language: { 
                         search: "", searchPlaceholder: "Search...",
-                    }
+                    },
 				});
 	
 				var open_url = '{{Request::path()}}'
