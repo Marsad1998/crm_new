@@ -20,10 +20,13 @@ class OptionController extends Controller
         $request->validate([
             'option_name' => 'required',
             'option_type' => 'required',
+            'option_category' => 'required',
         ]);
         Option::create([
             'name' => $request->option_name,
             'type' => $request->option_type,
+            'option_category' => $request->option_category,
+            'operator' => $request->option_operator,
         ]);
         return response()->json(['msg' => 'Option Saved Successfully', 'sts' => 'success']);
     }
@@ -77,11 +80,17 @@ class OptionController extends Controller
                     return '<div class="main-toggle on main-toggle-success">
                                 <span></span>
                             </div>';
-                    // return '<label class="custom-switch">
-                    //             <span class="custom-switch-description tx-20 me-2">Switch</span>
-                    //             <input type="checkbox" name="custom-switch-checkbox2" class="custom-switch-input" checked>
-                    //             <span class="custom-switch-indicator custom-switch-indicator-lg custom-square"></span>
-                    //         </label>';
+                }
+            })
+            ->addColumn('option_category', function ($row) {
+                if ($row->option_category == 'other') {
+                    return $row->option_category;
+                } else {
+                    if ($row->operator == 'additive') {
+                        return $row->option_category . " (+/-)";
+                    } else {
+                        return $row->option_category . " (%)";
+                    }
                 }
             })
             ->rawColumns(['action', 'type'])
@@ -96,14 +105,18 @@ class OptionController extends Controller
 
     public function update(Request $request, $id)
     {
+        return Crypt::decrypt($id);
         $request->validate([
             'option_name' => 'required',
             'option_type' => 'required',
+            'option_category' => 'required',
         ]);
 
         Option::findOrfail(Crypt::decrypt($id))->update([
             'name' => $request->option_name,
             'type' => $request->option_type,
+            'option_category' => $request->option_category,
+            'operator' => $request->option_operator,
         ]);
 
         return response()->json(['msg' => 'Option Updated Successfully', 'sts' => 'success']);

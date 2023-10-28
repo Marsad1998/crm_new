@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100)->nullable();
             $table->enum('type', ['input', 'select', 'switch', 'radio'])->nullable();
+            $table->enum('option_category', ['automotive', 'other'])->nullable();
+            $table->enum('operator', ['additive', 'multiplicative'])->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

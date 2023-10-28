@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('slug', 100);
             $table->unsignedBigInteger('option_id')->nullable();
+            $table->decimal('amount', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('option_id')->references('id')->on('options')->onUpdate('cascade')->onDelete('cascade');

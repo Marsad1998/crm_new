@@ -15,12 +15,12 @@
                             <form action="{{ route('option.add') }}" class="formData" method="post">
                                 <div class="form-group">
                                     <label for="option_name">Parameter Name</label>
-                                    <input type="text" class="form-control" placeholder="Parameter Name" name="option_name" id="option_name">
+                                    <input type="text" class="form-control" placeholder="Parameter Name" name="option_name" id="option_name" required>
                                     <small id="option_name_error" class="text-danger error"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="option_type">Parameter Type</label>
-                                    <select class="form-control" name="option_type" id="option_type">
+                                    <select class="form-control" name="option_type" id="option_type" required>
                                         <option>~~ SELECT ~~</option>
                                         <option value="input">Text Field / Input Field</option>
                                         <option value="select">Selectable Field</option>
@@ -29,13 +29,31 @@
                                     </select>
                                     <small id="option_type_error" class="text-danger error"></small>
                                 </div>
-                                <button type="submit" id="saveData" class="btn ripple btn-primary btn-block">Save</button>
-                                {{-- @if (Auth::user()->can('Add Role'))
+                                <div class="form-group">
+                                    <label for="option_category">Category</label>
+                                    <select class="form-control" name="option_category" id="option_category" required>
+                                        <option>~~ SELECT ~~</option>
+                                        <option value="automotive">Automotive</option>
+                                        <option value="other">Others</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 option1Div">
+                                    <label for="">Operaters</label>
+                                    <select class="form-control" id="option_operator" name="option_operator">
+                                        <option value="">~~ SELECT ~~</option>
+                                        <option value="additive">+ / - (e.g. -$50)</option>
+                                        <option value="multiplicative">% (e.g. 120%)</option>
+                                    </select>
+                                    <small id="option_operator_error" class="text-danger error"></small>
+                                </div>
+
+                                @if (Auth::user()->can('Add Option'))
+                                    <button type="submit" id="saveData" class="btn ripple btn-primary btn-block">Save</button>
                                 @else
                                     <div class="alert alert-danger flex items-center" role="alert"> <i
                                             data-lucide="alert-circle" class="w-6 h-6 mr-2"></i> You Don't
                                         Have Right To Perform this Action </div>
-                                @endif --}}
+                                @endif
                             </form>
                         </div> {{-- inner col-4 --}}
                         <div class="col-sm-8">
@@ -46,11 +64,12 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Parameter Name</th>
+                                                <th>Category</th>
                                                 <th>Type</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="text-capitalize">
                                         </tbody>
                                     </table>
                                 </table>
@@ -76,6 +95,11 @@
                             <input type="text" id="option_value_name" required class="form-control" autofocus="true">
                             <small id="option_value_name_error" class="text-danger error"></small>
                         </div>
+                        <div class="mb-3 optionDiv">
+                            <label for="option_value_amount" class="form-label">Amount</label>
+                            <input type="text" id="option_value_amount" class="form-control">
+                            <small id="option_value_amount_error" class="text-danger error"></small>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary saveOptions">Save</button>
@@ -92,8 +116,41 @@
 
                 $(document).on('click', '.addSelectOptions', function () {
                     var id = $(this).attr('id')
+                    // Find the parent <tr> of the clicked button
+                    var tr = $(this).closest('tr');
+                    
+                    // Get the second td value within the parent tr
+                    var secondTdValue = tr.find('td:nth-child(2)').text();
+                    $("#options_name").html(secondTdValue)
+                    var third = tr.find('td:nth-child(3)').text();
+
+                    $(".optionDiv").hide();
+                    $("#option_value_amount").removeAttr('required')
+                    if (third == 'other') {
+                        $(".optionDiv").hide();
+                        $("#option_value_amount").removeAttr('required');
+                    }else{
+                        $(".optionDiv").show();
+                        $("#option_value_amount").prop('required', true);
+                    }
+
                     $("#optionsForm").attr('action', "{{ route('option.value_add', ['id' => ':id']) }}".replace(':id', id));
                     $("#optionsVModal").modal('show');
+                });
+                
+                $(".option1Div").hide();
+                $("#option_operator").removeAttr('required')
+                $(document).on('change', '#option_category', function () {
+                    var type = $(this).val()
+
+                    if (type == 'other') {
+                        $(".option1Div").hide();
+                        $("#option_operator").removeAttr('required').val('');
+                    }else{
+                        $(".option1Div").show();
+                        $("#option_operator").prop('required', true);
+                    }
+
                 });
 
                 $(document).on('click', '.main-toggle', function() {
@@ -109,11 +166,13 @@
                         url: url,
                         data: {
                             option_value_name: $("#option_value_name").val(),
+                            option_value_amount: $("#option_value_amount").val(),
                         },
                         dataType: "json",
                         success: function (response) {
                             $("#option_value_name").val('')
-                            $("#optionsVModal").modal('hide')
+                            $("#option_value_amount").val('')                            
+                            // $("#optionsVModal").modal('hide')
                             notif({
                                 type: response.sts,
                                 msg: response.msg,
@@ -152,6 +211,8 @@
                                 $('.saveOptions').attr('id', id);
                                 $("#optionsVModal").modal('show')
                                 $("#option_value_name").val(response.name);
+                                $("#option_value_amount").val(response.amount);
+
                                 $("#optionsForm").attr('action', "{{ route('option.update_values', ['option_v_id' => ':id']) }}".replace(':id', id));
                             }else{
                                 notif({
@@ -220,6 +281,9 @@
                             data: 'name'
                         },
                         {
+                            data: 'option_category'
+                        },
+                        {
                             data: 'type'
                         },
                         {
@@ -263,6 +327,7 @@
                         table += '<tr class="'+id+'">\
                                     <td></td>\
                                     <td><span class="badge bg-light text-danger">Values</span></td><td>' + models[i].name + '</td>\
+                                    <td>'+models[i].amount+'</td>\
                                     <td>\
                                         <button class="modifyOptions btn btn-sm ripple btn-outline-info" data-type="edit" id="'+ btoa(did) +'">\
                                             <i class="fe fe-edit-2"></i>\
@@ -288,6 +353,8 @@
 
                             $("#option_name").val(response.name)
                             $("#option_type").val(response.type)
+                            $("#option_category").val(response.option_category).trigger('change')
+                            $("#option_operator").val(response.operator);
                         }, 
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
