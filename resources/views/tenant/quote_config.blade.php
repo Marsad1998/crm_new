@@ -8,8 +8,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
-                <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">Quote Configurator (Set Fields for Price Manager & Quote Gen)</div>
+            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
+                Quote Configurator (Set Fields for Price Manager & Quote Gen)
+            </h3>
+            <div class="card">
                 <div class="card-body">
                     <form action="{{ route('quote.create') }}" method="post" id="formData">
                         <div class="row">
@@ -36,9 +38,9 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <button type="submit" id="saveForm" class="btn btn-primary btn-block">Save</button>
+                                <button type="submit" id="saveForm" class="btn btn-c btn-primary btn-block">Save</button>
                                 <br>
-                                <button type="button" id="resetForm" class="btn btn-warning"><i class="fas fa-refresh"></i> Reset</button>
+                                <button type="button" id="resetForm" class="btn btn-c btn-warning"><i class="fas fa-refresh"></i> Reset</button>
                             </div>
                         </div>
                     </form>

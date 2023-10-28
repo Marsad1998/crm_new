@@ -7,9 +7,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <h3 class="text-black mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">Manage Options</h3>
+            <h3 class="text-black mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70"><i class='fas fa-network-wired'></i> Manage Options</h3>
             <div class="card bg-light-transparent">
-                {{-- <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">Manage Options</div> --}}
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-4">
