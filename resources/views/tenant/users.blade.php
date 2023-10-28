@@ -3,10 +3,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
-                <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">
-                    <i class="fas fa-users"></i> Users
-                </div>
+            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 text-black"><i class="fas fa-users"></i> Manage Staff</h3>
+            <div class="card">
                 <div class="card-body">
                     <div class="row row-sm">
                         <div class="table-responsive">
@@ -43,28 +41,28 @@
                 <div class="modal-body">
                         <div class="mb-3">
                             <label for="user_name" class="form-label">Name</label>
-                            <input type="text" name="user_name" id="user_name" class="form-control">
+                            <input type="text" name="user_name" id="user_name" class="form-control form-control-c">
                             <small id="user_name_error" class="text-danger error"></small>
                         </div>
                         <div class="form-group">
                             <label for="user_email">Email</label>
-                            <input type="email" name="user_email" id="user_email" class="form-control">
+                            <input type="email" name="user_email" id="user_email" class="form-control form-control-c">
                             <small id="user_email_error" class="text-danger error"></small>
                         </div>
                         <div class="form-group">
                             <label for="user_password">Password</label>
-                            <input type="password" autocomplete="off" name="user_password" id="user_password" class="form-control">
+                            <input type="password" autocomplete="off" name="user_password" id="user_password" class="form-control form-control-c">
                             <small id="user_password_error" class="text-danger error"></small>
                         </div>
                         <div class="mb-3">
                             <label for="role_id" class="form-label">Role</label>
-                            <select class="form-control" name="role_id" id="role_id">
+                            <select class="form-control form-control-c" name="role_id" id="role_id">
                             </select>
                             <small id="role_id_error" class="text-danger error"></small>
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">Role</label>
-                            <select class="form-control" name="status" id="status">
+                            <select class="form-control form-control-c" name="status" id="status">
                                 <option value="">~~ SELECT ~~</option>
                                 <option value="active">Active</option>
                                 <option value="inactive">In Active</option>

@@ -71,6 +71,36 @@
 				color: #fff !important;
 				border-color: #51B3DE !important;
 			}
+			.form-control-c{
+				border: 1px solid gray !important;
+				border-radius: 0px !important;
+				height: 40px !important;
+				font-size: 16px !important;
+				color: #353535 !important;	
+			}
+			.select2-selection {
+				border: 1px solid gray !important;
+				border-radius: 0px !important;
+				height: 40px !important;
+				font-size: 16px !important;
+				color: #353535 !important;	
+			}
+			.btn-c{
+				font-size: 18px !important;
+				border-radius: 0px !important;
+			}
+			
+			.table {
+				border: 0.5px solid grey;
+			}
+			.table-bordered > thead > tr > th,
+			.table-bordered > tbody > tr > th,
+			.table-bordered > tfoot > tr > th,
+			.table-bordered > thead > tr > td,
+			.table-bordered > tbody > tr > td,
+			.table-bordered > tfoot > tr > td {
+				border: 0.1px solid grey;
+			}
 		</style>
 	</head>
 

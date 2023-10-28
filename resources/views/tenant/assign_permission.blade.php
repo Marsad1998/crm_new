@@ -8,16 +8,17 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
+            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 text-black"><i class="fas fa-cogs"></i> Assign Permissions</h3>
+
             <div class="row row-sm">
                 <div class="col-sm-12">
                     <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
-                        <div class="card-header p-3 tx-medium my-auto tx-white tenant-nav">Assign Permissions</div>
                         <div class="card-body">
                             <form action="/assign_permissions" class="formData" method="post">
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="role_id">Roles</label>
-                                        <select class="form-control" required name="role_id" id="role_id">
+                                        <select class="form-control form-control-c" required name="role_id" id="role_id">
                                             <option value="">~~ SELECT ~~</option>
                                             @php
                                                 $roles = Role::where('name', '!=', 'super-admin')
@@ -32,7 +33,7 @@
                                     </div> {{-- col --}}
                                     <div class="col-sm-8">
                                         <label for="" class="">.</label><br>
-                                        <button type="submit" id="saveData" class="btn btn-primary">Save</button>
+                                        <button type="submit" id="saveData" class="btn btn-c btn-primary">Save</button>
                                     </div> {{-- col --}}
                                 </div> {{-- inner row --}}
                             </form>
