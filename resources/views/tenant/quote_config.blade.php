@@ -29,6 +29,9 @@
                                     </select>
                                     <small id="fields_error" class="text-danger error"></small>
                                 </div>
+
+                                <button type="submit" id="saveForm" class="btn btn-c mt-3 btn-primary btn-block">Save</button>
+                                <button type="button" id="resetForm" class="btn btn-c mt-2 btn-warning"><i class="fas fa-refresh"></i> Reset</button>
                             </div>
                             <div class="col-lg-4 offset-2">
                                 <ul id="treeview2">
@@ -38,29 +41,28 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <button type="submit" id="saveForm" class="btn btn-c btn-primary btn-block">Save</button>
-                                <br>
-                                <button type="button" id="resetForm" class="btn btn-c btn-warning"><i class="fas fa-refresh"></i> Reset</button>
                             </div>
                         </div>
                     </form>
+
+                    <div class="table-responsive mt-5">
+                        <table class="table table-striped table-hover table-bordered align-middle" id="configTbl">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Category</th>
+                                    <th>Service</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div> {{-- body --}}
             </div> {{-- card --}}
 
-            <div class="table-responsive mt-3">
-                <table class="table table-striped table-hover table-bordered align-middle" id="configTbl">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>#</th>
-                            <th>Category</th>
-                            <th>Service</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
     @push('script')

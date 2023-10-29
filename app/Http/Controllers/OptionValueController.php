@@ -43,6 +43,7 @@ class OptionValueController extends Controller
         $option_v_id = substr(base64_decode($option_v_id), 5, -5);
         OptionValue::findOrFail($option_v_id)->update([
             'name' => $request->option_value_name,
+            'amount' => $request->option_value_amount,
             'slug' => Str::slug($request->option_value_name),
         ]);
         return response()->json(['msg' => 'Option Value Added Successfully', 'sts' => 'success']);

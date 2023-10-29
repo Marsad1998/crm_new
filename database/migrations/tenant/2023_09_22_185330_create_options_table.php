@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100)->nullable();
             $table->enum('type', ['input', 'select', 'switch', 'radio'])->nullable();
-            $table->enum('option_category', ['automotive', 'other'])->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+
             $table->enum('operator', ['additive', 'multiplicative', 'no_effect'])->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

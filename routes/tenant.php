@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\PriceManager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
@@ -141,7 +142,7 @@ Route::middleware([
             Route::post('/update_values/{option_v_id}', [OptionValueController::class, 'update'])->name('update_values')->middleware(['can:Edit Option Value']);
         });
 
-        Route::group(['prefix' => 'quote', 'as' => 'quote.'], function () {
+        Route::group(['prefvix' => 'quote', 'as' => 'quote.'], function () {
             Route::get('/config', [QuoteConfigController::class, 'config'])->name('config')->middleware(['can:Add Quote Config']);
             Route::post('/category', [QuoteConfigController::class, 'category'])->name('category')->middleware(['can:Add Quote category']);
             Route::post('/fields', [QuoteConfigController::class, 'fields'])->name('fields')->middleware(['can:Add Quote Fields']);
@@ -149,6 +150,10 @@ Route::middleware([
             Route::post('/save', [QuoteConfigController::class, 'create'])->name('create')->middleware(['can:Add Quotes Fields']);
             Route::post('/edit/{id}', [QuoteConfigController::class, 'edit'])->name('edit')->middleware(['can:Edit Quotes Fields']);
             Route::post('/delete/{id}', [QuoteConfigController::class, 'destroy'])->name('delete')->middleware(['can:Delete Quotes Fields']);
+        });
+
+        Route::group(['prefvix' => 'price', 'as' => 'price.'], function () {
+            Route::get('/index', [PriceManager::class, 'index'])->name('index')->middleware(['can:View Price Manager']);
         });
     });
 

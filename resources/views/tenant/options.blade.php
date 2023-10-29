@@ -33,8 +33,10 @@
                                     <label for="option_category">Category</label>
                                     <select class="form-control form-control-c" name="option_category" id="option_category" required>
                                         <option>~~ SELECT ~~</option>
-                                        <option value="automotive">Automotive</option>
-                                        <option value="other">Others</option>
+                                        @foreach ($options as $x => $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                        {{-- <option value="other">Others</option> --}}
                                     </select>
                                 </div>
                                 <div class="mb-3 option1Div">
@@ -328,7 +330,7 @@
                         var rand2 = Math.floor(Math.random()*90000) + 10000;
                         var did = rand1+""+models[i].id+""+rand2
 
-                        if (amount > 0) {
+                        if (models[i].amount > 0) {
                             var amount = models[i].amount
                         }else{
                             var amount = 'N/A';
@@ -362,7 +364,7 @@
 
                             $("#option_name").val(response.name)
                             $("#option_type").val(response.type)
-                            $("#option_category").val(response.option_category)
+                            $("#option_category").val(response.category_id)
                             $("#option_operator").val(response.operator);
                         }, 
                         error: function (response) {

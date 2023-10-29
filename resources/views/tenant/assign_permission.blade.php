@@ -41,7 +41,7 @@
                             <div class="table-responsive mt-3">
                                 <table class="table table-bordered">
                                     <thead>
-                                        <tr>
+                                        <tr class="bg-info">
                                             <th class="d-flex justify-content-between">
                                                 <label for="all_check">Check All</label>
                                                 <input id="all_check" type="checkbox">

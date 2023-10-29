@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Option;
 use App\Models\OptionValue;
 use Illuminate\Http\Request;
@@ -12,7 +13,8 @@ class OptionController extends Controller
 {
     public function index()
     {
-        return view('tenant.options');
+        $options = Category::all();
+        return view('tenant.options', compact('options'));
     }
 
     public function store(Request $request)
@@ -26,7 +28,7 @@ class OptionController extends Controller
         Option::create([
             'name' => $request->option_name,
             'type' => $request->option_type,
-            'option_category' => $request->option_category,
+            'category_id' => $request->option_category,
             'operator' => $request->option_operator,
         ]);
         return response()->json(['msg' => 'Option Saved Successfully', 'sts' => 'success']);
@@ -84,12 +86,15 @@ class OptionController extends Controller
                 }
             })
             ->addColumn('option_category', function ($row) {
-                if ($row->operator == 'additive') {
-                    return $row->option_category . " (+/-)";
-                } else if ($row->operator == 'multiplicative') {
-                    return $row->option_category . " (%)";
-                } else {
-                    return $row->option_category . " (No Effect)";
+                $category = Category::whereId($row->category_id)->first();
+                if (!is_null($category)) {
+                    if ($row->operator == 'additive') {
+                        return $category->name . " (+/-)";
+                    } else if ($row->operator == 'multiplicative') {
+                        return $category->name . " (%)";
+                    } else {
+                        return $category->name . " (No Effect)";
+                    }
                 }
             })
             ->rawColumns(['action', 'type'])
@@ -111,10 +116,11 @@ class OptionController extends Controller
             'option_operator' => 'required',
         ]);
 
+        // return Crypt::decrypt($id);
         Option::findOrfail(Crypt::decrypt($id))->update([
             'name' => $request->option_name,
             'type' => $request->option_type,
-            'option_category' => $request->option_category,
+            'category_id' => $request->option_category,
             'operator' => $request->option_operator,
         ]);
 

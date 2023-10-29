@@ -248,6 +248,14 @@
                         ],
                     ],
                     [
+                        'name' => 'Price Manager',
+                        'icon' => 'ti-money',
+                        'option' => [],
+                        'path' => route('price.index'),
+                        'access' => auth()->user()->can('View Price Manager') == 1 ? '' : 'd-none',
+                        'class' => request()->is('price.index') ? 'active' : '',
+                    ],
+                    [
                         'name' => 'Settings',
                         'icon' => 'ti-settings',
                         'class' => request()->is('makes_n_models') || request()->is('services') ? 'active' : '',
@@ -277,7 +285,7 @@
                                 'class' => request()->is('quote.config') ? 'active' : '',
                                 'access' => auth()->user()->can('View Options') == 1 ? '' : 'd-none',
                             ],
-                        ]
+                        ],
                     ]
                 ];
             @endphp

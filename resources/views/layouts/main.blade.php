@@ -86,7 +86,8 @@
 			.select2-selection {
 				border: 1px solid gray !important;
 				border-radius: 0px !important;
-				height: 40px !important;
+				min-height: 40px !important;
+				height: auto !important;
 				font-size: 16px !important;
 				color: #353535 !important;
 			}
@@ -250,13 +251,14 @@
 			$(document).ready(function(){
 
 				$.extend(true, $.fn.dataTable.defaults, {
+					pageLength: 50,
+					lengthMenu: [
+						[50, 100, 500, -1],
+						[50, 100, 500, 'All']
+					],
 					language: { 
                         search: "", searchPlaceholder: "Search...",
                     },
-					lengthMenu: [
-                        [50, 100, 500, -1],
-                        [50, 100, 500, 'All']
-                    ],
 				});
 	
 				var open_url = '{{Request::path()}}'
