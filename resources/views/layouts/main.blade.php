@@ -75,16 +75,21 @@
 
 			/* Custom Input */
 			.form-control-c{
-				border: 1px solid gray !important;
+				border: 1px solid #E5E8EB !important;
 				border-radius: 0px !important;
 				height: 40px !important;
 				font-size: 16px !important;
 				color: #353535 !important;
+				background-color: #E5E8EB;
+			}
+
+			.form-control-c:focus{
+				background-color: #E5E8EB;
 			}
 
 			/* Custom Select */
 			.select2-selection {
-				border: 1px solid gray !important;
+				border: 1px solid #E5E8EB !important;
 				border-radius: 0px !important;
 				min-height: 40px !important;
 				height: auto !important;
@@ -96,6 +101,10 @@
 			.btn-c{
 				font-size: 18px !important;
 				border-radius: 0px !important;
+			}
+
+			.switch-c {
+				transform: scale(2);
 			}
 
 			/* Custom Datatable Filter */
@@ -116,6 +125,50 @@
 			.table-bordered > thead > tr > th{
 				color: white !important;
 			}
+
+			#imagePreview{
+				width: 150px; 
+				height: 150px; 
+				border: 2px dotted black;
+				border-radius: 5px;
+			}
+
+			.image-container {
+				position: relative;
+				display: inline-block;
+				cursor: pointer;
+			}
+
+			.icon-button-top {
+				position: absolute;
+				top: 0;
+				right: 0;
+				border: 1px solid #ccc;
+				border-radius: 50%;
+				transform: translate(50%, -50%); /* Move the button up and to the right */
+				box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Cute shadow for the bottom icon */
+				background-color: white;
+				padding: 5px;
+				justify-content: center;
+				display: flex;
+				color: gray;
+			}
+			
+			.icon-button-bottom{
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				border: 1px solid #ccc;
+				border-radius: 50%;
+				transform: translate(50%, 50%); /* Move the button up and to the right */
+				box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Cute shadow for the bottom icon */
+				background-color: white;
+				padding: 5px 6.5px;
+				justify-content: center;
+				display: flex;
+				color: #c1c1c1;
+			}
+
 			
 			/* .table {
 				border: 0.5px solid grey;
@@ -249,6 +302,9 @@
 			});
 
 			$(document).ready(function(){
+				$(document).on('click', '#imagePreview', function () {
+					$("#imgInput").click();
+				});
 
 				$.extend(true, $.fn.dataTable.defaults, {
 					pageLength: 50,
