@@ -17,7 +17,10 @@ return new class extends Migration
             $table->tinyInteger('is_range')->default(1);
             $table->year('year_start');
             $table->year('year_end')->nullable();
-            $table->integer('service_id');
+            $table->unsignedBigInteger('service_id');
+
+            $table->foreign('service_id')->references('id')->on('services')->onUpdate('restrict')->onDelete('restrict');
+
             $table->integer('key_type_id')->nullable();
             $table->string('PN')->nullable();
             $table->string('image')->nullable();
@@ -26,8 +29,6 @@ return new class extends Migration
             $table->tinyInteger('akl')->nullable();
             $table->decimal('amount', 10, 2);
             $table->timestamps();
-
-            $table->foreign('service_id')->references('id')->on('services')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
