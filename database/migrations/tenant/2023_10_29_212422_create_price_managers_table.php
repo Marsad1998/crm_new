@@ -26,6 +26,8 @@ return new class extends Migration
             $table->tinyInteger('akl')->nullable();
             $table->decimal('amount', 10, 2);
             $table->timestamps();
+
+            $table->foreign('service_id')->references('id')->on('services')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
