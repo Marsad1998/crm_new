@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Models\PriceManager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +15,7 @@ use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OptionValueController;
+use App\Http\Controllers\PriceManagerController;
 use App\Http\Controllers\QuoteConfigController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -153,7 +153,12 @@ Route::middleware([
         });
 
         Route::group(['prefvix' => 'price', 'as' => 'price.'], function () {
-            Route::get('/index', [PriceManager::class, 'index'])->name('index')->middleware(['can:View Price Manager']);
+            Route::get('/index', [PriceManagerController::class, 'index'])->name('index')->middleware(['can:View Price Manager']);
+            Route::get('/create', [PriceManagerController::class, 'create'])->name('create')->middleware(['can:Add Price Manager']);
+            Route::post('/makes', [PriceManagerController::class, 'makes'])->name('makes');
+            Route::post('/models/{id}', [PriceManagerController::class, 'models'])->name('models');
+            Route::post('/services', [PriceManagerController::class, 'services'])->name('services');
+            Route::post('/key_type', [PriceManagerController::class, 'key_type'])->name('key_type');
         });
     });
 

@@ -18,7 +18,6 @@ class OptionValueController extends Controller
         OptionValue::create([
             'name' => $request->option_value_name,
             'amount' => $request->option_value_amount,
-            'slug' => Str::slug($request->option_value_name),
             'option_id' => Crypt::decrypt($id),
         ]);
         return response()->json(['msg' => 'Option Value Added Successfully', 'sts' => 'success']);
@@ -44,7 +43,6 @@ class OptionValueController extends Controller
         OptionValue::findOrFail($option_v_id)->update([
             'name' => $request->option_value_name,
             'amount' => $request->option_value_amount,
-            'slug' => Str::slug($request->option_value_name),
         ]);
         return response()->json(['msg' => 'Option Value Added Successfully', 'sts' => 'success']);
     }

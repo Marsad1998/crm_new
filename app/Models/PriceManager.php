@@ -10,8 +10,5 @@ class PriceManager extends Model
 {
     use HasFactory;
 
-    public function index()
-    {
-        return view('tenant.price');
-    }
+    protected $fillable = [];
 }

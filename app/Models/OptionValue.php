@@ -12,11 +12,11 @@ class OptionValue extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity;
 
-    protected $fillable = ['name', 'slug', 'option_id', 'amount'];
+    protected $fillable = ['name', 'option_id', 'amount'];
 
     public function option()
     {
-        return $this->belongsTo(Option::class);
+        return $this->belongsTo(Option::class, 'option_id', 'id');
     }
 
     public function getActivitylogOptions(): LogOptions

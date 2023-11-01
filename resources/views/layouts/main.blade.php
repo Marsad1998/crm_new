@@ -80,11 +80,11 @@
 				height: 40px !important;
 				font-size: 16px !important;
 				color: #353535 !important;
-				background-color: #E5E8EB;
+				background-color: #E5E8EB !important;
 			}
 
 			.form-control-c:focus{
-				background-color: #E5E8EB;
+				background-color: #E5E8EB !important;
 			}
 
 			/* Custom Select */
@@ -95,6 +95,7 @@
 				height: auto !important;
 				font-size: 16px !important;
 				color: #353535 !important;
+				background-color: #E5E8EB !important;
 			}
 
 			/* Custom Btn */
@@ -126,7 +127,7 @@
 				color: white !important;
 			}
 
-			#imagePreview{
+			.imagePreview{
 				width: 150px; 
 				height: 150px; 
 				border: 2px dotted black;
@@ -302,9 +303,6 @@
 			});
 
 			$(document).ready(function(){
-				$(document).on('click', '#imagePreview', function () {
-					$("#imgInput").click();
-				});
 
 				$.extend(true, $.fn.dataTable.defaults, {
 					pageLength: 50,

@@ -2,25 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Makes;
+use App\Models\Models;
+use App\Models\Option;
+use App\Models\OptionValue;
 use App\Models\PriceManager;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class PriceManagerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return view('tenant.price');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function makes(Request $request)
     {
-        //
+        $term = $request->term;
+        return Makes::when($term, function ($row) use ($term) {
+            $row->where('name', 'LIKE', '%' . $term . '%');
+        })->get();
+    }
+
+    public function models(Request $request, $id)
+    {
+        $term = $request->term;
+        return Models::where('make_id', $id)->when($term, function ($row) use ($term) {
+            $row->where('name', 'LIKE', '%' . $term . '%');
+        })->get();
+    }
+
+    public function services(Request $request)
+    {
+        $term = $request->term;
+        return Service::with('category')->when($term, function ($row) use ($term) {
+            $row->where('name', 'LIKE', '%' . $term . '%');
+        })->whereHas('category', function ($row) {
+            $row->where('name', 'Automotive');
+        })->get();
+    }
+
+    public function key_type(Request $request)
+    {
+        $term = $request->term;
+        return OptionValue::when($term, function ($row) use ($term) {
+            $row->where('name', 'LIKE', '%' . $term . '%');
+        })->whereHas('option', function ($row) {
+            $row->where('slug', 'type-of-key');
+        })->get();
     }
 
     /**

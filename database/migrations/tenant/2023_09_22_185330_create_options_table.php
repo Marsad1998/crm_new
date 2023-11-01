@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->nullable();
+            $table->string('slug', 100);
             $table->enum('type', ['input', 'select', 'switch', 'radio'])->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
 

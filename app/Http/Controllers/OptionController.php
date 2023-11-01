@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Option;
+use App\Models\Category;
 use App\Models\OptionValue;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Crypt;
@@ -29,6 +30,7 @@ class OptionController extends Controller
             'name' => $request->option_name,
             'type' => $request->option_type,
             'category_id' => $request->option_category,
+            'slug' => Str::slug($request->option_name),
             'operator' => $request->option_operator,
         ]);
         return response()->json(['msg' => 'Option Saved Successfully', 'sts' => 'success']);
@@ -121,6 +123,7 @@ class OptionController extends Controller
             'name' => $request->option_name,
             'type' => $request->option_type,
             'category_id' => $request->option_category,
+            'slug' => Str::slug($request->option_name),
             'operator' => $request->option_operator,
         ]);
 

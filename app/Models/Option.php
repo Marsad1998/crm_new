@@ -12,7 +12,7 @@ class Option extends Model
 {
     use HasFactory, SoftDeletes, LogsActivity;
 
-    protected $fillable = ['name', 'type', 'category_id', 'operator'];
+    protected $fillable = ['name', 'type', 'category_id', 'operator', 'slug'];
 
     public function option_values()
     {
