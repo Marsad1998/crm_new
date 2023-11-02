@@ -10,5 +10,25 @@ class PriceManager extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $table = 'model_prices';
+
+    protected $fillable = [
+        'model_id',
+        'is_range',
+        'year_start',
+        'year_end',
+        'service_id',
+        'key_type_id',
+        'PN',
+        'image',
+        'pts',
+        'oem',
+        'akl',
+        'amount',
+    ];
+
+    public function services()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }
