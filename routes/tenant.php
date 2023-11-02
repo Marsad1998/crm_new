@@ -77,6 +77,8 @@ Route::middleware([
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index2'])->name('home')->middleware(['can:View Dashboard']);
         Route::get('/makes_n_models', [MakesController::class, 'index'])->middleware(['can:View Make n Model']);
 
+        Route::get('/quote_generator', [App\Http\Controllers\HomeController::class, 'index3'])->name('quote_generator')->middleware(['can:View Quote Generator']);
+
         Route::post('/load_makes_models', [MakesController::class, 'show'])->middleware(['can:View Make n Model']);
         Route::post('/makes', [MakesController::class, 'store'])->middleware(['can:Add Makes']);
         Route::put('/makes/{id}', [MakesController::class, 'edit'])->middleware(['can:Edit Makes']);
