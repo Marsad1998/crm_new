@@ -60,30 +60,30 @@ class PriceManagerController extends Controller
 
 
         foreach ($make_id as $x => $value) {
-            $data = [
-                'make_id' => ($request->make_id)[$x] ?? null,
-                'model_id' => ($request->model_id)[$x] ?? null,
-                'model_name' => ($request->model_name)[$x] ?? null,
-                'year_from' => ($request->year_from)[$x] ?? null,
-                'year_to' => ($request->year_to)[$x] ?? null,
-                'make_name' => ($request->make_name)[$x] ?? null,
-            ];
+
+            foreach ($service_id as $y => $value1) {
+                $data = [
+                    'make_id' => $value,
+                    'model_id' => ($request->model_id)[$x] ?? null,
+                    'model_name' => ($request->model_name)[$x] ?? null,
+                    'year_from' => ($request->year_from)[$x] ?? null,
+                    'year_to' => ($request->year_to)[$x] ?? null,
+                    'make_name' => ($request->make_name)[$x] ?? null,
+                ];
+
+                $data = [
+                    'service_id' => $value1,
+                    'key_type' => ($request->key_type)[$x] ?? null,
+                    'key_manu' => ($request->key_manu)[$x] ?? null,
+                    'comfort_access' => ($request->comfort_access)[$x] ?? null,
+                    'amount' => ($request->amount)[$x] ?? null,
+                    'notes' => ($request->notes)[$x] ?? null,
+                    'akl' => ($request->akl)[$x] ?? null,
+                    'file' => ($request->file)[$x] ?? null,
+                ];
+            }
 
             PriceManager::create($data);
-        }
-
-        foreach ($service_id as $y => $value) {
-            $data = [
-                'service_id' => ($request->service_id)[$x] ?? null,
-                'key_type' => ($request->key_type)[$x] ?? null,
-                'key_manu' => ($request->key_manu)[$x] ?? null,
-                'comfort_access' => ($request->comfort_access)[$x] ?? null,
-                'amount' => ($request->amount)[$x] ?? null,
-                'notes' => ($request->notes)[$x] ?? null,
-                'akl' => ($request->akl)[$x] ?? null,
-                'file' => ($request->file)[$x] ?? null,
-            ];
-            // PriceManager::
         }
     }
 
