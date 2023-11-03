@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Makes;
 use App\Models\Models;
 use App\Models\Option;
+use App\Models\Tenant;
+use App\Models\Service;
 use App\Models\OptionValue;
 use App\Models\PriceManager;
-use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PriceManagerController extends Controller
 {
     public function index()
     {
+        // return storage_path() . '/' . PriceManager::latest()->first()->image;
         return view('tenant.price');
     }
 
@@ -61,29 +64,45 @@ class PriceManagerController extends Controller
 
         foreach ($make_id as $x => $value) {
 
-            foreach ($service_id as $y => $value1) {
-                $data = [
-                    'make_id' => $value,
-                    'model_id' => ($request->model_id)[$x] ?? null,
-                    'model_name' => ($request->model_name)[$x] ?? null,
-                    'year_from' => ($request->year_from)[$x] ?? null,
-                    'year_to' => ($request->year_to)[$x] ?? null,
-                    'make_name' => ($request->make_name)[$x] ?? null,
-                ];
+            $model_name = $request->model_name[$x] ?? null;
+            $make_name = $request->make_name[$x] ?? null;
+            $model_id = ($request->model_id)[$x] ?? null;
 
-                $data = [
-                    'service_id' => $value1,
-                    'key_type' => ($request->key_type)[$x] ?? null,
-                    'key_manu' => ($request->key_manu)[$x] ?? null,
-                    'comfort_access' => ($request->comfort_access)[$x] ?? null,
-                    'amount' => ($request->amount)[$x] ?? null,
-                    'notes' => ($request->notes)[$x] ?? null,
-                    'akl' => ($request->akl)[$x] ?? null,
-                    'file' => ($request->file)[$x] ?? null,
-                ];
+            if ($value == 'new' && $model_id == 'new' && $value != null && $model_id != null) {
+                $mak = Makes::create([
+                    'name' => $make_name,
+                ]);
+
+                $mod = Models::create(['make_id' => $mak->id, 'name' => $model_name])->id;
+            } elseif ($model_id == 'new' && $model_id != null) {
+                $mod = Models::create(['make_id' => $value, 'name' => $model_name])->id;
+            } else {
+                $mod = $model_id;
             }
 
-            PriceManager::create($data);
+            foreach ($service_id as $y => $value1) {
+
+                $file = $request->file('file')[$y];
+
+                $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
+                $file->storeAs('/', $filename, 'local');
+
+                $data = [
+                    'model_id' => $mod,
+                    'year_start' => ($request->year_from)[$x] ?? null,
+                    'year_end' => ($request->year_to)[$x] ?? null,
+                    'service_id' => $value1,
+                    'key_type_id' => ($request->key_type)[$y] ?? null,
+                    'PN' => ($request->notes)[$y] ?? null,
+                    'pts' => ($request->comfort_access)[$y] ?? null,
+                    'oem' => ($request->key_manu)[$y] ?? null,
+                    'akl' => ($request->akl)[$y] ?? null,
+                    'amount' => ($request->amount)[$y] ?? null,
+                    'image' => $filename,
+                ];
+
+                PriceManager::create($data);
+            }
         }
     }
 

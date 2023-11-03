@@ -98,12 +98,12 @@
                             </div>
                             <div class="col-sm-3 d-flex justify-content-center align-items-center">
                                 <div class="non_vehicle_1 form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="OEMRadio" name="key_manu[0]">
-                                    <label class="form-check-label" for="OEMRadio">OEM</label>
+                                    <input class="form-check-input" type="radio" id="OEMRadio_1" name="key_manu[0]" value="1">
+                                    <label class="form-check-label" for="OEMRadio_1">OEM</label>
                                 </div>
                                 <div class="non_vehicle_1 form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="afterRadio" name="key_manu[0]">
-                                    <label class="form-check-label" for="afterRadio">Aftermarket</label>
+                                    <input class="form-check-input" type="radio" id="afterRadio_1" name="key_manu[0]" value="0">
+                                    <label class="form-check-label" for="afterRadio_1">Aftermarket</label>
                                 </div>
                             </div>
                         </div> {{-- row --}}
@@ -111,23 +111,23 @@
                         <div class="row mt-4">
                             <div class="col-sm-8">
                                 <div class="row non_vehicle_1">
-                                    <label for="comfort_access" class="col-sm-4">Comfort Access?</label>
+                                    <label for="comfort_access_1" class="col-sm-4">Comfort Access?</label>
                                     <div class="col-sm-2 d-flex justify-content-center form-check form-switch">
-                                        <input class="form-check-input switch-c" type="checkbox" id="comfort_access" name="comfort_access[0]">
+                                        <input class="form-check-input switch-c" type="checkbox" id="comfort_access_1" name="comfort_access[0]" value="1">
                                     </div>
-                                    <label for="akl" class="col-sm-4">Set 'All Keys Lost' Price?</label>
+                                    <label for="akl_1" class="col-sm-4">Set 'All Keys Lost' Price?</label>
                                     <div class="col-sm-2 d-flex justify-content-center form-check form-switch">
-                                        <input class="form-check-input switch-c" type="checkbox" id="akl" name="akl[0]">
+                                        <input class="form-check-input switch-c" type="checkbox" id="akl_1" name="akl[0]" value="1">
                                     </div>
                                 </div> {{-- inner row --}}
                                 <div class="row">
                                     <div class="col-sm-3 mt-3">
-                                        <label for="amount">Amount</label>
-                                        <input type="text" class="form-control form-control-c" name="amount[0]" id="amount" placeholder="00.00">
+                                        <label for="amount_1">Amount</label>
+                                        <input type="text" class="form-control form-control-c" name="amount[0]" id="amount_1" placeholder="00.00">
                                     </div>
                                     <div class="col-sm-9 mt-3">
-                                        <label for="notes">Notes</label>
-                                        <input type="text" class="form-control form-control-c" name="notes[0]" id="notes" placeholder="Notes">
+                                        <label for="notes_1">Notes</label>
+                                        <input type="text" class="form-control form-control-c" name="notes[0]" id="notes_1" placeholder="Notes">
                                     </div>
                                 </div> {{-- inner row --}}
                             </div> {{-- outer col --}}
@@ -440,13 +440,13 @@
                         cache: true,
                     }
                 }).on('change', function () {  
-                    $(".model_id_"+x).val(null).trigger('change');
                     if ($(this).val() == 'new') {
+                        $(".model_id_"+x).val(null).trigger('change');
                         $(this).parent().parent().removeClass('col-sm-6').addClass('col-sm-3')
-                        var name = '<div class="col-sm-3 make_name_'+x+'">\
+                        var name = '<div class="col-sm-3 make_name_'+(+x-1)+'">\
                                             <div class="form-group">\
                                             <label for="make_name">New Make</label>\
-                                            <input class="form-control form-control-c" name="make_name['+x+']" id="make_name">\
+                                            <input class="form-control form-control-c" name="make_name['+(+x-1)+']" id="make_name">\
                                         </div>\
                                     </div>';
                         
@@ -488,10 +488,10 @@
                 }).on('change', function () {
                     if ($(this).val() == 'new') {
                         $(this).parent().parent().removeClass('col-sm-6').addClass('col-sm-3')
-                        var name = '<div class="col-sm-3 model_name_'+x+'">\
+                        var name = '<div class="col-sm-3 model_name_'+(+x-1)+'">\
                                             <div class="form-group">\
                                             <label for="model_name">New Model</label>\
-                                            <input class="form-control form-control-c" name="model_name['+x+']" id="model_name">\
+                                            <input class="form-control form-control-c" name="model_name['+(+x-1)+']" id="model_name">\
                                         </div>\
                                     </div>';
                         

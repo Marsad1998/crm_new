@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $tenant = Tenant::create([
+            'id' => 'quotegen1',
+        ]);
+
+        $tenant->domains()->create([
+            'domain' => 'test1.localhost',
+        ]);
+        return;
         return view('central.index');
     }
 
