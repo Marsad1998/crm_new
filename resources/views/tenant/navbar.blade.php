@@ -216,14 +216,6 @@
                         'class' => request()->is('dashboard') ? 'active' : '',
                     ],
                     [
-                        'name' => 'Quote Generator',
-                        'icon' => 'ti-pencil',
-                        'option' => [],
-                        'path' => '/quote_generator',
-                        'access' => auth()->user()->can('View Quote Generator') == 1 ? '' : 'd-none',
-                        'class' => request()->is('quote_generator') ? 'active' : '',
-                    ],
-                    [
                         'name' => 'Basic Modules',
                         'icon' => 'ti-package',
                         'class' => request()->is('users') || request()->is('manage_roles') || request()->is('assign_permission') ? 'active' : '',
@@ -254,6 +246,14 @@
                                 'access' => auth()->user()->can('Logs Permission') == 1 ? '' : 'd-none',
                             ],
                         ],
+                    ],
+                    [
+                        'name' => 'Quote Generator',
+                        'icon' => 'ti-pencil',
+                        'option' => [],
+                        'path' => '/quote_generator',
+                        'access' => auth()->user()->can('View Quote Generator') == 1 ? '' : 'd-none',
+                        'class' => request()->is('quote_generator') ? 'active' : '',
                     ],
                     [
                         'name' => 'Price Manager',
