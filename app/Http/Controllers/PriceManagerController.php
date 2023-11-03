@@ -61,7 +61,6 @@ class PriceManagerController extends Controller
         $make_id = $request->make_id;
         $service_id = $request->service_id;
 
-
         foreach ($make_id as $x => $value) {
 
             $model_name = $request->model_name[$x] ?? null;
