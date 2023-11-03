@@ -236,7 +236,171 @@
 .cstm-card-body {
     padding: 10px !important;
     margin: 0 !important;
-    height: 80vh;
+}
+
+.cstm-card-footer {
+    padding: 10px;
+    background-color: #dfe4ea;
+    border-radius: 7px;
+}
+
+.footer-btn{
+    color: #fff;
+    background-color: #51B3DE !important;
+}
+
+.g-quote-header {
+    position:relative;
+}
+
+.g-quote-body {
+    height: 696px;
+    overflow:scroll;
+}
+
+.g-quote-footer {
+    padding:16px;
+    position:absolute;
+    bottom: 0px;
+    width:100%
+}
+
+.l-info-card {
+    position:relative;
+}
+
+.l-info-footer {
+    position:absolute;
+    bottom: 0px;
+    width:100%
+}
+
+.pad-mar-0-imp {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.cstm-border-top {
+    border-top: 2px solid #51B3DE;
+}
+.cstm-border-bottom {
+    border-bottom: 2px solid #51B3DE;
+}
+
+.cstm-margin-0 {
+    margin: 0;
+}
+.cstm-margin-top-10 {
+    margin-top: 10px;
+}
+.cstm-margin-top-20 {
+    margin-top: 20px;
+}
+.cstm-margin-bottom-60 {
+    margin-bottom: 60px;
+}
+
+.cstm-select2-div {
+    width:47%;
+    margin-top: 20px;
+}
+
+.cstm-switch {
+    display: inline-block;
+    height: 18px;
+    position: relative;
+    width: 40px;
+}
+  
+.cstm-switch input {
+    display:none;
+}
+  
+.cstm-slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+  
+.cstm-slider:before {
+    background-color: #fff;
+    bottom: 2px;
+    content: "";
+    height: 14px;
+    left: 2px;
+    position: absolute;
+    transition: .4s;
+    width: 14px;
+}
+  
+.cstm-switch input:checked + .cstm-slider {
+    background-color: #66bb6a;
+}
+  
+.cstm-switch input:checked + .cstm-slider:before {
+    transform: translateX(22px);
+}
+  
+.cstm-slider.cstm-round {
+    border-radius: 34px;
+}
+  
+.cstm-slider.cstm-round:before {
+    border-radius: 50%;
+}
+
+.cstm-group-47w {
+    width: 47%;
+}
+
+.quoted_price_div {
+    width: 47%;
+}
+.custom_price_div {
+    width: 47%;
+}
+.status_div {
+    width: 47%;
+}
+@media (min-width: 1200px) {
+    .quoted_price_div {
+        width: 31%;
+    }
+    .custom_price_div {
+        width: 31%;
+    }
+    .status_div {
+        width: 31%;
+    }
+}
+
+.gen-quo-div {
+    border-bottom:2px solid #DFE4EA;
+    position:relative;
+}
+
+.gen-quo-div-btn {
+    position:absolute;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height:100%;
+    width:100%;
+    background: rgba(0,0,0,0.6);
+    visibility: hidden;
+}
+
+.gen-quo-div:hover .gen-quo-div-data {
+    opacity: 0.4;
+}
+.gen-quo-div:hover .gen-quo-div-btn {
+    visibility: visible;
 }
 /* END - Quote Generator CSS */
   
