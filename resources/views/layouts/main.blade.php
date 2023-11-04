@@ -82,8 +82,16 @@
 				color: #353535 !important;
 				background-color: #E5E8EB !important;
 			}
-
+			
 			.form-control-c:focus{
+				background-color: #E5E8EB !important;
+			}
+			
+			.textarea-c{
+				border: 1px solid #E5E8EB !important;
+				border-radius: 0px !important;
+				font-size: 16px !important;
+				color: #353535 !important;
 				background-color: #E5E8EB !important;
 			}
 
@@ -169,7 +177,6 @@
 				display: flex;
 				color: #c1c1c1;
 			}
-
 			
 			/* .table {
 				border: 0.5px solid grey;

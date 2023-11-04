@@ -251,9 +251,9 @@
                         'name' => 'Quote Generator',
                         'icon' => 'ti-pencil',
                         'option' => [],
-                        'path' => '/quote_generator',
+                        'path' => route('quote.index'),
                         'access' => auth()->user()->can('View Quote Generator') == 1 ? '' : 'd-none',
-                        'class' => request()->is('quote_generator') ? 'active' : '',
+                        'class' => request()->is('quote.index') ? 'active' : '',
                     ],
                     [
                         'name' => 'Price Manager',

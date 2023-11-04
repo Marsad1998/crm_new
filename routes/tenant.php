@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MakesController;
@@ -15,8 +16,8 @@ use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OptionValueController;
-use App\Http\Controllers\PriceManagerController;
 use App\Http\Controllers\QuoteConfigController;
+use App\Http\Controllers\PriceManagerController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -72,12 +73,10 @@ Route::middleware([
     });
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+        Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
-        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index2'])->name('home')->middleware(['can:View Dashboard']);
+        Route::get('/home', [HomeController::class, 'index2'])->name('home')->middleware(['can:View Dashboard']);
         Route::get('/makes_n_models', [MakesController::class, 'index'])->middleware(['can:View Make n Model']);
-
-        Route::get('/quote_generator', [App\Http\Controllers\HomeController::class, 'index3'])->name('quote_generator')->middleware(['can:View Quote Generator']);
 
         Route::post('/load_makes_models', [MakesController::class, 'show'])->middleware(['can:View Make n Model']);
         Route::post('/makes', [MakesController::class, 'store'])->middleware(['can:Add Makes']);
@@ -144,7 +143,8 @@ Route::middleware([
             Route::post('/update_values/{option_v_id}', [OptionValueController::class, 'update'])->name('update_values')->middleware(['can:Edit Option Value']);
         });
 
-        Route::group(['prefvix' => 'quote', 'as' => 'quote.'], function () {
+        Route::group(['prefix' => 'quote', 'as' => 'quote.'], function () {
+
             Route::get('/config', [QuoteConfigController::class, 'config'])->name('config')->middleware(['can:Add Quote Config']);
             Route::post('/category', [QuoteConfigController::class, 'category'])->name('category')->middleware(['can:Add Quote category']);
             Route::post('/fields', [QuoteConfigController::class, 'fields'])->name('fields')->middleware(['can:Add Quote Fields']);
@@ -152,11 +152,14 @@ Route::middleware([
             Route::post('/save', [QuoteConfigController::class, 'create'])->name('create')->middleware(['can:Add Quotes Fields']);
             Route::post('/edit/{id}', [QuoteConfigController::class, 'edit'])->name('edit')->middleware(['can:Edit Quotes Fields']);
             Route::post('/delete/{id}', [QuoteConfigController::class, 'destroy'])->name('delete')->middleware(['can:Delete Quotes Fields']);
+
+            Route::get('/index', [QuoteConfigController::class, 'index'])->name('index')->middleware(['can:View Quote Generator']);
         });
 
-        Route::group(['prefvix' => 'price', 'as' => 'price.'], function () {
+        Route::group(['prefix' => 'price', 'as' => 'price.'], function () {
             Route::get('/index', [PriceManagerController::class, 'index'])->name('index')->middleware(['can:View Price Manager']);
             Route::post('/create', [PriceManagerController::class, 'create'])->name('create')->middleware(['can:Add Price Manager']);
+            Route::post('/show', [PriceManagerController::class, 'show'])->name('show');
             Route::post('/makes', [PriceManagerController::class, 'makes'])->name('makes');
             Route::post('/models/{id}', [PriceManagerController::class, 'models'])->name('models');
             Route::post('/services', [PriceManagerController::class, 'services'])->name('services');

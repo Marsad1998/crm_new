@@ -10,15 +10,57 @@
             <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">Price Manager</h3>
             <div class="card">
                 <div class="card-body">
+                    <style>
+                        .icon-container {
+                            position: relative;
+                            cursor: pointer;
+                        }
+
+                        .hover-info {
+                            display: none;
+                            position: absolute;
+                            top: -250%; /* Move the div above the icon */
+                            right: 110%; /* Move the div to the right of the icon */
+                            background-color: #f0f0f0;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            width: 250%; /* Relative width (half of the parent's width) */
+                            height: 600%; /* Set the height to 600% of the width, maintaining a 2:3 aspect ratio */
+                            max-width: 200px; /* Set a maximum width */
+                            max-height: 300px; /* Set a maximum height */
+                            z-index: 99999;
+                            overflow: hidden; /* Hide any overflowing content */
+                        }
+
+                        .hover-info img {
+                            width: 100%; /* Make the image fill the entire .hover-info div */
+                            height: 100%; /* Make the image fill the entire .hover-info div */
+                        }
+
+                        .icon-container:hover .hover-info {
+                            display: block;
+                        }
+                    </style>
+                    
+                    
+                    {{-- <img src="http://test.localhost:8000/tenants/tenantquotegen/app/12032405366544257234c17.png"  class="floating-div"> --}}
+
                     <div class="table-responsive mt-3">
                         <table class="table table-striped table-hover table-bordered align-middle" id="logTable">
                             <thead class="table-primary">
                                 <tr>
                                     <th>#</th>
-                                    <th>Log Name</th>
-                                    <th>Event</th>
-                                    <th>Done By</th>
-                                    <th>Time</th>
+                                    <th>Make</th>
+                                    <th>Model</th>
+                                    <th>Service</th>
+                                    <th>Year From</th>
+                                    <th>Year To</th>
+                                    <th>CA / Prox</th>
+                                    <th>Manufacturer</th>
+                                    <th>AKL</th>
+                                    <th>Notes</th>
+                                    <th>Amount</th>
+                                    <th>Image</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,11 +74,11 @@
 
     <div class="modal animate__animated animate__zoomIn animate__fasters" id="priceManagerModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            
             <div class="modal-content">
-                
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitleId">Add a Price</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close priceManagerModalclose"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('price.create') }}" id="prcieForm" method="post">
@@ -127,7 +169,7 @@
                                     </div>
                                     <div class="col-sm-9 mt-3">
                                         <label for="notes_1">Notes</label>
-                                        <input type="text" class="form-control form-control-c" name="notes[0]" id="notes_1" placeholder="Notes">
+                                        <textarea cols="30" rows="4" class="form-control textarea-c" name="notes[0]" id="notes_1" placeholder="Notes"></textarea>
                                     </div>
                                 </div> {{-- inner row --}}
                             </div> {{-- outer col --}}
@@ -156,9 +198,9 @@
                     </div> {{-- main div --}}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn priceManagerModalclose btn-light">Close</button>
                     <button type="submit" id="saveData" class="btn btn-primary">Save</button>
-                    </form>
+                </form>
                 </div>
             </div>
         </div>
@@ -167,16 +209,27 @@
     @push('script')
         <script>
             $(document).ready(function() {
-                $("#priceManagerModal").modal('show');
+                // $("#priceManagerModal").modal('show');
 
                 initSelect(1);
                 initDetail(1);
+
+                $('.icon-container').hover(
+        function () {
+            // Mouse enter event
+            $('.hover-info').show();
+        },
+        function () {
+            // Mouse leave event
+            $('.hover-info').hide();
+        }
+    );
 
                 var logTable = $("#logTable").DataTable({
                     dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
                     stateSave: true,
                     "ajax": {
-                        url: "/load_logs", // json datasource
+                        url: "{{ route('price.show') }}", // json datasource
                         type: 'post', // method  , by default get
                     },
                     'order': [],
@@ -207,18 +260,83 @@
                             data: 'id'
                         },
                         {
-                            data: 'subject_type'
+                            data: 'make_id'
                         },
                         {
-                            data: 'event'
+                            data: 'model_id'
                         },
                         {
-                            data: 'causer_id'
+                            data: 'service_id'
                         },
                         {
-                            data: 'created_at'
+                            data: 'year_start'
+                        },
+                        {
+                            data: 'year_end'
+                        },
+                        {
+                            data: 'comfort_access'
+                        },
+                        {
+                            data: 'manufacturer'
+                        },
+                        {
+                            data: 'akl'
+                        },
+                        {
+                            data: 'PN'
+                        },
+                        {
+                            data: 'amount'
+                        },
+                        {
+                            data: 'image'
                         },
                     ]
+                });
+
+                $(document).on('hidePrevented.bs.modal', function () {
+                    swal({
+                        title: "",
+                        text: "Are you sure you would like to cancel?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes, cancel it!",
+                        cancelButtonText: "No, return",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            $("#priceManagerModal").modal('hide');
+                            swal.close();
+                        } else {
+                            swal.close();
+                        }
+                    });
+                });
+
+                $(document).on('click', '.priceManagerModalclose', function () {
+                    swal({
+                        title: "",
+                        text: "Are you sure you would like to cancel?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes, cancel it!",
+                        cancelButtonText: "No, return",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            $("#priceManagerModal").modal('hide');
+                            swal.close();
+                        } else {
+                            swal.close();
+                        }
+                    });
                 });
 
                 $("#prcieForm").on('submit', function (e) {
@@ -371,7 +489,8 @@
                                             </div>
                                             <div class="col-sm-9 mt-3">
                                                 <label for="notes_`+y+`">Notes</label>
-                                                <input type="text" class="form-control form-control-c" id="notes_`+y+`" name="notes[`+y+`]" placeholder="Notes">
+                                                
+                                                <textarea cols="30" rows="4" class="form-control textarea-c"  id="notes_`+y+`" name="notes[`+y+`]" placeholder="Notes"></textarea>
                                             </div>
                                         </div> {{-- inner row --}}
                                     </div> {{-- outer col --}}

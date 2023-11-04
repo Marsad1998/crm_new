@@ -41,11 +41,6 @@ class HomeController extends Controller
         return view('tenant.index');
     }
 
-    public function index3()
-    {
-        return view('tenant.quote_generator');
-    }
-
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();

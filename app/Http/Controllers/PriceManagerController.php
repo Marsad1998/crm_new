@@ -4,19 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Makes;
 use App\Models\Models;
-use App\Models\Option;
-use App\Models\Tenant;
 use App\Models\Service;
 use App\Models\OptionValue;
 use App\Models\PriceManager;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\DataTables;
 
 class PriceManagerController extends Controller
 {
     public function index()
     {
-        // return storage_path() . '/' . PriceManager::latest()->first()->image;
         return view('tenant.price');
     }
 
@@ -105,12 +102,42 @@ class PriceManagerController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(PriceManager $priceManager)
+    public function show()
     {
-        //
+        $data = PriceManager::with(['models', 'makes'])->get();
+        return Datatables::of($data)
+            ->addColumn('model_id', function ($row) {
+                return !is_null($row->models) ? $row->models->name : 'N/A';
+            })
+            ->addColumn('make_id', function ($row) {
+                return !is_null($row->makes) ? $row->makes->name : 'N/A';
+            })
+            ->addColumn('comfort_access', function ($row) {
+                return $row->pts == 1 ? '<span class="badge bg-info-light text-info">Yes</span>' : '<span class="badge bg-danger-light text-danger">N/A</span>';
+            })
+            ->addColumn('manufacturer', function ($row) {
+                return $row->oem == 1 ? '<span class="badge bg-primary-light text-primary">OEM</span>' : '<span class="badge bg-wanring-light text-wanring">After Market</span>';
+            })
+            ->addColumn('akl', function ($row) {
+                return $row->akl == 1 ? '<span class="badge bg-success-light text-success">Yes</span>' : '<span class="badge bg-danger-light text-danger">No</span>';
+            })
+            ->addColumn('image', function ($row) {
+
+                $filename = global_asset('tenants/') . "/tenant" . tenant('id') . '/app/' . $row->image;
+                if (file_exists($filename)) {
+                    return '<div class="icon-container">
+                                    <img src="' . $filename . '">
+                                    <div class="hover-info">
+                                        <img src="' . $filename . '">
+                                    </div>
+                                </div>';
+                } else {
+                    return 'N/A';
+                }
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action', 'comfort_access', 'manufacturer', 'akl', 'image'])
+            ->make(true);
     }
 
     /**

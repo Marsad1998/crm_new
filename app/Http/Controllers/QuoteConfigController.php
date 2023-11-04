@@ -16,6 +16,11 @@ class QuoteConfigController extends Controller
         return view('tenant.quote_config');
     }
 
+    public function index()
+    {
+        return view('tenant.quote_generator');
+    }
+
     public function category(Request $request)
     {
         $term = $request->term;

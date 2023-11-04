@@ -31,4 +31,14 @@ class PriceManager extends Model
     {
         return $this->belongsTo(Service::class);
     }
+
+    public function models()
+    {
+        return $this->belongsTo(Models::class, 'model_id');
+    }
+
+    public function makes()
+    {
+        return $this->hasOneThrough(Makes::class, Models::class, 'id', 'id', 'model_id', 'make_id');
+    }
 }
