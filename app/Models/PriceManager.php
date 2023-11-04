@@ -41,4 +41,9 @@ class PriceManager extends Model
     {
         return $this->hasOneThrough(Makes::class, Models::class, 'id', 'id', 'model_id', 'make_id');
     }
+
+    public function keys()
+    {
+        return $this->belongsTo(OptionValue::class, 'key_type_id');
+    }
 }

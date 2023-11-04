@@ -24,8 +24,8 @@
                             background-color: #f0f0f0;
                             border: 1px solid #ccc;
                             border-radius: 4px;
-                            width: 250%; /* Relative width (half of the parent's width) */
-                            height: 600%; /* Set the height to 600% of the width, maintaining a 2:3 aspect ratio */
+                            width: 400%; /* Relative width (half of the parent's width) */
+                            height: 500%; /* Set the height to 600% of the width, maintaining a 2:3 aspect ratio */
                             max-width: 200px; /* Set a maximum width */
                             max-height: 300px; /* Set a maximum height */
                             z-index: 99999;
@@ -41,9 +41,6 @@
                             display: block;
                         }
                     </style>
-                    
-                    
-                    {{-- <img src="http://test.localhost:8000/tenants/tenantquotegen/app/12032405366544257234c17.png"  class="floating-div"> --}}
 
                     <div class="table-responsive mt-3">
                         <table class="table table-striped table-hover table-bordered align-middle" id="priceManager">
@@ -55,6 +52,7 @@
                                     <th>Service</th>
                                     <th>Year From</th>
                                     <th>Year To</th>
+                                    <th>Key Type</th>
                                     <th>CA / Prox</th>
                                     <th>Manufacturer</th>
                                     <th>AKL</th>
@@ -150,7 +148,6 @@
                                 </div>
                             </div>
                         </div> {{-- row --}}
-
                         <div class="row mt-4">
                             <div class="col-sm-8">
                                 <div class="row non_vehicle_1">
@@ -196,6 +193,7 @@
                         </div> {{-- outer row --}}
                         
                         <div id="detail_inform"></div>
+
                     </div> {{-- main div --}}
                 </div>
                 <div class="modal-footer">
@@ -238,6 +236,11 @@
                             className: "mx-2 btn-c",
                             text: '<i class="fas fa-plus-circle"></i> Add Price',
                             action: function (e, dt, node, config) {
+                                $("#vehicle_inform").empty();
+                                $("#detail_inform").empty();
+                                // addRow(1);
+                                // addRew(1);
+                                // priceManager.ajax.reload(null, false);
                                 $("#priceManagerModal").modal('show')
                             }
                         },
@@ -273,6 +276,9 @@
                         },
                         {
                             data: 'year_end'
+                        },
+                        {
+                            data: 'key_type_id'
                         },
                         {
                             data: 'comfort_access'
@@ -356,10 +362,20 @@
                         dataType: 'json',
                         success: function(response) {
                             $("#saveData").prop("disabled", false).text('Save').addClass('btn-primary').removeClass('btn-danger');
-                            $('.formData').each(function() {
+                            $("#vehicle_inform").empty();
+                            $("#detail_inform").empty();
+                            priceManager.ajax.reload(null, false);
+                            x = 2;
+                            y = 2;
+
+                            $('#prcieForm').each(function() {
                                 this.reset();
+                                $(this).find('select.select2').val(null).trigger('change');
+                                $(this).find('textarea').val('');
+                                $(".icon-button-bottom").click();
                             });
-                            optionTable.ajax.reload(null, false);
+                            $("#prcieForm").attr('action', "{{ route('price.create') }}");
+
                             notif({
                                 type: response.sts,
                                 msg: response.msg,
@@ -399,20 +415,32 @@
 
                             var option = new Option(response.services.name, response.services.id, false, false);
                             $("#service_id_1").append(option).trigger('change');
+
+                            var option = new Option(response.keys.name, response.keys.id, false, false);
+                            $("#key_type_1").append(option).trigger('change');
                                 
                             $("#year_from_1").val(response.year_start);
                             $("#year_to_1").val(response.year_end);
 
-                            $("#key_type_1").val();
-                            $("#OEMRadio_1").val();
-                            $("#afterRadio_1").val();
-                            $("#comfort_access_1").val();
-                            $("#akl_1").val();
-                            $("#amount_1").val();
-                            $("#notes_1").val();
-                            $("#img_preveiw_1").val();
+                            if (response.oem == 1) {
+                                $("#OEMRadio_1").prop('checked', true);
+                            }else if (response.oem == 0){
+                                $("#afterRadio_1").prop('checked', true);
+                            }
+
+                            if (response.pts == 1) {
+                                $("#comfort_access_1").prop('checked', true);
+                            }
                             
-                            // $(".formData").attr('action', '/update_categories/' + id);
+                            if (response.akl == 1) {
+                                $("#akl_1").prop('checked', true);;
+                            }
+
+                            $("#amount_1").val(response.amount);
+                            $("#notes_1").val(response.PN);
+                            $("#img_preveiw_1").attr('src', response.image);
+                            
+                            $("#prcieForm").attr('action', "{{ route('price.update', ['id' => ':id']) }}".replace(':id', response.id));
                             // $("#name").val(response.name)
                         }, 
                         error: function (response) {
@@ -421,8 +449,30 @@
                     });
                 });
 
+                $(document).on("click", ".delete", function() {
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('price.delete', ['id' => ':id']) }}".replace(':id', id),
+                        dataType: "json",
+                        success: function(response) {
+                            notif({
+                                type: response.sts,
+                                msg: response.msg,
+                                position: 'right',
+                                bottom: 10,
+                                time: 2000,
+                            });
+                            priceManager.ajax.reload(null, false);
+                        }, 
+                        error: function (response) {
+                            swal("Oops", response.responseJSON.message, "error");
+                        }
+                    });
+                });
+
                 $(document).on('click', '.icon-button-top', function () {
-                    var id = $(this).attr('id')  
+                    var id = $(this).attr('id')
                     $("#imgInput_"+id).click();
                 });
 

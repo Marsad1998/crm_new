@@ -161,6 +161,8 @@ Route::middleware([
             Route::post('/create', [PriceManagerController::class, 'create'])->name('create')->middleware(['can:Add Price Manager']);
             Route::post('/show', [PriceManagerController::class, 'show'])->name('show');
             Route::post('/edit/{id}', [PriceManagerController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}', [PriceManagerController::class, 'update'])->name('update');
+            Route::post('/delete/{id}', [PriceManagerController::class, 'destroy'])->name('delete');
             Route::post('/makes', [PriceManagerController::class, 'makes'])->name('makes');
             Route::post('/models/{id}', [PriceManagerController::class, 'models'])->name('models');
             Route::post('/services', [PriceManagerController::class, 'services'])->name('services');
