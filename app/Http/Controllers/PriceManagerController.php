@@ -9,6 +9,7 @@ use App\Models\OptionValue;
 use App\Models\PriceManager;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Crypt;
 
 class PriceManagerController extends Controller
 {
@@ -122,18 +123,24 @@ class PriceManagerController extends Controller
                 return $row->akl == 1 ? '<span class="badge bg-success-light text-success">Yes</span>' : '<span class="badge bg-danger-light text-danger">No</span>';
             })
             ->addColumn('image', function ($row) {
-
                 $filename = global_asset('tenants/') . "/tenant" . tenant('id') . '/app/' . $row->image;
-                if (file_exists($filename)) {
-                    return '<div class="icon-container">
+                return '<div class="icon-container">
+                                <img src="' . $filename . '">
+                                <div class="hover-info">
                                     <img src="' . $filename . '">
-                                    <div class="hover-info">
-                                        <img src="' . $filename . '">
-                                    </div>
-                                </div>';
-                } else {
-                    return 'N/A';
-                }
+                                </div>
+                            </div>';
+            })
+            ->addColumn('action', function ($row) {
+                $btn = "";
+                $btn .= '<button class="edit btn btn-sm ripple btn-outline-warning" id="' . Crypt::encrypt($row->id) . '">
+                            <i class="fe fe-edit-2"></i>
+                        </button>
+
+                        <button class="delete btn btn-sm ripple btn-outline-danger" id="' . Crypt::encrypt($row->id) . '">
+                            <i class="fe fe-trash"></i>
+                        </button>';
+                return $btn;
             })
             ->addIndexColumn()
             ->rawColumns(['action', 'comfort_access', 'manufacturer', 'akl', 'image'])
@@ -143,9 +150,9 @@ class PriceManagerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PriceManager $priceManager)
+    public function edit($id)
     {
-        //
+        return PriceManager::with(['services', 'models', 'makes'])->where('id', Crypt::decrypt($id))->first();
     }
 
     /**

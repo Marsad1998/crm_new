@@ -46,7 +46,7 @@
                     {{-- <img src="http://test.localhost:8000/tenants/tenantquotegen/app/12032405366544257234c17.png"  class="floating-div"> --}}
 
                     <div class="table-responsive mt-3">
-                        <table class="table table-striped table-hover table-bordered align-middle" id="logTable">
+                        <table class="table table-striped table-hover table-bordered align-middle" id="priceManager">
                             <thead class="table-primary">
                                 <tr>
                                     <th>#</th>
@@ -61,6 +61,7 @@
                                     <th>Notes</th>
                                     <th>Amount</th>
                                     <th>Image</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -113,7 +114,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 d-flex justify-content-center align-items-center">
-                                <button type="button" onclick="addRow()" class="btn m-2 btn-c btn-primary"><i class="fas fa-plus"></i> Add</button>
+                                <button type="button" onclick="addRow()" class="addRowVtn btn m-2 btn-c btn-primary"><i class="fas fa-plus"></i> Add</button>
                             </div>
                         </div>
                         <div id="vehicle_inform"></div>
@@ -190,7 +191,7 @@
                                 </div>
                             </div> {{-- outer col --}}
                             <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                                <button type="button" onclick="addRew()" class="btn btn-c btn-primary"><i class="fas fa-plus"></i> Add</button>
+                                <button type="button" onclick="addRew()" class="addRowVtn btn btn-c btn-primary"><i class="fas fa-plus"></i> Add</button>
                             </div>
                         </div> {{-- outer row --}}
                         
@@ -215,17 +216,16 @@
                 initDetail(1);
 
                 $('.icon-container').hover(
-        function () {
-            // Mouse enter event
-            $('.hover-info').show();
-        },
-        function () {
-            // Mouse leave event
-            $('.hover-info').hide();
-        }
-    );
+                    function () {
+                        // Mouse enter event
+                        $('.hover-info').show();
+                    },function () {
+                        // Mouse leave event
+                        $('.hover-info').hide();
+                    }
+                );
 
-                var logTable = $("#logTable").DataTable({
+                var priceManager = $("#priceManager").DataTable({
                     dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
                     stateSave: true,
                     "ajax": {
@@ -291,6 +291,9 @@
                         },
                         {
                             data: 'image'
+                        },
+                        {
+                            data: 'action'
                         },
                     ]
                 });
@@ -372,6 +375,48 @@
                             $.each(errorResponse.errors, function (key, value) {
                                 $("#" + key + "_error").text(value);
                             });
+                        }
+                    });
+                });
+
+                $(document).on('click', '.edit', function () {
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('price.edit', ['id' => ':id']) }}".replace(':id', $(this).attr('id')),
+                        dataType: "json",
+                        success: function(response) {
+                            console.log(response);
+                            $("#saveData").text('Update').addClass('btn-danger').removeClass('btn-primary');
+                            $(".addRowVtn").hide();
+                            $("#priceManagerModal").modal('show');
+                            
+                            var option = new Option(response.makes.name, response.makes.id, false, false);
+                            $("#make_id_1").append(option).trigger('change');
+
+                            var option = new Option(response.models.name, response.models.id, false, false);
+                            $("#model_id_1").append(option).trigger('change');
+
+                            var option = new Option(response.services.name, response.services.id, false, false);
+                            $("#service_id_1").append(option).trigger('change');
+                                
+                            $("#year_from_1").val(response.year_start);
+                            $("#year_to_1").val(response.year_end);
+
+                            $("#key_type_1").val();
+                            $("#OEMRadio_1").val();
+                            $("#afterRadio_1").val();
+                            $("#comfort_access_1").val();
+                            $("#akl_1").val();
+                            $("#amount_1").val();
+                            $("#notes_1").val();
+                            $("#img_preveiw_1").val();
+                            
+                            // $(".formData").attr('action', '/update_categories/' + id);
+                            // $("#name").val(response.name)
+                        }, 
+                        error: function (response) {
+                            swal("Oops", response.responseJSON.message, "error");
                         }
                     });
                 });

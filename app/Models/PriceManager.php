@@ -29,7 +29,7 @@ class PriceManager extends Model
 
     public function services()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(Service::class, 'service_id');
     }
 
     public function models()
