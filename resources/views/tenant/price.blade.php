@@ -205,6 +205,153 @@
         </div>
     </div>
 
+    <!-- Filter Option modal START -->
+    <div class="modal animate__animated animate__zoomIn animate__fasters" id="filter_optionsModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            
+            <div class="modal-content br-radius-10">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Filters Options</h5>
+                    <button type="button" class="btn-close filter_optionsModalclose"></button>
+                </div><!-- modal header -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="make_1">Make:</label>
+                                <select name="make_1" id="make_1" class="form-control">
+                                    <option value="">Select option</option>
+                                </select>
+                            </div><!-- form-group -->
+                        </div><!-- col-1 -->
+                        <div class="col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="make_2">Make:</label>
+                                <select name="make_2" id="make_2" class="form-control">
+                                    <option value="">Select option</option>
+                                </select>
+                            </div><!-- form-group -->
+                        </div><!-- col-2 -->
+                        <div class="col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="year">Year:</label>
+                                <input type="text" name="year" id="year" class="form-control" placeholder="2023">
+                            </div><!-- form-group -->
+                        </div><!-- col-3 -->
+                    </div><!-- row -->
+
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6 col-xl-6">
+                            <div class="form-group">
+                                <label for="service">Service:</label>
+                                <select name="service" id="service" class="form-control">
+                                    <option value="">Select option</option>
+                                </select>
+                            </div><!-- form-group -->
+                            <div class="form-group">
+                               <label>Comfort Access:</label>
+                               <div class="d-flex justify-content-between">
+                                    <div>
+                                        <input type="checkbox" name="comfort_accessYes" id="comfort_accessYes"> <label for="comfort_accessYes">Yes</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="comfort_accessNo" id="comfort_accessNo"> <label for="comfort_accessNo">No</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="comfort_accessUnset" id="comfort_accessUnset"> <label for="comfort_accessUnset">Unset</label>
+                                    </div>
+                                    <div></div><div></div><div></div>
+                               </div>
+                            </div><!-- form-group -->
+                        </div><!-- col-1 -->
+                        <div class="col-md-12 col-lg-6 col-xl-6">
+                            <div class="form-group">
+                                <label for="key_type">Key Type:</label>
+                                <select name="key_type" id="key_type" class="form-control">
+                                    <option value="">Select option</option>
+                                </select>
+                            </div><!-- form-group -->
+                            <div class="form-group">
+                               <label>Manufacturer:</label>
+                               <div class="d-flex justify-content-between">
+                                    <div>
+                                        <input type="checkbox" name="manufacturer_oem" id="manufacturer_oem"> <label for="manufacturer_oem">OEM</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="manufacturer_aftermarket" id="manufacturer_aftermarket"> <label for="manufacturer_aftermarket">Aftermarket</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="manufacturer_unset" id="manufacturer_unset"> <label for="manufacturer_unset">Unset</label>
+                                    </div>
+                                    <div></div><div></div><div></div>
+                               </div>
+                            </div><!-- form-group -->
+                        </div><!-- col-2 -->
+                    </div><!-- row -->
+
+                    <div class="row">
+                        <div class="col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label>AKL:</label>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <input type="checkbox" name="akl_Yes" id="akl_Yes"> <label for="akl_Yes">Yes</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="akl_No" id="akl_No"> <label for="akl_No">No</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="akl_Unset" id="akl_Unset"> <label for="akl_Unset">Unset</label>
+                                    </div>
+                                    <div></div><div></div><div></div>
+                               </div>
+                            </div><!-- form-group -->
+                        </div><!-- col-1 -->
+                        <div class="col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label>Has notes:</label>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <input type="checkbox" name="has_notesYes" id="has_notesYes"> <label for="has_notesYes">Yes</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="has_notesNo" id="has_notesNo"> <label for="has_notesNo">No</label>
+                                    </div>
+                                    <div></div><div></div><div></div>
+                               </div>
+                            </div><!-- form-group -->
+                        </div><!-- col-2 -->
+                        <div class="col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="has_image">Has image:</label>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <input type="checkbox" name="has_imageYes" id="has_imageYes"> <label for="has_imageYes">Yes</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="has_imageNo" id="has_imageNo"> <label for="has_imageNo">No</label>
+                                    </div>
+                                    <div></div><div></div><div></div>
+                               </div>
+                            </div><!-- form-group -->
+                        </div><!-- col-3 -->
+                    </div><!-- row -->
+
+                    <div class="form-group">
+                        <label for="price_range">Price Range:</label>
+                        <input type="range" name="price_range" id="price_range" class="form-control-range" min="0" max="5000" step="1000">
+                    </div><!-- form-group -->
+                </div><!-- modal body -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light">Reset</button>
+                    <button type="button" class="btn btn-primary">Apply</button>
+                </div><!-- modal footer -->
+            </div><!-- modal content -->
+
+        </div><!-- modal dialog -->
+    </div>
+    <!-- Filter Option modal END -->
+
     @push('script')
         <script>
             $(document).ready(function() {
@@ -248,7 +395,7 @@
                             className: "mx-2 btn-c",
                             text: '<i class="fas fa-filter"></i> Filters',
                             action: function (e, dt, node, config) {
-                                alert();
+                                filter_options();
                             }
                         },
                         {
@@ -319,6 +466,7 @@
                     function(isConfirm) {
                         if (isConfirm) {
                             $("#priceManagerModal").modal('hide');
+                            $("#filter_optionsModal").modal('hide');
                             swal.close();
                         } else {
                             swal.close();
@@ -326,7 +474,7 @@
                     });
                 });
 
-                $(document).on('click', '.priceManagerModalclose', function () {
+                $(document).on('click', '.priceManagerModalclose, .filter_optionsModalclose', function () {
                     swal({
                         title: "",
                         text: "Are you sure you would like to cancel?",
@@ -341,6 +489,7 @@
                     function(isConfirm) {
                         if (isConfirm) {
                             $("#priceManagerModal").modal('hide');
+                            $("#filter_optionsModal").modal('hide');
                             swal.close();
                         } else {
                             swal.close();
@@ -805,6 +954,10 @@
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
+            }
+            
+            function filter_options() {
+                $("#filter_optionsModal").modal('show');
             }
         </script>
     @endpush
