@@ -338,8 +338,11 @@
                     </div><!-- row -->
 
                     <div class="form-group">
-                        <label for="price_range">Price Range:</label>
-                        <input type="range" name="price_range" id="price_range" class="form-control-range" min="0" max="5000" step="1000">
+                        <p>
+                            <label for="price_range">Price Range:</label>
+                            <input type="text" id="price_range" readonly style="border:0; color:#51B3DE; font-weight:bold;">
+                        </p>
+                        <div id="slider-range"></div>
                     </div><!-- form-group -->
                 </div><!-- modal body -->
                 <div class="modal-footer">
@@ -355,6 +358,16 @@
     @push('script')
         <script>
             $(document).ready(function() {
+                $( "#slider-range" ).slider({
+                    range: true,
+                    min: 0,
+                    max: 5000,
+                    step: 1000,
+                    values: [ 0, 5000 ],
+                    slide: function( event, ui ) {
+                        $( "#price_range" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                    }
+                });
                 // $("#priceManagerModal").modal('show');
 
                 initSelect(1);
