@@ -106,6 +106,22 @@
 				background-color: #E5E8EB !important;
 			}
 
+			.select2-selection__choice{
+				color: white !important;
+				background-color: #51B3DE !important;
+			}
+
+			.select2-selection__choice__remove{
+				border: none!important;
+				border-radius: 0!important;
+				padding: 0 2px!important;
+			}
+
+			.select2-selection__choice__remove:hover{
+				background-color: transparent!important;
+				color: #ef5454 !important;
+			}
+
 			/* Custom Btn */
 			.btn-c{
 				font-size: 18px !important;
@@ -176,6 +192,17 @@
 				justify-content: center;
 				display: flex;
 				color: #c1c1c1;
+			}
+
+			.sortable {
+				list-style: none;
+				padding: 0;
+			}
+			.sortable li {
+				position: relative;
+				padding: 5px;
+				border: 1px solid #ccc;
+				margin: 5px 0;
 			}
 			
 			/* .table {

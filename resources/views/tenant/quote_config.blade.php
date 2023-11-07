@@ -15,17 +15,16 @@
                 <div class="card-body">
                     <form action="{{ route('quote.create') }}" method="post" id="formData">
                         <div class="row">
-                            <!-- col -->
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="category_services" class="form-label">Select a Services</label>
-                                    <select class="form-control" id="category_services" name="service_id" required class="form-control">
+                                    <select class="form-control" id="category_services" name="service_id" required>
                                     </select>
                                     <small id="category_services_error" class="text-danger error"></small>
                                 </div>
                                 <div class="mt-3">
                                     <label for="fields" class="form-label">Choose Fields</label>
-                                    <select class="form-control" id="fields" name="option_id[]" required class="form-control" multiple="multiple">
+                                    <select class="form-control" id="fields" required>
                                     </select>
                                     <small id="fields_error" class="text-danger error"></small>
                                 </div>
@@ -33,7 +32,7 @@
                                 <button type="submit" id="saveForm" class="btn btn-c mt-3 btn-primary btn-block">Save</button>
                                 <button type="button" id="resetForm" class="btn btn-c mt-2 btn-warning"><i class="fas fa-refresh"></i> Reset</button>
                             </div>
-                            <div class="col-lg-4 offset-2">
+                            <div class="col-lg-5 offset-1">
                                 <ul id="treeview2">
                                     <li>
                                         <a href="#" id="serviceName">Service Name</a>
@@ -59,7 +58,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div> {{-- body --}}
             </div> {{-- card --}}
 
@@ -73,8 +71,10 @@
 
                 $(document).on('click', '#resetForm', function () {
                     $("#category_services").val(null).trigger('change');
-                    $("#fields").val(null).trigger('change');
+                    // $("#fields").val(null).trigger('change');
+                    $("#fields").val([]).change();
                     $(".sortable").empty();
+                    // location.reload();
                 });
 
                 $("#formData").on('submit', function (e) {
@@ -93,6 +93,13 @@
                             $("#resetForm").trigger('click')
                             $('.formData').each(function() {
                                 this.reset();
+                            });
+                            notif({
+                                type: response.sts,
+                                msg: response.msg,
+                                position: 'right',
+                                bottom: 10,
+                                time: 2000,
                             });
                         }
                     });
@@ -145,7 +152,7 @@
                 });
 
                 $("#fields").select2({
-                    placeholder: 'Select Fields',
+                    placeholder: '~~ Select Fields ~~',
                     width: "100%",
                     ajax: {
                         method: 'post',
@@ -163,20 +170,43 @@
                             }
                         }
                     }
-                }).on('select2:select', function () {
-                    $(".sortable").empty();
-                    $("#fields option:selected").each(function() {
-                        var id = $(this).val();
-                        var text = $(this).text();
-                        $(".sortable").append('<li class="branch">'+text+'</li>');
-                    });
-                }).on('select2:unselect', function () {
-                    $(".sortable").empty();
-                    $("#fields option:selected").each(function() {
-                        var id = $(this).val();
-                        var text = $(this).text();
-                        $(".sortable").append('<li class="branch">'+text+'</li>');
-                    });
+                }).on('select2:select', function (e) {
+
+                    var id = $("#fields option:selected").val();
+                    var text = $("#fields option:selected").text();
+                    $(".sortable").append(`
+                                            <div class="d-flex justify-content-between">
+                                                <li style="width: 90%" class="d-flex justify-content-between">
+                                                    <span>` + text + `</span>
+                                                    <input type="hidden" value="`+id+`" name="option_id[]" />
+                                                    <input type="hidden" value="" name="quote_config_id[]" />
+                                                    <select name="width[]">
+                                                        <option value="6">Half</option>
+                                                        <option value="12">Full</option>
+                                                    </select>
+                                                </li>
+                                                <button type="button" class="removeRow1" id=""><i class="fas fa-trash"></i></button>
+                                            </div>
+                                            `);
+                });
+
+                $(document).on('click', '.removeRow1', function () {
+                    var id = $(this).attr('id');
+                    console.log(id);
+                    if (id != '') {
+                        $(this).parent().remove();
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ route('quote.delete_config', ['id' => ':id']) }}".replace(':id', id),
+                            dataType: "json",
+                            success: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }else{
+                        $(this).parent().remove()
+                    }
+
                 });
 
                 $(document).on("click", ".delete", function() {
@@ -202,7 +232,7 @@
                 });
 
                 $("#category_services").select2({
-                    placeholder: 'Select Categories',
+                    placeholder: '~~ Select Categories ~~',
                     width: "100%",
                     ajax: {
                         method: 'post',
@@ -230,6 +260,9 @@
                     var id = $(this).val();
                     var text = $("#category_services option:selected").text();
                     $("#serviceName").text(text.trim())
+                    
+                    $("#fields").val(null).trigger('change');
+                    $(".sortable").empty();
                     getData(id);
                     
                 });
@@ -245,18 +278,35 @@
                         url: "{{ route('quote.edit', ['id' => ':id']) }}".replace(':id', id),
                         dataType: "json",
                         success: function(response) {
-                            var option = new Option(response[0].service.name, response[0].service.id, false, true);
-                            $("#category_services").append(option).trigger('change');
 
-                            $("#fields").val(null).trigger('change');
-                            $(".sortable").empty();
-                            $.each(response, function (index, value) {
-                                var option = new Option(value.option.name, value.option.id, false,  true);
-                                $("#fields").append(option).trigger('change');
+                            if (response.length > 0) {
+                                var option = new Option(response[0].service.name, response[0].service.id, false, true);
+                                $("#category_services").append(option).trigger('change');
+    
+                                $("#fields").val(null).trigger('change');
+                                var rowDa = "";
 
-                                $(".sortable").append('<li class="branch">'+value.option.name+'</li>');
-                            });
+                                $.each(response, function (index, value) {
 
+                                    if (value.option !== null) {
+
+                                        rowDa += `<div class="d-flex justify-content-between">
+                                                    <li style="width: 90%" class="d-flex justify-content-between" id="li_`+response[index].id+`">
+                                                        <span>`+value.option.name+`</span>
+                                                        <input type="hidden" value="`+response[index].id+`" name="quote_config_id[]" />
+                                                        <input type="hidden" value="`+value.option.id+`" name="option_id[]" />
+                                                        <select name="width[]">
+                                                            <option `+(response[index].width == 6 ? 'selected': '')+` value="6">Half</option>
+                                                            <option `+(response[index].width == 12 ? 'selected': '')+` value="12">Full</option>
+                                                        </select>
+                                                    </li>
+                                                    <button type="button" class="removeRow1" id="`+response[index].id+`"><i class="fas fa-trash"></i></button>
+                                                </div>`;
+                                            }
+                                });
+
+                                $(".sortable").empty().append(rowDa);
+                            }
                         },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");

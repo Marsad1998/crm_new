@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Option;
 use App\Models\Category;
 use App\Models\QuoteConfig;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Crypt;
@@ -18,7 +19,16 @@ class QuoteConfigController extends Controller
 
     public function index()
     {
-        return view('tenant.quote_generator');
+        $categories = Category::has('services')->get();
+        return view('tenant.quote_generator', compact('categories'));
+    }
+
+    public function service(Request $request, $id)
+    {
+        $term = $request->term;
+        return Service::when($term, function ($query) use ($term) {
+            $query->where('name', 'LIKE', '%' . $term . '%');
+        })->where('category_id', $id)->get();
     }
 
     public function category(Request $request)
@@ -86,27 +96,49 @@ class QuoteConfigController extends Controller
 
     public function create(Request $request)
     {
-        // return $request;
+        // return $request->width;
         $request->validate([
             'service_id' => 'required',
         ]);
 
         $service_id = $request->service_id;
         $option_id = $request->option_id;
+        $width = $request->width;
+        $quote_config_id = $request->quote_config_id;
 
         $data = QuoteConfig::where('service_id', $service_id)->orderBy('id', 'desc')->first();
         $latestSortNo = ($data) ? $data->sort_no : 0;
 
+        $xx = 0;
         foreach ($option_id as $x => $option) {
             $latestSortNo++;
 
-            QuoteConfig::create([
-                'service_id' => $service_id,
-                'option_id' => $option,
-                'sort_no' => $latestSortNo,
-            ]);
+            if (is_null($quote_config_id[$xx])) {
+                QuoteConfig::create([
+                    'service_id' => $service_id,
+                    'option_id' => $option,
+                    'sort_no' => $latestSortNo,
+                    'width' => $width[$xx],
+                ]);
+            } else {
+                QuoteConfig::whereId($quote_config_id[$xx])->update([
+                    'service_id' => $service_id,
+                    'option_id' => $option,
+                    'sort_no' => $latestSortNo,
+                    'width' => $width[$xx],
+                ]);
+            }
+            $xx++;
         }
+
+        QuoteConfig::where('service_id', $service_id)->whereNotIn('option_id', $option_id)->delete();
         return response()->json(['msg' => 'Quote Config Added Successfully', 'sts' => 'success']);
+    }
+
+    public function delete_config($id)
+    {
+        QuoteConfig::findOrFail($id)->delete();
+        return response()->json(['msg' => 'Quote Config ID Deleted Successfully', 'sts' => 'success']);
     }
 
     public function edit($id)

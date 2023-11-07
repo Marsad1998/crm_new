@@ -12,46 +12,38 @@
                         <div class="cstm-card-body">
                             <p class="d-flex justify-content-center text-muted">Category</p>
                             <div class="d-flex justify-content-evenly cstm-margin-top-10">
-                                <div>
-                                    <input type="radio" name="category" id="automotive"> <label for="automotive">Automotive</label>
-                                </div><!-- input-group -->
-                                <div>
-                                    <input type="radio" name="category" id="building"> <label for="building">Building</label>
-                                </div><!-- input-group -->
+                                
+                                @foreach ($categories as $x => $category)
+                                    <div>
+                                        <input type="radio" name="category" id="{{ Str::slug($category->name) }}" value="{{ $category->id }}" {{ $category->id == 1 ? "checked": "" }} class="quote_category"> 
+                                        <label for="{{ Str::slug($category->name) }}">{{ $category->name }}</label>
+                                    </div>
+                                @endforeach
+
                             </div><!-- category -->
                             
                             <div class="d-flex justify-content-between flex-wrap">
                                 <div class="cstm-select2-div">
-                                    <label class="text-muted" for="service">Service</label>
-                                    <select name="service" id="service" class="form-control">
-                                        <option value="">Key Replacement</option>
-                                        <option value="">Ignition Repair</option>
+                                    <label class="text-muted" for="service_id">Service</label>
+                                    <select name="service_id" id="service_id" class="form-control form-control-c">
                                     </select>
                                 </div><!-- service's select2 -->
     
                                 <div class="cstm-select2-div">
                                     <label class="text-muted" for="make">Make</label>
-                                    <select name="make" id="make" class="form-control">
-                                        <option value="">Audi</option>
-                                        <option value="">Acura</option>
-                                        <option value="">Alfa</option>
-                                        <option value="">Bentley</option>
+                                    <select name="make" id="make_id" class="form-control form-control-c">
                                     </select>
                                 </div><!-- make's select2 -->
     
                                 <div class="cstm-select2-div">
                                     <label class="text-muted" for="model">Model</label>
-                                    <select name="model" id="model" class="form-control">
-                                        <option value="">A3</option>
-                                        <option value="">A4</option>
-                                        <option value="">A5</option>
-                                        <option value="">A6</option>
+                                    <select name="model" id="model_id" class="form-control form-control-c">
                                     </select>
                                 </div><!-- model's select2 -->
     
                                 <div class="cstm-select2-div">
                                     <label class="text-muted" for="year">Year</label>
-                                    <input type="number" name="year" id="year" class="form-control" placeholder="Input Year">
+                                    <input type="number" name="year" id="year" class="form-control form-control-c" placeholder="Input Year">
                                 </div><!-- year's input field -->
                             </div><!-- select2 vehicle details -->
                             
@@ -69,7 +61,7 @@
                             <div class="d-flex justify-content-betweenn cstm-margin-top-20">
                                 <div class="cstm-group-47w">
                                     <label class="text-muted" for="type_of_key">Type of Key</label>
-                                    <select name="type_of_key" id="type_of_key" class="form-control">
+                                    <select name="type_of_key" id="type_of_key" class="form-control form-control-c">
                                         <option value="">Smart Key (PTS)</option>
                                         <option value="">Remote Only</option>
                                         <option value="">Turn Key Only</option>
@@ -93,7 +85,7 @@
                             <div class="d-flex justify-content-between flex-wrap">
                                 <div class="cstm-select2-div">
                                     <label class="text-muted" for="location">Location</label>
-                                    <select name="location" id="location" class="form-control">
+                                    <select name="location" id="location" class="form-control form-control-c">
                                         <option value="">Shop</option>
                                         <option value="">Burlington</option>
                                         <option value="">North York</option>
@@ -103,7 +95,7 @@
     
                                 <div class="cstm-select2-div">
                                     <label class="text-muted" for="caller_type">Caller Type</label>
-                                    <select name="caller_type" id="caller_type" class="form-control">
+                                    <select name="caller_type" id="caller_type" class="form-control form-control-c">
                                         <option value="">Consumer</option>
                                         <option value="">Repair Shop</option>
                                         <option value="">Dealership</option>
@@ -114,7 +106,7 @@
     
                                 <div class="cstm-select2-div">
                                     <label class="text-muted" for="caa_aaa">CAA/AAA</label>
-                                    <select name="caa_aaa" id="caa_aaa" class="form-control">
+                                    <select name="caa_aaa" id="caa_aaa" class="form-control form-control-c">
                                         <option value="">Basic(Direct call from CAA)</option>
                                         <option value="">Basic(Direct call from Monty's)</option>
                                         <option value="">Plus(Direct call from Monty's)</option>
@@ -124,7 +116,7 @@
     
                                 <div class="cstm-select2-div">
                                     <label class="text-muted" for="day_night_rate">Day/Night rate</label>
-                                    <select name="day_night_rate" id="day_night_rate" class="form-control">
+                                    <select name="day_night_rate" id="day_night_rate" class="form-control form-control-c">
                                         <option value="">Day rate(until 7PM)</option>
                                         <option value="">Night rate(after 7PM)</option>
                                     </select>
@@ -263,19 +255,19 @@
                             <div class="d-flex justify-content-evenly">
                                 <div class="cstm-group-47w">
                                     <label for="phone_number" class="text-muted">Phone Number</label>
-                                    <input type="text" name="phone_number" class="form-control" placeholder="416 555-1234">
+                                    <input type="text" name="phone_number" class="form-control form-control-c" placeholder="416 555-1234">
                                 </div>
                                 
                                 <div class="cstm-group-47w">
                                     <label for="caller_name" class="text-muted">Caller Name</label>
-                                    <input type="text" name="caller_name" class="form-control" placeholder="John Smith">
+                                    <input type="text" name="caller_name" class="form-control form-control-c" placeholder="John Smith">
                                 </div>
                             </div><!-- input-group number details -->
 
                             <div class="d-flex justify-content-evenly flex-wrap">
                                 <div class="cstm-margin-top-20 quoted_price_div">
                                     <label for="quoted_price" class="text-muted">Quoted Price</label>
-                                    <input type="text" name="quoted_price" class="form-control" placeholder="301.85" readonly>
+                                    <input type="text" name="quoted_price" class="form-control form-control-c" placeholder="301.85" readonly>
                                 </div>
                                 <div class="cstm-margin-top-20 custom_price_div">
                                     <label class="text-muted">Custom Price</label>
@@ -288,7 +280,7 @@
                                 </div>
                                 <div class="cstm-margin-top-20 status_div">
                                     <label for="status" class="text-muted">Status</label>
-                                    <select name="status" id="status" class="form-control" readonly>
+                                    <select name="status" id="status" class="form-control form-control-c" readonly>
                                         <option value="">Set the Status</option>
                                     </select>
                                 </div>
@@ -308,7 +300,7 @@
 
                             <div class="cstm-margin-top-20 cstm-margin-bottom-60">
                                 <label for="notes" class="text-muted">Notes</label>
-                                <textarea name="notes" id="notes" rows="2" class="form-control"></textarea>
+                                <textarea name="notes" id="notes" rows="2" class="form-control textarea-c"></textarea>
                             </div><!-- input-group notes textarea -->
                         </div><!-- custom card body -->
 
@@ -322,5 +314,92 @@
     </div>
     
     <br><br>
+
+    @push('script')
+        <script>
+            $(document).ready(function () {
+                getServices(1);
+
+                $(document).on('click', '.quote_category', function () {
+                    $("#service_id").val(null).trigger('change')
+                    getServices($(".quote_category:checked").val())
+                });
+
+                $("#make_id").select2({
+                    placeholder: '~~ Select Makes ~~',
+                    width: "100%",
+                    ajax: {
+                        method: 'post',
+                        url: '{{ route("price.makes") }}',
+                        dataType: 'json',
+                        processResults: function (data) {
+                            var dynamicOptions = $.map(data, function (item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name,
+                                };
+                            });
+                            
+                            return {
+                                results: dynamicOptions
+                            }
+                        },
+                        cache: true,
+                    }
+                });
+
+                $("#model_id").select2({
+                    placeholder: '~~ Select Models ~~',
+                    width: "100%",
+                    ajax: {
+                        method: 'post',
+                        url: function () {
+                            return "{{ route('price.models', ['id' => ':id']) }}".replace(':id', $("#make_id").val())
+                        },
+                        dataType: 'json',
+                        processResults: function (data) {
+                            var dynamicOptions = $.map(data, function (item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name,
+                                };
+                            });
+ 
+                            return {
+                                results: dynamicOptions
+                            }
+                        },
+                        cache: true,
+                    }
+                });
+                
+            });
+            
+            function getServices(id) {  
+                $("#service_id").select2({
+                    placeholder: '~~ Select Service ~~',
+                    width: "100%",
+                    ajax: {
+                        method: 'post',
+                        url: "{{ route('quote.service', ['id' => ':id']) }}".replace(':id', id),
+                        dataType: 'json',
+                        processResults: function (data) {
+                            var dynamicOptions = $.map(data, function (item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name,
+                                };
+                            });
+                            
+                            return {
+                                results: dynamicOptions
+                            }
+                        },
+                        cache: true,
+                    }
+                });
+            }
+        </script>
+    @endpush
 
 @endsection
