@@ -4,11 +4,11 @@
 
     <div class="container-fluid">
         <div class="inner-body">
-            <div class="row mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
+            <div class="row mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 m-3">
                 
                 <div class="col-sm-7 col-md-8 col-lg-5 col-xl-5 pad-mar-0-imp">
                     <div class="card">
-                        <div class="cstm-card-header cstm-border-top">Vehicle Information</div><!-- custom card header {col-1}-->
+                        <div class="cstm-card-header cstm-border-top">Vehicle Information</div>
                         <div class="cstm-card-body">
                             <p class="d-flex justify-content-center text-muted">Category</p>
                             <div class="d-flex justify-content-evenly cstm-margin-top-10">
@@ -19,35 +19,84 @@
                                         <label for="{{ Str::slug($category->name) }}">{{ $category->name }}</label>
                                     </div>
                                 @endforeach
-
+  
                             </div><!-- category -->
                             
-                            <div class="d-flex justify-content-between flex-wrap">
-                                <div class="cstm-select2-div">
-                                    <label class="text-muted" for="service_id">Service</label>
-                                    <select name="service_id" id="service_id" class="form-control form-control-c">
-                                    </select>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="text-muted" for="service_id">Service</label>
+                                        <select name="service_id" id="service_id" class="form-control form-control-c">
+                                        </select>
+                                    </div>
                                 </div><!-- service's select2 -->
     
-                                <div class="cstm-select2-div">
-                                    <label class="text-muted" for="make">Make</label>
-                                    <select name="make" id="make_id" class="form-control form-control-c">
-                                    </select>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="text-muted" for="make">Make</label>
+                                        <select name="make" id="make_id" class="form-control form-control-c">
+                                        </select>
+                                    </div>
                                 </div><!-- make's select2 -->
     
-                                <div class="cstm-select2-div">
-                                    <label class="text-muted" for="model">Model</label>
-                                    <select name="model" id="model_id" class="form-control form-control-c">
-                                    </select>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="text-muted" for="model">Model</label>
+                                        <select name="model" id="model_id" class="form-control form-control-c">
+                                        </select>
+                                    </div>
                                 </div><!-- model's select2 -->
-    
-                                <div class="cstm-select2-div">
-                                    <label class="text-muted" for="year">Year</label>
-                                    <input type="number" name="year" id="year" class="form-control form-control-c" placeholder="Input Year">
-                                </div><!-- year's input field -->
+                                
+                                @php
+                                    foreach ($configs as $x => $item){
+                                        if ($item->option->type == 'input') {
+                                            echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
+                                                        <label>'.$item->option->name.'</label>
+                                                        <input class="form-control form-control-c">
+                                                    </div>';
+                                        } elseif ($item->option->type == 'select') {
+                                            $opts = "<option value=''>~~ SELECT ~~</option>";
+                                            foreach ($item->option->option_values as $tt => $values) {
+                                                $opts .= '<option value="'.$values->id.'">'.$values->name.'</option>';
+                                            }
+                                            echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
+                                                        <label>'.$item->option->name.'</label>
+                                                        <select class="form-control customSelect form-control-c" data-name1="'.$item->option->name.'" data-slug="'.$item->option->slug.'>'.$opts.'</select>
+                                                    </div>';
+                                        } elseif ($item->option->type == 'radio') {
+                                            $optss = '<div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
+                                                        <strong class="d-flex justify-content-center">'.$item->option->name.'</strong><br>
+                                                        <div class="d-flex justify-content-evenly">';
+                                            foreach ($item->option->option_values as $tt => $values) {
+                                                $optss .= '<label class="custom-control custom-radio custom-control-md">
+                                                            <input type="radio" class="custom-control-input" name="example-radios1" value="option1">
+                                                            <span class="custom-control-label custom-control-label-md  tx-16">'.$values->name.'</span>
+                                                        </label>';
+                                            }
+
+                                            echo $optss."</div></div>";
+
+                                        } elseif ($item->option->type == 'switch') {
+                                                echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 mt-3 mb-2 ml-2 mr-2">
+                                                        <div class="form-group d-flex justify-content-between align-content-center p-2">
+                                                            <label for="" >'.$item->option->name.'</label>
+                                                            <div class="form-check form-switch">
+                                                                <input class="form-check-input switch-c" type="checkbox" id="" name="comfort_access[0]" value="1">
+                                                            </div>
+                                                        </div> 
+                                                        </div>';
+                                        }
+                                    }
+                                @endphp
+                                    
                             </div><!-- select2 vehicle details -->
                             
-                            <p class="d-flex justify-content-center text-muted cstm-margin-top-20">Remote Ignition</p>
+                                                        {{-- <div class="cstm-select2-div">
+                                                            <label class="text-muted" for="year">Year</label>
+                                                            <input type="number" name="year" id="year" class="form-control form-control-c" placeholder="Input Year">
+                                                        </div><!-- year's input field --> --}}
+                            
+                            {{-- <p class="d-flex justify-content-center text-muted cstm-margin-top-20">Remote Ignition</p>
                             <div class="d-flex justify-content-between cstm-margin-top-10">
                                 <p>Does the vehicle use Push-to-Start?</p>
                                 <div>
@@ -130,7 +179,8 @@
                                     <input type="checkbox" name="spare_keys" id="spare_keys" />
                                     <div class="cstm-slider cstm-round"></div>
                                 </label>
-                            </div><!-- spare keys group -->
+                            </div><!-- spare keys group --> --}}
+
                         </div><!-- custom card body {col-1} -->
 
                         <div class="cstm-card-footer d-flex justify-content-between align-items-center cstm-border-bottom">
@@ -176,20 +226,10 @@
                                     <button class="btn footer-btn">Remove</button>
                                 </div>
                             </div> <!-- dynamic div-1 copy 1 -->
+                            <div class="evenValue"></div>
 
-                            <div class="d-flex justify-content-center gen-quo-div">
-                                <div class="p-2 gen-quo-div-data">
 
-                                    <strong><span>Caller Type</span>: <span>Repair Shop</span></strong><br>
-                                    <p class="pt-3 fst-italic d-flex justify-content-center">Base Cost x 90%</p>
-                                    
-                                </div>
-                                <div class="gen-quo-div-btn">
-                                    <button class="btn footer-btn">Remove</button>
-                                </div>
-                            </div> <!-- dynamic div-2 copy 1 -->
-
-                            <div class="d-flex justify-content-center gen-quo-div">
+                            {{-- <div class="d-flex justify-content-center gen-quo-div">
                                 <div class="p-2 gen-quo-div-data">
 
                                     <strong><span>Day/Night rate</span>: <span>Day rate(until 7PM)</span></strong><br>
@@ -235,7 +275,7 @@
                                 <div class="gen-quo-div-btn">
                                     <button class="btn footer-btn">Remove</button>
                                 </div>
-                            </div> <!-- dynamic div-2 copy 5 -->
+                            </div> <!-- dynamic div-2 copy 5 --> --}}
 
                         </div><!-- custom card body -->
 
@@ -323,6 +363,33 @@
                 $(document).on('click', '.quote_category', function () {
                     $("#service_id").val(null).trigger('change')
                     getServices($(".quote_category:checked").val())
+                });
+
+                var megaData = {!! $megaData !!};
+                $(".customSelect").each(function () {  
+                    $(this).select2({
+                        width: "100%",
+                    }).on('change', function () {
+                        var id = $(this).find('option:selected').val();
+                        var name = $(this).data('name1');
+                        var slug = $(this).data('slug');
+                        var value = $(this).find('option:selected').text();
+
+                        // console.log(id);
+                        $("#"+slug).remove();
+                        var li = '<div class="d-flex justify-content-center gen-quo-div" id="'+slug+'">\
+                                    <div class="p-2 gen-quo-div-data">\
+                                        <strong><span>'+name+'</span>: <span>'+value+'</span></strong><br>\
+                                        <p class="pt-3 fst-italic d-flex justify-content-center">Base Cost x 90%</p>\
+                                    </div>\
+                                    <div class="gen-quo-div-btn">\
+                                        <button class="btn footer-btn">Remove</button>\
+                                    </div>\
+                                </div>';
+
+                        $(".evenValue").append(li);
+
+                    });
                 });
 
                 $("#make_id").select2({

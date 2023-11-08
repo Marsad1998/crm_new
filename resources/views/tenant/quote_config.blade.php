@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <label for="fields" class="form-label">Choose Fields</label>
-                                    <select class="form-control" id="fields" required>
+                                    <select class="form-control" id="fields">
                                     </select>
                                     <small id="fields_error" class="text-danger error"></small>
                                 </div>

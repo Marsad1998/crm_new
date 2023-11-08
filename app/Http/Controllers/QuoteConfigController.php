@@ -20,7 +20,12 @@ class QuoteConfigController extends Controller
     public function index()
     {
         $categories = Category::has('services')->get();
-        return view('tenant.quote_generator', compact('categories'));
+        $configs = QuoteConfig::with('option.option_values')->whereHas('category', function ($row) {
+            $row->where('categories.name', 'Automotive');
+        })->orderBy('sort_no', 'ASC')->get();
+
+        $megaData = json_encode($configs);
+        return view('tenant.quote_generator', compact('categories', 'configs', 'megaData'));
     }
 
     public function service(Request $request, $id)
