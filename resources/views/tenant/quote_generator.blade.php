@@ -61,7 +61,10 @@
                                             }
                                             echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
                                                         <label>'.$item->option->name.'</label>
-                                                        <select class="form-control customSelect form-control-c" data-name1="'.$item->option->name.'" data-slug="'.$item->option->slug.'>'.$opts.'</select>
+                                                        <select class="form-control customSelect form-control-c" data-name1="'.$item->option->name.'" 
+                                                        data-slug="'.$item->option->slug.'"
+                                                        data-effect="'.$item->option->operator.'"
+                                                        >'.$opts.'</select>
                                                     </div>';
                                         } elseif ($item->option->type == 'radio') {
                                             $optss = '<div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
@@ -200,7 +203,7 @@
                                 <div class="p-2 gen-quo-div-data">
 
                                     <div class="d-flex justify-content-center">
-                                        <img src="assets/img/media/dummy_pic.jfif" alt="" style="border:1px solid black;height:90px;width:90px">
+                                        {{-- <img src="assets/img/media/dummy_pic.jfif" alt="" style="border:1px solid black;height:90px;width:90px"> --}}
                                     </div>
                                     <p class="text-center fw-bold mt-1">2020 Toyota Yaris</p>
 
@@ -366,21 +369,31 @@
                 });
 
                 var megaData = {!! $megaData !!};
-                $(".customSelect").each(function () {  
+                $(".customSelect").each(function () {
                     $(this).select2({
                         width: "100%",
                     }).on('change', function () {
                         var id = $(this).find('option:selected').val();
                         var name = $(this).data('name1');
                         var slug = $(this).data('slug');
+                        var effect = $(this).data('effect');
                         var value = $(this).find('option:selected').text();
 
-                        // console.log(id);
                         $("#"+slug).remove();
+                        if (effect == 'additive') {
+                            var action = '<p class="pt-3 fst-italic d-flex justify-content-center">$56</p>';
+                        }
+                        else if (effect == 'multiplicative') {
+                            var action = '<p class="pt-3 fst-italic d-flex justify-content-center">Base Cost x 50%</p>';
+                        }
+                        else{
+                            var action = "";
+                        }
+
                         var li = '<div class="d-flex justify-content-center gen-quo-div" id="'+slug+'">\
                                     <div class="p-2 gen-quo-div-data">\
                                         <strong><span>'+name+'</span>: <span>'+value+'</span></strong><br>\
-                                        <p class="pt-3 fst-italic d-flex justify-content-center">Base Cost x 90%</p>\
+                                        '+action+'\
                                     </div>\
                                     <div class="gen-quo-div-btn">\
                                         <button class="btn footer-btn">Remove</button>\

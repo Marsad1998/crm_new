@@ -276,10 +276,10 @@
 		<script src="<?php echo e(global_asset('assets/js/select2.js')); ?>"></script>
 
 		<!-- Perfect-scrollbar js -->
-		<script src="<?php echo e(global_asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js')); ?>"></script>
+		
 
 		<!-- Sidemenu js -->
-		<script src="<?php echo e(global_asset('assets/plugins/sidemenu/sidemenu.js')); ?>" id="leftmenu"></script>
+		
 
 		<!-- Sidebar js -->
 		<script src="<?php echo e(global_asset('assets/plugins/sidebar/sidebar.js')); ?>"></script>
@@ -289,11 +289,11 @@
 		<script src="<?php echo e(global_asset('assets/plugins/morris.js/morris.min.js')); ?>"></script>
 
 		<!-- Circle Progress js-->
-		<script src="<?php echo e(global_asset('assets/js/circle-progress.min.js')); ?>"></script>
-		<script src="<?php echo e(global_asset('assets/js/chart-circle.js')); ?>"></script>
+		
+		
 
 		<!-- Internal Dashboard js-->
-		<script src="<?php echo e(global_asset('assets/js/index.js')); ?>"></script>
+		
 
 		<!-- Sticky js -->
 		<script src="<?php echo e(global_asset('assets/js/sticky.js')); ?>"></script>
