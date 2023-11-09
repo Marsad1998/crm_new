@@ -154,6 +154,8 @@ Route::middleware([
             Route::post('/delete/{id}', [QuoteConfigController::class, 'destroy'])->name('delete')->middleware(['can:Delete Quotes Fields']);
 
             Route::get('/index', [QuoteConfigController::class, 'index'])->name('index')->middleware(['can:View Quote Generator']);
+            Route::post('/service/{id}', [QuoteConfigController::class, 'service'])->name('service');
+            Route::post('/delete_config/{id}', [QuoteConfigController::class, 'delete_config'])->name('delete_config');
         });
 
         Route::group(['prefix' => 'price', 'as' => 'price.'], function () {
