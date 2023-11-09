@@ -15,6 +15,7 @@ class QuoteConfig extends Model
         'service_id',
         'option_id',
         'sort_no',
+        'width',
     ];
 
     public function category()

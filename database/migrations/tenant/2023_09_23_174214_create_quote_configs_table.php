@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('service_id')->nullable();
             $table->unsignedBigInteger('option_id')->nullable();
+
+            $table->bigInteger('width')->nullable();
             $table->bigInteger('sort_no')->nullable();
 
             $table->foreign('option_id')->references('id')->on('options')->onUpdate('restrict')->onDelete('restrict');

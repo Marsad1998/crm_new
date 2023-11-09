@@ -1,0 +1,353 @@
+<?php $__env->startSection('content'); ?>
+
+    <div class="container-fluid">
+        <div class="inner-body">
+            <div class="row mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 m-3">
+                
+                <div class="col-sm-7 col-md-8 col-lg-5 col-xl-5 pad-mar-0-imp">
+                    <div class="card">
+                        <div class="cstm-card-header cstm-border-top">Vehicle Information</div>
+                        <div class="cstm-card-body">
+                            <p class="d-flex justify-content-center text-muted">Category</p>
+                            <div class="d-flex justify-content-evenly cstm-margin-top-10">
+                                
+                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x => $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div>
+                                        <input type="radio" name="category" id="<?php echo e(Str::slug($category->name)); ?>" value="<?php echo e($category->id); ?>" <?php echo e($category->id == 1 ? "checked": ""); ?> class="quote_category"> 
+                                        <label for="<?php echo e(Str::slug($category->name)); ?>"><?php echo e($category->name); ?></label>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+  
+                            </div><!-- category -->
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="text-muted" for="service_id">Service</label>
+                                        <select name="service_id" id="service_id" class="form-control form-control-c">
+                                        </select>
+                                    </div>
+                                </div><!-- service's select2 -->
+    
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="text-muted" for="make">Make</label>
+                                        <select name="make" id="make_id" class="form-control form-control-c">
+                                        </select>
+                                    </div>
+                                </div><!-- make's select2 -->
+    
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="text-muted" for="model">Model</label>
+                                        <select name="model" id="model_id" class="form-control form-control-c">
+                                        </select>
+                                    </div>
+                                </div><!-- model's select2 -->
+                                
+                                <?php
+                                    foreach ($configs as $x => $item){
+                                        if ($item->option->type == 'input') {
+                                            echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
+                                                        <label>'.$item->option->name.'</label>
+                                                        <input class="form-control form-control-c">
+                                                    </div>';
+                                        } elseif ($item->option->type == 'select') {
+                                            $opts = "<option value=''>~~ SELECT ~~</option>";
+                                            foreach ($item->option->option_values as $tt => $values) {
+                                                $opts .= '<option value="'.$values->id.'">'.$values->name.'</option>';
+                                            }
+                                            echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
+                                                        <label>'.$item->option->name.'</label>
+                                                        <select class="form-control customSelect form-control-c" data-name1="'.$item->option->name.'" 
+                                                        data-slug="'.$item->option->slug.'"
+                                                        data-effect="'.$item->option->operator.'"
+                                                        >'.$opts.'</select>
+                                                    </div>';
+                                        } elseif ($item->option->type == 'radio') {
+                                            $optss = '<div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
+                                                        <strong class="d-flex justify-content-center">'.$item->option->name.'</strong><br>
+                                                        <div class="d-flex justify-content-evenly">';
+                                            foreach ($item->option->option_values as $tt => $values) {
+                                                $optss .= '<label class="custom-control custom-radio custom-control-md">
+                                                            <input type="radio" class="custom-control-input" name="example-radios1" value="option1">
+                                                            <span class="custom-control-label custom-control-label-md  tx-16">'.$values->name.'</span>
+                                                        </label>';
+                                            }
+
+                                            echo $optss."</div></div>";
+
+                                        } elseif ($item->option->type == 'switch') {
+                                                echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 mt-3 mb-2 ml-2 mr-2">
+                                                        <div class="form-group d-flex justify-content-between align-content-center p-2">
+                                                            <label for="" >'.$item->option->name.'</label>
+                                                            <div class="form-check form-switch">
+                                                                <input class="form-check-input switch-c" type="checkbox" id="" name="comfort_access[0]" value="1">
+                                                            </div>
+                                                        </div> 
+                                                        </div>';
+                                        }
+                                    }
+                                ?>
+                                    
+                            </div><!-- select2 vehicle details -->
+                            
+                                                        
+                            
+                            
+
+                        </div><!-- custom card body {col-1} -->
+
+                        <div class="cstm-card-footer d-flex justify-content-between align-items-center cstm-border-bottom">
+                            <p class="cstm-margin-0 text-danger">No price found.</p>
+                            <button class="btn footer-btn">Add to Quote</button>
+                        </div><!-- custom card footer {col-1} -->
+                    </div><!-- card col-1 -->
+                </div> <!-- col 1 -->
+
+                <div class="col-sm-5 col-md-4 col-lg-3 col-xl-3 pad-mar-0-imp">
+                    <div class="card h-100 g-quote-header">
+                        <div class="cstm-card-header cstm-border-top">Generated Quote</div><!-- custom card header -->
+                        
+                        <div class="cstm-card-body g-quote-body">
+
+                            <div class="d-flex justify-content-center gen-quo-div">
+                                <div class="p-2 gen-quo-div-data">
+
+                                    <div class="d-flex justify-content-center">
+                                        
+                                    </div>
+                                    <p class="text-center fw-bold mt-1">2020 Toyota Yaris</p>
+
+                                    <div class="d-flex justify-content-between">
+                                        <span>Key Replacement</span>
+                                        <span>AKL No</span>
+                                    </div><!-- copy 1 -->
+                                    <div class="d-flex justify-content-between">
+                                        <span>Aftermarket Prox</span>
+                                        <span>$145:00</span>
+                                    </div><!-- copy 2 -->
+                                    <div class="d-flex justify-content-between">
+                                        <span>Turn Key + Remote</span>
+                                        <span>Qty: 2</span>
+                                    </div><!-- copy 3 -->
+
+                                    <p class="pt-2 d-flex justify-content-center text-danger fw-bold">Remotehead Key - add pricing for mobile</p>
+
+                                    <p class="d-flex justify-content-center text-success fst-italic">Key #2: -$43.50</p>
+                                    
+                                </div>
+                                <div class="gen-quo-div-btn">
+                                    <button class="btn footer-btn">Remove</button>
+                                </div>
+                            </div> <!-- dynamic div-1 copy 1 -->
+                            <div class="evenValue"></div>
+
+
+                            
+
+                        </div><!-- custom card body -->
+
+                        <div class="cstm-card-footer d-flex justify-content-evenly lead cstm-border-bottom g-quote-footer">
+                            <span>Subtotal:</span> <strong><ins><span>301.85</span></ins></strong>
+                        </div><!-- custom card footer -->
+
+                    </div><!-- card col-2 -->
+                </div> <!-- col 2 -->
+
+                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 pad-mar-0-imp">
+                    <div class="card h-100 l-info-card">
+                        <div class="cstm-card-header cstm-border-top">Lead Info</div><!-- custom card header -->
+
+                        <div class="cstm-card-body">
+
+                            <div class="d-flex justify-content-evenly">
+                                <div class="cstm-group-47w">
+                                    <label for="phone_number" class="text-muted">Phone Number</label>
+                                    <input type="text" name="phone_number" class="form-control form-control-c" placeholder="416 555-1234">
+                                </div>
+                                
+                                <div class="cstm-group-47w">
+                                    <label for="caller_name" class="text-muted">Caller Name</label>
+                                    <input type="text" name="caller_name" class="form-control form-control-c" placeholder="John Smith">
+                                </div>
+                            </div><!-- input-group number details -->
+
+                            <div class="d-flex justify-content-evenly flex-wrap">
+                                <div class="cstm-margin-top-20 quoted_price_div">
+                                    <label for="quoted_price" class="text-muted">Quoted Price</label>
+                                    <input type="text" name="quoted_price" class="form-control form-control-c" placeholder="301.85" readonly>
+                                </div>
+                                <div class="cstm-margin-top-20 custom_price_div">
+                                    <label class="text-muted">Custom Price</label>
+                                    <div class="d-flex justify-content-center mt-2">
+                                        <label class="cstm-switch" for="custom_price">
+                                            <input type="checkbox" name="custom_price" id="custom_price" />
+                                            <div class="cstm-slider cstm-round"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cstm-margin-top-20 status_div">
+                                    <label for="status" class="text-muted">Status</label>
+                                    <select name="status" id="status" class="form-control form-control-c" readonly>
+                                        <option value="">Set the Status</option>
+                                    </select>
+                                </div>
+                            </div><!-- input-group price details -->
+
+                            <div class="cstm-margin-top-20">
+                                <p class="d-flex justify-content-center text-muted">Call Type</p>
+                                <div class="d-flex justify-content-evenly cstm-margin-top-10">
+                                    <div>
+                                        <input type="radio" name="call_type" id="incomming"> <label for="incomming" class="text-muted">Incomming</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="call_type" id="outgoing"> <label for="outgoing" class="text-muted">Outgoing</label>
+                                    </div>
+                                </div>
+                            </div><!-- input-group call type -->
+
+                            <div class="cstm-margin-top-20 cstm-margin-bottom-60">
+                                <label for="notes" class="text-muted">Notes</label>
+                                <textarea name="notes" id="notes" rows="2" class="form-control textarea-c"></textarea>
+                            </div><!-- input-group notes textarea -->
+                        </div><!-- custom card body -->
+
+                        <div class="cstm-card-footer d-flex justify-content-end cstm-border-bottom l-info-footer">
+                            <button class="btn footer-btn">Save Call</button>
+                        </div><!-- custom card footer -->
+                    </div><!-- card col-3 -->
+                </div> <!-- col 3 -->
+            </div> <!-- row -->
+        </div>
+    </div>
+    
+    <br><br>
+
+    <?php $__env->startPush('script'); ?>
+        <script>
+            $(document).ready(function () {
+                getServices(1);
+
+                $(document).on('click', '.quote_category', function () {
+                    $("#service_id").val(null).trigger('change')
+                    getServices($(".quote_category:checked").val())
+                });
+
+                var megaData = <?php echo $megaData; ?>;
+                $(".customSelect").each(function () {
+                    $(this).select2({
+                        width: "100%",
+                    }).on('change', function () {
+                        var id = $(this).find('option:selected').val();
+                        var name = $(this).data('name1');
+                        var slug = $(this).data('slug');
+                        var effect = $(this).data('effect');
+                        var value = $(this).find('option:selected').text();
+
+                        $("#"+slug).remove();
+                        if (effect == 'additive') {
+                            var action = '<p class="pt-3 fst-italic d-flex justify-content-center">$56</p>';
+                        }
+                        else if (effect == 'multiplicative') {
+                            var action = '<p class="pt-3 fst-italic d-flex justify-content-center">Base Cost x 50%</p>';
+                        }
+                        else{
+                            var action = "";
+                        }
+
+                        var li = '<div class="d-flex justify-content-center gen-quo-div" id="'+slug+'">\
+                                    <div class="p-2 gen-quo-div-data">\
+                                        <strong><span>'+name+'</span>: <span>'+value+'</span></strong><br>\
+                                        '+action+'\
+                                    </div>\
+                                    <div class="gen-quo-div-btn">\
+                                        <button class="btn footer-btn">Remove</button>\
+                                    </div>\
+                                </div>';
+
+                        $(".evenValue").append(li);
+
+                    });
+                });
+
+                $("#make_id").select2({
+                    placeholder: '~~ Select Makes ~~',
+                    width: "100%",
+                    ajax: {
+                        method: 'post',
+                        url: '<?php echo e(route("price.makes")); ?>',
+                        dataType: 'json',
+                        processResults: function (data) {
+                            var dynamicOptions = $.map(data, function (item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name,
+                                };
+                            });
+                            
+                            return {
+                                results: dynamicOptions
+                            }
+                        },
+                        cache: true,
+                    }
+                });
+
+                $("#model_id").select2({
+                    placeholder: '~~ Select Models ~~',
+                    width: "100%",
+                    ajax: {
+                        method: 'post',
+                        url: function () {
+                            return "<?php echo e(route('price.models', ['id' => ':id'])); ?>".replace(':id', $("#make_id").val())
+                        },
+                        dataType: 'json',
+                        processResults: function (data) {
+                            var dynamicOptions = $.map(data, function (item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name,
+                                };
+                            });
+ 
+                            return {
+                                results: dynamicOptions
+                            }
+                        },
+                        cache: true,
+                    }
+                });
+                
+            });
+            
+            function getServices(id) {  
+                $("#service_id").select2({
+                    placeholder: '~~ Select Service ~~',
+                    width: "100%",
+                    ajax: {
+                        method: 'post',
+                        url: "<?php echo e(route('quote.service', ['id' => ':id'])); ?>".replace(':id', id),
+                        dataType: 'json',
+                        processResults: function (data) {
+                            var dynamicOptions = $.map(data, function (item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name,
+                                };
+                            });
+                            
+                            return {
+                                results: dynamicOptions
+                            }
+                        },
+                        cache: true,
+                    }
+                });
+            }
+        </script>
+    <?php $__env->stopPush(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\upwork\monties\resources\views/tenant/quote_generator.blade.php ENDPATH**/ ?>

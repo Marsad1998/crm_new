@@ -106,6 +106,22 @@
 				background-color: #E5E8EB !important;
 			}
 
+			.select2-selection__choice{
+				color: white !important;
+				background-color: #51B3DE !important;
+			}
+
+			.select2-selection__choice__remove{
+				border: none!important;
+				border-radius: 0!important;
+				padding: 0 2px!important;
+			}
+
+			.select2-selection__choice__remove:hover{
+				background-color: transparent!important;
+				color: #ef5454 !important;
+			}
+
 			/* Custom Btn */
 			.btn-c{
 				font-size: 18px !important;
@@ -176,6 +192,17 @@
 				justify-content: center;
 				display: flex;
 				color: #c1c1c1;
+			}
+
+			.sortable {
+				list-style: none;
+				padding: 0;
+			}
+			.sortable li {
+				position: relative;
+				padding: 5px;
+				border: 1px solid #ccc;
+				margin: 5px 0;
 			}
 			
 			/* .table {
@@ -249,10 +276,10 @@
 		<script src="{{ global_asset('assets/js/select2.js') }}"></script>
 
 		<!-- Perfect-scrollbar js -->
-		<script src="{{ global_asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+		{{-- <script src="{{ global_asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> --}}
 
 		<!-- Sidemenu js -->
-		<script src="{{ global_asset('assets/plugins/sidemenu/sidemenu.js') }}" id="leftmenu"></script>
+		{{-- <script src="{{ global_asset('assets/plugins/sidemenu/sidemenu.js') }}" id="leftmenu"></script> --}}
 
 		<!-- Sidebar js -->
 		<script src="{{ global_asset('assets/plugins/sidebar/sidebar.js') }}"></script>
@@ -262,11 +289,11 @@
 		<script src="{{ global_asset('assets/plugins/morris.js/morris.min.js') }}"></script>
 
 		<!-- Circle Progress js-->
-		<script src="{{ global_asset('assets/js/circle-progress.min.js') }}"></script>
-		<script src="{{ global_asset('assets/js/chart-circle.js') }}"></script>
+		{{-- <script src="{{ global_asset('assets/js/circle-progress.min.js') }}"></script> --}}
+		{{-- <script src="{{ global_asset('assets/js/chart-circle.js') }}"></script> --}}
 
 		<!-- Internal Dashboard js-->
-		<script src="{{ global_asset('assets/js/index.js') }}"></script>
+		{{-- <script src="{{ global_asset('assets/js/index.js') }}"></script> --}}
 
 		<!-- Sticky js -->
 		<script src="{{ global_asset('assets/js/sticky.js') }}"></script>
