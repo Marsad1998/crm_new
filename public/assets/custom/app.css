@@ -117,6 +117,7 @@
 .br-radius-15 {border-radius: 15px !important;}
 
 .padding-top-10 {padding-top: 10px;}
+.padding-10  {padding: 10px;}
 
 .width-137 {width:137px;}
 
@@ -403,4 +404,23 @@
     visibility: visible;
 }
 /* END - Quote Generator CSS */
-  
+
+.filterOptDropDBtnPar {
+    padding: 0px;
+}
+
+.filterOptDropDBtn {
+    width: 100%;
+    padding: 6px 12px 6px 12px;
+    margin: 0px !important;
+}
+
+.filterOptDropDMenu {
+    width: 530px;
+}
+
+@media (max-width: 991px) {
+    .filterOptDropDMenu {
+        width: auto;
+    }
+}
