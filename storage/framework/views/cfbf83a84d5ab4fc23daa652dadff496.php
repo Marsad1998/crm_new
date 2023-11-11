@@ -5,9 +5,9 @@
             <div class="row mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 m-3">
                 
                 <div class="col-sm-7 col-md-8 col-lg-5 col-xl-5 pad-mar-0-imp">
-                    <div class="card">
+                    <div class="card h-100">
                         <div class="cstm-card-header cstm-border-top">Vehicle Information</div>
-                        <div class="cstm-card-body">
+                        <div class="cstm-card-body g-quote-body">
                             <p class="d-flex justify-content-center text-muted">Category</p>
                             <div class="d-flex justify-content-evenly cstm-margin-top-10">
                                 
@@ -21,80 +21,16 @@
                             </div><!-- category -->
                             
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <label class="text-muted" for="service_id">Service</label>
                                         <select name="service_id" id="service_id" class="form-control form-control-c">
                                         </select>
                                     </div>
                                 </div><!-- service's select2 -->
-    
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="text-muted" for="make">Make</label>
-                                        <select name="make" id="make_id" class="form-control form-control-c">
-                                        </select>
-                                    </div>
-                                </div><!-- make's select2 -->
-    
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="text-muted" for="model">Model</label>
-                                        <select name="model" id="model_id" class="form-control form-control-c">
-                                        </select>
-                                    </div>
-                                </div><!-- model's select2 -->
-                                
-                                <?php
-                                    foreach ($configs as $x => $item){
-                                        if ($item->option->type == 'input') {
-                                            echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
-                                                        <label>'.$item->option->name.'</label>
-                                                        <input class="form-control form-control-c">
-                                                    </div>';
-                                        } elseif ($item->option->type == 'select') {
-                                            $opts = "<option value=''>~~ SELECT ~~</option>";
-                                            foreach ($item->option->option_values as $tt => $values) {
-                                                $opts .= '<option value="'.$values->id.'">'.$values->name.'</option>';
-                                            }
-                                            echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
-                                                        <label>'.$item->option->name.'</label>
-                                                        <select class="form-control customSelect form-control-c" data-name1="'.$item->option->name.'" 
-                                                        data-slug="'.$item->option->slug.'"
-                                                        data-effect="'.$item->option->operator.'"
-                                                        >'.$opts.'</select>
-                                                    </div>';
-                                        } elseif ($item->option->type == 'radio') {
-                                            $optss = '<div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 form-group">
-                                                        <strong class="d-flex justify-content-center">'.$item->option->name.'</strong><br>
-                                                        <div class="d-flex justify-content-evenly">';
-                                            foreach ($item->option->option_values as $tt => $values) {
-                                                $optss .= '<label class="custom-control custom-radio custom-control-md">
-                                                            <input type="radio" class="custom-control-input" name="example-radios1" value="option1">
-                                                            <span class="custom-control-label custom-control-label-md  tx-16">'.$values->name.'</span>
-                                                        </label>';
-                                            }
-
-                                            echo $optss."</div></div>";
-
-                                        } elseif ($item->option->type == 'switch') {
-                                                echo '  <div class="col-lg-'.$item->width.' col-md-'.$item->width.' col-sm-12 mt-3 mb-2 ml-2 mr-2">
-                                                        <div class="form-group d-flex justify-content-between align-content-center p-2">
-                                                            <label for="" >'.$item->option->name.'</label>
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input switch-c" type="checkbox" id="" name="comfort_access[0]" value="1">
-                                                            </div>
-                                                        </div> 
-                                                        </div>';
-                                        }
-                                    }
-                                ?>
-                                    
                             </div><!-- select2 vehicle details -->
                             
-                                                        
-                            
-                            
+                            <div class="row" id="quoteFormFields"></div>
 
                         </div><!-- custom card body {col-1} -->
 
@@ -229,94 +165,110 @@
             $(document).ready(function () {
                 getServices(1);
 
+                
                 $(document).on('click', '.quote_category', function () {
-                    $("#service_id").val(null).trigger('change')
+                    $("#service_id").val(null).trigger('select2:select')
                     getServices($(".quote_category:checked").val())
                 });
+                
+                setTimeout(() => {
+                    var option = new Option('Test', 1, false, false);
+                    $("#service_id").append(option).trigger('select2:select');
+                }, 500);
 
-                var megaData = <?php echo $megaData; ?>;
-                $(".customSelect").each(function () {
-                    $(this).select2({
-                        width: "100%",
-                    }).on('change', function () {
-                        var id = $(this).find('option:selected').val();
-                        var name = $(this).data('name1');
-                        var slug = $(this).data('slug');
-                        var effect = $(this).data('effect');
-                        var value = $(this).find('option:selected').text();
+                $("#service_id").on('select2:select', function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo e(route('quote.parameters', ['id' => ':id'])); ?>".replace(':id', $("#service_id").val()),
+                        dataType: "html",
+                        success: function (response) {
+                            $("#quoteFormFields").empty().append(response)
 
-                        $("#"+slug).remove();
-                        if (effect == 'additive') {
-                            var action = '<p class="pt-3 fst-italic d-flex justify-content-center">$56</p>';
+                            $(".customSelect").each(function () {
+                                $(this).select2({
+                                    width: "100%",
+                                }).on('change', function () {
+                                    var id = $(this).find('option:selected').val();
+                                    var name = $(this).data('name1');
+                                    var slug = $(this).data('slug');
+                                    var effect = $(this).data('effect');
+                                    var value = $(this).find('option:selected').text();
+
+                                    $("#"+slug).remove();
+                                    if (effect == 'additive') {
+                                        var action = '<p class="pt-3 fst-italic d-flex justify-content-center">$56</p>';
+                                    }
+                                    else if (effect == 'multiplicative') {
+                                        var action = '<p class="pt-3 fst-italic d-flex justify-content-center">Base Cost x 50%</p>';
+                                    }
+                                    else{
+                                        var action = "";
+                                    }
+
+                                    var li = '<div class="d-flex justify-content-center gen-quo-div" id="'+slug+'">\
+                                                <div class="p-2 gen-quo-div-data">\
+                                                    <strong><span>'+name+'</span>: <span>'+value+'</span></strong><br>\
+                                                    '+action+'\
+                                                </div>\
+                                                <div class="gen-quo-div-btn">\
+                                                    <button class="btn footer-btn">Remove</button>\
+                                                </div>\
+                                            </div>';
+
+                                    $(".evenValue").append(li);
+
+                                });
+                            });
+
+                            $("#make_id").select2({
+                                placeholder: '~~ Select Makes ~~',
+                                width: "100%",
+                                ajax: {
+                                    method: 'post',
+                                    url: '<?php echo e(route("price.makes")); ?>',
+                                    dataType: 'json',
+                                    processResults: function (data) {
+                                        var dynamicOptions = $.map(data, function (item) {
+                                            return {
+                                                id: item.id,
+                                                text: item.name,
+                                            };
+                                        });
+                                        
+                                        return {
+                                            results: dynamicOptions
+                                        }
+                                    },
+                                    cache: true,
+                                }
+                            });
+
+                            $("#model_id").select2({
+                                placeholder: '~~ Select Models ~~',
+                                width: "100%",
+                                ajax: {
+                                    method: 'post',
+                                    url: function () {
+                                        return "<?php echo e(route('price.models', ['id' => ':id'])); ?>".replace(':id', $("#make_id").val())
+                                    },
+                                    dataType: 'json',
+                                    processResults: function (data) {
+                                        var dynamicOptions = $.map(data, function (item) {
+                                            return {
+                                                id: item.id,
+                                                text: item.name,
+                                            };
+                                        });
+            
+                                        return {
+                                            results: dynamicOptions
+                                        }
+                                    },
+                                    cache: true,
+                                }
+                            });
                         }
-                        else if (effect == 'multiplicative') {
-                            var action = '<p class="pt-3 fst-italic d-flex justify-content-center">Base Cost x 50%</p>';
-                        }
-                        else{
-                            var action = "";
-                        }
-
-                        var li = '<div class="d-flex justify-content-center gen-quo-div" id="'+slug+'">\
-                                    <div class="p-2 gen-quo-div-data">\
-                                        <strong><span>'+name+'</span>: <span>'+value+'</span></strong><br>\
-                                        '+action+'\
-                                    </div>\
-                                    <div class="gen-quo-div-btn">\
-                                        <button class="btn footer-btn">Remove</button>\
-                                    </div>\
-                                </div>';
-
-                        $(".evenValue").append(li);
-
                     });
-                });
-
-                $("#make_id").select2({
-                    placeholder: '~~ Select Makes ~~',
-                    width: "100%",
-                    ajax: {
-                        method: 'post',
-                        url: '<?php echo e(route("price.makes")); ?>',
-                        dataType: 'json',
-                        processResults: function (data) {
-                            var dynamicOptions = $.map(data, function (item) {
-                                return {
-                                    id: item.id,
-                                    text: item.name,
-                                };
-                            });
-                            
-                            return {
-                                results: dynamicOptions
-                            }
-                        },
-                        cache: true,
-                    }
-                });
-
-                $("#model_id").select2({
-                    placeholder: '~~ Select Models ~~',
-                    width: "100%",
-                    ajax: {
-                        method: 'post',
-                        url: function () {
-                            return "<?php echo e(route('price.models', ['id' => ':id'])); ?>".replace(':id', $("#make_id").val())
-                        },
-                        dataType: 'json',
-                        processResults: function (data) {
-                            var dynamicOptions = $.map(data, function (item) {
-                                return {
-                                    id: item.id,
-                                    text: item.name,
-                                };
-                            });
- 
-                            return {
-                                results: dynamicOptions
-                            }
-                        },
-                        cache: true,
-                    }
                 });
                 
             });
@@ -342,8 +294,8 @@
                             }
                         },
                         cache: true,
-                    }
-                });
+                    },
+                })
             }
         </script>
     <?php $__env->stopPush(); ?>

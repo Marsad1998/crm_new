@@ -156,6 +156,8 @@ Route::middleware([
             Route::get('/index', [QuoteConfigController::class, 'index'])->name('index')->middleware(['can:View Quote Generator']);
             Route::post('/service/{id}', [QuoteConfigController::class, 'service'])->name('service');
             Route::post('/delete_config/{id}', [QuoteConfigController::class, 'delete_config'])->name('delete_config');
+
+            Route::post('/parameters/{id}', [QuoteConfigController::class, 'parameters'])->name('parameters');
         });
 
         Route::group(['prefix' => 'price', 'as' => 'price.'], function () {
