@@ -7,37 +7,41 @@
                 <div class="col-sm-7 col-md-8 col-lg-5 col-xl-5 pad-mar-0-imp">
                     <div class="card h-100">
                         <div class="cstm-card-header cstm-border-top">Vehicle Information</div>
-                        <div class="cstm-card-body g-quote-body">
-                            <p class="d-flex justify-content-center text-muted">Category</p>
-                            <div class="d-flex justify-content-evenly cstm-margin-top-10">
+
+                        <form action="<?php echo e(route('quote.search')); ?>" method="post" id="quoteSearch">
+                            <div class="cstm-card-body g-quote-body">
+                                <p class="d-flex justify-content-center text-muted">Category</p>
+                                <div class="d-flex justify-content-evenly cstm-margin-top-10">
+                                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x => $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div>
+                                            <input type="radio" name="category" id="<?php echo e(Str::slug($category->name)); ?>" value="<?php echo e($category->id); ?>" <?php echo e($category->id == 1 ? "checked": ""); ?> class="quote_category"> 
+                                            <label for="<?php echo e(Str::slug($category->name)); ?>"><?php echo e($category->name); ?></label>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </div><!-- category -->
+                                <span class="error-span text-danger " id="error-category"></span>
                                 
-                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x => $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div>
-                                        <input type="radio" name="category" id="<?php echo e(Str::slug($category->name)); ?>" value="<?php echo e($category->id); ?>" <?php echo e($category->id == 1 ? "checked": ""); ?> class="quote_category"> 
-                                        <label for="<?php echo e(Str::slug($category->name)); ?>"><?php echo e($category->name); ?></label>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-  
-                            </div><!-- category -->
-                            
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="text-muted" for="service_id">Service</label>
-                                        <select name="service_id" id="service_id" class="form-control form-control-c">
-                                        </select>
-                                    </div>
-                                </div><!-- service's select2 -->
-                            </div><!-- select2 vehicle details -->
-                            
-                            <div class="row" id="quoteFormFields"></div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="mb-2">
+                                            <label class="text-muted" for="service_id">Service</label>
+                                            <select name="service_id" id="service_id" class="form-control form-control-c">
+                                            </select>
+                                            <span class="error-span text-danger " id="error-service_id"></span>
+                                        </div>
+                                    </div><!-- service's select2 -->
+                                </div><!-- select2 vehicle details -->
+                                
+                                <div class="row" id="quoteFormFields"></div>
+    
+                            </div><!-- custom card body {col-1} -->
+    
+                            <div class="cstm-card-footer d-flex justify-content-between align-items-center cstm-border-bottom">
+                                <p class="cstm-margin-0 text-danger">No price found.</p>
+                                <button type="submit" class="btn footer-btn">Add to Quote</button>
+                            </div><!-- custom card footer {col-1} -->
+                        </form>
 
-                        </div><!-- custom card body {col-1} -->
-
-                        <div class="cstm-card-footer d-flex justify-content-between align-items-center cstm-border-bottom">
-                            <p class="cstm-margin-0 text-danger">No price found.</p>
-                            <button class="btn footer-btn">Add to Quote</button>
-                        </div><!-- custom card footer {col-1} -->
                     </div><!-- card col-1 -->
                 </div> <!-- col 1 -->
 
@@ -165,16 +169,53 @@
             $(document).ready(function () {
                 getServices(1);
 
+                setTimeout(() => {
+                    var option = new Option('Key Replacement', 1, false, true);
+                    $("#service_id").append(option).trigger('select2:select');
+                }, 500);
                 
                 $(document).on('click', '.quote_category', function () {
                     $("#service_id").val(null).trigger('select2:select')
                     getServices($(".quote_category:checked").val())
                 });
+
+                $("#quoteSearch").on('submit', function (e) {
+                    e.preventDefault();
+                    var form = $(this);
+                    $.ajax({
+                        type: 'POST',
+                        url: form.attr('action'),
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response);
+                            $(".error-span").text('')
+
+                        }, 
+                        error: function (jqXhr) {
+                            var errorResponse = $.parseJSON(jqXhr.responseText);
+                            $(".error-span").text('')
+                            
+                            $.each(errorResponse.errors, function (key, value) {
+                                var y = key.split('.');
+                                console.log(y);
+                                if (y.length > 1) {
+                                    $("#error-" + y[1]).text('The '+y[1]+' field is required');
+                                }else{
+                                    $("#error-" + y[0]).text('The '+y[0]+' field is required');
+                                }
+                            });
+                        }
+                    });
+                });
                 
-                setTimeout(() => {
-                    var option = new Option('Test', 1, false, false);
-                    $("#service_id").append(option).trigger('select2:select');
-                }, 500);
+                $(document).on('click', '.removePrice', function () {
+                    var id = $(this).attr('id');
+                    console.log(id);
+                });
 
                 $("#service_id").on('select2:select', function () {
                     $.ajax({
@@ -211,13 +252,22 @@
                                                     '+action+'\
                                                 </div>\
                                                 <div class="gen-quo-div-btn">\
-                                                    <button class="btn footer-btn">Remove</button>\
+                                                    <button class="btn removePrice footer-btn" id="'+slug+'">Remove</button>\
                                                 </div>\
                                             </div>';
 
                                     $(".evenValue").append(li);
 
                                 });
+                            });
+
+                            $(".customSwitch").each(function () {  
+                                $(this).on('change', function () {
+                                    var action = $(this).data('action');
+                                    var reaction = $(this).data('reaction');
+                                    $("#cus_"+action).toggleClass('d-none');
+                                    $("#cus_"+reaction).toggleClass('d-none');
+                                })
                             });
 
                             $("#make_id").select2({

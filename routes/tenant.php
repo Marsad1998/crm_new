@@ -158,6 +158,7 @@ Route::middleware([
             Route::post('/delete_config/{id}', [QuoteConfigController::class, 'delete_config'])->name('delete_config');
 
             Route::post('/parameters/{id}', [QuoteConfigController::class, 'parameters'])->name('parameters');
+            Route::post('/search', [QuoteConfigController::class, 'search'])->name('search');
         });
 
         Route::group(['prefix' => 'price', 'as' => 'price.'], function () {

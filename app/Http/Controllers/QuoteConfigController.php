@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuoteSearch;
 use App\Models\Option;
 use App\Models\Category;
+use App\Models\PriceManager;
 use App\Models\QuoteConfig;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -44,65 +46,91 @@ class QuoteConfigController extends Controller
 
             if ($configs[0]->category->name == 'Automotive') {
                 $html .= '<div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="mb-2">
                                 <label class="text-muted" for="make">Make</label>
                                 <select name="make" id="make_id" class="form-control form-control-c">
                                 </select>
+                                <span class="error-span text-danger " id="error-make"></span>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            <div class="mb-2">
                                 <label class="text-muted" for="model">Model</label>
                                 <select name="model" id="model_id" class="form-control form-control-c">
                                 </select>
+                                <span class="error-span text-danger " id="error-model"></span>
                             </div>
                         </div>';
             }
 
             foreach ($configs as $x => $item) {
                 if ($item->option->type == 'input') {
-                    $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 form-group">
+                    $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mb-2">
                                 <label for="' . $item->option->slug . '">' . $item->option->name . '</label>
-                                <input class="form-control form-control-c" id="' . $item->option->slug . '">
+                                <input class="form-control form-control-c" name="options[' . $item->option->slug . ']" id="' . $item->option->slug . '">
+                                <span class="error-span text-danger " id="error-' . $item->option->slug . '"></span>
                             </div>';
                 } elseif ($item->option->type == 'select') {
                     $opts = "<option value=''>~~ SELECT ~~</option>";
                     foreach ($item->option->option_values as $tt => $values) {
                         $opts .= '<option value="' . $values->id . '">' . $values->name . '</option>';
                     }
-                    $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 form-group">
+                    $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mb-2" id="cus_' . $item->option->slug . '">
                                 <label for="' . $item->option->slug . '">' . $item->option->name . '</label>
-                                <select class="form-control customSelect form-control-c" data-name1="' . $item->option->name . '" 
+                                <select class="form-control customSelect form-control-c" 
+                                data-name1="' . $item->option->name . '" 
                                 data-slug="' . $item->option->slug . '"
                                 data-effect="' . $item->option->operator . '"
-                                id="' . $item->option->slug . '"
+                                name="options[' . $item->option->slug . ']" id="' . $item->option->slug . '"
                                 >' . $opts . '</select>
+                                <span class="error-span text-danger " id="error-' . $item->option->slug . '"></span>
                             </div>';
                 } elseif ($item->option->type == 'radio') {
-                    $optss = '<div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 form-group">
+                    $optss = '<div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mb-2">
                                 <strong class="d-flex justify-content-center">' . $item->option->name . '</strong><br>
                                 <div class="d-flex justify-content-evenly">';
                     foreach ($item->option->option_values as $tt => $values) {
                         $optss .= '<label for="' . $item->option->slug . $values->id . '" class="custom-control custom-radio custom-control-md">
-                                    <input type="radio" class="custom-control-input" name="example-radios1" value="' . $values->id . '" id="' . $item->option->slug . $values->id . '">
+                                    <input type="radio" class="custom-control-input" name="example-radios1" value="' . $values->id . '" name="options[' . $item->option->slug . ']" id="' . $item->option->slug . $values->id . '">
                                     <span class="custom-control-label custom-control-label-md  tx-16">' . $values->name . '</span>
-                                </label>';
+                                </label>
+                                
+                                <span class="error-span text-danger " id="error-' . $item->option->slug . '"></span>';
                     }
 
                     $html .= $optss . "</div></div>";
                 } elseif ($item->option->type == 'switch') {
-                    $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mt-3 mb-2 ml-2 mr-2">
-                                <div class="form-group d-flex justify-content-between align-content-center p-2">
+                    $class = "";
+                    if ($item->option->slug == 'is-there-comfort-access') {
+                        $class = "d-none";
+                    }
+
+                    $action = '';
+                    $reaction = '';
+                    if ($item->option->slug == 'does-the-vehicle-use-push-to-start-or-knob-turn-to-start') {
+                        $action = 'is-there-comfort-access';
+                        $reaction = 'type-of-key';
+                    }
+
+                    $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mt-3 mb-2 ml-2 mr-2 ' . $class . '" id="cus_' . $item->option->slug . '">
+                                <div class="mb-2 d-flex justify-content-between align-content-center p-2">
                                     <label for="' . $item->option->slug . '">' . $item->option->name . '</label>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input switch-c" type="checkbox" id="' . $item->option->slug . '" name="comfort_access[0]" value="1">
+                                        <input class="form-check-input customSwitch switch-c" type="checkbox" name="options[' . $item->option->slug . ']" id="' . $item->option->slug . '" value="1" data-action="' . $action . '" data-reaction="' . $reaction . '">
                                     </div>
-                                </div> 
+                                    <span class="error-span text-danger " id="error-' . $item->option->slug . '"></span>
+                                </div>
                                 </div>';
                 }
             }
         }
         return $html;
+    }
+
+    public function search(QuoteSearch $request)
+    {
+        $year = $request->options['year'];
+        return PriceManager::where('year_start', '<=', $year)->where('year_end', '>=', $year)->get();
     }
 
     public function category(Request $request)
