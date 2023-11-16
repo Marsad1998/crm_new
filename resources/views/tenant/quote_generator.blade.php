@@ -26,7 +26,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="mb-2">
-                                            <label class="text-muted" for="service_id">Service</label>
+                                            <label for="service_id">Service</label>
                                             <select name="service_id" id="service_id" class="form-control form-control-c">
                                             </select>
                                             <span class="error-span text-danger " id="error-service_id"></span>
@@ -39,7 +39,7 @@
                             </div><!-- custom card body {col-1} -->
     
                             <div class="cstm-card-footer d-flex justify-content-between align-items-center cstm-border-bottom">
-                                <p class="cstm-margin-0 text-danger">No price found.</p>
+                                <p class="cstm-margin-0 text-danger" id="resultResponse"></p>
                                 <button type="submit" class="btn footer-btn">Add to Quote</button>
                             </div><!-- custom card footer {col-1} -->
                         </form>
@@ -53,91 +53,13 @@
                         
                         <div class="cstm-card-body g-quote-body">
 
-                            <div class="d-flex justify-content-center gen-quo-div">
-                                <div class="p-2 gen-quo-div-data">
-
-                                    <div class="d-flex justify-content-center">
-                                        {{-- <img src="assets/img/media/dummy_pic.jfif" alt="" style="border:1px solid black;height:90px;width:90px"> --}}
-                                    </div>
-                                    <p class="text-center fw-bold mt-1">2020 Toyota Yaris</p>
-
-                                    <div class="d-flex justify-content-between">
-                                        <span>Key Replacement</span>
-                                        <span>AKL No</span>
-                                    </div><!-- copy 1 -->
-                                    <div class="d-flex justify-content-between">
-                                        <span>Aftermarket Prox</span>
-                                        <span>$145:00</span>
-                                    </div><!-- copy 2 -->
-                                    <div class="d-flex justify-content-between">
-                                        <span>Turn Key + Remote</span>
-                                        <span>Qty: 2</span>
-                                    </div><!-- copy 3 -->
-
-                                    <p class="pt-2 d-flex justify-content-center text-danger fw-bold">Remotehead Key - add pricing for mobile</p>
-
-                                    <p class="d-flex justify-content-center text-success fst-italic">Key #2: -$43.50</p>
-                                    
-                                </div>
-                                <div class="gen-quo-div-btn">
-                                    <button class="btn footer-btn">Remove</button>
-                                </div>
-                            </div> <!-- dynamic div-1 copy 1 -->
-                            <div class="evenValue"></div>
-
-
-                            {{-- <div class="d-flex justify-content-center gen-quo-div">
-                                <div class="p-2 gen-quo-div-data">
-
-                                    <strong><span>Day/Night rate</span>: <span>Day rate(until 7PM)</span></strong><br>
-                                    <p class="pt-3 fst-italic d-flex justify-content-center">$0.00</p>
-                                    
-                                </div>
-                                <div class="gen-quo-div-btn">
-                                    <button class="btn footer-btn">Remove</button>
-                                </div>
-                            </div> <!-- dynamic div-2 copy 2-->
-
-                            <div class="d-flex justify-content-center gen-quo-div">
-                                <div class="p-2 gen-quo-div-data">
-
-                                    <strong><span>CAA/AAA</span>: <span>Not a member/No discount allowed</span></strong><br>
-                                    <p class="pt-3 fst-italic d-flex justify-content-center">$0.00</p>
-                                    
-                                </div>
-                                <div class="gen-quo-div-btn">
-                                    <button class="btn footer-btn">Remove</button>
-                                </div>
-                            </div> <!-- dynamic div-2 copy 3-->
-
-                            <div class="d-flex justify-content-center gen-quo-div">
-                                <div class="p-2 gen-quo-div-data">
-
-                                    <strong><span>Location</span>: <span>Burlington</span></strong><br>
-                                    <p class="pt-3 fst-italic d-flex justify-content-center">$80.00</p>
-                                    
-                                </div>
-                                <div class="gen-quo-div-btn">
-                                    <button class="btn footer-btn">Remove</button>
-                                </div>
-                            </div> <!-- dynamic div-2 copy 4 -->
-
-                            <div class="d-flex justify-content-center gen-quo-div mb-5">
-                                <div class="p-2 gen-quo-div-data">
-
-                                    <strong><span>Location</span>: <span>Burlington</span></strong><br>
-                                    <p class="pt-3 fst-italic d-flex justify-content-center">$80.00</p>
-                                    
-                                </div>
-                                <div class="gen-quo-div-btn">
-                                    <button class="btn footer-btn">Remove</button>
-                                </div>
-                            </div> <!-- dynamic div-2 copy 5 --> --}}
+                            <div class="quoteKeys"></div>
+                            <div class="quoteOthers"></div>
 
                         </div><!-- custom card body -->
 
                         <div class="cstm-card-footer d-flex justify-content-evenly lead cstm-border-bottom g-quote-footer">
-                            <span>Subtotal:</span> <strong><ins><span>301.85</span></ins></strong>
+                            <span>Subtotal:</span> <strong><ins><span id="subtotal">00.00</span></ins></strong>
                         </div><!-- custom card footer -->
 
                     </div><!-- card col-2 -->
@@ -149,56 +71,70 @@
 
                         <div class="cstm-card-body">
 
-                            <div class="d-flex justify-content-evenly">
-                                <div class="cstm-group-47w">
-                                    <label for="phone_number" class="text-muted">Phone Number</label>
-                                    <input type="text" name="phone_number" class="form-control form-control-c" placeholder="416 555-1234">
-                                </div>
-                                
-                                <div class="cstm-group-47w">
-                                    <label for="caller_name" class="text-muted">Caller Name</label>
-                                    <input type="text" name="caller_name" class="form-control form-control-c" placeholder="John Smith">
-                                </div>
-                            </div><!-- input-group number details -->
-
-                            <div class="d-flex justify-content-evenly flex-wrap">
-                                <div class="cstm-margin-top-20 quoted_price_div">
-                                    <label for="quoted_price" class="text-muted">Quoted Price</label>
-                                    <input type="text" name="quoted_price" class="form-control form-control-c" placeholder="301.85" readonly>
-                                </div>
-                                <div class="cstm-margin-top-20 custom_price_div">
-                                    <label class="text-muted">Custom Price</label>
-                                    <div class="d-flex justify-content-center mt-2">
-                                        <label class="cstm-switch" for="custom_price">
-                                            <input type="checkbox" name="custom_price" id="custom_price" />
-                                            <div class="cstm-slider cstm-round"></div>
-                                        </label>
+                            <form action="{{ route('quote.save_lead') }}" method="post">
+                                <div class="d-flex justify-content-evenly">
+                                    <div class="cstm-group-47w">
+                                        <label for="phone_number">Phone Number</label>
+                                        <div class="input-group">
+                                            <input class="form-control form-control-c" placeholder="Search for..." type="text" name="phone_number" id="phone_number">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary btn-c searchCallBtn" type="button">
+                                                    <span class="input-group-btn">
+                                                        <i class="fa fa-search"></i>
+                                                    </span>
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="cstm-margin-top-20 status_div">
-                                    <label for="status" class="text-muted">Status</label>
-                                    <select name="status" id="status" class="form-control form-control-c" readonly>
-                                        <option value="">Set the Status</option>
-                                    </select>
-                                </div>
-                            </div><!-- input-group price details -->
-
-                            <div class="cstm-margin-top-20">
-                                <p class="d-flex justify-content-center text-muted">Call Type</p>
-                                <div class="d-flex justify-content-evenly cstm-margin-top-10">
-                                    <div>
-                                        <input type="radio" name="call_type" id="incomming"> <label for="incomming" class="text-muted">Incomming</label>
+                                    
+                                    <div class="cstm-group-47w">
+                                        <label for="caller_name">Caller Name</label>
+                                        <input type="text" name="caller_name" class="form-control form-control-c" placeholder="John Smith">
                                     </div>
-                                    <div>
-                                        <input type="radio" name="call_type" id="outgoing"> <label for="outgoing" class="text-muted">Outgoing</label>
+                                </div><!-- input-group number details -->
+    
+                                <div class="d-flex justify-content-evenly flex-wrap">
+                                    <div class="cstm-margin-top-20 quoted_price_div">
+                                        <label for="quoted_price">Quoted Price</label>
+                                        <input type="text" name="quoted_price" id="quoted_price" class="form-control form-control-c" placeholder="301.85" disabled>
                                     </div>
-                                </div>
-                            </div><!-- input-group call type -->
-
-                            <div class="cstm-margin-top-20 cstm-margin-bottom-60">
-                                <label for="notes" class="text-muted">Notes</label>
-                                <textarea name="notes" id="notes" rows="2" class="form-control textarea-c"></textarea>
-                            </div><!-- input-group notes textarea -->
+                                    <div class="cstm-margin-top-20 custom_price_div">
+                                        <label for="custom_price" class="d-flex justify-content-center">Custom Price</label>
+                                        <div class="form-check form-switch d-flex justify-content-center mt-2">
+                                            <input class="form-check-input switch-c" type="checkbox" name="custom_price" id="custom_price" value="1">
+                                        </div>
+                                        <span class="error-span text-danger " id="error-custom_price"></span>
+                                    </div>
+                                    <div class="cstm-margin-top-20 status_div">
+                                        <label for="status">Status</label>
+                                        <select name="status" id="status" class="form-control form-control-c">
+                                            <option value="">~~ SELECT ~~</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Booked">Booked</option>
+                                            <option value="Failed">Failed</option>
+                                            <option value="Invalid">Invalid</option>
+                                            <option value="Warranty">Warranty</option>
+                                        </select>
+                                    </div>
+                                </div><!-- input-group price details -->
+    
+                                <div class="cstm-margin-top-20">
+                                    <p class="d-flex justify-content-center text-muted">Call Type</p>
+                                    <div class="d-flex justify-content-evenly cstm-margin-top-10">
+                                        <div>
+                                            <input type="radio" name="call_type" id="incomming"> <label for="incomming">Incomming</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" name="call_type" id="outgoing"> <label for="outgoing">Outgoing</label>
+                                        </div>
+                                    </div>
+                                </div><!-- input-group call type -->
+    
+                                <div class="cstm-margin-top-20 cstm-margin-bottom-60">
+                                    <label for="notes">Notes</label>
+                                    <textarea name="notes" id="notes" rows="2" class="form-control textarea-c"></textarea>
+                                </div><!-- input-group notes textarea -->
+                            </form>
                         </div><!-- custom card body -->
 
                         <div class="cstm-card-footer d-flex justify-content-end cstm-border-bottom l-info-footer">
@@ -220,36 +156,124 @@
                 setTimeout(() => {
                     var option = new Option('Key Replacement', 1, false, true);
                     $("#service_id").append(option).trigger('select2:select');
-                }, 500);
+                }, 1000);
                 
                 $(document).on('click', '.quote_category', function () {
                     $("#service_id").val(null).trigger('select2:select')
                     getServices($(".quote_category:checked").val())
                 });
 
+                $(document).on('change', '#custom_price', function () {
+                    var price = $(this).is(':checked');
+                    if (price) {
+                        $("#quoted_price").prop('disabled', false).focus();
+                    }else{
+                        $("#quoted_price").prop('disabled', true);
+                    }
+                });
+
+                $(document).on('click', '.searchCallBtn', function () {
+                    var phone = $("#phone_number").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('quote.search_call') }}",
+                        data: {
+                            phone: phone
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            
+                        }
+                    });
+                });
+
                 $("#quoteSearch").on('submit', function (e) {
                     e.preventDefault();
                     var form = $(this);
+                    var formData = new FormData(this);
+
+                    $(".customSwitch").each(function () {
+                        var id = $(this).attr('id').substr(3);
+                        
+                        if ($("#cus_"+id).hasClass('d-none')) {
+                            return false;
+                        }
+
+                        if ($("#cus_"+id).is(':checked')) {
+                            // formData.append($("#lb_"+id).attr('name'), '1');
+                        }else{
+                            formData.append($("#lb_"+id).attr('name'), '0');
+                        }
+                    });
+                    
                     $.ajax({
                         type: 'POST',
                         url: form.attr('action'),
-                        data: new FormData(this),
+                        data: formData,
                         contentType: false,
                         cache: false,
                         processData: false,
                         dataType: 'json',
                         success: function(response) {
-                            console.log(response);
                             $(".error-span").text('')
+                            
+                            $('#resultResponse').text('No price found.');
+                            if (response.length > 0) {
+                                $('#resultResponse').text(response.length+' result found.');
+                                var gl_id = response[0].id;
+                                var lii = ` <div class="d-flex justify-content-center gen-quo-div"  id="quotaDiv_`+gl_id+`">
+                                                <div class="p-2 gen-quo-div-data" style="width: 100%">
+                                                    <div class="d-flex justify-content-center">
+                                                        <img src="`+response[0].image+`" alt="" style="border:1px solid black;height:90px;width:90px">
+                                                    </div>
+                                                    <p class="text-center fw-bold mt-1">`+response[0].name+`</p>
+    
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Key Replacement</span>
+                                                        <span>AKL `+response[0].akl+`</span>
+                                                    </div><!-- copy 1 -->
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>`+response[0].oem+` Prox</span>
+                                                        <span class="basPrice" id="`+gl_id+`">`+response[0].amount+`</span>
+                                                    </div><!-- copy 2 -->
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Turn Key + Remote</span>
+                                                        <span>
+                                                            Qty: <i id="quota_`+gl_id+`">1</i> 
+                                                        </span>
+                                                    </div><!-- copy 3 -->
+    
+                                                    <p class="pt-2 d-flex justify-content-center text-danger fw-bold">`+response[0].PN+`</p>
+                                                    
+                                                    <span id="quoteKeyQty_`+gl_id+`"></span>
+                                                </div>
+                                                <div class="gen-quo-div-btn">
+                                                    <button class="btn removePrice footer-btn" id="` +gl_id+ `" data-type="quotes">Remove</button>
+                                                </div>
+                                            </div>`;
 
-                        }, 
+                                $(".quoteOthers").empty().append(response[0].opt);
+                                if ($("#quotaDiv_"+gl_id).length < 1) {
+                                    $(".quoteKeys").append(lii)
+                                }else{
+                                    var count = $("#quota_"+gl_id).text();
+                                    count++;
+                                    var pp = '<p class="d-flex justify-content-center text-success fst-italic" id="quoteQtyO_'+count+'">Key #'+count+' :  <b class="nextQtyPrice_'+gl_id+'">'+response[0].amount+'</b></p>';
+
+                                    $("#quoteKeyQty_"+gl_id).append(pp);
+                                    $("#quota_"+gl_id).text(count);
+                                }
+
+                                calcPrice()
+                            }
+                        
+                        },
                         error: function (jqXhr) {
                             var errorResponse = $.parseJSON(jqXhr.responseText);
                             $(".error-span").text('')
                             
                             $.each(errorResponse.errors, function (key, value) {
                                 var y = key.split('.');
-                                console.log(y);
                                 if (y.length > 1) {
                                     $("#error-" + y[1]).text('The '+y[1]+' field is required');
                                 }else{
@@ -262,7 +286,21 @@
                 
                 $(document).on('click', '.removePrice', function () {
                     var id = $(this).attr('id');
-                    console.log(id);
+                    var type = $(this).data('type');
+
+                    if (type == 'options') {
+                        $("#quo_div_"+id).remove();
+                    }else{
+                        var count = $("#quota_"+id).text();
+                        if (count > 1) {
+                            $('#quoteQtyO_'+count).remove();
+                            count--;
+                            $("#quota_"+id).text(count);
+                        }else{
+                            $("#quotaDiv_"+id).remove();
+                        }
+                    }
+                    calcPrice();
                 });
 
                 $("#service_id").on('select2:select', function () {
@@ -276,44 +314,15 @@
                             $(".customSelect").each(function () {
                                 $(this).select2({
                                     width: "100%",
-                                }).on('change', function () {
-                                    var id = $(this).find('option:selected').val();
-                                    var name = $(this).data('name1');
-                                    var slug = $(this).data('slug');
-                                    var effect = $(this).data('effect');
-                                    var value = $(this).find('option:selected').text();
-
-                                    $("#"+slug).remove();
-                                    if (effect == 'additive') {
-                                        var action = '<p class="pt-3 fst-italic d-flex justify-content-center">$56</p>';
-                                    }
-                                    else if (effect == 'multiplicative') {
-                                        var action = '<p class="pt-3 fst-italic d-flex justify-content-center">Base Cost x 50%</p>';
-                                    }
-                                    else{
-                                        var action = "";
-                                    }
-
-                                    var li = '<div class="d-flex justify-content-center gen-quo-div" id="'+slug+'">\
-                                                <div class="p-2 gen-quo-div-data">\
-                                                    <strong><span>'+name+'</span>: <span>'+value+'</span></strong><br>\
-                                                    '+action+'\
-                                                </div>\
-                                                <div class="gen-quo-div-btn">\
-                                                    <button class="btn removePrice footer-btn" id="'+slug+'">Remove</button>\
-                                                </div>\
-                                            </div>';
-
-                                    $(".evenValue").append(li);
-
                                 });
                             });
 
-                            $(".customSwitch").each(function () {  
+                            $(".customSwitch").each(function () {
                                 $(this).on('change', function () {
                                     var action = $(this).data('action');
-                                    var reaction = $(this).data('reaction');
                                     $("#cus_"+action).toggleClass('d-none');
+
+                                    var reaction = $(this).data('reaction');
                                     $("#cus_"+reaction).toggleClass('d-none');
                                 })
                             });
@@ -368,8 +377,40 @@
                         }
                     });
                 });
-                
             });
+
+            function calcPrice() {
+                var price = 0;
+                $(".basPrice").each(function () {
+                    var id = $(this).attr('id')
+                    var qty = 0;
+                    $('.nextQtyPrice_'+id).each(function () { 
+                        qty += +$(this).text().substr(1);
+                    });
+                    price += +$(this).text().substr(1) + qty;
+                })
+                
+                console.log(price);
+
+                $(".servicesEf").each(function () {
+                    var operator = $(this).data('operator');
+                    var amount = $(this).data('amount');
+                    if (operator == 'multiplicative') {
+                        var amountToAdd = ((100 - +amount) / 100) * price;
+                        price = price - amountToAdd;
+                    }
+                })
+
+                $(".servicesEf").each(function () {
+                    var operator = $(this).data('operator');
+                    var amount = $(this).data('amount');
+                    if (operator == 'additive') {
+                        price += +amount;
+                    }
+                });
+                console.log(price);
+                $("#subtotal").text(price.toFixed(2))
+            }
             
             function getServices(id) {  
                 $("#service_id").select2({

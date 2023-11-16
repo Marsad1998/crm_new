@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuoteSearch;
 use App\Models\Option;
 use App\Models\Category;
+use App\Models\OptionValue;
 use App\Models\PriceManager;
 use App\Models\QuoteConfig;
 use App\Models\Service;
@@ -66,8 +67,8 @@ class QuoteConfigController extends Controller
             foreach ($configs as $x => $item) {
                 if ($item->option->type == 'input') {
                     $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mb-2">
-                                <label for="' . $item->option->slug . '">' . $item->option->name . '</label>
-                                <input class="form-control form-control-c" name="options[' . $item->option->slug . ']" id="' . $item->option->slug . '">
+                                <label for="lb_' . $item->option->slug . '">' . $item->option->name . '</label>
+                                <input class="form-control form-control-c" name="options[' . $item->option->slug . ']" id="lb_' . $item->option->slug . '">
                                 <span class="error-span text-danger " id="error-' . $item->option->slug . '"></span>
                             </div>';
                 } elseif ($item->option->type == 'select') {
@@ -76,12 +77,12 @@ class QuoteConfigController extends Controller
                         $opts .= '<option value="' . $values->id . '">' . $values->name . '</option>';
                     }
                     $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mb-2" id="cus_' . $item->option->slug . '">
-                                <label for="' . $item->option->slug . '">' . $item->option->name . '</label>
+                                <label for="lb_' . $item->option->slug . '">' . $item->option->name . '</label>
                                 <select class="form-control customSelect form-control-c" 
                                 data-name1="' . $item->option->name . '" 
                                 data-slug="' . $item->option->slug . '"
                                 data-effect="' . $item->option->operator . '"
-                                name="options[' . $item->option->slug . ']" id="' . $item->option->slug . '"
+                                name="options[' . $item->option->slug . ']" id="lb_' . $item->option->slug . '"
                                 >' . $opts . '</select>
                                 <span class="error-span text-danger " id="error-' . $item->option->slug . '"></span>
                             </div>';
@@ -90,8 +91,8 @@ class QuoteConfigController extends Controller
                                 <strong class="d-flex justify-content-center">' . $item->option->name . '</strong><br>
                                 <div class="d-flex justify-content-evenly">';
                     foreach ($item->option->option_values as $tt => $values) {
-                        $optss .= '<label for="' . $item->option->slug . $values->id . '" class="custom-control custom-radio custom-control-md">
-                                    <input type="radio" class="custom-control-input" name="example-radios1" value="' . $values->id . '" name="options[' . $item->option->slug . ']" id="' . $item->option->slug . $values->id . '">
+                        $optss .= '<label for="lb_' . $item->option->slug . $values->id . '" class="custom-control custom-radio custom-control-md">
+                                    <input type="radio" class="custom-control-input" value="' . $values->id . '" name="options[' . $item->option->slug . ']" id="lb_' . $item->option->slug . $values->id . '" value="1" required>
                                     <span class="custom-control-label custom-control-label-md  tx-16">' . $values->name . '</span>
                                 </label>
                                 
@@ -114,9 +115,9 @@ class QuoteConfigController extends Controller
 
                     $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mt-3 mb-2 ml-2 mr-2 ' . $class . '" id="cus_' . $item->option->slug . '">
                                 <div class="mb-2 d-flex justify-content-between align-content-center p-2">
-                                    <label for="' . $item->option->slug . '">' . $item->option->name . '</label>
+                                    <label for="lb_' . $item->option->slug . '">' . $item->option->name . '</label>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input customSwitch switch-c" type="checkbox" name="options[' . $item->option->slug . ']" id="' . $item->option->slug . '" value="1" data-action="' . $action . '" data-reaction="' . $reaction . '">
+                                        <input class="form-check-input customSwitch switch-c" type="checkbox" name="options[' . $item->option->slug . ']" id="lb_' . $item->option->slug . '" data-action="' . $action . '" data-reaction="' . $reaction . '" value="1">
                                     </div>
                                     <span class="error-span text-danger " id="error-' . $item->option->slug . '"></span>
                                 </div>
@@ -127,10 +128,100 @@ class QuoteConfigController extends Controller
         return $html;
     }
 
-    public function search(QuoteSearch $request)
+    public function search(Request $request)
     {
-        $year = $request->options['year'];
-        return PriceManager::where('year_start', '<=', $year)->where('year_end', '>=', $year)->get();
+        $rules = [
+            'category' => 'required',
+            'service_id' => 'required',
+            'make' => 'required',
+            'model' => 'required',
+            'options' => 'array',
+        ];
+
+        $options = $request->input('options');
+
+        foreach ($options as $key => $value) {
+            if ($key != 'type-of-key') {
+                $rules["options.{$key}"] = ['required']; // Add your specific rules for each dynamic field
+            }
+        }
+
+        $request->validate($rules);
+
+        $data = $request->options;
+
+        $li = "";
+        $effects = OptionValue::with('option')->whereIn('id', $data)->get();
+        $ser_pri = [];
+        foreach ($effects as $x => $option) {
+            if ($option->option->operator == 'additive') {
+                $action = '<p class="pt-3 fst-italic d-flex justify-content-center">$' . $option->amount . '</p>';
+                $ser_pri[] = [$option->option->operator, $option->amount];
+            } else if ($option->option->operator == 'multiplicative') {
+                $action = '<p class="pt-3 fst-italic d-flex justify-content-center">Base Cost x ' . $option->amount . '%</p>';
+                $ser_pri[] = [$option->option->operator, $option->amount];
+            } else {
+                $action = "";
+            }
+
+            if ($action != "") {
+                $li .= '<div class="d-flex justify-content-center servicesEf gen-quo-div" id="quo_div_' . $option->option->id . '" data-operator="' . $option->option->operator . '" data-amount="' . $option->amount . '">
+                            <div class="p-2 gen-quo-div-data">
+                                <strong><span>' . $option->option->name . '</span>: <span>' . $option->name . '</span></strong><br>
+                                ' . $action . '
+                            </div>
+                            <div class="gen-quo-div-btn">
+                                <button class="btn removePrice footer-btn" id="' . $option->option->id . '" data-type="options">Remove</button>
+                            </div>
+                        </div>';
+            }
+        }
+
+        return PriceManager::with('makes', 'models')
+            ->when(isset($request->model), function ($row) use ($request) {
+                $row->where('model_id', $request->model);
+            })
+            ->when(isset($request->service_id), function ($row) use ($request) {
+                $row->where('service_id', $request->service_id);
+            })
+            ->when(isset($data['type-of-key']), function ($query) use ($data) {
+                return $query->where('key_type_id', $data['type-of-key']);
+            })
+            ->when(isset($data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']), function ($query) use ($data) {
+                return $query->where('pts', $data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']);
+            })
+            ->when(isset($data['is-there-comfort-access']), function ($query) use ($data) {
+                return $query->where('oem', $data['is-there-comfort-access']);
+            })
+            ->when(isset($data['has-the-customer-lost-all-the-spare-keys']), function ($query) use ($data) {
+                return $query->where('akl', $data['has-the-customer-lost-all-the-spare-keys']);
+            })
+            ->when(isset($data['year']), function ($row) use ($data) {
+                $row->where(function ($query) use ($data) {
+                    $query->where('year_start', $data['year'])
+                        ->orWhere(function ($query) use ($data) {
+                            $query->where('year_start', '<=', $data['year'])
+                                ->where('year_end', '>=', $data['year']);
+                        });
+                });
+            })
+            ->get()
+            ->map(function ($row) use ($data, $li, $ser_pri) {
+                if (!empty($row->makes) && !empty($row->models)) {
+
+                    return [
+                        'id' => $row->id,
+                        'name' => $row->makes->name . " " . $row->models->name . " " . $data['year'],
+                        'amount' => '$' . number_format($row->amount, 2),
+                        'image' => global_asset($row->image),
+                        'akl' => $row->akl == 1 ? 'Yes' : 'No',
+                        'oem' => $row->oem == 1 ? 'OEM' : 'Aftermarket',
+                        'PN' => $row->PN,
+                        'opt' => $li,
+                        'ser_pri' => $ser_pri,
+                    ];
+                }
+            });
     }
 
     public function category(Request $request)
@@ -196,9 +287,13 @@ class QuoteConfigController extends Controller
             ->make(true);
     }
 
+    public function search_call(Request $request)
+    {
+        return $request;
+    }
+
     public function create(Request $request)
     {
-        // return $request->width;
         $request->validate([
             'service_id' => 'required',
         ]);

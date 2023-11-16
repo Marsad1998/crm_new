@@ -6,6 +6,7 @@ use App\Models\Makes;
 use App\Models\Models;
 use App\Models\Service;
 use App\Models\OptionValue;
+use Illuminate\Support\Str;
 use App\Models\PriceManager;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -82,8 +83,9 @@ class PriceManagerController extends Controller
                 $file = $request->file('file')[$y];
 
                 $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
-                $file->storeAs('/', $filename, 'local');
-                $path = global_asset('tenants/') . "/tenant" . tenant('id') . '/app/' . $filename;
+
+                $file->move("tenants/tenant" . tenant('id') . '/app/', $filename);
+                $path =  "tenants/tenant" . tenant('id') . '/app/' . $filename;
 
                 $data = [
                     'model_id' => $mod,
@@ -130,12 +132,14 @@ class PriceManagerController extends Controller
             ->addColumn('akl', function ($row) {
                 return $row->akl == 1 ? '<span class="badge bg-success-light text-success">Yes</span>' : '<span class="badge bg-danger-light text-danger">No</span>';
             })
+            ->editColumn('PN', function ($row) {
+                return '<a title="' . $row->PN . '">' . Str::limit($row->PN, 15) . '</a>';
+            })
             ->addColumn('image', function ($row) {
-                // $filename = global_asset('tenants/') . "/tenant" . tenant('id') . '/app/' . $row->image;
                 return '<div class="icon-container">
-                                <img src="' . $row->image . '">
+                                <img src="' . global_asset($row->image) . '">
                                 <div class="hover-info">
-                                    <img src="' . $row->image . '">
+                                    <img src="' . global_asset($row->image) . '">
                                 </div>
                             </div>';
             })
@@ -151,7 +155,7 @@ class PriceManagerController extends Controller
                 return $btn;
             })
             ->addIndexColumn()
-            ->rawColumns(['action', 'comfort_access', 'manufacturer', 'akl', 'image'])
+            ->rawColumns(['action', 'comfort_access', 'manufacturer', 'akl', 'image', 'PN'])
             ->make(true);
     }
 
@@ -207,8 +211,8 @@ class PriceManagerController extends Controller
                 if ($request->has('file')) {
                     $file = $request->file('file')[$y];
                     $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
-                    $file->storeAs('/', $filename, 'local');
-                    $path = global_asset('tenants/') . "/tenant" . tenant('id') . '/app/' . $filename;
+                    $file->move("tenants/tenant" . tenant('id') . '/app/', $filename);
+                    $path =  "tenants/tenant" . tenant('id') . '/app/' . $filename;
                     $data['image'] = $path;
                 }
 

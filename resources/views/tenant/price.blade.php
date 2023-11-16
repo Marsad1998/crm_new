@@ -535,6 +535,8 @@
                         type: 'post', // method  , by default get
                     },
                     'order': [],
+                    processing: true,
+                    serverSide: true,
                     buttons: [
                         {
                             className: "mx-2 btn-c",

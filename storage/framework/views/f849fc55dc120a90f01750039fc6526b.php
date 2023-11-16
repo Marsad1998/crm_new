@@ -330,7 +330,7 @@
                         var rand2 = Math.floor(Math.random()*90000) + 10000;
                         var did = rand1+""+models[i].id+""+rand2
 
-                        if (models[i].amount > 0) {
+                        if (models[i].amount !== null) {
                             var amount = models[i].amount
                         }else{
                             var amount = 'N/A';

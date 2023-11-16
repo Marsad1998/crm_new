@@ -25,14 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tenant = Tenant::create([
-            'id' => 'quotegen1',
-        ]);
+        // $tenant = Tenant::create([
+        //     'id' => 'quotegen1',
+        // ]);
 
-        $tenant->domains()->create([
-            'domain' => 'test1.localhost',
-        ]);
-        return;
+        // $tenant->domains()->create([
+        //     'domain' => 'test1.localhost',
+        // ]);
+        // return;
         return view('central.index');
     }
 
