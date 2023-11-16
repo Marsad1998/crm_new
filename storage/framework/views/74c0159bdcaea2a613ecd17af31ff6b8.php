@@ -1,0 +1,160 @@
+<?php
+    use Spatie\Permission\Models\Role;
+    use Illuminate\Support\Facades\Auth;
+?>
+
+
+<?php $__env->startSection('content'); ?>
+    <div class="container-fluid">
+        <div class="inner-body">
+            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 text-black"><i class="fas fa-cogs"></i> Manage Roles</h3>
+            <div class="card mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <form action="/add_roles" class="formData" method="post">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control form-control-c" placeholder="Role Name" name="name" id="name"> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Guard Name</label>
+                                    <input type="text" readonly class="form-control form-control-c" name="guard_name" value="web" id="guard_name"> 
+                                </div>
+                                <?php if(Auth::user()->can('Add Role')): ?>
+                                    <button type="submit" id="saveData" class="btn btn-c btn-primary btn-block">Save</button>
+                                <?php else: ?>
+                                    <div class="alert alert-danger flex items-center" role="alert"> <i data-lucide="alert-circle" class="w-6 h-6 mr-2"></i> You Don't
+                                        Have Right To Perform this Action </div>
+                                <?php endif; ?>
+                            </form>
+                        </div> 
+                        <div class="col-sm-8">
+                            <div class="table-responsive mt-3">
+                                <table class="table table-striped table-hover table-bordered align-middle" id="roleTable">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+    </div>
+    
+    <?php $__env->startPush('script'); ?>
+        <script>
+            $(document).ready(function() {
+
+                //Save Data into Database
+                $(".formData").on('submit', function(e) {
+                    e.preventDefault();
+                    $("#saveData").prop('disabled', true);
+                    var form = $('.formData');
+                    $.ajax({
+                        type: 'POST',
+                        url: form.attr('action'),
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        dataType: 'json',
+                        success: function(response) {
+                            $(".formData").attr('action', '/add_roles');
+                            $("#saveData").prop("disabled", false).text('Save').addClass('btn-primary').removeClass('btn-danger');
+                            $('.formData').each(function() {
+                                this.reset();
+                            });
+                            roleTable.ajax.reload(null, false);
+                            notif({
+                                type: response.sts,
+                                msg: response.msg,
+                                position: 'right',
+                                bottom: 10,
+                                time: 2000,
+                            });
+                        }, 
+                        error: function (jqXhr) {
+                            $("#saveData").prop("disabled", false);
+                            var errorResponse = $.parseJSON(jqXhr.responseText);
+                            $(".error").text('');
+                            $.each(errorResponse.errors, function (key, value) {
+                                $("#" + key + "_error").text(value);
+                            });
+                        }
+                    }); //ajax call
+                }); //main
+
+                var roleTable = $("#roleTable").DataTable({
+                    stateSave: true,
+                    responsive: true,
+                    "ajax": {
+                        url: "/load_roles", // json datasource
+                        type: 'post', // method  , by default get
+                    },
+                    'order': [],
+                    columns: [{
+                            data: 'id'
+                        },
+                        {
+                            data: 'name'
+                        },
+                        {
+                            data: 'action'
+                        },
+                    ]
+                });
+
+                $(document).on('click', ".edit", function() {
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        type: "POST",
+                        url: "/get_roles/" + id,
+                        dataType: "json",
+                        success: function(response) {
+                            console.log(response);
+                            $("#saveData").text('Update').addClass('btn-danger').removeClass('btn-primary');
+                            $(".formData").attr('action', '/update_roles/' + id);
+                            $("#name").val(response.name)
+                        }, 
+                        error: function (response) {
+                            swal("Oops", response.responseJSON.message, "error");
+                        }
+                    });
+                });
+
+                $(document).on("click", ".delete", function() {
+                    var id = $(this).attr('id');
+                    $.ajax({
+                        type: "POST",
+                        url: "/delete_roles/" + id,
+                        dataType: "json",
+                        success: function(response) {
+                            notif({
+                                type: response.sts,
+                                msg: response.msg,
+                                position: 'right',
+                                bottom: 10,
+                                time: 2000,
+                            });
+                            roleTable.ajax.reload(null, false);
+                        }, 
+                        error: function (response) {
+                            swal("Oops", response.responseJSON.message, "error");
+                        }
+                    });
+                });
+            }); // ready
+        </script>
+    <?php $__env->stopPush(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\upwork\monties\resources\views/tenant/roles.blade.php ENDPATH**/ ?>
