@@ -3,13 +3,11 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\MakesController;
 use App\Http\Controllers\AssignPermission;
 use App\Http\Controllers\ModelsController;
 use App\Http\Controllers\OptionController;
@@ -19,6 +17,7 @@ use App\Http\Controllers\OptionValueController;
 use App\Http\Controllers\QuoteConfigController;
 use App\Http\Controllers\PriceManagerController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+use App\Http\Controllers\Tenants\MakeNModel\MakesController;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 /*
@@ -156,6 +155,11 @@ Route::middleware([
             Route::get('/index', [QuoteConfigController::class, 'index'])->name('index')->middleware(['can:View Quote Generator']);
             Route::post('/service/{id}', [QuoteConfigController::class, 'service'])->name('service');
             Route::post('/delete_config/{id}', [QuoteConfigController::class, 'delete_config'])->name('delete_config');
+
+            Route::post('/parameters/{id}', [QuoteConfigController::class, 'parameters'])->name('parameters');
+            Route::post('/search', [QuoteConfigController::class, 'search'])->name('search');
+            Route::post('/save_lead', [QuoteConfigController::class, 'save_lead'])->name('save_lead');
+            Route::post('/search_call', [QuoteConfigController::class, 'search_call'])->name('search_call');
         });
 
         Route::group(['prefix' => 'price', 'as' => 'price.'], function () {

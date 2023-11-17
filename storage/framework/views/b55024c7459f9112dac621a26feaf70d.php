@@ -41,7 +41,7 @@
 
 		<!-- Mutipleselect css-->
 		<link rel="stylesheet" href="<?php echo e(global_asset('assets/plugins/multipleselect/multiple-select.css')); ?>">
-		<link rel="stylesheet" href="<?php echo e(global_asset('assets/custom/app.css')); ?>">
+		<link rel="stylesheet" href="<?php echo e(global_asset('assets/custom/tenant/app.css')); ?>">
 
 		
 		<link href="<?php echo e(global_asset('assets/plugins/datatable/css/dataTables.bootstrap5.css')); ?>" rel="stylesheet" />
@@ -233,7 +233,7 @@
 
 			<!-- Main Content-->
 			<div class="main-content pt-0">
-				<div class="container-fluid padding-top-10">
+				<div class="container-fluid padding-top-10 open-urlGPar">
 					# <span class="open_urlPar"></span><span class="open-url text-capitalize"></span>
 				</div>
                 <?php echo $__env->yieldContent('content'); ?>
@@ -356,6 +356,9 @@
 					$('.open_urlPar').html(open_urlParREC+' > ');
 				}else{
 					$('.open_urlPar').html('');
+				}
+				if(open_urlREC == 'Quote Generator'){
+					$('.open-urlGPar').css('visibility', 'hidden')
 				}
 				$('.open-url').html(open_urlREC);
 			});
