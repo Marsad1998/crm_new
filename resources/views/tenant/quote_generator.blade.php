@@ -5,24 +5,29 @@
     <div class="container-fluid">
         <div class="inner-body">
             <div class="row mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 m-3">
-                
-                <div class="col-sm-7 col-md-8 col-lg-5 col-xl-5 pad-mar-0-imp">
-                    <div class="card h-100">
-                        <div class="cstm-card-header cstm-border-top">Vehicle Information</div>
+
+                <div class="col-sm-7 col-md-8 col-lg-5 col-xl-5 cstm-margin-0 pr-0">
+                    <div class="card h-100 shadow-right-border">
+                        <div class="cstm-card-header cstm-border-top quote-page-card-header">Vehicle Informations</div>
 
                         <form action="{{ route('quote.search') }}" method="post" id="quoteSearch">
                             <div class="cstm-card-body g-quote-body">
-                                <p class="d-flex justify-content-center text-muted">Category</p>
                                 <div class="d-flex justify-content-evenly cstm-margin-top-10">
-                                    @foreach ($categories as $x => $category)
-                                        <div>
-                                            <input type="radio" name="category" id="{{ Str::slug($category->name) }}" value="{{ $category->id }}" {{ $category->id == 1 ? "checked": "" }} class="quote_category"> 
-                                            <label for="{{ Str::slug($category->name) }}">{{ $category->name }}</label>
-                                        </div>
-                                    @endforeach
+                                    <div class="col-2 pl-0">
+                                        <label for="category">Category</label>
+                                    </div>
+                                    <div class="col">
+                                        @foreach ($categories as $x => $category)
+                                            <div class="radio mt-0 d-inline-block">
+                                                <input type="radio" name="category" id="{{ Str::slug($category->name) }}" value="{{ $category->id }}" {{ $category->id == 1 ? "checked": "" }} class="quote_category">
+                                                <label class="radio-label" for="{{ Str::slug($category->name) }}">{{ $category->name }}</label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
                                 </div><!-- category -->
                                 <span class="error-span text-danger " id="error-category"></span>
-                                
+
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="mb-2">
@@ -33,12 +38,12 @@
                                         </div>
                                     </div><!-- service's select2 -->
                                 </div><!-- select2 vehicle details -->
-                                
+
                                 <div class="row" id="quoteFormFields"></div>
-    
+
                             </div><!-- custom card body {col-1} -->
-    
-                            <div class="cstm-card-footer d-flex justify-content-between align-items-center cstm-border-bottom">
+
+                            <div class="cstm-card-footer d-flex justify-content-between align-items-center footer-top-shadow">
                                 <p class="cstm-margin-0 text-danger" id="resultResponse"></p>
                                 <button type="submit" class="btn footer-btn">Add to Quote</button>
                             </div><!-- custom card footer {col-1} -->
@@ -47,10 +52,10 @@
                     </div><!-- card col-1 -->
                 </div> <!-- col 1 -->
 
-                <div class="col-sm-5 col-md-4 col-lg-3 col-xl-3 pad-mar-0-imp">
-                    <div class="card h-100 g-quote-header">
-                        <div class="cstm-card-header cstm-border-top">Generated Quote</div><!-- custom card header -->
-                        
+                <div class="col-sm-5 col-md-4 col-lg-3 col-xl-3 cstm-margin-0">
+                    <div class="card h-100 g-quote-header shadow-right-border">
+                        <div class="cstm-card-header cstm-border-top quote-page-card-header">Generated Quote</div><!-- custom card header -->
+
                         <div class="cstm-card-body g-quote-body">
 
                             <div class="quoteKeys"></div>
@@ -58,22 +63,23 @@
 
                         </div><!-- custom card body -->
 
-                        <div class="cstm-card-footer d-flex justify-content-evenly lead cstm-border-bottom g-quote-footer">
-                            <span>Subtotal:</span> <strong><ins><span id="subtotal">00.00</span></ins></strong>
+                        <div class="cstm-card-footer d-flex justify-content-evenly lead g-quote-footer footer-top-shadow">
+                            <span class="float-md-left"><b>Subtotal</b></span>
+                            <strong class="float-md-right"><ins><span id="subtotal">00.00</span></ins></strong>
                         </div><!-- custom card footer -->
 
                     </div><!-- card col-2 -->
                 </div> <!-- col 2 -->
 
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 pad-mar-0-imp">
-                    <div class="card h-100 l-info-card">
-                        <div class="cstm-card-header cstm-border-top">Lead Info</div><!-- custom card header -->
+                    <div class="card h-100 l-info-card shadow-right-border">
+                        <div class="cstm-card-header cstm-border-top quote-page-card-header">Lead Info</div><!-- custom card header -->
 
                         <div class="cstm-card-body">
 
                             <form action="{{ route('quote.save_lead') }}" id="save_lead" method="post">
-                                <div class="d-flex justify-content-evenly">
-                                    <div class="cstm-group-47w">
+                                <div class="form-row">
+                                    <div class="col">
                                         <label for="phone_number">Phone Number</label>
                                         <div class="input-group">
                                             <input class="form-control form-control-c" placeholder="Search for..." type="text" name="phone_number" id="phone_number">
@@ -86,26 +92,29 @@
                                             </span>
                                         </div>
                                     </div>
-                                    
-                                    <div class="cstm-group-47w">
+
+                                    <div class="col">
                                         <label for="caller_name">Caller Name</label>
                                         <input type="text" name="caller_name" class="form-control form-control-c" placeholder="John Smith">
                                     </div>
                                 </div><!-- input-group number details -->
-    
-                                <div class="d-flex justify-content-evenly flex-wrap">
-                                    <div class="cstm-margin-top-20 quoted_price_div">
+
+                                <div class="form-row mt-30">
+                                    <div class="col">
                                         <label for="quoted_price">Quoted Price</label>
                                         <input type="text" name="quoted_price" id="quoted_price" class="form-control form-control-c" placeholder="00.00" disabled>
                                     </div>
-                                    <div class="cstm-margin-top-20 custom_price_div">
-                                        <label for="custom_price" class="d-flex justify-content-center">Custom Price</label>
-                                        <div class="form-check form-switch d-flex justify-content-center mt-2">
+                                    <div class="col">
+                                        <label for="custom_price">Custom Price</label>
+                                        <div class="form-check form-switch d-flex  mt-2">
                                             <input class="form-check-input switch-c" type="checkbox" name="custom_price" id="custom_price" value="1">
                                         </div>
                                         <span class="error-span text-danger " id="error-custom_price"></span>
                                     </div>
-                                    <div class="cstm-margin-top-20 status_div">
+                                </div><!-- input-group price details -->
+
+                                <div class="form-row mt-30">
+                                    <div class="col-12">
                                         <label for="status">Status</label>
                                         <select name="status" id="status" class="form-control form-control-c">
                                             <option value="">~~ SELECT ~~</option>
@@ -116,28 +125,38 @@
                                             <option value="Warranty">Warranty</option>
                                         </select>
                                     </div>
-                                </div><!-- input-group price details -->
-    
-                                <div class="cstm-margin-top-20">
-                                    <p class="d-flex justify-content-center text-muted">Call Type</p>
-                                    <div class="d-flex justify-content-evenly cstm-margin-top-10">
-                                        <div>
-                                            <input type="radio" name="call_type" id="incomming"> <label for="incomming">Incomming</label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="call_type" id="outgoing"> <label for="outgoing">Outgoing</label>
-                                        </div>
+                                    <div class="col-12 mt-30">
+                                        <div class="d-flex  cstm-margin-top-20">
+                                            <div class="col-2 pl-0">
+                                                <label for="call-type">Call Type</label>
+                                            </div>
+                                            <div class="col">
+                                                <div class="radio mt-0 d-inline-block">
+                                                    <input type="radio" name="call_type" id="incomming">
+                                                    <label for="incomming" class="radio-label">Incomming</label>
+                                                </div>
+                                                <div class="radio mt-0 d-inline-block">
+                                                    <input type="radio" name="call_type" id="outgoing">
+                                                    <label for="outgoing" class="radio-label">Outgoing</label>
+                                                </div>
+
+                                            </div>
+                                        </div><!-- input-group call type -->
                                     </div>
-                                </div><!-- input-group call type -->
-    
-                                <div class="cstm-margin-top-20 cstm-margin-bottom-60">
-                                    <label for="notes">Notes</label>
-                                    <textarea name="notes" id="notes" rows="2" class="form-control textarea-c"></textarea>
-                                </div><!-- input-group notes textarea -->
+
+                                    <div class="col-12 mt-30">
+                                        <label for="notes">Notes</label>
+                                        <textarea name="notes" id="notes" rows="2" class="form-control textarea-c"></textarea>
+                                    </div><!-- input-group notes textarea -->
+
+                                </div>
+
+
+
                             </form>
                         </div><!-- custom card body -->
 
-                        <div class="cstm-card-footer d-flex justify-content-end cstm-border-bottom l-info-footer">
+                        <div class="cstm-card-footer d-flex justify-content-end l-info-footer footer-top-shadow">
                             <button class="btn footer-btn">Save Call</button>
                         </div><!-- custom card footer -->
                     </div><!-- card col-3 -->
@@ -155,7 +174,7 @@
                     var option = new Option('Key Replacement', 1, false, true);
                     $("#service_id").append(option).trigger('select2:select');
                 }, 1000);
-                
+
                 $(document).on('click', '.quote_category', function () {
                     $("#service_id").val(null).trigger('select2:select')
                     getServices($(".quote_category:checked").val())
@@ -180,7 +199,7 @@
                         },
                         dataType: "json",
                         success: function (response) {
-                            
+
                         }
                     });
                 });
@@ -192,7 +211,7 @@
 
                     $(".customSwitch").each(function () {
                         var id = $(this).attr('id').substr(3);
-                        
+
                         if ($("#cus_"+id).hasClass('d-none')) {
                             return false;
                         }
@@ -203,7 +222,7 @@
                             formData.append($("#lb_"+id).attr('name'), '0');
                         }
                     });
-                    
+
                     $.ajax({
                         type: 'POST',
                         url: form.attr('action'),
@@ -214,16 +233,16 @@
                         dataType: 'json',
                         success: function(response) {
                             $(".error-span").text('')
-                            
+
                             $('#resultResponse').text('No price found.');
-                            
+
                             $('#resultResponse').text(response.length+' result found.');
-                            
+
                             if (response.length > 0 && response.length < 2) {
                                 fetchedService(response[0])
                             }else{
                                 var text = '';
-                                $.each(response, function (index, value) { 
+                                $.each(response, function (index, value) {
                                     text += `<div class="imgContainer">
                                                 <input type="radio" id="image_`+value.id+`" class="image-radio" name="multi_img">
                                                 <label for="image_`+value.id+`">
@@ -238,15 +257,15 @@
                                     html: true,
                                     text: text,
                                 };
-    
+
                                 swal(options);
                             }
-                        
+
                         },
                         error: function (jqXhr) {
                             var errorResponse = $.parseJSON(jqXhr.responseText);
                             $(".error-span").text('')
-                            
+
                             $.each(errorResponse.errors, function (key, value) {
                                 var y = key.split('.');
                                 if (y.length > 1) {
@@ -258,7 +277,7 @@
                         }
                     });
                 });
-                
+
                 $(document).on('click', '.removePrice', function () {
                     var id = $(this).attr('id');
                     var type = $(this).data('type');
@@ -316,7 +335,7 @@
                                                 text: item.name,
                                             };
                                         });
-                                        
+
                                         return {
                                             results: dynamicOptions
                                         }
@@ -341,7 +360,7 @@
                                                 text: item.name,
                                             };
                                         });
-            
+
                                         return {
                                             results: dynamicOptions
                                         }
@@ -354,7 +373,7 @@
                 });
             });
 
-            function fetchedService(datta) {  
+            function fetchedService(datta) {
                 var gl_id = datta.id;
                 var lii = ` <div class="d-flex justify-content-center gen-quo-div"  id="quotaDiv_`+gl_id+`">
                                 <div class="p-2 gen-quo-div-data" style="width: 100%">
@@ -374,12 +393,12 @@
                                     <div class="d-flex justify-content-between">
                                         <span>Turn Key + Remote</span>
                                         <span>
-                                            Qty: <i id="quota_`+gl_id+`">1</i> 
+                                            Qty: <i id="quota_`+gl_id+`">1</i>
                                         </span>
                                     </div><!-- copy 3 -->
 
                                     <p class="pt-2 d-flex justify-content-center text-danger fw-bold">`+datta.PN+`</p>
-                                    
+
                                     <span id="quoteKeyQty_`+gl_id+`"></span>
                                 </div>
                                 <div class="gen-quo-div-btn">
@@ -406,12 +425,12 @@
                 $(".basPrice").each(function () {
                     var id = $(this).attr('id')
                     var qty = 0;
-                    $('.nextQtyPrice_'+id).each(function () { 
+                    $('.nextQtyPrice_'+id).each(function () {
                         qty += +$(this).text().substr(1);
                     });
                     price += +$(this).text().substr(1) + qty;
                 })
-                
+
                 console.log(price);
 
                 $(".servicesEf").each(function () {
@@ -433,8 +452,8 @@
                 console.log(price);
                 $("#subtotal").text(price.toFixed(2))
             }
-            
-            function getServices(id) {  
+
+            function getServices(id) {
                 $("#service_id").select2({
                     placeholder: '~~ Select Service ~~',
                     width: "100%",
@@ -449,7 +468,7 @@
                                     text: item.name,
                                 };
                             });
-                            
+
                             return {
                                 results: dynamicOptions
                             }
