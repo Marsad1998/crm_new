@@ -3658,3 +3658,93 @@
   1 => 'BUICK',
   2 => 'VERANO',
 )  
+[2023-11-21 17:37:53] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 17:37:53] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 17:37:53] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 17:37:53] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 17:37:53] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 17:37:53] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 17:37:53] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 17:37:53] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 17:37:53] local.ALERT: array (
+  0 => '2012-2017',
+  1 => 'BUICK',
+  2 => 'VERANO',
+)  
+[2023-11-21 17:38:36] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 17:38:36] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 17:38:36] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 17:38:36] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 17:38:36] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 17:38:36] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 17:38:36] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 17:38:36] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 17:38:36] local.ALERT: array (
+  0 => '2012-2017',
+  1 => 'BUICK',
+  2 => 'VERANO',
+)  
