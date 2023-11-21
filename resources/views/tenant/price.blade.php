@@ -195,7 +195,168 @@
                             <li></li>
                         </ul>
                     </div> --}}
-                    
+
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col-2">
+                        <div class="dropdown" id="filterDropdown">
+                            <button class="btn btn-primary mx-2 btn-c dropdown-toggle filterOptDropDBtn" tabindex="0" aria-controls="priceManager" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><span><i class="fas fa-filter"></i> Filters</span></button>
+                            <ul class="dropdown-menu br-radius-10 filterOptDropDMenu" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                    <div class="card-header padding-10">Filter Options</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12 col-lg-4 col-xl-4">
+                                                <div class="form-group">
+                                                    <label for="make_1">Make:</label>
+                                                    <select name="make_1" id="make_1" class="form-control">
+                                                        <option value="">Select option</option>
+                                                        @foreach($makes as $make)
+                                                           <option value="{{$make->name}}">{{$make->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div><!-- form-group -->
+                                            </div><!-- col-1 -->
+                                            <div class="col-md-12 col-lg-4 col-xl-4">
+                                                <div class="form-group">
+                                                    <label for="make_2">Make:</label>
+                                                    <select name="make_2" id="make_2" class="form-control">
+                                                    </select>
+                                                </div><!-- form-group -->
+                                            </div><!-- col-2 -->
+                                            <div class="col-md-12 col-lg-4 col-xl-4">
+                                                <div class="form-group">
+                                                    <label for="year">Year:</label>
+                                                    <input type="number" name="year" id="year" class="form-control" placeholder="2023">
+                                                </div><!-- form-group -->
+                                            </div><!-- col-3 -->
+                                        </div><!-- row -->
+                                        <div class="row">
+                                            <div class="col-md-12 col-lg-6 col-xl-6">
+                                                <div class="form-group">
+                                                    <label for="service">Service:</label>
+                                                    <select name="service" id="service" class="form-control">
+                                                        <option value="">Select option</option>
+                                                        @foreach($services as $service)
+                                                            <option value="{{$service->name}}">{{$service->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div><!-- form-group -->
+                                            </div><!-- col-1 -->
+                                            <div class="col-md-12 col-lg-6 col-xl-6">
+                                                <div class="form-group">
+                                                    <label for="key_type">Key Type:</label>
+                                                    <select name="key_type" id="key_type" class="form-control">
+                                                        <option value="">Select option</option>
+                                                        @foreach($keyType as $type)
+                                                            <option value="{{$type->name}}">{{$type->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div><!-- form-group -->
+                                            </div><!-- col-2 -->
+                                        </div><!-- row -->
+                                        <div class="row">
+                                            <div class="col-md-12 col-lg-6 col-xl-6">
+                                                <div class="form-group">
+                                                    <label>Comfort Access:</label>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <input type="checkbox" name="comfort_accessYes" id="comfort_accessYes"> <label for="comfort_accessYes">Yes</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" name="comfort_accessNo" id="comfort_accessNo"> <label for="comfort_accessNo">No</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" name="comfort_accessUnset" id="comfort_accessUnset"> <label for="comfort_accessUnset">Unset</label>
+                                                        </div>
+                                                        <div></div><div></div>
+                                                    </div>
+                                                </div><!-- form-group -->
+                                            </div><!-- col-1 -->
+                                            <div class="col-md-12 col-lg-6 col-xl-6">
+                                                <div class="form-group">
+                                                    <label>Manufacturer:</label>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <input type="checkbox" name="manufacturer_oem" id="manufacturer_oem"> <label for="manufacturer_oem">OEM</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" name="manufacturer_aftermarket" id="manufacturer_aftermarket"> <label for="manufacturer_aftermarket">Aftermarket</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" name="manufacturer_unset" id="manufacturer_unset"> <label for="manufacturer_unset">Unset</label>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- form-group -->
+                                            </div><!-- col-2 -->
+                                        </div><!-- row -->
+                                        <div class="row">
+                                            <div class="col-md-12 col-lg-4 col-xl-4">
+                                                <div class="form-group">
+                                                    <label>AKL:</label>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <input type="checkbox" name="akl_Yes" id="akl_Yes"> <label for="akl_Yes">Yes</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" name="akl_No" id="akl_No"> <label for="akl_No">No</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" name="akl_Unset" id="akl_Unset"> <label for="akl_Unset">Unset</label>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- form-group -->
+                                            </div><!-- col-1 -->
+                                            <div class="col-md-12 col-lg-4 col-xl-4">
+                                                <div class="form-group">
+                                                    <label>Has notes:</label>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <input type="checkbox" name="has_notesYes" id="has_notesYes"> <label for="has_notesYes">Yes</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" name="has_notesNo" id="has_notesNo"> <label for="has_notesNo">No</label>
+                                                        </div>
+                                                        <div></div><div></div>
+                                                    </div>
+                                                </div><!-- form-group -->
+                                            </div><!-- col-2 -->
+                                            <div class="col-md-12 col-lg-4 col-xl-4">
+                                                <div class="form-group">
+                                                    <label for="has_image">Has image:</label>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <input type="checkbox" name="has_imageYes" id="has_imageYes"> <label for="has_imageYes">Yes</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="checkbox" name="has_imageNo" id="has_imageNo"> <label for="has_imageNo">No</label>
+                                                        </div>
+                                                        <div></div><div></div>
+                                                    </div>
+                                                </div><!-- form-group -->
+                                            </div><!-- col-3 -->
+                                        </div><!-- row -->
+                                        <div class="form-group">
+                                            <p>
+                                                <label for="price_range">Price Range:</label>
+                                                <input type="text" id="price_range" readonly style="border:0; color:#51B3DE; font-weight:bold;">
+                                            </p>
+                                            <div id="slider-range"></div>
+                                        </div><!-- form-group -->
+                                    </div>
+                                    <div class="card-footer padding-10 d-flex justify-content-end">
+                                        <div>
+                                            <button type="button" class="btn btn-light">Reset</button>
+                                            <button type="button" class="btn btn-primary btn-apply">Apply</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card-body table-responsive mt-3">
                     <table class="table table-striped table-hover table-bordered align-middle" id="priceManager">
                         <thead class="table-primary">
@@ -382,7 +543,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Filter Option modal START -->
     <div class="modal animate__animated animate__zoomIn animate__fasters" id="filter_optionsModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
@@ -539,7 +700,24 @@
 
                 initSelect(1);
                 initDetail(1);
-                
+
+
+                $(document).on('change', 'select[name=make_1]', function () {
+                    var data = $(this).val();
+                    // console.log(data)
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('price.get-models') }}",
+                        data: {
+                            make_id: data
+                        },
+                        dataType: "html",
+                        success: function (response) {
+                            $("#make_2").html(response)
+                        }
+                    });
+                });
+
                 //show image on hover
                 $('.icon-container').hover(
                     function () {
@@ -568,19 +746,19 @@
                             console.log(response);
                             $("#copy_data").val('');
                             $("#pastVehicle").modal('hide');
-                            
+
                             $("#vehicle_inform").empty();
                             x = 2;
                             for (var i = 0; i < response.length - 1; i++) {
 
                                 console.log(response[+i+1].make);
-                                
+
                                 setTimeout(() => {
                                     var option = new Option(response[+i+1].make, response[+i+1].make, false, true);
                                     $("#make_id_"+(+i+1)).append(option).trigger('change');
                                 }, 100);
 
-                                $("#model_id_"+(+i+1)).val(response[+i+1].model)                                
+                                $("#model_id_"+(+i+1)).val(response[+i+1].model)
                                 $("#year_from_"+(+i+1)).val(response[+i+1].year_from)
                                 $("#year_to_"+(+i+1)).val(response[+i+1].year_to)
                                 addRow();
@@ -590,12 +768,138 @@
                     });
                 });
 
+                let abcc = "asd"
                 var priceManager = $("#priceManager").DataTable({
+
+                    initComplete: function () {
+                        // Add an event listener for the filter input
+                        $(".btn-applywer").on("click",  function (){
+
+                            var makeValue = $("#make_1").val();
+                            var modelValue = $("#make_2").val();
+                            var yearValue = $("#year").val();
+                            var serviceValue = $("#service").val();
+                            var key_typeValue = $("#key_type").val();
+                            var comfort_accessYes = $("#comfort_accessYes").prop("checked");
+                            var comfort_accessNo = $("#comfort_accessNo").prop("checked");
+                            var comfort_accessUnset = $("#comfort_accessUnset").prop("checked");
+                            var comfortAccess = [];
+                            if(comfort_accessYes){
+                                comfortAccess.push("Yes")
+                            }
+                            if(comfort_accessNo){
+                                comfortAccess.push("No")
+                            }
+                            if(comfort_accessUnset){
+                                comfortAccess.push("^$")
+                            }
+
+
+                            var manufacturer = [];
+                            var manufacturerOem = $("#manufacturer_oem").prop("checked");
+                            var manufacturer_aftermarket = $("#manufacturer_aftermarket").prop("checked");
+                            var manufacturer_unset = $("#manufacturer_unset").prop("checked");
+
+                            if(manufacturerOem){
+                                manufacturer.push("OEM")
+                            }
+                            if(manufacturer_aftermarket){
+                                manufacturer.push("After Market")
+                            }
+                            if(manufacturer_unset){
+                                manufacturer.push("^$")
+                            }
+
+                            var akl = [];
+                            var akl_Yes = $("#akl_Yes").prop("checked");
+                            var akl_No = $("#akl_No").prop("checked");
+                            var akl_Unset = $("#akl_Unset").prop("checked");
+
+                            if(akl_Yes){
+                                akl.push("Yes")
+                            }
+                            if(akl_No){
+                                akl.push("No")
+                            }
+                            if(akl_Unset){
+                                akl.push("^$")
+                            }
+
+                            var hasNotes = [];
+                            var has_notesYes = $("#has_notesYes").prop("checked");
+                            var has_notesNo = $("#has_notesNo").prop("checked");
+
+                            if(has_notesYes){
+                                hasNotes.push(".+")
+                            }
+                            if(has_notesNo){
+                                hasNotes.push("^$") // to check if empty
+                            }
+
+                            var hasImages = [];
+                            var has_imagesYes = $("#has_imageYes").prop("checked");
+                            var has_imagesNo = $("#has_imageNo").prop("checked");
+
+                            if(has_imagesYes){
+                                hasImages.push(".+")
+                            }
+                            if(has_imagesNo){
+                                hasImages.push("^$") // to check if empty
+                            }
+
+                            if(makeValue){
+                                priceManager.columns(1).search(makeValue).draw();
+                            }
+                            if(modelValue){
+                                priceManager.columns(2).search(modelValue).draw();
+                            }
+                            if(serviceValue){
+                                priceManager.columns(3).search(serviceValue).draw();
+                            }
+                            if(yearValue){
+                                priceManager.columns(4).search(yearValue).draw();
+                            }
+                            if(key_typeValue){
+                                priceManager.columns(6).search(key_typeValue).draw();
+                            }
+                            if(comfortAccess){
+                                priceManager.columns(7).search(comfortAccess.join("|"), true, false).draw();
+                            }
+                            if(manufacturer){
+                                priceManager.columns(8).search(manufacturer.join("|"), true, false).draw();
+                            }
+                            if(akl){
+                                priceManager.columns(9).search(akl.join("|"), true, false).draw();
+                            }
+                            if(hasNotes){
+                                priceManager.columns(10).search(hasNotes.join("|"), true, false).draw();
+                            }
+                            if(hasImages){
+                                priceManager.columns(12).search(hasImages.join("|"), true, false).draw();
+                            }
+
+                            var minPrice = 300;
+                            var maxPrice = 5000;
+                            var price = $("#price_range").val();
+
+
+                            priceManager.columns(11).search(minPrice + '-' + maxPrice).draw();
+
+                        })
+
+
+                    },
+
+
+
                     dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
-                    stateSave: true,
+                    stateSave: false,
                     "ajax": {
                         url: "{{ route('price.show') }}", // json datasource
                         type: 'post', // method  , by default get
+                        data:{
+                            name: abcc
+                        }
                     },
                     'order': [],
                     processing: true,
@@ -618,159 +922,13 @@
                                     $(".icon-button-bottom").click();
                                 });
                                 $("#prcieForm").attr('action', "{{ route('price.create') }}");
-                                
+
                                 $("#priceManagerModal").modal('show')
                             }
                         },
                         {
                             className: "mx-2 btn-c filterOptDropDBtnPar",
-                            text: '<div class="dropdown" id="filterDropdown">\
-                        <button class="btn btn-primary mx-2 btn-c dropdown-toggle filterOptDropDBtn" tabindex="0" aria-controls="priceManager" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><span><i class="fas fa-filter"></i> Filters</span></button>\
-                        <ul class="dropdown-menu br-radius-10 filterOptDropDMenu" aria-labelledby="dropdownMenuButton1">\
-                            <li>\
-                                <div class="card-header padding-10">Filter Options</div>\
-                                <div class="card-body">\
-                                    <div class="row">\
-                                        <div class="col-md-12 col-lg-4 col-xl-4">\
-                                            <div class="form-group">\
-                                                <label for="make_1">Make:</label>\
-                                                <select name="make_1" id="make_1" class="form-control">\
-                                                    <option value="">Select option</option>\
-                                                </select>\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-1 -->\
-                                        <div class="col-md-12 col-lg-4 col-xl-4">\
-                                            <div class="form-group">\
-                                                <label for="make_2">Make:</label>\
-                                                <select name="make_2" id="make_2" class="form-control">\
-                                                    <option value="">Select option</option>\
-                                                </select>\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-2 -->\
-                                        <div class="col-md-12 col-lg-4 col-xl-4">\
-                                            <div class="form-group">\
-                                                <label for="year">Year:</label>\
-                                                <input type="text" name="year" id="year" class="form-control" placeholder="2023">\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-3 -->\
-                                    </div><!-- row -->\
-                                    <div class="row">\
-                                        <div class="col-md-12 col-lg-6 col-xl-6">\
-                                            <div class="form-group">\
-                                                <label for="service">Service:</label>\
-                                                <select name="service" id="service" class="form-control">\
-                                                    <option value="">Select option</option>\
-                                                </select>\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-1 -->\
-                                        <div class="col-md-12 col-lg-6 col-xl-6">\
-                                            <div class="form-group">\
-                                                <label for="key_type">Key Type:</label>\
-                                                <select name="key_type" id="key_type" class="form-control">\
-                                                    <option value="">Select option</option>\
-                                                </select>\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-2 -->\
-                                    </div><!-- row -->\
-                                    <div class="row">\
-                                        <div class="col-md-12 col-lg-6 col-xl-6">\
-                                            <div class="form-group">\
-                                            <label>Comfort Access:</label>\
-                                            <div class="d-flex justify-content-between">\
-                                                    <div>\
-                                                        <input type="checkbox" name="comfort_accessYes" id="comfort_accessYes"> <label for="comfort_accessYes">Yes</label>\
-                                                    </div>\
-                                                    <div>\
-                                                        <input type="checkbox" name="comfort_accessNo" id="comfort_accessNo"> <label for="comfort_accessNo">No</label>\
-                                                    </div>\
-                                                    <div>\
-                                                        <input type="checkbox" name="comfort_accessUnset" id="comfort_accessUnset"> <label for="comfort_accessUnset">Unset</label>\
-                                                    </div>\
-                                                    <div></div><div></div>\
-                                            </div>\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-1 -->\
-                                        <div class="col-md-12 col-lg-6 col-xl-6">\
-                                            <div class="form-group">\
-                                                <label>Manufacturer:</label>\
-                                                <div class="d-flex justify-content-between">\
-                                                        <div>\
-                                                            <input type="checkbox" name="manufacturer_oem" id="manufacturer_oem"> <label for="manufacturer_oem">OEM</label>\
-                                                        </div>\
-                                                        <div>\
-                                                            <input type="checkbox" name="manufacturer_aftermarket" id="manufacturer_aftermarket"> <label for="manufacturer_aftermarket">Aftermarket</label>\
-                                                        </div>\
-                                                        <div>\
-                                                            <input type="checkbox" name="manufacturer_unset" id="manufacturer_unset"> <label for="manufacturer_unset">Unset</label>\
-                                                        </div>\
-                                                </div>\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-2 -->\
-                                    </div><!-- row -->\
-                                    <div class="row">\
-                                        <div class="col-md-12 col-lg-4 col-xl-4">\
-                                            <div class="form-group">\
-                                                <label>AKL:</label>\
-                                                <div class="d-flex justify-content-between">\
-                                                    <div>\
-                                                        <input type="checkbox" name="akl_Yes" id="akl_Yes"> <label for="akl_Yes">Yes</label>\
-                                                    </div>\
-                                                    <div>\
-                                                        <input type="checkbox" name="akl_No" id="akl_No"> <label for="akl_No">No</label>\
-                                                    </div>\
-                                                    <div>\
-                                                        <input type="checkbox" name="akl_Unset" id="akl_Unset"> <label for="akl_Unset">Unset</label>\
-                                                    </div>\
-                                            </div>\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-1 -->\
-                                        <div class="col-md-12 col-lg-4 col-xl-4">\
-                                            <div class="form-group">\
-                                                <label>Has notes:</label>\
-                                                <div class="d-flex justify-content-between">\
-                                                    <div>\
-                                                        <input type="checkbox" name="has_notesYes" id="has_notesYes"> <label for="has_notesYes">Yes</label>\
-                                                    </div>\
-                                                    <div>\
-                                                        <input type="checkbox" name="has_notesNo" id="has_notesNo"> <label for="has_notesNo">No</label>\
-                                                    </div>\
-                                                    <div></div><div></div>\
-                                            </div>\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-2 -->\
-                                        <div class="col-md-12 col-lg-4 col-xl-4">\
-                                            <div class="form-group">\
-                                                <label for="has_image">Has image:</label>\
-                                                <div class="d-flex justify-content-between">\
-                                                    <div>\
-                                                        <input type="checkbox" name="has_imageYes" id="has_imageYes"> <label for="has_imageYes">Yes</label>\
-                                                    </div>\
-                                                    <div>\
-                                                        <input type="checkbox" name="has_imageNo" id="has_imageNo"> <label for="has_imageNo">No</label>\
-                                                    </div>\
-                                                    <div></div><div></div>\
-                                            </div>\
-                                            </div><!-- form-group -->\
-                                        </div><!-- col-3 -->\
-                                    </div><!-- row -->\
-                                    <div class="form-group">\
-                                        <p>\
-                                            <label for="price_range">Price Range:</label>\
-                                            <input type="text" id="price_range" readonly style="border:0; color:#51B3DE; font-weight:bold;">\
-                                        </p>\
-                                        <div id="slider-range"></div>\
-                                    </div><!-- form-group -->\
-                                </div>\
-                                <div class="card-footer padding-10 d-flex justify-content-end">\
-                                    <div>\
-                                        <button type="button" class="btn btn-light">Reset</button>\
-                                        <button type="button" class="btn btn-primary">Apply</button>\
-                                    </div>\
-                                </div>\
-                            </li>\
-                            <li></li>\
-                        </ul>\
-                    </div>',
+                            text: '',
                         },
                         {
                             className: "mx-2 btn-c",
@@ -780,7 +938,8 @@
                             }
                         },
                     ],
-                    columns: [{
+                    columns: [
+                        {
                             data: 'id'
                         },
                         {
@@ -823,6 +982,23 @@
                             data: 'action'
                         },
                     ]
+                });
+
+                $(".btn-apply").on("click", function () {
+                    // ... (your existing filter logic)
+
+                    // Update makeValue
+                    var makeValue = $("#make_1").val();
+
+                    // Modify the DataTables ajax.data just before making the Ajax request
+                    priceManager.ajax.params(function (params) {
+                        console.log(params)
+                        params.data.makeValue = makeValue;
+                        return params;
+                    });
+
+                    // Redraw the DataTable
+                    priceManager.ajax.reload();
                 });
 
                 $(document).on('hidePrevented.bs.modal', function () {

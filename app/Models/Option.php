@@ -19,6 +19,10 @@ class Option extends Model
         return $this->hasMany(OptionValue::class);
     }
 
+    public function getKeys(){
+        return $this->hasMany(OptionValue::class)->where("option_id", 4);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll(['*']);

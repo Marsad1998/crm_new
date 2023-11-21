@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Makes;
 use App\Models\Models;
+use App\Models\Option;
 use App\Models\Service;
 use App\Models\OptionValue;
 use Illuminate\Support\Str;
@@ -17,7 +18,12 @@ class PriceManagerController extends Controller
 {
     public function index()
     {
-        return view('tenant.price');
+
+        $makes = Makes::get();
+        $services = Service::get();
+        $keyType = OptionValue::where("option_id", 4)->get();
+
+        return view('tenant.price', compact('makes', 'services', 'keyType'));
     }
 
     public function makes(Request $request)
@@ -27,6 +33,15 @@ class PriceManagerController extends Controller
             $row->where('name', 'LIKE', '%' . $term . '%');
         })->get();
     }
+
+    public function getModel(Request $request)
+    {
+        $make = Makes::whereName($request->make_id)->first();
+        $models = Models::where("make_id", $make->id)->get();
+        return view('tenant.makenmodel.ajax.model-option', compact('models'))->render();
+    }
+
+
 
     public function models(Request $request, $id)
     {
@@ -178,9 +193,16 @@ class PriceManagerController extends Controller
         return response()->json(['msg' => 'Price Added Successfully', 'sts' => 'success']);
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        $data = PriceManager::with(['models', 'makes'])->get();
+//        dd( $request->all() );
+        $query = PriceManager::query();
+        if($request->columns[11]["search"]["value"]){
+            $amount = $request->columns[11]["search"]["value"];
+            $explodeAmount = explode("-", $amount);
+            $query->where("amount", ">=", $explodeAmount[0])->where("amount", "<=", $explodeAmount[1]);
+        }
+        $data = $query->with(['models', 'makes'])->get();
         return Datatables::of($data)
             ->addColumn('model_id', function ($row) {
                 return !is_null($row->models) ? $row->models->name : 'N/A';
