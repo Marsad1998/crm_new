@@ -7,7 +7,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">Activity Logs</h3>
+            <h3 class="page-heading">Activity Logs</h3>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive mt-3">

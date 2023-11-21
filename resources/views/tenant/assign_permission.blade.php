@@ -8,7 +8,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 text-black"><i class="fas fa-cogs"></i> Assign Permissions</h3>
+            <h3 class="page-heading"><i class="fas fa-cogs"></i> Assign Permissions</h3>
 
             <div class="row row-sm">
                 <div class="col-sm-12">
@@ -57,7 +57,7 @@
                                                 <td class="bg-info"> {{ $item->model_name }} </td>
                                                 @foreach (Permission::where('model_name', $item->model_name)->get() as $per)
                                                     <td>
-                                                        <div class="d-flex justify-content-between"> 
+                                                        <div class="d-flex justify-content-between">
                                                             <label for="permission_{{$per->id}}">{{ $per->name }}</label>
                                                             <span>
                                                                 <input type="checkbox" class="permission" id="permission_{{$per->id}}" value="{{$per->id}}">
@@ -196,7 +196,7 @@
                                 $.each(response, function(i, value) {
                                     $("#permission_" + value.id).prop('checked', true)
                                 });
-                            }, 
+                            },
                             error: function (response) {
                                 swal("Oops", response.responseJSON.message, "error");
                             }

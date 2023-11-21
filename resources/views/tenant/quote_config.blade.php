@@ -8,7 +8,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">
+            <h3 class="page-heading">
                 Quote Configurator (Set Fields for Price Manager & Quote Gen)
             </h3>
             <div class="card">
@@ -44,23 +44,28 @@
                         </div>
                     </form>
 
+
+                </div> {{-- body --}}
+            </div> {{-- card --}}
+
+            <div class="card mt-3">
+                <div class="card-body">
                     <div class="table-responsive mt-5">
                         <table class="table table-striped table-hover table-bordered align-middle" id="configTbl">
                             <thead class="table-primary">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Category</th>
-                                    <th>Service</th>
-                                    <th>Action</th>
-                                </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Category</th>
+                                <th>Service</th>
+                                <th>Action</th>
+                            </tr>
                             </thead>
                             <tbody>
                             </tbody>
                         </table>
                     </div>
-                </div> {{-- body --}}
-            </div> {{-- card --}}
-
+                </div>
+            </div>
         </div>
     </div>
     @push('script')
@@ -212,7 +217,7 @@
                 $(document).on("click", ".delete", function() {
                     var id = $(this).attr('id');
                     $.ajax({
-                        type: "POST", 
+                        type: "POST",
                         url: "{{ route('quote.delete', ['id' => ':id']) }}".replace(':id', id),
                         dataType: "json",
                         success: function(response) {
@@ -224,7 +229,7 @@
                                 time: 2000,
                             });
                             configTbl.ajax.reload(null, false);
-                        }, 
+                        },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
                         }
@@ -244,7 +249,7 @@
                                 results: $.map(data, function (item) {
                                     return {
                                         text: item.name,
-                                        "children" : $.map(item.services, function (it) {  
+                                        "children" : $.map(item.services, function (it) {
                                             return {
                                                 id: it.id,
                                                 text: it.name,
@@ -260,11 +265,11 @@
                     var id = $(this).val();
                     var text = $("#category_services option:selected").text();
                     $("#serviceName").text(text.trim())
-                    
+
                     $("#fields").val(null).trigger('change');
                     $(".sortable").empty();
                     getData(id);
-                    
+
                 });
 
                 $(document).on("click", ".edit", function() {
@@ -272,9 +277,9 @@
                     getData(id);
                 });
 
-                function getData(id) {  
+                function getData(id) {
                     $.ajax({
-                        type: "POST", 
+                        type: "POST",
                         url: "{{ route('quote.edit', ['id' => ':id']) }}".replace(':id', id),
                         dataType: "json",
                         success: function(response) {
@@ -282,7 +287,7 @@
                             if (response.length > 0) {
                                 var option = new Option(response[0].service.name, response[0].service.id, false, true);
                                 $("#category_services").append(option).trigger('change');
-    
+
                                 $("#fields").val(null).trigger('change');
                                 var rowDa = "";
 
