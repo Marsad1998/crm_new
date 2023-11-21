@@ -2,29 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\QuoteSearch;
+use App\Models\Lead;
 use App\Models\Option;
-use App\Models\Category;
-use App\Models\OptionValue;
-use App\Models\PriceManager;
-use App\Models\QuoteConfig;
+use App\Models\CallLog;
 use App\Models\Service;
+use App\Models\Category;
+use App\Models\LeadItem;
+use App\Models\OptionValue;
+use App\Models\QuoteConfig;
+use Illuminate\Support\Str;
+use App\Models\PriceManager;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use App\Http\Requests\QuoteSearch;
 use Illuminate\Support\Facades\Crypt;
 
 class QuoteConfigController extends Controller
 {
     public function config()
     {
-        return view('tenant.quote_config');
+        return view('tenant.quotes.create');
     }
 
     public function index()
     {
         $categories = Category::has('services')->get();
+        return view('tenant.quotes.create', compact('categories'));
+    }
 
-        return view('tenant.quote_generator', compact('categories'));
+    public function view()
+    {
+        return view('tenant.quotes.index');
     }
 
     public function service(Request $request, $id)
@@ -167,7 +175,10 @@ class QuoteConfigController extends Controller
             if ($action != "") {
                 $li .= '<div class="d-flex justify-content-center servicesEf gen-quo-div" id="quo_div_' . $option->option->id . '" data-operator="' . $option->option->operator . '" data-amount="' . $option->amount . '">
                             <div class="p-2 gen-quo-div-data">
-                                <strong><span>' . $option->option->name . '</span>: <span>' . $option->name . '</span></strong><br>
+                                <strong>
+                                    <span>' . $option->option->name . '</span>: <span>' . $option->name . '</span>
+                                </strong>
+                                <br>
                                 ' . $action . '
                             </div>
                             <div class="gen-quo-div-btn">
@@ -287,9 +298,99 @@ class QuoteConfigController extends Controller
             ->make(true);
     }
 
+    public function load_index()
+    {
+        $data = CallLog::with('lead', 'lead_items', 'user', 'model.models')->get();
+        return Datatables::of($data)
+            ->addColumn('phone', function ($row) {
+                if (!is_null($row->lead)) {
+                    return $row->lead->phone;
+                } else {
+                    return 'N/A';
+                }
+            })
+            ->addColumn('name', function ($row) {
+                if (!is_null($row->lead)) {
+                    return $row->lead->name;
+                } else {
+                    return 'N/A';
+                }
+            })
+            ->addColumn('last_quoted', function ($row) {
+                if (!is_null($row->lead)) {
+                    return '$' . number_format($row->lead->last_quoted, 2);
+                } else {
+                    return 'N/A';
+                }
+            })
+            ->addColumn('notes', function ($row) {
+                if (!is_null($row->lead)) {
+                    return '<a title="' . $row->lead->notes . '">' . Str::limit($row->lead->notes, 15) . '</a>';
+                } else {
+                    return 'N/A';
+                }
+            })
+            ->addColumn('vehicle', function ($row) {
+                // return $;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['notes'])
+            // ->with('models', $models)
+            ->make(true);
+    }
+
     public function search_call(Request $request)
     {
         return $request;
+    }
+
+    public function save_lead(Request $request)
+    {
+        return $request;
+        $item = [
+            'phone' => $request->phone_number,
+            'name' => $request->caller_name,
+            'last_quoted' => $request->sub_total,
+            'notes' => $request->notes,
+        ];
+
+        $res1 = Lead::create($item);
+
+        $options = $request->options;
+        $custom_price = [
+            'service' => $request->service_id,
+            'make' => $request->make,
+            'model' => $request->model,
+            'year' => $options['year'],
+            // 'remote' => $options[''],
+            'key_type_id' => $options['type-of-key'],
+            'oem' => $options['key-manfacturer'],
+            'pts' => $options['does-the-vehicle-use-push-to-start-or-knob-turn-to-start'],
+            'akl' => $options['has-the-customer-lost-all-the-spare-keys'],
+        ];
+
+        foreach ($request->model_price_id as $x => $value) {
+            $lead_items = [
+                'lead_id' => $res1->id,
+                'price_id' => $value,
+                // 'type' => $request,
+                'qty' => $request->model_qty[$x],
+            ];
+
+            LeadItem::create($lead_items);
+        }
+
+        $call_log = [
+            'lead_id' => $res1->id,
+            'user_id' => auth()->user()->id,
+            'status' => $request->status,
+            'incoming' => $request->call_type,
+            'notes' => $request->notes,
+        ];
+
+        CallLog::create($call_log);
+
+        return response()->json(['msg' => 'Quote Saved Successfully', 'sts' => 'success']);
     }
 
     public function create(Request $request)

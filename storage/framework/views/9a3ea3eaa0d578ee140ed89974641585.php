@@ -1,10 +1,10 @@
-@php
+<?php
     use Spatie\Permission\Models\Role;
     use Illuminate\Support\Facades\Auth;
-@endphp
-@extends('layouts.main')
+?>
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <div class="container-fluid">
         <div class="inner-body">
             <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">Price Manager</h3>
@@ -42,159 +42,7 @@
                 </style>
 
                     <!-- DROPDOWN Menu on regular button Romove -->
-                    {{-- <div class="dropdown" id="filterDropdown">
-                        <button class="btn btn-primary mx-2 btn-c dropdown-toggle dropdown-btn" tabindex="0" aria-controls="priceManager" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><span><i class="fas fa-filter"></i> Filters</span></button>
-                        <ul class="dropdown-menu br-radius-10" aria-labelledby="dropdownMenuButton1" style="width:auto">
-                            <li>
-                                <div class="card-header padding-10">Filter Options</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label for="make_1">Make:</label>
-                                                <select name="make_1" id="make_1" class="form-control">
-                                                    <option value="">Select option</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label for="make_2">Make:</label>
-                                                <select name="make_2" id="make_2" class="form-control">
-                                                    <option value="">Select option</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label for="year">Year:</label>
-                                                <input type="text" name="year" id="year" class="form-control" placeholder="2023">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-6 col-xl-6">
-                                            <div class="form-group">
-                                                <label for="service">Service:</label>
-                                                <select name="service" id="service" class="form-control">
-                                                    <option value="">Select option</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-6 col-xl-6">
-                                            <div class="form-group">
-                                                <label for="key_type">Key Type:</label>
-                                                <select name="key_type" id="key_type" class="form-control">
-                                                    <option value="">Select option</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-6 col-xl-6">
-                                            <div class="form-group">
-                                                <label>Comfort Access:</label>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <input type="checkbox" name="comfort_accessYes" id="comfort_accessYes"> <label for="comfort_accessYes">Yes</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="comfort_accessNo" id="comfort_accessNo"> <label for="comfort_accessNo">No</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="comfort_accessUnset" id="comfort_accessUnset"> <label for="comfort_accessUnset">Unset</label>
-                                                    </div>
-                                                    <div></div><div></div><div></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-6 col-xl-6">
-                                            <div class="form-group">
-                                                <label>Manufacturer:</label>
-                                                <div class="d-flex justify-content-between">
-                                                        <div>
-                                                            <input type="checkbox" name="manufacturer_oem" id="manufacturer_oem"> <label for="manufacturer_oem">OEM</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="checkbox" name="manufacturer_aftermarket" id="manufacturer_aftermarket"> <label for="manufacturer_aftermarket">Aftermarket</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="checkbox" name="manufacturer_unset" id="manufacturer_unset"> <label for="manufacturer_unset">Unset</label>
-                                                        </div>
-                                                        <div></div><div></div><div></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label>AKL:</label>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <input type="checkbox" name="akl_Yes" id="akl_Yes"> <label for="akl_Yes">Yes</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="akl_No" id="akl_No"> <label for="akl_No">No</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="akl_Unset" id="akl_Unset"> <label for="akl_Unset">Unset</label>
-                                                    </div>
-                                                    <div></div><div></div><div></div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label>Has notes:</label>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <input type="checkbox" name="has_notesYes" id="has_notesYes"> <label for="has_notesYes">Yes</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="has_notesNo" id="has_notesNo"> <label for="has_notesNo">No</label>
-                                                    </div>
-                                                    <div></div><div></div><div></div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label for="has_image">Has image:</label>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <input type="checkbox" name="has_imageYes" id="has_imageYes"> <label for="has_imageYes">Yes</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="has_imageNo" id="has_imageNo"> <label for="has_imageNo">No</label>
-                                                    </div>
-                                                    <div></div><div></div><div></div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <p>
-                                            <label for="price_range">Price Range:</label>
-                                            <input type="text" id="price_range" readonly style="border:0; color:#51B3DE; font-weight:bold;">
-                                        </p>
-                                        <div id="slider-range"></div>
-                                    </div>
-                                </div>
-                                <div class="card-footer padding-10 d-flex justify-content-end">
-                                    <div>
-                                        <button type="button" class="btn btn-light">Reset</button>
-                                        <button type="button" class="btn btn-primary">Apply</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li></li>
-                        </ul>
-                    </div> --}}
+                    
                     
                 <div class="card-body table-responsive mt-3">
                     <table class="table table-striped table-hover table-bordered align-middle" id="priceManager">
@@ -221,11 +69,11 @@
                     </table>
                 </div>
 
-            </div> {{-- card --}}
+            </div> 
         </div>
     </div>
 
-    {{-- Add Price Modal --}}
+    
     <div class="modal animate__animated animate__zoomIn animate__fasters" id="priceManagerModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             
@@ -240,7 +88,7 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('price.create') }}" id="prcieForm" method="post">
+                    <form action="<?php echo e(route('price.create')); ?>" id="prcieForm" method="post">
                     <div style="border: 1px solid black; padding: 20px; border-radius: 5px;">
                         <div class="row">
                             <div class="col-sm-6">
@@ -307,7 +155,7 @@
                                     <label class="form-check-label" for="afterRadio_1">Aftermarket</label>
                                 </div>
                             </div>
-                        </div> {{-- row --}}
+                        </div> 
                         <div class="row mt-4">
                             <div class="col-sm-8">
                                 <div class="row non_vehicle_1">
@@ -319,7 +167,7 @@
                                     <div class="col-sm-2 d-flex justify-content-center form-check form-switch">
                                         <input class="form-check-input switch-c" type="checkbox" id="akl_1" name="akl[0]" value="1">
                                     </div>
-                                </div> {{-- inner row --}}
+                                </div> 
                                 <div class="row">
                                     <div class="col-sm-3 mt-3">
                                         <label for="amount_1">Amount</label>
@@ -329,8 +177,8 @@
                                         <label for="notes_1">Notes</label>
                                         <textarea cols="30" rows="4" class="form-control textarea-c" name="notes[0]" id="notes_1" placeholder="Notes"></textarea>
                                     </div>
-                                </div> {{-- inner row --}}
-                            </div> {{-- outer col --}}
+                                </div> 
+                            </div> 
                             <div class="col-sm-2">
                                 <div class="form-group justify-content-end">
                                     <label for="imgInput">Select Image</label><br>
@@ -341,20 +189,20 @@
                                         <div class="icon-button-bottom" id="1">
                                             <i class="fas fa-times"></i>
                                         </div>
-                                        <img src="{{ global_asset('storage/common/camera_preview.jpg') }}" class="imagePreview" id="img_preveiw_1">
+                                        <img src="<?php echo e(global_asset('storage/common/camera_preview.jpg')); ?>" class="imagePreview" id="img_preveiw_1">
                                     </div>
 
                                     <input type="file" name="file[0]" class="d-none" onchange="readURL(this, '1')" id="imgInput_1">
                                 </div>
-                            </div> {{-- outer col --}}
+                            </div> 
                             <div class="col-sm-2 d-flex justify-content-center align-items-center">
                                 <button type="button" onclick="addRew()" class="addRowVtn btn btn-c btn-primary"><i class="fas fa-plus"></i> Add</button>
                             </div>
-                        </div> {{-- outer row --}}
+                        </div> 
                         
                         <div id="detail_inform"></div>
 
-                    </div> {{-- main div --}}
+                    </div> 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn priceManagerModalclose btn-light">Close</button>
@@ -533,7 +381,7 @@
     </div>
     <!-- Filter Option modal END -->
 
-    @push('script')
+    <?php $__env->startPush('script'); ?>
         <script>
             $(document).ready(function() {
 
@@ -559,7 +407,7 @@
                     var data = $("#copy_data").val();
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('price.paste') }}",
+                        url: "<?php echo e(route('price.paste')); ?>",
                         data: {
                             data: data
                         },
@@ -594,7 +442,7 @@
                     dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
                     stateSave: true,
                     "ajax": {
-                        url: "{{ route('price.show') }}", // json datasource
+                        url: "<?php echo e(route('price.show')); ?>", // json datasource
                         type: 'post', // method  , by default get
                     },
                     'order': [],
@@ -617,7 +465,7 @@
                                     $(this).find('textarea').val('');
                                     $(".icon-button-bottom").click();
                                 });
-                                $("#prcieForm").attr('action', "{{ route('price.create') }}");
+                                $("#prcieForm").attr('action', "<?php echo e(route('price.create')); ?>");
                                 
                                 $("#priceManagerModal").modal('show')
                             }
@@ -897,7 +745,7 @@
                                 $(this).find('textarea').val('');
                                 $(".icon-button-bottom").click();
                             });
-                            $("#prcieForm").attr('action', "{{ route('price.create') }}");
+                            $("#prcieForm").attr('action', "<?php echo e(route('price.create')); ?>");
 
                             notif({
                                 type: response.sts,
@@ -922,7 +770,7 @@
                     var id = $(this).attr('id');
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('price.edit', ['id' => ':id']) }}".replace(':id', $(this).attr('id')),
+                        url: "<?php echo e(route('price.edit', ['id' => ':id'])); ?>".replace(':id', $(this).attr('id')),
                         dataType: "json",
                         success: function(response) {
                             console.log(response);
@@ -963,7 +811,7 @@
                             $("#notes_1").val(response.PN);
                             $("#img_preveiw_1").attr('src', response.image);
                             
-                            $("#prcieForm").attr('action', "{{ route('price.update', ['id' => ':id']) }}".replace(':id', response.id));
+                            $("#prcieForm").attr('action', "<?php echo e(route('price.update', ['id' => ':id'])); ?>".replace(':id', response.id));
                             // $("#name").val(response.name)
                         }, 
                         error: function (response) {
@@ -976,7 +824,7 @@
                     var id = $(this).attr('id');
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('price.delete', ['id' => ':id']) }}".replace(':id', id),
+                        url: "<?php echo e(route('price.delete', ['id' => ':id'])); ?>".replace(':id', id),
                         dataType: "json",
                         success: function(response) {
                             notif({
@@ -1001,7 +849,7 @@
 
                 $(document).on('click', '.icon-button-bottom', function () {  
                     var id = $(this).attr('id')
-                    $('#img_preveiw_'+id).attr('src', "{{ global_asset('storage/common/camera_preview.jpg') }}");
+                    $('#img_preveiw_'+id).attr('src', "<?php echo e(global_asset('storage/common/camera_preview.jpg')); ?>");
                     $('#imgInput_'+id).val('');
                 });
 
@@ -1102,7 +950,7 @@
                                             <label class="form-check-label" for="afterRadio_`+y+`">Aftermarket</label>
                                         </div>
                                     </div>
-                                </div> {{-- row --}}
+                                </div> 
 
                                 <div class="row mt-4">
                                     <div class="col-sm-8">
@@ -1115,7 +963,7 @@
                                             <div class="col-sm-2 d-flex justify-content-center form-check form-switch">
                                                 <input class="form-check-input switch-c" type="checkbox" id="akl_`+y+`" name="akl[`+y+`]">
                                             </div>
-                                        </div> {{-- inner row --}}
+                                        </div> 
                                         <div class="row">
                                             <div class="col-sm-3 mt-3">
                                                 <label for="amount_`+y+`">Amount</label>
@@ -1126,8 +974,8 @@
                                                 
                                                 <textarea cols="30" rows="4" class="form-control textarea-c"  id="notes_`+y+`" name="notes[`+y+`]" placeholder="Notes"></textarea>
                                             </div>
-                                        </div> {{-- inner row --}}
-                                    </div> {{-- outer col --}}
+                                        </div> 
+                                    </div> 
                                     <div class="col-sm-2">
                                         <div class="form-group justify-content-end">
                                             <label for="imgInput">Select Image</label><br>
@@ -1138,17 +986,17 @@
                                                 <div class="icon-button-bottom" id="`+y+`">
                                                     <i class="fas fa-times"></i>
                                                 </div>
-                                                <img src="{{ global_asset('storage/common/camera_preview.jpg') }}" class="imagePreview" id="img_preveiw_`+y+`">
+                                                <img src="<?php echo e(global_asset('storage/common/camera_preview.jpg')); ?>" class="imagePreview" id="img_preveiw_`+y+`">
                                             </div>
 
                                             <input type="file" name="file[`+y+`]" class="d-none" onchange="readURL(this, '`+y+`')" id="imgInput_`+y+`">
                                         </div>
-                                    </div> {{-- outer col --}}
+                                    </div> 
                                     <div class="col-sm-2 d-flex justify-content-center align-items-center">
                                         <button type="button" onclick="addRew()" class="btn btn-c btn-primary"><i class="fas fa-plus"></i></button>
                                         <button type="button" onclick="removeRow(this);" class="btn m-2 btn-c\ btn-danger"><i class="fas fa-trash"></i></button>\
                                     </div>
-                                </div> {{-- outer row --}}
+                                </div> 
                             </div>
                             `;
 
@@ -1172,7 +1020,7 @@
                     dropdownParent: $('#priceManagerModal'),
                     ajax: {
                         method: 'post',
-                        url: '{{ route("price.makes") }}',
+                        url: '<?php echo e(route("price.makes")); ?>',
                         dataType: 'json',
                         delay: 250,
                         processResults: function (data) {
@@ -1217,7 +1065,7 @@
                     ajax: {
                         method: 'post',
                         url: function () {
-                            return "{{ route('price.models', ['id' => ':id']) }}".replace(':id', $("#make_id_"+x).val())
+                            return "<?php echo e(route('price.models', ['id' => ':id'])); ?>".replace(':id', $("#make_id_"+x).val())
                         },
                         dataType: 'json',
                         delay: 250,
@@ -1263,7 +1111,7 @@
                     dropdownParent: $('#priceManagerModal'),
                     ajax: {
                         method: 'post',
-                        url: "{{ route('price.services') }}",
+                        url: "<?php echo e(route('price.services')); ?>",
                         dataType: 'json',
                         delay: 250,
                         processResults: function (data) {
@@ -1295,7 +1143,7 @@
                     dropdownParent: $('#priceManagerModal'),
                     ajax: {
                         method: 'post',
-                        url: "{{ route('price.key_type') }}",
+                        url: "<?php echo e(route('price.key_type')); ?>",
                         dataType: 'json',
                         delay: 250,
                         processResults: function (data) {
@@ -1350,5 +1198,6 @@
                 // $("#filter_optionsModal").modal('show');
             } */
         </script>
-    @endpush
-@endsection
+    <?php $__env->stopPush(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\upwork\monties\resources\views/tenant/price.blade.php ENDPATH**/ ?>

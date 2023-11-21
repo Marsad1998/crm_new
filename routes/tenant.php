@@ -153,6 +153,9 @@ Route::middleware([
             Route::post('/delete/{id}', [QuoteConfigController::class, 'destroy'])->name('delete')->middleware(['can:Delete Quotes Fields']);
 
             Route::get('/index', [QuoteConfigController::class, 'index'])->name('index')->middleware(['can:View Quote Generator']);
+            Route::get('/view', [QuoteConfigController::class, 'view'])->name('view')->middleware(['can:View Quote']);
+            Route::post('/load_index', [QuoteConfigController::class, 'load_index'])->name('load_index');
+
             Route::post('/service/{id}', [QuoteConfigController::class, 'service'])->name('service');
             Route::post('/delete_config/{id}', [QuoteConfigController::class, 'delete_config'])->name('delete_config');
 
@@ -165,6 +168,8 @@ Route::middleware([
         Route::group(['prefix' => 'price', 'as' => 'price.'], function () {
             Route::get('/index', [PriceManagerController::class, 'index'])->name('index')->middleware(['can:View Price Manager']);
             Route::post('/create', [PriceManagerController::class, 'create'])->name('create')->middleware(['can:Add Price Manager']);
+
+            Route::post('/paste', [PriceManagerController::class, 'paste'])->name('paste');
             Route::post('/show', [PriceManagerController::class, 'show'])->name('show');
             Route::post('/edit/{id}', [PriceManagerController::class, 'edit'])->name('edit');
             Route::post('/update/{id}', [PriceManagerController::class, 'update'])->name('update');

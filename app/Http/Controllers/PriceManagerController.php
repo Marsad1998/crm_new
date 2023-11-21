@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Models\PriceManager;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Crypt;
 
 class PriceManagerController extends Controller
@@ -53,6 +54,76 @@ class PriceManagerController extends Controller
         })->whereHas('option', function ($row) {
             $row->where('slug', 'type-of-key');
         })->get();
+    }
+
+    public function paste(Request $request)
+    {
+        $lines = explode("\n", $request->data);
+
+        $carData = [];
+
+        foreach ($lines as $line) {
+            $carInfo = explode(' ', $line);
+
+
+            Log::alert($carInfo);
+
+            // key innovations
+            if (count($carInfo) == 3) {
+                $yearRange = explode('-', $carInfo[0]);
+                if (count($yearRange) > 1) {
+                    $yearFrom = $yearRange[0];
+                    $yearTo = $yearRange[1];
+                    $brand = $carInfo[1];
+                    $modelName = $carInfo[2];
+                } else {
+                    // American Supply
+                    $brand = $carInfo[0];
+                    $modelName = $carInfo[1];
+                    $yearRange = explode('-', $carInfo[2]);
+                    $yearFrom = $yearRange[0];
+                    $yearTo = $yearRange[1];
+                }
+
+                $carData[] = [
+                    'brand' => $brand,
+                    'model' => $modelName,
+                    'year_from' => $yearFrom,
+                    'year_to' => $yearTo,
+                ];
+            }
+            // UHS
+            elseif (count($carInfo) == 5) {
+                $yearFrom = $carInfo[0];
+                $yearTo = $carInfo[2];
+                $brand = $carInfo[1];
+                $modelName = $carInfo[4];
+
+                $carData[] = [
+                    'brand' => $brand,
+                    'model' => $modelName,
+                    'year_from' => $yearFrom,
+                    'year_to' => $yearTo,
+                ];
+            }
+        }
+
+        foreach ($carData as $x => $value) {
+            $make = PriceManager::with('makes', 'models')
+                ->whereHas('makes', function ($row) use ($value) {
+                    $row->where('makes.name', $value['brand'])->orWhere('makes.name', 'LIKE', '%' . $value['brand']);
+                })
+                ->whereHas('models', function ($row) use ($value) {
+                    $row->where('models.name', $value['model'])->orWhere('models.name', 'LIKE', '%' . $value['model']);
+                })
+                ->first();
+
+            if (!$make) {
+                $carData[$x]['old'] = true;
+            }
+        }
+
+        return $carData;
     }
 
     public function create(Request $request)

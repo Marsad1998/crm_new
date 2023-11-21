@@ -248,6 +248,14 @@
                         ],
                     ],
                     [
+                        'name' => 'Leads & Calls',
+                        'icon' => 'ti-headphone-alt',
+                        'option' => [],
+                        'path' => route('quote.view'),
+                        'access' => auth()->user()->can('View Quote Generator') == 1 ? '' : 'd-none',
+                        'class' => request()->is('quote.index') ? 'active' : '',
+                    ],
+                    [
                         'name' => 'Quote Generator',
                         'icon' => 'ti-pencil',
                         'option' => [],

@@ -1,4 +1,6 @@
-<?php $__env->startSection('content'); ?>
+@extends('layouts.main')
+
+@section('content')
 
     <div class="container-fluid">
         <div class="inner-body">
@@ -8,16 +10,16 @@
                     <div class="card h-100">
                         <div class="cstm-card-header cstm-border-top">Vehicle Information</div>
 
-                        <form action="<?php echo e(route('quote.search')); ?>" method="post" id="quoteSearch">
+                        <form action="{{ route('quote.search') }}" method="post" id="quoteSearch">
                             <div class="cstm-card-body g-quote-body">
                                 <p class="d-flex justify-content-center text-muted">Category</p>
                                 <div class="d-flex justify-content-evenly cstm-margin-top-10">
-                                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x => $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    @foreach ($categories as $x => $category)
                                         <div>
-                                            <input type="radio" name="category" id="<?php echo e(Str::slug($category->name)); ?>" value="<?php echo e($category->id); ?>" <?php echo e($category->id == 1 ? "checked": ""); ?> class="quote_category"> 
-                                            <label for="<?php echo e(Str::slug($category->name)); ?>"><?php echo e($category->name); ?></label>
+                                            <input type="radio" name="category" id="{{ Str::slug($category->name) }}" value="{{ $category->id }}" {{ $category->id == 1 ? "checked": "" }} class="quote_category"> 
+                                            <label for="{{ Str::slug($category->name) }}">{{ $category->name }}</label>
                                         </div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    @endforeach
                                 </div><!-- category -->
                                 <span class="error-span text-danger " id="error-category"></span>
                                 
@@ -67,7 +69,7 @@
                     <div class="card h-100 l-info-card">
                         <div class="cstm-card-header cstm-border-top">Lead Info</div><!-- custom card header -->
 
-                        <form action="<?php echo e(route('quote.save_lead')); ?>" id="save_lead" method="post">
+                        <form action="{{ route('quote.save_lead') }}" id="save_lead" method="post">
                             <div class="cstm-card-body">
                                 <div class="d-flex justify-content-evenly">
                                     <div class="cstm-group-47w">
@@ -145,7 +147,7 @@
         </div>
     </div>
 
-    <?php $__env->startPush('script'); ?>
+    @push('script')
         <script>
             $(document).ready(function () {
                 getServices(1);
@@ -173,7 +175,7 @@
                     var phone = $("#phone_number").val();
                     $.ajax({
                         type: "POST",
-                        url: "<?php echo e(route('quote.search_call')); ?>",
+                        url: "{{ route('quote.search_call') }}",
                         data: {
                             phone: phone
                         },
@@ -268,6 +270,10 @@
                     
                     formData.append('sub_total', $("#subtotal").text().trim())
 
+                    $('#quoteSearch :input[name]').each(function () {
+                        formData.append($(this).attr('name'), $(this).val());
+                    });
+
                     $(".model_price_id").each(function () { 
                         formData.append('model_price_id[]', $(this).val());
                     });
@@ -330,7 +336,7 @@
                 $("#service_id").on('select2:select', function () {
                     $.ajax({
                         type: "POST",
-                        url: "<?php echo e(route('quote.parameters', ['id' => ':id'])); ?>".replace(':id', $("#service_id").val()),
+                        url: "{{ route('quote.parameters', ['id' => ':id']) }}".replace(':id', $("#service_id").val()),
                         dataType: "html",
                         success: function (response) {
                             $("#quoteFormFields").empty().append(response)
@@ -356,7 +362,7 @@
                                 width: "100%",
                                 ajax: {
                                     method: 'post',
-                                    url: '<?php echo e(route("price.makes")); ?>',
+                                    url: '{{ route("price.makes") }}',
                                     dataType: 'json',
                                     processResults: function (data) {
                                         var dynamicOptions = $.map(data, function (item) {
@@ -380,7 +386,7 @@
                                 ajax: {
                                     method: 'post',
                                     url: function () {
-                                        return "<?php echo e(route('price.models', ['id' => ':id'])); ?>".replace(':id', $("#make_id").val())
+                                        return "{{ route('price.models', ['id' => ':id']) }}".replace(':id', $("#make_id").val())
                                     },
                                     dataType: 'json',
                                     processResults: function (data) {
@@ -493,7 +499,7 @@
                     width: "100%",
                     ajax: {
                         method: 'post',
-                        url: "<?php echo e(route('quote.service', ['id' => ':id'])); ?>".replace(':id', id),
+                        url: "{{ route('quote.service', ['id' => ':id']) }}".replace(':id', id),
                         dataType: 'json',
                         processResults: function (data) {
                             var dynamicOptions = $.map(data, function (item) {
@@ -512,8 +518,6 @@
                 })
             }
         </script>
-    <?php $__env->stopPush(); ?>
+    @endpush
 
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\upwork\monties\resources\views/tenant/quote_generator.blade.php ENDPATH**/ ?>
+@endsection

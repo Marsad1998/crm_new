@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="container-fluid">
         <div class="inner-body">
@@ -10,16 +8,16 @@
                     <div class="card h-100">
                         <div class="cstm-card-header cstm-border-top">Vehicle Information</div>
 
-                        <form action="{{ route('quote.search') }}" method="post" id="quoteSearch">
+                        <form action="<?php echo e(route('quote.search')); ?>" method="post" id="quoteSearch">
                             <div class="cstm-card-body g-quote-body">
                                 <p class="d-flex justify-content-center text-muted">Category</p>
                                 <div class="d-flex justify-content-evenly cstm-margin-top-10">
-                                    @foreach ($categories as $x => $category)
+                                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x => $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div>
-                                            <input type="radio" name="category" id="{{ Str::slug($category->name) }}" value="{{ $category->id }}" {{ $category->id == 1 ? "checked": "" }} class="quote_category"> 
-                                            <label for="{{ Str::slug($category->name) }}">{{ $category->name }}</label>
+                                            <input type="radio" name="category" id="<?php echo e(Str::slug($category->name)); ?>" value="<?php echo e($category->id); ?>" <?php echo e($category->id == 1 ? "checked": ""); ?> class="quote_category"> 
+                                            <label for="<?php echo e(Str::slug($category->name)); ?>"><?php echo e($category->name); ?></label>
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div><!-- category -->
                                 <span class="error-span text-danger " id="error-category"></span>
                                 
@@ -69,9 +67,8 @@
                     <div class="card h-100 l-info-card">
                         <div class="cstm-card-header cstm-border-top">Lead Info</div><!-- custom card header -->
 
-                        <div class="cstm-card-body">
-
-                            <form action="{{ route('quote.save_lead') }}" id="save_lead" method="post">
+                        <form action="<?php echo e(route('quote.save_lead')); ?>" id="save_lead" method="post">
+                            <div class="cstm-card-body">
                                 <div class="d-flex justify-content-evenly">
                                     <div class="cstm-group-47w">
                                         <label for="phone_number">Phone Number</label>
@@ -122,10 +119,12 @@
                                     <p class="d-flex justify-content-center text-muted">Call Type</p>
                                     <div class="d-flex justify-content-evenly cstm-margin-top-10">
                                         <div>
-                                            <input type="radio" name="call_type" id="incomming"> <label for="incomming">Incomming</label>
+                                            <input type="radio" name="call_type" id="incomming" value="1">
+                                            <label for="incomming">Incomming</label>
                                         </div>
                                         <div>
-                                            <input type="radio" name="call_type" id="outgoing"> <label for="outgoing">Outgoing</label>
+                                            <input type="radio" name="call_type" id="outgoing" value="0">
+                                            <label for="outgoing">Outgoing</label>
                                         </div>
                                     </div>
                                 </div><!-- input-group call type -->
@@ -134,19 +133,19 @@
                                     <label for="notes">Notes</label>
                                     <textarea name="notes" id="notes" rows="2" class="form-control textarea-c"></textarea>
                                 </div><!-- input-group notes textarea -->
-                            </form>
-                        </div><!-- custom card body -->
+                            </div><!-- custom card body -->
+                            <div class="cstm-card-footer d-flex justify-content-end cstm-border-bottom l-info-footer">
+                                <button class="btn footer-btn">Save Call</button>
+                            </div><!-- custom card footer -->
+                        </form>
 
-                        <div class="cstm-card-footer d-flex justify-content-end cstm-border-bottom l-info-footer">
-                            <button class="btn footer-btn">Save Call</button>
-                        </div><!-- custom card footer -->
                     </div><!-- card col-3 -->
                 </div> <!-- col 3 -->
             </div> <!-- row -->
         </div>
     </div>
 
-    @push('script')
+    <?php $__env->startPush('script'); ?>
         <script>
             $(document).ready(function () {
                 getServices(1);
@@ -174,7 +173,7 @@
                     var phone = $("#phone_number").val();
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('quote.search_call') }}",
+                        url: "<?php echo e(route('quote.search_call')); ?>",
                         data: {
                             phone: phone
                         },
@@ -225,11 +224,11 @@
                                 var text = '';
                                 $.each(response, function (index, value) { 
                                     text += `<div class="imgContainer">
-                                                <input type="radio" id="image_`+value.id+`" class="image-radio" name="multi_img">
+                                                <input type="radio" id="image_`+value.id+`" class="image-radio" name="multi_img" value="`+index+`">
                                                 <label for="image_`+value.id+`">
-                                                    <img width="150" height="200" src="`+value.image+`" id="`+value.id+`">
+                                                    <img src="`+value.image+`" class="img-thumbnail">
                                                 </label>
-                                                <h4>`+value.PN+`</h4>
+                                                <h5>`+value.PN+`</h5>
                                             </div>
                                             <hr>`;
                                 });
@@ -239,7 +238,9 @@
                                     text: text,
                                 };
     
-                                swal(options);
+                                swal(options, function (isConfirm) {  
+                                    fetchedService(response[$(".image-radio:checked").val()]);
+                                });
                             }
                         
                         },
@@ -257,6 +258,58 @@
                             });
                         }
                     });
+                });
+
+                $("#save_lead").on('submit', function(e) {
+                    e.preventDefault();
+                    $("#saveData").prop('disabled', true);
+                    var form = $('#save_lead');
+                    var formData = new FormData(this);
+                    
+                    formData.append('sub_total', $("#subtotal").text().trim())
+
+                    $('#quoteSearch :input[name]').each(function () {
+                        formData.append($(this).attr('name'), $(this).val());
+                    });
+
+                    $(".model_price_id").each(function () { 
+                        formData.append('model_price_id[]', $(this).val());
+                    });
+
+                    $(".model_qty").each(function () { 
+                        formData.append('model_qty[]', $(this).val());
+                    });
+
+                    $.ajax({
+                        type: 'POST',
+                        url: form.attr('action'),
+                        data: formData,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        dataType: 'json',
+                        success: function(response) {
+                            $("#saveData").prop("disabled", false).text('Save').addClass('btn-primary').removeClass('btn-danger');
+                            $('#save_lead').each(function() {
+                                this.reset();
+                            });
+                            notif({
+                                type: response.sts,
+                                msg: response.msg,
+                                position: 'right',
+                                bottom: 10,
+                                time: 2000,
+                            });
+                        }, 
+                        error: function (jqXhr) {
+                            $("#saveData").prop("disabled", false);
+                            var errorResponse = $.parseJSON(jqXhr.responseText);
+                            $(".error").text('');
+                            $.each(errorResponse.errors, function (key, value) {
+                                $("#" + key + "_error").text(value);
+                            });
+                        }
+                    }); //ajax call
                 });
                 
                 $(document).on('click', '.removePrice', function () {
@@ -281,7 +334,7 @@
                 $("#service_id").on('select2:select', function () {
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('quote.parameters', ['id' => ':id']) }}".replace(':id', $("#service_id").val()),
+                        url: "<?php echo e(route('quote.parameters', ['id' => ':id'])); ?>".replace(':id', $("#service_id").val()),
                         dataType: "html",
                         success: function (response) {
                             $("#quoteFormFields").empty().append(response)
@@ -307,7 +360,7 @@
                                 width: "100%",
                                 ajax: {
                                     method: 'post',
-                                    url: '{{ route("price.makes") }}',
+                                    url: '<?php echo e(route("price.makes")); ?>',
                                     dataType: 'json',
                                     processResults: function (data) {
                                         var dynamicOptions = $.map(data, function (item) {
@@ -331,7 +384,7 @@
                                 ajax: {
                                     method: 'post',
                                     url: function () {
-                                        return "{{ route('price.models', ['id' => ':id']) }}".replace(':id', $("#make_id").val())
+                                        return "<?php echo e(route('price.models', ['id' => ':id'])); ?>".replace(':id', $("#make_id").val())
                                     },
                                     dataType: 'json',
                                     processResults: function (data) {
@@ -360,6 +413,7 @@
                                 <div class="p-2 gen-quo-div-data" style="width: 100%">
                                     <div class="d-flex justify-content-center">
                                         <img src="`+datta.image+`" alt="" style="border:1px solid black;height:90px;width:90px">
+                                        <input type="hidden" class="model_price_id" value="`+gl_id+`"/>
                                     </div>
                                     <p class="text-center fw-bold mt-1">`+datta.name+`</p>
 
@@ -381,6 +435,7 @@
                                     <p class="pt-2 d-flex justify-content-center text-danger fw-bold">`+datta.PN+`</p>
                                     
                                     <span id="quoteKeyQty_`+gl_id+`"></span>
+                                    <input type="hidden" id="model_qty_`+gl_id+`" class="model_qty" value="`+gl_id+`"/>
                                 </div>
                                 <div class="gen-quo-div-btn">
                                     <button class="btn removePrice footer-btn" id="` +gl_id+ `" data-type="quotes">Remove</button>
@@ -390,6 +445,7 @@
                 $(".quoteOthers").empty().append(datta.opt);
                 if ($("#quotaDiv_"+gl_id).length < 1) {
                     $(".quoteKeys").append(lii)
+                    $("#model_qty_"+gl_id).val(1);
                 }else{
                     var count = $("#quota_"+gl_id).text();
                     count++;
@@ -397,6 +453,7 @@
 
                     $("#quoteKeyQty_"+gl_id).append(pp);
                     $("#quota_"+gl_id).text(count);
+                    $("#model_qty_"+gl_id).val(count);
                 }
                 calcPrice()
             }
@@ -440,7 +497,7 @@
                     width: "100%",
                     ajax: {
                         method: 'post',
-                        url: "{{ route('quote.service', ['id' => ':id']) }}".replace(':id', id),
+                        url: "<?php echo e(route('quote.service', ['id' => ':id'])); ?>".replace(':id', id),
                         dataType: 'json',
                         processResults: function (data) {
                             var dynamicOptions = $.map(data, function (item) {
@@ -459,6 +516,8 @@
                 })
             }
         </script>
-    @endpush
+    <?php $__env->stopPush(); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\upwork\monties\resources\views/tenant/quotes/create.blade.php ENDPATH**/ ?>

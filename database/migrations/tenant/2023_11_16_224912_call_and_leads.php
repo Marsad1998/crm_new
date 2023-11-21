@@ -22,12 +22,15 @@ return new class extends Migration
 
         Schema::create('call_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
+
             $table->unsignedBigInteger('lead_id');
             $table->foreign('lead_id')->references('id')->on('leads');
+
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->enum('status', ['Active', 'Booked', 'Failed', 'Invalid', 'Warning']);
             $table->tinyInteger('incoming');
-            $table->datetime('timestamp');
             $table->text('notes')->nullable();
             $table->timestamps();
         });
@@ -50,10 +53,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('lead_id');
             $table->foreign('lead_id')->references('id')->on('leads');
-
             $table->unsignedBigInteger('price_id')->nullable();
-            $table->foreign('price_id')->references('id')->on('custom_prices');
-
             $table->enum('type', ['regular', 'flat_rate', 'option_based', 'custom_price']);
             $table->integer('qty');
             $table->timestamps();
