@@ -3613,3 +3613,48 @@
   1 => 'Terrain',
   2 => '2010-2019',
 )  
+[2023-11-21 16:23:32] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 16:23:32] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 16:23:32] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 16:23:32] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 16:23:32] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 16:23:32] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 16:23:32] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 16:23:32] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 16:23:32] local.ALERT: array (
+  0 => '2012-2017',
+  1 => 'BUICK',
+  2 => 'VERANO',
+)  
