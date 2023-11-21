@@ -1,3750 +1,498 @@
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:12:45] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:18:34] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:24:52] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:35:00] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:35:17] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:37:09] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 22:37:46] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:40:13] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:42:54] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:42:56] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:43:35] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:46:30] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:46:31] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:46:40] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 22:49:22] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:02:02] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:05:13] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2012-2017',
-  1 => 'BUICK',
-  2 => 'VERANO',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2012-2017',
-  1 => 'BUICK',
-  2 => 'VERANO',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2010-2019',
-  1 => 'CHEVROLET',
-  2 => 'CAMARO',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2010-2019',
-  1 => 'CHEVROLET',
-  2 => 'CAMARO',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2011-2016',
-  1 => 'CHEVROLET',
-  2 => 'CRUZE',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2011-2016',
-  1 => 'CHEVROLET',
-  2 => 'CRUZE',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2010-2016',
-  1 => 'CHEVROLET',
-  2 => 'EQUINOX',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2010-2016',
-  1 => 'CHEVROLET',
-  2 => 'EQUINOX',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2014-2017',
-  1 => 'CHEVROLET',
-  2 => 'IMPALA',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2014-2017',
-  1 => 'CHEVROLET',
-  2 => 'IMPALA',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2013-2016',
-  1 => 'CHEVROLET',
-  2 => 'MALIBU',
-)  
-[2023-11-20 23:06:24] local.ALERT: array (
-  0 => '2013-2016',
-  1 => 'CHEVROLET',
-  2 => 'MALIBU',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2012-2017',
-  1 => 'BUICK',
-  2 => 'VERANO',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2012-2017',
-  1 => 'BUICK',
-  2 => 'VERANO',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2010-2019',
-  1 => 'CHEVROLET',
-  2 => 'CAMARO',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2010-2019',
-  1 => 'CHEVROLET',
-  2 => 'CAMARO',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2011-2016',
-  1 => 'CHEVROLET',
-  2 => 'CRUZE',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2011-2016',
-  1 => 'CHEVROLET',
-  2 => 'CRUZE',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2010-2016',
-  1 => 'CHEVROLET',
-  2 => 'EQUINOX',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2010-2016',
-  1 => 'CHEVROLET',
-  2 => 'EQUINOX',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2014-2017',
-  1 => 'CHEVROLET',
-  2 => 'IMPALA',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2014-2017',
-  1 => 'CHEVROLET',
-  2 => 'IMPALA',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2013-2016',
-  1 => 'CHEVROLET',
-  2 => 'MALIBU',
-)  
-[2023-11-20 23:07:30] local.ALERT: array (
-  0 => '2013-2016',
-  1 => 'CHEVROLET',
-  2 => 'MALIBU',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2012-2017',
-  1 => 'BUICK',
-  2 => 'VERANO',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2012-2017',
-  1 => 'BUICK',
-  2 => 'VERANO',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2010-2019',
-  1 => 'CHEVROLET',
-  2 => 'CAMARO',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2010-2019',
-  1 => 'CHEVROLET',
-  2 => 'CAMARO',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2011-2016',
-  1 => 'CHEVROLET',
-  2 => 'CRUZE',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2011-2016',
-  1 => 'CHEVROLET',
-  2 => 'CRUZE',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2010-2016',
-  1 => 'CHEVROLET',
-  2 => 'EQUINOX',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2010-2016',
-  1 => 'CHEVROLET',
-  2 => 'EQUINOX',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2014-2017',
-  1 => 'CHEVROLET',
-  2 => 'IMPALA',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2014-2017',
-  1 => 'CHEVROLET',
-  2 => 'IMPALA',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2013-2016',
-  1 => 'CHEVROLET',
-  2 => 'MALIBU',
-)  
-[2023-11-20 23:09:01] local.ALERT: array (
-  0 => '2013-2016',
-  1 => 'CHEVROLET',
-  2 => 'MALIBU',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2012-2017',
-  1 => 'BUICK',
-  2 => 'VERANO',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2012-2017',
-  1 => 'BUICK',
-  2 => 'VERANO',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2010-2019',
-  1 => 'CHEVROLET',
-  2 => 'CAMARO',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2010-2019',
-  1 => 'CHEVROLET',
-  2 => 'CAMARO',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2011-2016',
-  1 => 'CHEVROLET',
-  2 => 'CRUZE',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2011-2016',
-  1 => 'CHEVROLET',
-  2 => 'CRUZE',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2010-2016',
-  1 => 'CHEVROLET',
-  2 => 'EQUINOX',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2010-2016',
-  1 => 'CHEVROLET',
-  2 => 'EQUINOX',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2014-2017',
-  1 => 'CHEVROLET',
-  2 => 'IMPALA',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2014-2017',
-  1 => 'CHEVROLET',
-  2 => 'IMPALA',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2013-2016',
-  1 => 'CHEVROLET',
-  2 => 'MALIBU',
-)  
-[2023-11-20 23:11:52] local.ALERT: array (
-  0 => '2013-2016',
-  1 => 'CHEVROLET',
-  2 => 'MALIBU',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:13:34] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:16:33] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:18:53] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:23:30] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:23:31] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:24:31] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:26:21] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:27:12] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:29:46] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:30:40] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:33:03] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:34:29] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:35:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:36:00] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:37:02] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:37:33] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:38:29] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:38:30] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:39:17] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Cruze*',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Equinox',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2019',
-  3 => 'Chevrolet',
-  4 => 'Impala',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2016',
-  3 => 'Chevrolet',
-  4 => 'Malibu',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Chevrolet',
-  4 => 'Sonic',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2019',
-  3 => 'GMC',
-  4 => 'Terrain',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2016',
-  3 => 'Buick',
-  4 => 'LaCrosse',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2011',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Regal',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2012',
-  1 => '–',
-  2 => '2017',
-  3 => 'Buick',
-  4 => 'Verano',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2014',
-  1 => '–',
-  2 => '2020',
-  3 => 'Buick',
-  4 => 'Encore',
-)  
-[2023-11-20 23:39:28] local.ALERT: array (
-  0 => '2010',
-  1 => '–',
-  2 => '2012',
-  3 => 'Buick',
-  4 => 'Allure',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:40:13] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:41:35] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:42:14] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:44:02] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":1,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp\\htdocs\\upwork\\monties\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:423)
-[stacktrace]
-#0 {main}
-"} 
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:44:03] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:45:25] local.ERROR: Maximum execution time of 60 seconds exceeded {"userId":1,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\xampp\\htdocs\\upwork\\monties\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:423)
-[stacktrace]
-#0 {main}
-"} 
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:45:27] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:46:35] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:47:58] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:49:00] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:50:33] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:52:14] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:57:06] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-20 23:59:18] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Allure',
-  2 => '2010-2012',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Encore',
-  2 => '2013-2019',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Lacrosse',
-  2 => '2010-2016',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Regal',
-  2 => '2011-2017',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Buick',
-  1 => 'Verano',
-  2 => '2012-2017',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Camaro',
-  2 => '2010-2016',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Cruze',
-  2 => '2011-2016*',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Equinox',
-  2 => '2010-2019',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Impala',
-  2 => '2015-2019',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Malibu',
-  2 => '2014-2016',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'Chevrolet',
-  1 => 'Sonic',
-  2 => '2012-2017',
-)  
-[2023-11-21 00:04:44] local.ALERT: array (
-  0 => 'GMC',
-  1 => 'Terrain',
-  2 => '2010-2019',
-)  
-[2023-11-21 16:23:32] local.ALERT: array (
+[2023-11-21 20:34:51] local.ALERT: array (
   0 => '2010-2012',
   1 => 'BUICK',
   2 => 'ALLURE',
 )  
-[2023-11-21 16:23:32] local.ALERT: array (
+[2023-11-21 20:34:51] local.ALERT: array (
   0 => '2010-2012',
   1 => 'BUICK',
   2 => 'ALLURE',
 )  
-[2023-11-21 16:23:32] local.ALERT: array (
+[2023-11-21 20:34:51] local.ALERT: array (
   0 => '2014-2021',
   1 => 'BUICK',
   2 => 'ENCORE',
 )  
-[2023-11-21 16:23:32] local.ALERT: array (
+[2023-11-21 20:34:51] local.ALERT: array (
   0 => '2014-2021',
   1 => 'BUICK',
   2 => 'ENCORE',
 )  
-[2023-11-21 16:23:32] local.ALERT: array (
+[2023-11-21 20:34:51] local.ALERT: array (
   0 => '2010-2016',
   1 => 'BUICK',
   2 => 'LACROSSE',
 )  
-[2023-11-21 16:23:32] local.ALERT: array (
+[2023-11-21 20:34:51] local.ALERT: array (
   0 => '2010-2016',
   1 => 'BUICK',
   2 => 'LACROSSE',
 )  
-[2023-11-21 16:23:32] local.ALERT: array (
+[2023-11-21 20:34:51] local.ALERT: array (
   0 => '2011-2017',
   1 => 'BUICK',
   2 => 'REGAL',
 )  
-[2023-11-21 16:23:32] local.ALERT: array (
+[2023-11-21 20:34:51] local.ALERT: array (
   0 => '2011-2017',
   1 => 'BUICK',
   2 => 'REGAL',
 )  
-[2023-11-21 16:23:32] local.ALERT: array (
+[2023-11-21 20:34:51] local.ALERT: array (
   0 => '2012-2017',
   1 => 'BUICK',
   2 => 'VERANO',
 )  
-[2023-11-21 17:37:53] local.ALERT: array (
+[2023-11-21 20:36:06] local.ALERT: array (
   0 => '2010-2012',
   1 => 'BUICK',
   2 => 'ALLURE',
 )  
-[2023-11-21 17:37:53] local.ALERT: array (
+[2023-11-21 20:36:06] local.ALERT: array (
   0 => '2010-2012',
   1 => 'BUICK',
   2 => 'ALLURE',
 )  
-[2023-11-21 17:37:53] local.ALERT: array (
+[2023-11-21 20:36:06] local.ALERT: array (
   0 => '2014-2021',
   1 => 'BUICK',
   2 => 'ENCORE',
 )  
-[2023-11-21 17:37:53] local.ALERT: array (
+[2023-11-21 20:36:06] local.ALERT: array (
   0 => '2014-2021',
   1 => 'BUICK',
   2 => 'ENCORE',
 )  
-[2023-11-21 17:37:53] local.ALERT: array (
+[2023-11-21 20:36:06] local.ALERT: array (
   0 => '2010-2016',
   1 => 'BUICK',
   2 => 'LACROSSE',
 )  
-[2023-11-21 17:37:53] local.ALERT: array (
+[2023-11-21 20:36:06] local.ALERT: array (
   0 => '2010-2016',
   1 => 'BUICK',
   2 => 'LACROSSE',
 )  
-[2023-11-21 17:37:53] local.ALERT: array (
+[2023-11-21 20:36:06] local.ALERT: array (
   0 => '2011-2017',
   1 => 'BUICK',
   2 => 'REGAL',
 )  
-[2023-11-21 17:37:53] local.ALERT: array (
+[2023-11-21 20:36:06] local.ALERT: array (
   0 => '2011-2017',
   1 => 'BUICK',
   2 => 'REGAL',
 )  
-[2023-11-21 17:37:53] local.ALERT: array (
+[2023-11-21 20:36:06] local.ALERT: array (
   0 => '2012-2017',
   1 => 'BUICK',
   2 => 'VERANO',
 )  
-[2023-11-21 17:38:36] local.ALERT: array (
+[2023-11-21 20:37:22] local.ALERT: array (
   0 => '2010-2012',
   1 => 'BUICK',
   2 => 'ALLURE',
 )  
-[2023-11-21 17:38:36] local.ALERT: array (
+[2023-11-21 20:37:22] local.ALERT: array (
   0 => '2010-2012',
   1 => 'BUICK',
   2 => 'ALLURE',
 )  
-[2023-11-21 17:38:36] local.ALERT: array (
+[2023-11-21 20:37:22] local.ALERT: array (
   0 => '2014-2021',
   1 => 'BUICK',
   2 => 'ENCORE',
 )  
-[2023-11-21 17:38:36] local.ALERT: array (
+[2023-11-21 20:37:22] local.ALERT: array (
   0 => '2014-2021',
   1 => 'BUICK',
   2 => 'ENCORE',
 )  
-[2023-11-21 17:38:36] local.ALERT: array (
+[2023-11-21 20:37:22] local.ALERT: array (
   0 => '2010-2016',
   1 => 'BUICK',
   2 => 'LACROSSE',
 )  
-[2023-11-21 17:38:36] local.ALERT: array (
+[2023-11-21 20:37:22] local.ALERT: array (
   0 => '2010-2016',
   1 => 'BUICK',
   2 => 'LACROSSE',
 )  
-[2023-11-21 17:38:36] local.ALERT: array (
+[2023-11-21 20:37:22] local.ALERT: array (
   0 => '2011-2017',
   1 => 'BUICK',
   2 => 'REGAL',
 )  
-[2023-11-21 17:38:36] local.ALERT: array (
+[2023-11-21 20:37:22] local.ALERT: array (
   0 => '2011-2017',
   1 => 'BUICK',
   2 => 'REGAL',
 )  
-[2023-11-21 17:38:36] local.ALERT: array (
+[2023-11-21 20:37:22] local.ALERT: array (
   0 => '2012-2017',
   1 => 'BUICK',
   2 => 'VERANO',
+)  
+[2023-11-21 20:39:16] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 20:39:16] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 20:39:16] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 20:39:16] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 20:39:16] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 20:39:16] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 20:39:16] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 20:39:16] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 20:39:16] local.ALERT: array (
+  0 => '2012-2017',
+  1 => 'BUICK',
+  2 => 'VERANO',
+)  
+[2023-11-21 20:41:12] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 20:41:12] local.ALERT: array (
+  0 => '2010-2012',
+  1 => 'BUICK',
+  2 => 'ALLURE',
+)  
+[2023-11-21 20:41:12] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 20:41:12] local.ALERT: array (
+  0 => '2014-2021',
+  1 => 'BUICK',
+  2 => 'ENCORE',
+)  
+[2023-11-21 20:41:12] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 20:41:12] local.ALERT: array (
+  0 => '2010-2016',
+  1 => 'BUICK',
+  2 => 'LACROSSE',
+)  
+[2023-11-21 20:41:12] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 20:41:12] local.ALERT: array (
+  0 => '2011-2017',
+  1 => 'BUICK',
+  2 => 'REGAL',
+)  
+[2023-11-21 20:41:12] local.ALERT: array (
+  0 => '2012-2017',
+  1 => 'BUICK',
+  2 => 'VERANO',
+)  
+[2023-11-21 20:41:36] local.ALERT: array (
+  0 => '2014',
+  1 => '-',
+  2 => '2018',
+  3 => 'Buick',
+  4 => 'Encore',
+)  
+[2023-11-21 20:41:36] local.ALERT: array (
+  0 => '2010',
+  1 => '-',
+  2 => '2019',
+  3 => 'GMC',
+  4 => 'Terrain',
+)  
+[2023-11-21 20:41:36] local.ALERT: array (
+  0 => '2010',
+  1 => '-',
+  2 => '2019',
+  3 => 'Chevrolet',
+  4 => 'Equinox',
+)  
+[2023-11-21 20:41:36] local.ALERT: array (
+  0 => '2012',
+  1 => '-',
+  2 => '2017',
+  3 => 'Chevrolet',
+  4 => 'Sonic',
+)  
+[2023-11-21 20:41:36] local.ALERT: array (
+  0 => '2016',
+  1 => '-',
+  2 => '2017',
+  3 => 'Chevrolet',
+  4 => 'Spark',
+)  
+[2023-11-21 20:41:36] local.ALERT: array (
+  0 => '2015',
+  1 => '-',
+  2 => '2018',
+  3 => 'Chevrolet',
+  4 => 'Trax',
+)  
+[2023-11-21 20:42:50] local.ALERT: array (
+  0 => '2014',
+  1 => '-',
+  2 => '2018',
+  3 => 'Buick',
+  4 => 'Encore',
+)  
+[2023-11-21 20:42:50] local.ALERT: array (
+  0 => '2010',
+  1 => '-',
+  2 => '2019',
+  3 => 'GMC',
+  4 => 'Terrain',
+)  
+[2023-11-21 20:42:50] local.ALERT: array (
+  0 => '2010',
+  1 => '-',
+  2 => '2019',
+  3 => 'Chevrolet',
+  4 => 'Equinox',
+)  
+[2023-11-21 20:42:50] local.ALERT: array (
+  0 => '2012',
+  1 => '-',
+  2 => '2017',
+  3 => 'Chevrolet',
+  4 => 'Sonic',
+)  
+[2023-11-21 20:42:50] local.ALERT: array (
+  0 => '2016',
+  1 => '-',
+  2 => '2017',
+  3 => 'Chevrolet',
+  4 => 'Spark',
+)  
+[2023-11-21 20:42:50] local.ALERT: array (
+  0 => '2015',
+  1 => '-',
+  2 => '2018',
+  3 => 'Chevrolet',
+  4 => 'Trax',
+)  
+[2023-11-21 20:44:07] local.ALERT: array (
+  0 => '2014',
+  1 => '-',
+  2 => '2018',
+  3 => 'Buick',
+  4 => 'Encore',
+)  
+[2023-11-21 20:44:07] local.ALERT: array (
+  0 => '2010',
+  1 => '-',
+  2 => '2019',
+  3 => 'GMC',
+  4 => 'Terrain',
+)  
+[2023-11-21 20:44:07] local.ALERT: array (
+  0 => '2010',
+  1 => '-',
+  2 => '2019',
+  3 => 'Chevrolet',
+  4 => 'Equinox',
+)  
+[2023-11-21 20:44:07] local.ALERT: array (
+  0 => '2012',
+  1 => '-',
+  2 => '2017',
+  3 => 'Chevrolet',
+  4 => 'Sonic',
+)  
+[2023-11-21 20:44:07] local.ALERT: array (
+  0 => '2016',
+  1 => '-',
+  2 => '2017',
+  3 => 'Chevrolet',
+  4 => 'Spark',
+)  
+[2023-11-21 20:44:07] local.ALERT: array (
+  0 => '2015',
+  1 => '-',
+  2 => '2018',
+  3 => 'Chevrolet',
+  4 => 'Trax',
+)  
+[2023-11-21 20:45:08] local.ALERT: array (
+  0 => '2011',
+  1 => '–',
+  2 => '2016',
+  3 => 'Chevrolet',
+  4 => 'Cruze*',
+)  
+[2023-11-21 20:45:08] local.ALERT: array (
+  0 => '2010',
+  1 => '–',
+  2 => '2019',
+  3 => 'Chevrolet',
+  4 => 'Equinox',
+)  
+[2023-11-21 20:45:08] local.ALERT: array (
+  0 => '2014',
+  1 => '–',
+  2 => '2019',
+  3 => 'Chevrolet',
+  4 => 'Impala',
+)  
+[2023-11-21 20:45:08] local.ALERT: array (
+  0 => '2014',
+  1 => '–',
+  2 => '2016',
+  3 => 'Chevrolet',
+  4 => 'Malibu',
+)  
+[2023-11-21 20:45:08] local.ALERT: array (
+  0 => '2012',
+  1 => '–',
+  2 => '2017',
+  3 => 'Chevrolet',
+  4 => 'Sonic',
+)  
+[2023-11-21 20:45:08] local.ALERT: array (
+  0 => '2010',
+  1 => '–',
+  2 => '2019',
+  3 => 'GMC',
+  4 => 'Terrain',
+)  
+[2023-11-21 20:45:08] local.ALERT: array (
+  0 => '2010',
+  1 => '–',
+  2 => '2016',
+  3 => 'Buick',
+  4 => 'LaCrosse',
+)  
+[2023-11-21 20:45:59] local.ALERT: array (
+  0 => '2011',
+  1 => '–',
+  2 => '2016',
+  3 => 'Chevrolet',
+  4 => 'Cruze*',
+)  
+[2023-11-21 20:45:59] local.ALERT: array (
+  0 => '2010',
+  1 => '–',
+  2 => '2019',
+  3 => 'Chevrolet',
+  4 => 'Equinox',
+)  
+[2023-11-21 20:45:59] local.ALERT: array (
+  0 => '2014',
+  1 => '–',
+  2 => '2019',
+  3 => 'Chevrolet',
+  4 => 'Impala',
+)  
+[2023-11-21 20:45:59] local.ALERT: array (
+  0 => '2014',
+  1 => '–',
+  2 => '2016',
+  3 => 'Chevrolet',
+  4 => 'Malibu',
+)  
+[2023-11-21 20:45:59] local.ALERT: array (
+  0 => '2012',
+  1 => '–',
+  2 => '2017',
+  3 => 'Chevrolet',
+  4 => 'Sonic',
+)  
+[2023-11-21 20:45:59] local.ALERT: array (
+  0 => '2010',
+  1 => '–',
+  2 => '2019',
+  3 => 'GMC',
+  4 => 'Terrain',
+)  
+[2023-11-21 20:45:59] local.ALERT: array (
+  0 => '2010',
+  1 => '–',
+  2 => '2016',
+  3 => 'Buick',
+  4 => 'LaCrosse',
+)  
+[2023-11-21 20:47:49] local.ALERT: array (
+  0 => '2011',
+  1 => '–',
+  2 => '2016',
+  3 => 'Chevrolet',
+  4 => 'Cruze*',
+)  
+[2023-11-21 20:47:49] local.ALERT: array (
+  0 => '2010',
+  1 => '–',
+  2 => '2019',
+  3 => 'Chevrolet',
+  4 => 'Equinox',
+)  
+[2023-11-21 20:47:49] local.ALERT: array (
+  0 => '2014',
+  1 => '–',
+  2 => '2019',
+  3 => 'Chevrolet',
+  4 => 'Impala',
+)  
+[2023-11-21 20:47:49] local.ALERT: array (
+  0 => '2014',
+  1 => '–',
+  2 => '2016',
+  3 => 'Chevrolet',
+  4 => 'Malibu',
+)  
+[2023-11-21 20:47:49] local.ALERT: array (
+  0 => '2012',
+  1 => '–',
+  2 => '2017',
+  3 => 'Chevrolet',
+  4 => 'Sonic',
+)  
+[2023-11-21 20:47:49] local.ALERT: array (
+  0 => '2010',
+  1 => '–',
+  2 => '2019',
+  3 => 'GMC',
+  4 => 'Terrain',
+)  
+[2023-11-21 20:47:49] local.ALERT: array (
+  0 => '2010',
+  1 => '–',
+  2 => '2016',
+  3 => 'Buick',
+  4 => 'LaCrosse',
 )  

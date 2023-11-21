@@ -571,19 +571,21 @@
                             
                             $("#vehicle_inform").empty();
                             x = 2;
-                            for (var i = 0; i < response.length - 1; i++) {
-
-                                console.log(response[+i+1].make);
+                            for (var i = 0; i < response.length; i++) {
+                                if (i > 0) {
+                                    addRow();
+                                }
+                                if (response[i].bra) {
+                                    
+                                }
+                                var option = new Option(response[i].brand, response[i].brand, false, false);
+                                $("#make_id_"+(+i+1)).append(option).trigger('change');
                                 
-                                setTimeout(() => {
-                                    var option = new Option(response[+i+1].make, response[+i+1].make, false, true);
-                                    $("#make_id_"+(+i+1)).append(option).trigger('change');
-                                }, 100);
-
-                                $("#model_id_"+(+i+1)).val(response[+i+1].model)                                
-                                $("#year_from_"+(+i+1)).val(response[+i+1].year_from)
-                                $("#year_to_"+(+i+1)).val(response[+i+1].year_to)
-                                addRow();
+                                var option = new Option(response[i].model, response[i].model, false, false);
+                                $("#model_id_"+(+i+1)).append(option).trigger('change');
+                                
+                                $("#year_from_"+(+i+1)).val(response[i].year_from)
+                                $("#year_to_"+(+i+1)).val(response[i].year_to)
                             }
 
                         }
