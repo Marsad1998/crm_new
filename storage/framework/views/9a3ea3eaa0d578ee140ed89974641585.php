@@ -7,7 +7,7 @@
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid">
         <div class="inner-body">
-            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70">Price Manager</h3>
+            <h3 class="page-heading"><i class="ti-money sidemenu-icon"></i> Price Manager</h3>
             <div class="card" style="min-height: 700px;">
                 <style>
                     .icon-container {
@@ -76,7 +76,7 @@
     
     <div class="modal animate__animated animate__zoomIn animate__fasters" id="priceManagerModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
-            
+
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitleId">Add a Price</h5>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="<?php echo e(route('price.create')); ?>" id="prcieForm" method="post">
-                    <div style="border: 1px solid black; padding: 20px; border-radius: 5px;">
+                    <div class="price-box shadow">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -126,7 +126,7 @@
                         <div id="vehicle_inform"></div>
                     </div>
 
-                    <div class="mt-2" style="border: 1px solid black; padding: 20px; border-radius: 5px">
+                    <div class="mt-5 price-box shadow" >
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
@@ -143,7 +143,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-3 d-flex justify-content-center align-items-center">
-                                <strong class="non_vehicle_1">Which Key Manufacturer</strong>
+                                <strong class="non_vehicle_1 color-black">Which Key Manufacturer</strong>
                             </div>
                             <div class="col-sm-3 d-flex justify-content-center align-items-center">
                                 <div class="non_vehicle_1 form-check form-check-inline">
@@ -199,7 +199,7 @@
                                 <button type="button" onclick="addRew()" class="addRowVtn btn btn-c btn-primary"><i class="fas fa-plus"></i> Add</button>
                             </div>
                         </div> 
-                        
+
                         <div id="detail_inform"></div>
 
                     </div> 
@@ -234,7 +234,7 @@
     <!-- Filter Option modal START -->
     <div class="modal animate__animated animate__zoomIn animate__fasters" id="filter_optionsModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
-            
+
             <div class="modal-content br-radius-10">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitleId">Filters Options</h5>
@@ -754,7 +754,7 @@
                                 bottom: 10,
                                 time: 2000,
                             });
-                        }, 
+                        },
                         error: function (jqXhr) {
                             $("#saveData").prop("disabled", false);
                             var errorResponse = $.parseJSON(jqXhr.responseText);
@@ -777,7 +777,7 @@
                             $("#saveData").text('Update').addClass('btn-danger').removeClass('btn-primary');
                             $(".addRowVtn").hide();
                             $("#priceManagerModal").modal('show');
-                            
+
                             var option = new Option(response.makes.name, response.makes.id, false, false);
                             $("#make_id_1").append(option).trigger('change');
 
@@ -789,7 +789,7 @@
 
                             var option = new Option(response.keys.name, response.keys.id, false, false);
                             $("#key_type_1").append(option).trigger('change');
-                                
+
                             $("#year_from_1").val(response.year_start);
                             $("#year_to_1").val(response.year_end);
 
@@ -802,7 +802,7 @@
                             if (response.pts == 1) {
                                 $("#comfort_access_1").prop('checked', true);
                             }
-                            
+
                             if (response.akl == 1) {
                                 $("#akl_1").prop('checked', true);;
                             }
@@ -810,10 +810,10 @@
                             $("#amount_1").val(response.amount);
                             $("#notes_1").val(response.PN);
                             $("#img_preveiw_1").attr('src', response.image);
-                            
+
                             $("#prcieForm").attr('action', "<?php echo e(route('price.update', ['id' => ':id'])); ?>".replace(':id', response.id));
                             // $("#name").val(response.name)
-                        }, 
+                        },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
                         }
@@ -835,7 +835,7 @@
                                 time: 2000,
                             });
                             priceManager.ajax.reload(null, false);
-                        }, 
+                        },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
                         }
@@ -847,7 +847,7 @@
                     $("#imgInput_"+id).click();
                 });
 
-                $(document).on('click', '.icon-button-bottom', function () {  
+                $(document).on('click', '.icon-button-bottom', function () {
                     var id = $(this).attr('id')
                     $('#img_preveiw_'+id).attr('src', "<?php echo e(global_asset('storage/common/camera_preview.jpg')); ?>");
                     $('#imgInput_'+id).val('');
@@ -863,12 +863,12 @@
                         $( "#price_range" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
                     }
                 });
-                
+
                 $("#filterDropdown").click(function(e){
                     e.stopPropagation();
                 });
 
-                
+
             }); // ready
 
             var x = 2;
@@ -917,7 +917,7 @@
                 initSelect(x);
                 x++;
             }
-            
+
             var y = 2;
             function addRew() {
                 var deta = `<div class="animate__animated animate__fadeInDown animate__fasters">
@@ -971,7 +971,7 @@
                                             </div>
                                             <div class="col-sm-9 mt-3">
                                                 <label for="notes_`+y+`">Notes</label>
-                                                
+
                                                 <textarea cols="30" rows="4" class="form-control textarea-c"  id="notes_`+y+`" name="notes[`+y+`]" placeholder="Notes"></textarea>
                                             </div>
                                         </div> 
@@ -1013,7 +1013,7 @@
                 }, 1000);
             }
 
-            function initSelect(x) {  
+            function initSelect(x) {
                 $("#make_id_"+x).select2({
                     placeholder: '~~ Select Makes ~~',
                     width: "100%",
@@ -1033,14 +1033,14 @@
 
                             var staticOption = { id: 'new', text: '~~ New Makes ~~' };
                             dynamicOptions.push(staticOption);
-                            
+
                             return {
                                 results: dynamicOptions
                             }
                         },
                         cache: true,
                     }
-                }).on('change', function () {  
+                }).on('change', function () {
                     if ($(this).val() == 'new') {
                         $(".model_id_"+x).val(null).trigger('change');
                         $(this).parent().parent().removeClass('col-sm-6').addClass('col-sm-3')
@@ -1050,7 +1050,7 @@
                                             <input class="form-control form-control-c" name="make_name['+(+x-1)+']" id="make_name">\
                                         </div>\
                                     </div>';
-                        
+
                         $(this).parent().parent().after(name);
                     }else{
                         $(".make_name_"+x).remove();
@@ -1079,7 +1079,7 @@
 
                             var staticOption = { id: 'new', text: '~~ New Model ~~' };
                             dynamicOptions.push(staticOption);
-                            
+
                             return {
                                 results: dynamicOptions
                             }
@@ -1095,7 +1095,7 @@
                                             <input class="form-control form-control-c" name="model_name['+(+x-1)+']" id="model_name">\
                                         </div>\
                                     </div>';
-                        
+
                         $(this).parent().parent().after(name);
                     }else{
                         $(".model_name_"+x).remove();
@@ -1121,7 +1121,7 @@
                                     text: item.name,
                                 };
                             });
-                            
+
                             return {
                                 results: dynamicOptions
                             }
@@ -1153,7 +1153,7 @@
                                     text: item.name,
                                 };
                             });
-                            
+
                             return {
                                 results: dynamicOptions
                             }
@@ -1193,11 +1193,12 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-            
+
             /* function filter_options() {
                 // $("#filter_optionsModal").modal('show');
             } */
         </script>
     <?php $__env->stopPush(); ?>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\upwork\monties\resources\views/tenant/price.blade.php ENDPATH**/ ?>
