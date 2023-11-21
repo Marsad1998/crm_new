@@ -210,9 +210,9 @@
 
 			<!-- Main Content-->
 			<div class="main-content pt-0">
-				<div class="container-fluid padding-top-10 open-urlGPar">
-					# <span class="open_urlPar"></span><span class="open-url text-capitalize"></span>
-				</div>
+{{--				<div class="container-fluid padding-top-10 open-urlGPar">--}}
+{{--					# <span class="open_urlPar"></span><span class="open-url text-capitalize"></span>--}}
+{{--				</div>--}}
                 @yield('content')
 			</div>
 			<!-- End Main Content-->

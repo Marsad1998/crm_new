@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 text-black"><i class="fas fa-users"></i> Manage Staff</h3>
+            <h3 class="page-heading"><i class="fas fa-users"></i> Manage Staff</h3>
             <div class="card">
                 <div class="card-body">
                     <div class="row row-sm">
@@ -23,13 +23,13 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="usersModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content br-radius-10">
@@ -69,7 +69,7 @@
                             </select>
                             <small id="status_error" class="text-danger error"></small>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary saveData">Save</button>
@@ -84,7 +84,7 @@
         {{-- @include('tenant.script') --}}
         <script>
             $(document).ready(function () {
-    
+
                 var users = $("#usersTbl").DataTable({
                     stateSave: true,
                     responsive: true,
@@ -184,7 +184,7 @@
                                 bottom: 10,
                                 time: 2000,
                             });
-                        }, 
+                        },
                         error: function (jqXhr) {
                             $(".saveData").prop("disabled", false);
                             var errorResponse = $.parseJSON(jqXhr.responseText);
@@ -212,7 +212,7 @@
                             $("#user_email").val(response.email);
                             $("#user_password").val(response.password);
                             $("#status").val(response.status);
-                            
+
                             $("#role_id").empty();
                             var option = new Option(response.roles[0].name, response.role_id, false, false);
                             $("#role_id").append(option);
@@ -236,7 +236,7 @@
                                 time: 2000,
                             });
                             users.ajax.reload(null, false);
-                        }, 
+                        },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
                         }

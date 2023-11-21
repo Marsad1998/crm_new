@@ -7,37 +7,41 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70"><i class="fas fa-link"></i> Manage Categories</h3>
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-4">
+            <h3 class="page-heading"><i class="fas fa-link"></i> Manage Categories</h3>
+            <div class="row">
+                <div class="col-sm-4 ">
+                    <div class="card shadow">
+                        <div class="card-body">
                             <form action="/add_categories" class="formData" method="post">
                                 <div class="form-group">
                                     <label for="">Category Name</label>
-                                    <input type="text" class="form-control form-control-c" placeholder="Category Name" name="name" id="name"> 
+                                    <input type="text" class="form-control form-control-c" placeholder="Category Name" name="name" id="name">
                                 </div>
                                 <button type="submit" id="saveData" class="btn btn-c btn-primary btn-block">Save</button>
                             </form>
-                        </div> {{-- inner col-4 --}}
-                        <div class="col-sm-8">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card shadow-lg">
+                        <div class="card-body">
                             <div class="table-responsive mt-3">
                                 <table class="table table-striped table-hover table-bordered align-middle" id="categoryTbl">
                                     <thead>
-                                        <tr class="bg-primary">
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Action</th>
-                                        </tr>
+                                    <tr class="bg-primary">
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     </tbody>
                                 </table>
                             </div>
-                        </div> {{-- inner col-8 --}}
-                    </div> {{-- inner row --}}
-                </div> {{-- body --}}
-            </div> {{-- card --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -54,7 +58,7 @@
                             <label for="service_name" class="form-label">Service Name</label>
                             <input type="text" id="service_name" required class="form-control form-control-c">
                             <small id="service_name_error" class="text-danger error"></small>
-                        </div>                        
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary saveService">Save</button>
@@ -100,13 +104,13 @@
                                     position: 'right',
                                     bottom: 10,
                                     time: 2000,
-                                });    
+                                });
                                 categoryTbl.ajax.reload(null, false);
                             }
                         }
                     });
                 });
-                
+
                 $("#serviceForm").on('submit', function (e) {
                     e.preventDefault();
                     var id = $('.saveService').attr('id');
@@ -168,7 +172,7 @@
                                 bottom: 10,
                                 time: 2000,
                             });
-                        }, 
+                        },
                         error: function (jqXhr) {
                             $("#saveData").prop("disabled", false);
                             var errorResponse = $.parseJSON(jqXhr.responseText);
@@ -221,7 +225,7 @@
                             }
                         });
                     }
-                }); 
+                });
 
                 $(document).on('click', ".edit", function() {
                     var id = $(this).attr('id');
@@ -234,7 +238,7 @@
                             $("#saveData").text('Update').addClass('btn-danger').removeClass('btn-primary');
                             $(".formData").attr('action', '/update_categories/' + id);
                             $("#name").val(response.name)
-                        }, 
+                        },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
                         }
@@ -256,7 +260,7 @@
                                 time: 2000,
                             });
                             categoryTbl.ajax.reload(null, false);
-                        }, 
+                        },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
                         }
