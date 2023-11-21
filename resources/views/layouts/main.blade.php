@@ -10,10 +10,10 @@
 
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-			
+
 		<!-- Favicon -->
 		<link rel="icon" href="assets/img/brand/new-favicon-45x45.ico" type="image/x-icon"/>
-		
+
 		<!-- Title -->
 		<title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -53,10 +53,10 @@
 
 		{{-- Sweet Alert --}}
 		<link href="{{ global_asset('assets/plugins/sweet-alert/sweetalert.css') }}" rel="stylesheet">
-		
+
 		{{-- Tree View --}}
 		<link href="{{ global_asset('assets/plugins/treeview/treeview.css') }}" rel="stylesheet">
-		
+
 		{{-- Animate css --}}
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
@@ -72,29 +72,6 @@
 				color: #fff !important;
 				border-color: #51B3DE !important;
 			}
-
-			/* Custom Input */
-			.form-control-c{
-				border: 1px solid #E5E8EB !important;
-				border-radius: 0px !important;
-				height: 40px !important;
-				font-size: 16px !important;
-				color: #353535 !important;
-				background-color: #E5E8EB !important;
-			}
-			
-			.form-control-c:focus{
-				background-color: #E5E8EB !important;
-			}
-			
-			.textarea-c{
-				border: 1px solid #E5E8EB !important;
-				border-radius: 0px !important;
-				font-size: 16px !important;
-				color: #353535 !important;
-				background-color: #E5E8EB !important;
-			}
-
 			/* Custom Select */
 			.select2-selection {
 				border: 1px solid #E5E8EB !important;
@@ -152,8 +129,8 @@
 			}
 
 			.imagePreview{
-				width: 150px; 
-				height: 150px; 
+				width: 150px;
+				height: 150px;
 				border: 2px dotted black;
 				border-radius: 5px;
 			}
@@ -178,7 +155,7 @@
 				display: flex;
 				color: gray;
 			}
-			
+
 			.icon-button-bottom{
 				position: absolute;
 				bottom: 0;
@@ -204,7 +181,7 @@
 				border: 1px solid #ccc;
 				margin: 5px 0;
 			}
-			
+
 			/* .table {
 				border: 0.5px solid grey;
 			}
@@ -233,9 +210,9 @@
 
 			<!-- Main Content-->
 			<div class="main-content pt-0">
-				<div class="container-fluid padding-top-10 open-urlGPar">
-					# <span class="open_urlPar"></span><span class="open-url text-capitalize"></span>
-				</div>
+{{--				<div class="container-fluid padding-top-10 open-urlGPar">--}}
+{{--					# <span class="open_urlPar"></span><span class="open-url text-capitalize"></span>--}}
+{{--				</div>--}}
                 @yield('content')
 			</div>
 			<!-- End Main Content-->
@@ -320,7 +297,7 @@
 
 		{{-- Sweet Alert --}}
 		<script src="{{ global_asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
-		
+
 		{{-- Treeview --}}
 		<script src="{{ global_asset('assets/plugins/treeview/treeview.js') }}"></script>
 
@@ -344,11 +321,11 @@
 						[50, 100, 500, -1],
 						[50, 100, 500, 'All']
 					],
-					language: { 
+					language: {
                         search: "", searchPlaceholder: "Search...",
                     },
 				});
-	
+
 				var open_url = '{{Request::path()}}'
 				var open_urlREC = $('a[href*="/'+open_url+'"]').attr("cstmname")
 				var open_urlParREC = $('a[href*="/'+open_url+'"]').attr("cstmParname")

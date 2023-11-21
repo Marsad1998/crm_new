@@ -4,7 +4,7 @@
 
     <div class="container-fluid">
         <div class="inner-body">
-            <h3 class="mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70"><i class="fas fa-car-alt"></i> Makes & Models</h3>
+            <h3 class="page-heading"><i class="fas fa-car-alt"></i> Makes & Models</h3>
             <div class="card">
                 <div class="card-body">
                     <div class="row row-sm">
@@ -22,7 +22,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                             </select>
                             <small id="make_id_error" class="text-danger error"></small>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-c btn-primary saveData">Save</button>
@@ -88,7 +88,7 @@
         @include('tenant.script')
         <script>
             $(document).ready(function () {
-                
+
                 $("#make_id").select2({
                     dropdownParent: $("#modelsModal"),
                     placeholder: 'Select Makes',
@@ -204,7 +204,7 @@
                             }else{
                                 $("#modelsModal").modal('show')
                                 $("#model_name").val(response[0].name);
-                                
+
                                 $("#make_id").empty();
                                 var option = new Option(response[0].make.name, response[0].make.id, false, false);
                                 $("#make_id").append(option).trigger('change');
@@ -213,7 +213,7 @@
                         }
                     });
                 });
-                
+
                 // Function to format the child row content
                 function formatChildRow(models, id) {
                     if (!models || !Array.isArray(models) || models.length === 0) {

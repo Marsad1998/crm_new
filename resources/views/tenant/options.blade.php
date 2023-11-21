@@ -7,11 +7,11 @@
 @section('content')
     <div class="container-fluid">
         <div class="inner-body">
-            <h3 class="text-black mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70"><i class='fas fa-network-wired'></i> Manage Options</h3>
-            <div class="card bg-light-transparent">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-4">
+            <h3 class="page-heading"><i class='fas fa-network-wired'></i> Manage Options</h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card shadow">
+                        <div class="card-body">
                             <form action="{{ route('option.add') }}" class="formData" method="post">
                                 <div class="form-group">
                                     <label for="option_name">Parameter Name</label>
@@ -57,32 +57,36 @@
                                         Have Right To Perform this Action </div>
                                 @endif
                             </form>
-                        </div> {{-- inner col-4 --}}
-                        <div class="col-sm-8">
+                        </div>
+                    </div>
+                </div> {{-- inner col-4 --}}
+                <div class="col-sm-8">
+                    <div class="card shadow" >
+                        <div class="card-body">
                             <div class="table-responsive mt-3">
                                 <table class="table table-striped table-hover table-bordered align-middle" id="makenModal">
                                     <table class="table table-striped table-hover table-bordered align-middle" id="optionTable">
                                         <thead class="table-primary">
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Parameter Name</th>
-                                                <th>Category</th>
-                                                <th>Type</th>
-                                                <th>Action</th>
-                                            </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Parameter Name</th>
+                                            <th>Category</th>
+                                            <th>Type</th>
+                                            <th>Action</th>
+                                        </tr>
                                         </thead>
                                         <tbody class="text-capitalize">
                                         </tbody>
                                     </table>
                                 </table>
                             </div>
-                        </div> {{-- inner col-8 --}}
-                    </div> {{-- inner row --}}
-                </div> {{-- body --}}
+                        </div>
+                    </div>
+                </div> {{-- inner col-8 --}}
             </div> {{-- card --}}
         </div>
     </div>
-    
+
     <div class="modal animate__animated animate__zoomIn animate__faster" id="optionsVModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -111,7 +115,7 @@
             </div>
         </div>
     </div>
-    
+
     @push('script')
         <script>
             $(document).ready(function() {
@@ -120,7 +124,7 @@
                     var id = $(this).attr('id')
                     // Find the parent <tr> of the clicked button
                     var tr = $(this).closest('tr');
-                    
+
                     // Get the second td value within the parent tr
                     var secondTdValue = tr.find('td:nth-child(2)').text();
                     $("#options_name").html(secondTdValue)
@@ -141,7 +145,7 @@
                     $("#optionsForm").attr('action', "{{ route('option.value_add', ['id' => ':id']) }}".replace(':id', id));
                     $("#optionsVModal").modal('show');
                 });
-                
+
                 // $(".option1Div").hide();
                 // $("#option_operator").removeAttr('required')
                 // $(document).on('change', '#option_category', function () {
@@ -175,7 +179,7 @@
                         dataType: "json",
                         success: function (response) {
                             $("#option_value_name").val('')
-                            $("#option_value_amount").val('')                            
+                            $("#option_value_amount").val('')
                             // $("#optionsVModal").modal('hide')
                             notif({
                                 type: response.sts,
@@ -225,7 +229,7 @@
                                     position: 'right',
                                     bottom: 10,
                                     time: 2000,
-                                });    
+                                });
                                 optionTable.ajax.reload(null, false);
                             }
                         }
@@ -259,7 +263,7 @@
                                 bottom: 10,
                                 time: 2000,
                             });
-                        }, 
+                        },
                         error: function (jqXhr) {
                             $("#saveData").prop("disabled", false);
                             var errorResponse = $.parseJSON(jqXhr.responseText);
@@ -366,7 +370,7 @@
                             $("#option_type").val(response.type)
                             $("#option_category").val(response.category_id)
                             $("#option_operator").val(response.operator);
-                        }, 
+                        },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
                         }
@@ -388,7 +392,7 @@
                                 time: 2000,
                             });
                             optionTable.ajax.reload(null, false);
-                        }, 
+                        },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
                         }
