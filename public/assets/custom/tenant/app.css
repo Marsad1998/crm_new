@@ -621,3 +621,6 @@ label {
         margin-top: 5px;
     }
 }
+.select2-container--open .select2-dropdown {
+    z-index: 99999;
+}

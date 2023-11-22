@@ -27,7 +27,7 @@
 
                                             <div class="form-group">
                                                 <label for="make_1">Make:</label>
-                                                <select name="make_1" id="make_1" class="form-control">
+                                                <select name="make_1" id="make_1" class="form-control select2">
                                                     <option value="">Select option</option>
                                                     @foreach($makes as $make)
                                                         <option value="{{$make->id}}">{{$make->name}}</option>
@@ -38,7 +38,7 @@
                                         <div class="col-md-12 col-lg-4 col-xl-4">
                                             <div class="form-group">
                                                 <label for="make_2">Make:</label>
-                                                <select name="make_2" id="make_2" class="form-control">
+                                                <select name="make_2" id="make_2" class="form-control select2">
                                                 </select>
                                             </div><!-- form-group -->
                                         </div><!-- col-2 -->
@@ -53,7 +53,7 @@
                                         <div class="col-md-12 col-lg-6 col-xl-6">
                                             <div class="form-group">
                                                 <label for="service">Service:</label>
-                                                <select name="service" id="service" class="form-control">
+                                                <select name="service" id="service" class="form-control select2">
                                                     <option value="">Select option</option>
                                                     @foreach($services as $service)
                                                         <option value="{{$service->id}}">{{$service->name}}</option>
@@ -64,7 +64,7 @@
                                         <div class="col-md-12 col-lg-6 col-xl-6">
                                             <div class="form-group">
                                                 <label for="key_type">Key Type:</label>
-                                                <select name="key_type" id="key_type" class="form-control">
+                                                <select name="key_type" id="key_type" class="form-control select2">
                                                     <option value="">Select option</option>
                                                     @foreach($keyType as $type)
                                                         <option value="{{$type->id}}">{{$type->name}}</option>
@@ -1383,6 +1383,8 @@
                     data.remove();
                 }, 1000);
             }
+
+            $(".select2").select2();
 
             function initSelect(x) {
                 $("#make_id_"+x).select2({
