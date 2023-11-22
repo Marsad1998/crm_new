@@ -36,8 +36,7 @@ class PriceManagerController extends Controller
 
     public function getModel(Request $request)
     {
-        $make = Makes::whereName($request->make_id)->first();
-        $models = Models::where("make_id", $make->id)->get();
+        $models = Models::where("make_id", $request->make_id)->get();
         return view('tenant.makenmodel.ajax.model-option', compact('models'))->render();
     }
 
@@ -195,13 +194,87 @@ class PriceManagerController extends Controller
 
     public function show(Request $request)
     {
-//        dd( $request->all() );
+
         $query = PriceManager::query();
-        if($request->columns[11]["search"]["value"]){
-            $amount = $request->columns[11]["search"]["value"];
-            $explodeAmount = explode("-", $amount);
-            $query->where("amount", ">=", $explodeAmount[0])->where("amount", "<=", $explodeAmount[1]);
+        if($request->price){
+            $price = explode("-", $request->price);
+            $min = trim(str_replace("$", "", $price[0]));
+            $max = trim(str_replace("$", "", $price[1]));
+
+            $query->where("amount", ">=", $min)->where("amount", "<=", $max);
         }
+        if($request->modelValue){
+            $query->where("model_id", $request->modelValue);
+        }
+        if($request->yearValue){
+            $query->where("year_start", '>=', $request->yearValue);
+        }
+        if($request->serviceValue){
+            $query->where("year_start", ">=", $request->serviceValue);
+        }
+        if($request->key_typeValue){
+            $query->where("key_type_id",  $request->key_typeValue);
+        }
+        if($request->hasNotes){
+            if($request->hasNotes == 1){
+                $query->whereNotNull("PN");
+            }
+            if($request->hasNotes == 2){
+                $query->whereNull("PN");
+            }
+        }
+        if($request->hasImages){
+            if($request->hasImages == 1){
+                $query->whereNotNull("image");
+            }
+            if($request->hasImages == 2){
+                $query->whereNull("image");
+            }
+        }
+        if($request->manufacturer){
+            $oem = explode("|", $request->manufacturer);
+            $query->where(function ($query) use ($oem) {
+                if (in_array("1", $oem)) {
+                    $query->orWhere("oem", 1);
+                }
+                if (in_array("2", $oem)) {
+                    $query->orWhere("oem", 0);
+                }
+                if (in_array("null", $oem)) {
+                    $query->orWhereNull("oem");
+                }
+            });
+        }
+        if($request->akl){
+            $akl = explode("|", $request->akl);
+            $query->where(function ($query) use ($akl) {
+                if (in_array("1", $akl)) {
+                    $query->orWhere("akl", 1);
+                }
+                if (in_array("2", $akl)) {
+                    $query->orWhere("akl", 0);
+                }
+                if (in_array("null", $akl)) {
+                    $query->orWhereNull("akl");
+                }
+            });
+        }
+        if($request->comfortAccess){
+            $comfortAccess = explode("|", $request->comfortAccess);
+            $query->where(function ($query) use ($comfortAccess) {
+                if (in_array("1", $comfortAccess)) {
+                    $query->orWhere("comfort_access", 1);
+                }
+                if (in_array("2", $comfortAccess)) {
+                    $query->orWhere("comfort_access", 0);
+                }
+                if (in_array("null", $comfortAccess)) {
+                    $query->orWhereNull("comfort_access");
+                }
+            });
+        }
+
+
         $data = $query->with(['models', 'makes'])->get();
         return Datatables::of($data)
             ->addColumn('model_id', function ($row) {
