@@ -405,6 +405,16 @@
 
                 $(document).on('click', '#pasteContent', function () {
                     var data = $("#copy_data").val();
+                    $('#prcieForm').each(function() {
+                        this.reset();
+                        $(this).find('select.select2').val(null).trigger('change');
+                        $(this).find('textarea').val('');
+                        $(".icon-button-bottom").click();
+                    });
+
+                    $("#make_id_1").val(null).trigger('change');
+                    $("#model_id_1").val(null).trigger('change');
+
                     $.ajax({
                         type: "POST",
                         url: "<?php echo e(route('price.paste')); ?>",
@@ -413,7 +423,6 @@
                         },
                         dataType: "json",
                         success: function (response) {
-                            console.log(response);
                             $("#copy_data").val('');
                             $("#pastVehicle").modal('hide');
                             
@@ -423,19 +432,31 @@
                                 if (i > 0) {
                                     addRow();
                                 }
-                                if (response[i].bra) {
-                                    
-                                }
-                                var option = new Option(response[i].brand, response[i].brand, false, false);
-                                $("#make_id_"+(+i+1)).append(option).trigger('change');
-                                
-                                var option = new Option(response[i].model, response[i].model, false, false);
-                                $("#model_id_"+(+i+1)).append(option).trigger('change');
-                                
-                                $("#year_from_"+(+i+1)).val(response[i].year_from)
-                                $("#year_to_"+(+i+1)).val(response[i].year_to)
-                            }
 
+                                var temp = (+i+1);
+                                if (response[i].match_type == 'none') {
+                                    var opt1 = new Option('~~ New Makes ~~', 'new', false, true);
+                                    var opt2 = new Option('~~ New Model ~~', 'new', false, true);
+                                    $("#make_id_"+temp).append(opt1).trigger('change');
+                                    $("#model_id_"+temp).append(opt2).trigger('change');
+                                    $(".make_name_"+temp).find(':input').val(response[i].brand);
+                                    $(".model_name_"+temp).find(':input').val(response[i].model);
+                                }else if (response[i].match_type == 'both'){
+                                    var opt1 = new Option(response[i].brand, response[i].make_id, false, true);
+                                    var opt2 = new Option(response[i].model, response[i].model_id, false, true);
+                                    $("#make_id_"+temp).append(opt1).trigger('change');
+                                    $("#model_id_"+temp).append(opt2).trigger('change');
+                                }else{
+                                    var opt1 = new Option(response[i].brand, response[i].make_id, false, true);
+                                    var opt2 = new Option('~~ New Model ~~', 'new', false, true);
+                                    $("#make_id_"+temp).append(opt1).trigger('change');
+                                    $("#model_id_"+temp).append(opt2).trigger('change');
+                                    $(".model_name_"+temp).find(':input').val(response[i].model);
+                                }
+                                
+                                $("#year_from_"+temp).val(response[i].year_from)
+                                $("#year_to_"+temp).val(response[i].year_to)
+                            }
                         }
                     });
                 });
@@ -775,7 +796,6 @@
                         url: "<?php echo e(route('price.edit', ['id' => ':id'])); ?>".replace(':id', $(this).attr('id')),
                         dataType: "json",
                         success: function(response) {
-                            console.log(response);
                             $("#saveData").text('Update').addClass('btn-danger').removeClass('btn-primary');
                             $(".addRowVtn").hide();
                             $("#priceManagerModal").modal('show');
@@ -909,8 +929,8 @@
                                     </div>\
                                 </div>\
                                 <div class="col-sm-4 d-flex justify-content-center align-items-center">\
-                                    <button type="button" onclick="addRow()" class="btn m-2 btn-c\ btn-primary"><i class="fas fa-plus"></i> Add</button>\
-                                    <button type="button" onclick="removeRow(this);" class="btn m-2 btn-c\ btn-danger"><i class="fas fa-trash"></i> Remove</button>\
+                                    <button type="button" onclick="addRow()" class="btn m-2 btn-c\ btn-primary"><i class="fas fa-plus"></i></button>\
+                                    <button type="button" onclick="removeRow(this);" class="btn m-2 btn-c\ btn-danger"><i class="fas fa-trash"></i></button>\
                                 </div>\
                             </div>\
                         </div>';
@@ -1044,12 +1064,13 @@
                     }
                 }).on('change', function () {
                     if ($(this).val() == 'new') {
+
                         $(".model_id_"+x).val(null).trigger('change');
                         $(this).parent().parent().removeClass('col-sm-6').addClass('col-sm-3')
-                        var name = '<div class="col-sm-3 make_name_'+(+x-1)+'">\
+                        var name = '<div class="col-sm-3 make_name_'+(x)+'">\
                                             <div class="form-group">\
                                             <label for="make_name">New Make</label>\
-                                            <input class="form-control form-control-c" name="make_name['+(+x-1)+']" id="make_name">\
+                                            <input class="form-control form-control-c" name="make_name['+(x)+']" id="make_name">\
                                         </div>\
                                     </div>';
 
@@ -1091,10 +1112,10 @@
                 }).on('change', function () {
                     if ($(this).val() == 'new') {
                         $(this).parent().parent().removeClass('col-sm-6').addClass('col-sm-3')
-                        var name = '<div class="col-sm-3 model_name_'+(+x-1)+'">\
+                        var name = '<div class="col-sm-3 model_name_'+(x)+'">\
                                             <div class="form-group">\
                                             <label for="model_name">New Model</label>\
-                                            <input class="form-control form-control-c" name="model_name['+(+x-1)+']" id="model_name">\
+                                            <input class="form-control form-control-c" name="model_name['+(x)+']" id="model_name">\
                                         </div>\
                                     </div>';
 
