@@ -79,10 +79,7 @@ class PriceManagerController extends Controller
         foreach ($lines as $line) {
             $carInfo = explode(' ', $line);
 
-
-            Log::alert($carInfo);
-
-            // key innovations
+            // key innovations = Done
             if (count($carInfo) == 3) {
                 $yearRange = explode('-', $carInfo[0]);
                 if (count($yearRange) > 1) {
@@ -91,7 +88,7 @@ class PriceManagerController extends Controller
                     $brand = $carInfo[1];
                     $modelName = $carInfo[2];
                 } else {
-                    // American Supply
+                    // American Supply = Done
                     $brand = $carInfo[0];
                     $modelName = $carInfo[1];
                     $yearRange = explode('-', $carInfo[2]);
@@ -106,11 +103,11 @@ class PriceManagerController extends Controller
                     'year_to' => $yearTo,
                 ];
             }
-            // UHS
+            // UHS = Done
             elseif (count($carInfo) == 5) {
                 $yearFrom = $carInfo[0];
                 $yearTo = $carInfo[2];
-                $brand = $carInfo[1];
+                $brand = $carInfo[3];
                 $modelName = $carInfo[4];
 
                 $carData[] = [
@@ -123,17 +120,30 @@ class PriceManagerController extends Controller
         }
 
         foreach ($carData as $x => $value) {
-            $make = PriceManager::with('makes', 'models')
+            $makeMatched = PriceManager::with('makes')
                 ->whereHas('makes', function ($row) use ($value) {
                     $row->where('makes.name', $value['brand'])->orWhere('makes.name', 'LIKE', '%' . $value['brand']);
                 })
+                ->first();
+
+            $modelMatched = PriceManager::with('models')
                 ->whereHas('models', function ($row) use ($value) {
                     $row->where('models.name', $value['model'])->orWhere('models.name', 'LIKE', '%' . $value['model']);
                 })
                 ->first();
 
-            if (!$make) {
-                $carData[$x]['old'] = true;
+            if ($makeMatched && $modelMatched) {
+                // Both make and model matched
+                $carData[$x]['match_type'] = 'both';
+                $carData[$x]['make_id'] = $makeMatched->makes->id;
+                $carData[$x]['model_id'] = $modelMatched->models->id;
+            } elseif ($makeMatched) {
+                // Only make matched
+                $carData[$x]['match_type'] = 'makes';
+                $carData[$x]['make_id'] = $makeMatched->makes->id;
+            } else {
+                // No match
+                $carData[$x]['match_type'] = 'none';
             }
         }
 
