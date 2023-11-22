@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BulkDiscount;
 use App\Models\Makes;
 use App\Models\Models;
 use App\Models\Option;
@@ -22,8 +23,11 @@ class PriceManagerController extends Controller
         $makes = Makes::get();
         $services = Service::get();
         $keyType = OptionValue::where("option_id", 4)->get();
+        $bulkDiscounts = BulkDiscount::with("KeyType")->get();
 
-        return view('tenant.price', compact('makes', 'services', 'keyType'));
+//        dd($bulkDiscounts);
+
+        return view('tenant.price', compact('makes', 'services', 'keyType', 'bulkDiscounts'));
     }
 
     public function makes(Request $request)
