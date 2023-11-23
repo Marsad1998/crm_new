@@ -86,8 +86,8 @@ class QuoteConfigController extends Controller
                     }
                     $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mb-2" id="cus_' . $item->option->slug . '">
                                 <label for="lb_' . $item->option->slug . '">' . $item->option->name . '</label>
-                                <select class="form-control customSelect form-control-c" 
-                                data-name1="' . $item->option->name . '" 
+                                <select class="form-control customSelect form-control-c"
+                                data-name1="' . $item->option->name . '"
                                 data-slug="' . $item->option->slug . '"
                                 data-effect="' . $item->option->operator . '"
                                 name="options[' . $item->option->slug . ']" id="lb_' . $item->option->slug . '"
@@ -103,7 +103,7 @@ class QuoteConfigController extends Controller
                                     <input type="radio" class="custom-control-input" value="' . $values->id . '" name="options[' . $item->option->slug . ']" id="lb_' . $item->option->slug . $values->id . '" value="1" required>
                                     <span class="custom-control-label custom-control-label-md  tx-16">' . $values->name . '</span>
                                 </label>
-                                
+
                                 <span class="error-span text-danger " id="error-' . $item->option->slug . '"></span>';
                     }
 
@@ -286,7 +286,7 @@ class QuoteConfigController extends Controller
                             <i class="fe fe-trash"></i>
                         </button>
 
-                        <button class="show-models btn btn-sm ripple btn-outline-info" 
+                        <button class="show-models btn btn-sm ripple btn-outline-info"
                         id="row_' . $row->service_id . '" data-class="hide">
                             <i class="fe fe-plus"></i>
                         </button>';
@@ -341,7 +341,13 @@ class QuoteConfigController extends Controller
 
     public function search_call(Request $request)
     {
-        return $request;
+        $leads = Lead::with(["callLog", "leadLatest" => function($query){
+            $query->with("price");
+        }])->wherePhone($request->phone)->get();
+
+//        dd($leads);
+
+        return view("tenant.quotes.ajax.records", compact('leads'))->render();
     }
 
     public function save_lead(Request $request)
@@ -391,6 +397,34 @@ class QuoteConfigController extends Controller
         CallLog::create($call_log);
 
         return response()->json(['msg' => 'Quote Saved Successfully', 'sts' => 'success']);
+    }
+
+    public function getLeadDetail(Request $request){
+        $lead = Lead::with(["callLog", "leadLatest" => function($query){
+            $query->with("price");
+        }])->whereId($request->id)->first();
+
+        $categories = Category::has('services')->get();
+
+        $serviceId = null;
+        $categoryId = null;
+        $prices = null;
+        if($lead->leadLatest && $lead->leadLatest->price){
+            $serviceId = $lead->leadLatest->price->service_id;
+        }
+        if($lead->leadLatest && $lead->leadLatest->price){
+            $prices = $lead->leadLatest->price;
+        }
+        if($lead->leadLatest && $lead->leadLatest->price && $lead->leadLatest->price->services){
+            $categoryId = $lead->leadLatest->price->services->category_id;
+        }
+
+        $data["serviceId"] = $serviceId;
+        $data["categoryId"] = $categoryId;
+        $data["prices"] = $prices;
+
+        return $data;
+//        return view('tenant.quotes.ajax.create', compact('serviceId', 'categoryId', 'services', 'categories'))->render();
     }
 
     public function create(Request $request)

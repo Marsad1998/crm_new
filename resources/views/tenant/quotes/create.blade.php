@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="inner-body">
+        <div class="inner-body quote-generator-box">
             <div class="row mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 m-3">
 
                 <div class="col-sm-7 col-md-8 col-lg-5 col-xl-5 cstm-margin-0 pr-0">
@@ -74,10 +74,10 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 pad-mar-0-imp">
                     <div class="card h-100 l-info-card shadow-right-border">
                         <div class="cstm-card-header cstm-border-top quote-page-card-header">Lead Info</div><!-- custom card header -->
-
+                        <form action="{{ route('quote.save_lead') }}" id="save_lead" method="post">
                         <div class="cstm-card-body">
 
-                            <form action="{{ route('quote.save_lead') }}" id="save_lead" method="post">
+
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="phone_number">Phone Number</label>
@@ -152,9 +152,8 @@
                                 </div>
 
 
-
                             </div><!-- custom card body -->
-                            
+
                             <div class="cstm-card-footer d-flex justify-content-end l-info-footer footer-top-shadow">
                                 <button type="submit" class="btn footer-btn">Save Call</button>
                             </div><!-- custom card footer -->
@@ -163,6 +162,46 @@
                 </div> <!-- col 3 -->
             </div> <!-- row -->
         </div>
+    </div>
+
+    <!-- Filter Option modal START -->
+    <div class="modal animate__animated animate__zoomIn animate__fasters" id="leadCall" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+
+            <div class="modal-content br-radius-10">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Select Which Lead</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div><!-- modal header -->
+                <div class="modal-body">
+                    <p class="color-black">Which lead is this regarding?</p>
+                    <div class="row">
+                        <table class="table table-stripped table-record-bg">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>ID</th>
+                                <th>Vehicle(s)</th>
+                                <th>Service(s)</th>
+                                <th>Last Call</th>
+                                <th>Quoted</th>
+                                <th>Notes</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody class="logsData">
+
+                            </tbody>
+                        </table>
+                    </div><!-- row -->
+                </div><!-- modal body -->
+                <div class="modal-footer m-auto border-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary getLead" >OK</button>
+                </div><!-- modal footer -->
+            </div><!-- modal content -->
+
+        </div><!-- modal dialog -->
     </div>
 
     @push('script')
@@ -174,7 +213,7 @@
                     var option = new Option('Key Replacement', 1, false, true);
                     $("#service_id").append(option).trigger('select2:select');
                 }, 1000);
-                
+
                 $(document).on('click', '.quote_category', function () {
                     $("#service_id").val(null).trigger('select2:select')
                     getServices($(".quote_category:checked").val())
@@ -197,9 +236,10 @@
                         data: {
                             phone: phone
                         },
-                        dataType: "json",
+                        dataType: "html",
                         success: function (response) {
-                            
+                            $(".logsData").html(response)
+                            $("#leadCall").modal("show")
                         }
                     });
                 });
@@ -211,7 +251,7 @@
 
                     $(".customSwitch").each(function () {
                         var id = $(this).attr('id').substr(3);
-                        
+
                         if ($("#cus_"+id).hasClass('d-none')) {
                             return false;
                         }
@@ -222,7 +262,7 @@
                             formData.append($("#lb_"+id).attr('name'), '0');
                         }
                     });
-                    
+
                     $.ajax({
                         type: 'POST',
                         url: form.attr('action'),
@@ -233,16 +273,16 @@
                         dataType: 'json',
                         success: function(response) {
                             $(".error-span").text('')
-                            
+
                             $('#resultResponse').text('No price found.');
-                            
+
                             $('#resultResponse').text(response.length+' result found.');
-                            
+
                             if (response.length > 0 && response.length < 2) {
                                 fetchedService(response[0])
                             }else{
                                 var text = '';
-                                $.each(response, function (index, value) { 
+                                $.each(response, function (index, value) {
                                     text += `<div class="imgContainer">
                                                 <input type="radio" id="image_`+value.id+`" class="image-radio" name="multi_img" value="`+index+`">
                                                 <label for="image_`+value.id+`">
@@ -258,16 +298,16 @@
                                     text: text,
                                 };
 
-                                swal(options, function (isConfirm) {  
+                                swal(options, function (isConfirm) {
                                     fetchedService(response[$(".image-radio:checked").val()]);
                                 });
                             }
-                        
+
                         },
                         error: function (jqXhr) {
                             var errorResponse = $.parseJSON(jqXhr.responseText);
                             $(".error-span").text('')
-                            
+
                             $.each(errorResponse.errors, function (key, value) {
                                 var y = key.split('.');
                                 if (y.length > 1) {
@@ -285,18 +325,18 @@
                     $("#saveData").prop('disabled', true);
                     var form = $('#save_lead');
                     var formData = new FormData(this);
-                    
+
                     formData.append('sub_total', $("#subtotal").text().trim())
 
                     $('#quoteSearch :input[name]').each(function () {
                         formData.append($(this).attr('name'), $(this).val());
                     });
 
-                    $(".model_price_id").each(function () { 
+                    $(".model_price_id").each(function () {
                         formData.append('model_price_id[]', $(this).val());
                     });
 
-                    $(".model_qty").each(function () { 
+                    $(".model_qty").each(function () {
                         formData.append('model_qty[]', $(this).val());
                     });
 
@@ -320,7 +360,7 @@
                                 bottom: 10,
                                 time: 2000,
                             });
-                        }, 
+                        },
                         error: function (jqXhr) {
                             $("#saveData").prop("disabled", false);
                             var errorResponse = $.parseJSON(jqXhr.responseText);
@@ -331,7 +371,7 @@
                         }
                     }); //ajax call
                 });
-                
+
                 $(document).on('click', '.removePrice', function () {
                     var id = $(this).attr('id');
                     var type = $(this).data('type');
@@ -389,12 +429,12 @@
                                                 text: item.name,
                                             };
                                         });
-                                        
+
                                         return {
                                             results: dynamicOptions
                                         }
                                     },
-                                    cache: true,
+                                    cache: false,
                                 }
                             });
 
@@ -414,7 +454,7 @@
                                                 text: item.name,
                                             };
                                         });
-            
+
                                         return {
                                             results: dynamicOptions
                                         }
@@ -427,7 +467,7 @@
                 });
             });
 
-            function fetchedService(datta) {  
+            function fetchedService(datta) {
                 var gl_id = datta.id;
                 var lii = ` <div class="d-flex justify-content-center gen-quo-div"  id="quotaDiv_`+gl_id+`">
                                 <div class="p-2 gen-quo-div-data" style="width: 100%">
@@ -448,12 +488,12 @@
                                     <div class="d-flex justify-content-between">
                                         <span>Turn Key + Remote</span>
                                         <span>
-                                            Qty: <i id="quota_`+gl_id+`">1</i> 
+                                            Qty: <i id="quota_`+gl_id+`">1</i>
                                         </span>
                                     </div><!-- copy 3 -->
 
                                     <p class="pt-2 d-flex justify-content-center text-danger fw-bold">`+datta.PN+`</p>
-                                    
+
                                     <span id="quoteKeyQty_`+gl_id+`"></span>
                                     <input type="hidden" id="model_qty_`+gl_id+`" class="model_qty" value="`+gl_id+`"/>
                                 </div>
@@ -483,13 +523,12 @@
                 $(".basPrice").each(function () {
                     var id = $(this).attr('id')
                     var qty = 0;
-                    $('.nextQtyPrice_'+id).each(function () { 
+                    $('.nextQtyPrice_'+id).each(function () {
                         qty += +$(this).text().substr(1);
                     });
                     price += +$(this).text().substr(1) + qty;
                 })
-                
-                console.log(price);
+
 
                 $(".servicesEf").each(function () {
                     var operator = $(this).data('operator');
@@ -510,8 +549,8 @@
                 console.log(price);
                 $("#subtotal").text(price.toFixed(2))
             }
-            
-            function getServices(id) {  
+
+            function getServices(id) {
                 $("#service_id").select2({
                     placeholder: '~~ Select Service ~~',
                     width: "100%",
@@ -526,7 +565,7 @@
                                     text: item.name,
                                 };
                             });
-                            
+
                             return {
                                 results: dynamicOptions
                             }
@@ -535,6 +574,43 @@
                     },
                 })
             }
+
+            $(document).on("click", ".getLead", function (){
+                var id = $('.get-call-data:checked').val();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('quote.get-lead-detail') }}",
+                    data: {
+                        id: id
+                    },
+                    // dataType: "html",
+                    success: function (response) {
+                        $("#lb_caller-type").val(6).trigger('change');
+                        // $("#lb_does-the-vehicle-use-push-to-start-or-knob-turn-to-start").prop("checked", true);
+                        // $("input[name=options\\[key-manfacturer\\]]").val(0);
+
+                        // $(".quote-generator-box").html(response)
+                        // $(".select2").select2();
+                        // $("#leadCall").modal("show")
+                        var prices = response.prices
+                        if(prices){
+                            var oem = 1
+                            if(prices.oem == 0){
+                                oem = '0'
+                            }
+                            $("input:radio[name='options[key-manufacturer]']").filter('[value="4"]').prop('checked', true);
+
+                        }
+
+                        console.log( $("#lb_caller-type").select2("data"), "AAA")
+                    }
+                });
+            });
+
+            setTimeout( () => {
+                $("#make_id").val('4');
+            }, 5000)
+
         </script>
     @endpush
 

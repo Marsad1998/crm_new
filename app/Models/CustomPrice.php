@@ -23,6 +23,10 @@ class CustomPrice extends Model
         'akl',
     ];
 
+    public function leadItem(){
+        return $this->hasMany(LeadItem::class);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll(['*']);

@@ -594,3 +594,9 @@ label {
 .form-label{
     color: #000;
 }
+.modal-dialog-scrollable {
+    height: unset;
+}
+.table-record-bg{
+    background: #eaf2f6;
+}

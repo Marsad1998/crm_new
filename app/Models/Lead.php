@@ -18,6 +18,25 @@ class Lead extends Model
         'notes',
     ];
 
+    public function callLog(){
+        return $this->hasOne(CallLog::class);
+    }
+
+    public function leadItems(){
+        return $this->hasMany(LeadItem::class);
+    }
+
+    public function leadLatest(){
+        return $this->hasOne(LeadItem::class)->orderByDesc("id");
+    }
+
+    public function price(){
+        return $this->hasOneThrough(LeadItem::class, CustomPrice::class, 'price_id', 'lead_id');
+    }
+
+
+
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll(['*']);
