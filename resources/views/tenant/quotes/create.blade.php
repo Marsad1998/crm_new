@@ -82,7 +82,7 @@
                                     <div class="col">
                                         <label for="phone_number">Phone Number</label>
                                         <div class="input-group">
-                                            <input class="form-control form-control-c" placeholder="Search for..." type="text" name="phone_number" id="phone_number">
+                                            <input class="form-control form-control-c" placeholder="Search for..." value="877.514.9393" type="text" name="phone_number" id="phone_number">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary btn-c searchCallBtn" type="button">
                                                     <span class="input-group-btn">
@@ -91,11 +91,13 @@
                                                 </button>
                                             </span>
                                         </div>
+                                        <span class="error-span text-danger " id="error-phonenumber"></span>
                                     </div>
 
                                     <div class="col">
                                         <label for="caller_name">Caller Name</label>
                                         <input type="text" name="caller_name" class="form-control form-control-c" placeholder="John Smith">
+                                        <span class="error-span text-danger " id="error-caller_name"></span>
                                     </div>
                                 </div><!-- input-group number details -->
 
@@ -124,6 +126,7 @@
                                             <option value="Invalid">Invalid</option>
                                             <option value="Warranty">Warranty</option>
                                         </select>
+                                        <span class="error-span text-danger " id="error-status"></span>
                                     </div>
                                     <div class="col-12 mt-30">
                                         <div class="d-flex  cstm-margin-top-20">
@@ -139,14 +142,15 @@
                                                     <input type="radio" name="call_type" id="outgoing">
                                                     <label for="outgoing" class="radio-label">Outgoing</label>
                                                 </div>
-
                                             </div>
                                         </div><!-- input-group call type -->
+                                        <span class="error-span text-danger " id="error-call_type"></span>
                                     </div>
 
                                     <div class="col-12 mt-30">
                                         <label for="notes">Notes</label>
                                         <textarea name="notes" id="notes" rows="2" class="form-control textarea-c"></textarea>
+                                        <span class="error-span text-danger " id="error-notes"></span>
                                     </div><!-- input-group notes textarea -->
 
                                 </div>
@@ -340,6 +344,22 @@
                         formData.append('model_qty[]', $(this).val());
                     });
 
+                    let selectedValue = $('input[name="options[key-manfacturer]"]:checked').val();
+                    if(selectedValue){
+                        formData.append('key_manufacturer', selectedValue)
+                    }
+                    let category = $('input[name="category"]:checked').val();
+                    if(category){
+                        formData.append('category_id', category)
+                    }
+
+                    let service_id = $('#service_id').val();
+                    if(service_id){
+                        formData.append('service_id', service_id)
+                    }
+
+
+
                     $.ajax({
                         type: 'POST',
                         url: form.attr('action'),
@@ -349,6 +369,27 @@
                         processData: false,
                         dataType: 'json',
                         success: function(response) {
+                            console.log(response.errors.status)
+                            if(response.errors){
+                                let errors = response.errors
+                                if (errors.hasOwnProperty('status')) {
+                                    $("#error-status").text(errors.status)
+                                }
+                                if (errors.hasOwnProperty('caller_name')) {
+                                    $("#error-caller_name").text(errors.caller_name)
+                                }
+                                if (errors.hasOwnProperty('call_type')) {
+                                    $("#error-call_type").text(errors.call_type)
+                                }
+                                if (errors.hasOwnProperty('notes')) {
+                                    $("#error-notes").text(errors.notes)
+                                }
+                                if (errors.hasOwnProperty('phone_number')) {
+                                    $("#error-phonenumber").text(errors.phone_number)
+                                }
+
+
+                            }
                             $("#saveData").prop("disabled", false).text('Save').addClass('btn-primary').removeClass('btn-danger');
                             $('#save_lead').each(function() {
                                 this.reset();
@@ -585,7 +626,6 @@
                     },
                     // dataType: "html",
                     success: function (response) {
-                        $("#lb_caller-type").val(6).trigger('change');
                         // $("#lb_does-the-vehicle-use-push-to-start-or-knob-turn-to-start").prop("checked", true);
                         // $("input[name=options\\[key-manfacturer\\]]").val(0);
 
@@ -593,23 +633,50 @@
                         // $(".select2").select2();
                         // $("#leadCall").modal("show")
                         var prices = response.prices
+                        var custom_price = response.lead.custom_price
+
                         if(prices){
-                            var oem = 1
                             if(prices.oem == 0){
-                                oem = '0'
+                                $("#lb_key-manfacturer5").prop("checked", true);
+                            }if(prices.oem == 1){
+                                $("#lb_key-manfacturer4").prop("checked", true);
                             }
-                            $("input:radio[name='options[key-manufacturer]']").filter('[value="4"]').prop('checked', true);
+
+                            if(prices.pts == 1){
+                                $("#lb_does-the-vehicle-use-push-to-start-or-knob-turn-to-start").prop("checked", true);
+                            }
+                            if(prices.pts == 1){
+                                $("#lb_year").val(prices.year_start);
+                            }
+
+                            $("#lb_type-of-key").val(prices.key_type_id).trigger('change');
+                            $("#select2-lb_caaaaa-results").val(prices.key_type_id).trigger('change');
+
 
                         }
 
-                        console.log( $("#lb_caller-type").select2("data"), "AAA")
+                        if(custom_price){
+                            $("#lb_locations").val(custom_price.locations).trigger('change');
+                            $("#lb_caaaaa").val(custom_price.caa).trigger('change');
+                            $("#lb_daynight").val(custom_price.day_night).trigger('change');
+                            if(custom_price.lost_spare_keys){
+                                $("#lb_has-the-customer-lost-all-the-spare-keys").prop("checked", true);
+                            }
+                        }
+
+                        // Assuming you want to check the radio button with value 2
+                        $('input[name="category"][value="'+response.categoryId+'"]').prop('checked', true);
+                        $('input[name="category"][value="'+response.categoryId+'"]').trigger('click');
+                        setTimeout( () => {
+                            $("#service_id").val(response.serviceId).trigger('change');
+                        }, 1500)
+
+                        $("#leadCall").modal("hide")
                     }
                 });
             });
 
-            setTimeout( () => {
-                $("#make_id").val('4');
-            }, 5000)
+
 
         </script>
     @endpush

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
             $table->tinyText('phone');
-            $table->tinyText('name');
+            $table->tinyText('name')->nullable();
             $table->decimal('last_quoted', 10, 2)->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
@@ -30,22 +30,19 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->enum('status', ['Active', 'Booked', 'Failed', 'Invalid', 'Warning']);
-            $table->tinyInteger('incoming');
+            $table->tinyInteger('incoming')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });
 
         Schema::create('custom_prices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('service');
-            $table->unsignedBigInteger('make');
-            $table->unsignedBigInteger('model');
-            $table->unsignedBigInteger('year');
-            $table->tinyInteger('remote');
-            $table->unsignedBigInteger('key_type_id');
-            $table->tinyInteger('oem');
-            $table->tinyInteger('pts');
-            $table->tinyInteger('akl');
+            $table->unsignedBigInteger('lead_id')->nullable();
+            $table->unsignedBigInteger('caller_type')->nullable();
+            $table->unsignedBigInteger('locations')->nullable();
+            $table->unsignedBigInteger('caa')->nullable();
+            $table->unsignedBigInteger('day_night')->nullable();
+            $table->unsignedBigInteger('lost_spare_keys')->nullable();
             $table->timestamps();
         });
 

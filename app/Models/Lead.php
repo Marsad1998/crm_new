@@ -34,6 +34,10 @@ class Lead extends Model
         return $this->hasOneThrough(LeadItem::class, CustomPrice::class, 'price_id', 'lead_id');
     }
 
+    public function customPrice(){
+        return $this->hasOne(CustomPrice::class);
+    }
+
 
 
 

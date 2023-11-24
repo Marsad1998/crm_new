@@ -12,15 +12,12 @@ class CustomPrice extends Model
     use HasFactory, LogsActivity;
 
     protected $fillable = [
-        'service',
-        'make',
-        'model',
-        'year',
-        'remote',
-        'key_type_id',
-        'oem',
-        'pts',
-        'akl',
+        'lead_id',
+        'caller_type',
+        'locations',
+        'caa',
+        'day_night',
+        'lost_spare_keys'
     ];
 
     public function leadItem(){

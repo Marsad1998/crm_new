@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('model_prices', function (Blueprint $table) {
             $table->id();
-            $table->integer('model_id');
+            $table->integer('category_id')->nullable();
+            $table->integer('model_id')->nullable();
             $table->tinyInteger('is_range')->default(1);
-            $table->year('year_start');
+            $table->year('year_start')->nullable();
             $table->year('year_end')->nullable();
             $table->unsignedBigInteger('service_id');
 
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->tinyInteger('pts')->nullable();
             $table->tinyInteger('oem')->nullable();
             $table->tinyInteger('akl')->nullable();
-            $table->decimal('amount', 10, 2);
+            $table->decimal('amount', 10, 2)->nullable();
             $table->timestamps();
         });
     }
