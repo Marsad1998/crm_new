@@ -27,7 +27,7 @@ class PriceManagerController extends Controller
         $keyType = OptionValue::where("option_id", 4)->get();
         $bulkDiscounts = BulkDiscount::with("KeyType")->get();
 
-//        dd($bulkDiscounts);
+        //        dd($bulkDiscounts);
 
         return view('tenant.price', compact('makes', 'services', 'keyType', 'bulkDiscounts'));
     }
@@ -227,9 +227,13 @@ class PriceManagerController extends Controller
             foreach ($service_id as $y => $value1) {
                 $file = $request->file('file')[$y];
 
-                $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
-                Storage::put('/', $file, $filename);
-                $path =  "tenants/tenant" . tenant('id') . '/app/' . $filename;
+                try {
+                    $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
+                    Storage::put('/', $file, $filename);
+                    $path =  "tenants/tenant" . tenant('id') . '/app/' . $filename;
+                } catch (\Throwable $th) {
+                    Log::alert($th);
+                }
 
                 // $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
                 // $path = "tenants/tenant" . tenant('id') . '/app/' . $filename;
