@@ -12,7 +12,7 @@
                     <h3 class="page-heading"><i class="ti-money sidemenu-icon"></i> Price Manager</h3>
                 </div>
                 <div class="col-md-3 col-sm-12 mt-2">
-                    <button class="btn btn-primary  btn-c mt-lg-2  float-md-right" type="button"><span>Bulk Discount</span></button>
+                    <button class="btn btn-primary  btn-c mt-lg-2  float-md-right" type="button" id="bulkDiscount"><span>Bulk Discount</span></button>
                     <button class="btn btn-primary btn-c mt-lg-2 price-btn-margin float-md-right" id="addPriceButton" type="button"><span><i class="fas fa-plus-circle"></i> Add Price</span></button>
                     <div class="dropdown mt-2 d-inline-block float-md-right"  id="filterDropdown">
                         <button class="btn btn-primary mx-2 btn-c dropdown-toggle filterOptDropDBtn " tabindex="0" aria-controls="priceManager" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><span><i class="fas fa-filter"></i> Filters</span></button>
@@ -547,12 +547,170 @@
     </div> --}}
     <!-- Filter Option modal END -->
 
+    <div class="modal animate__animated animate__zoomIn animate__fasters" id="bulkDiscountModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Bulk Discounts</h5>
+                    <div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead class="bg-head">
+                        <tr>
+                            <th scope="col">Key Type</th>
+                            <th scope="col">Key Number</th>
+                            <th scope="col">Multiplier</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody class="discountsAll">
+                        @foreach($bulkDiscounts as $discount)
+                            <tr>
+                                <th scope="row">{{ ($discount->KeyType) ? $discount->KeyType->name : '-' }}</th>
+                                <td>{{$discount->key_number}}</td>
+                                <td>{{$discount->multiplier}}%</td>
+                                <td>
+                                    @if($discount->state == 1)
+                                        <span class="tag tag-success">Active</span>
+                                    @else
+                                        <span class="text-muted">Inactive</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary toggleBtn"  data-id="{{$discount->id}}" type="button">Toggle State</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                        <form action="{{route("bulk-discounts.create")}}" method="post" id="bulkCreate">
+                            @csrf
+                            <tr class="bulk-form">
+                                <td>
+                                    <select name="key_type" class="form-control" id="">
+                                        @foreach($keyType as $type)
+                                            <option value="{{$type->id}}">{{$type->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="key_number" class="form-control" id="">
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" name="multiplier" class="form-control">
+                                </td>
+                                <td>
+                                    <label class="form-check form-check-custom form-check-solid">
+                                        <!--begin::Input-->
+                                        <input class="form-check-input" type="radio" name="state" value="1" id="state_1" checked="">
+                                        <span class="form-check-label fw-bold text-muted" for="state_1">Active</span>
+                                        <!--end::Label-->
+                                    </label>
+                                    <label class="form-check form-check-custom form-check-solid">
+                                        <!--begin::Input-->
+                                        <input class="form-check-input" type="radio" name="state" value="0" id="state_1" checked="">
+                                        <span class="form-check-label fw-bold text-muted" for="state_1">Inactive</span>
+                                        <!--end::Label-->
+                                    </label>
+
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </td>
+                            </tr>
+                        </form>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     @push('script')
         <script>
+
+
+
             $(document).ready(function() {
+
+
 
                 initSelect(1);
                 initDetail(1);
+
+                $(document).on("click", "#bulkDiscount", function (){
+                    $("#bulkDiscountModal").modal('show')
+                })
+
+                $(document).on("click", ".toggleBtn", function (){
+                    var recordId = $(this).attr("data-id");
+                    $.ajax({
+                        url: "{{route('bulk-discounts.toggle')}}",
+                        data: {id: recordId}, // Serialize the form data
+                        success: function(response) {
+                            $.toast({
+                                heading: 'Success',
+                                text: 'State updated successfully',
+                                icon: 'success',
+                                loader: true,        // Change it to false to disable loader
+                                loaderBg: '#9EC600'  // To change the background
+                            })
+                            getBulkDiscounts();
+                        },
+                        error: function(error) {
+                            // Handle errors
+                            console.error("Error submitting form:", error);
+                        }
+                    });
+                })
+
+
+
+                $("#bulkCreate").submit(function(event) {
+                    event.preventDefault();
+                    // Submit the form using AJAX
+                    $.ajax({
+                        url: $(this).attr("action"),
+                        method: $(this).attr("method"),
+                        data: $(this).serialize(), // Serialize the form data
+                        success: function(response) {
+                            getBulkDiscounts();
+                        },
+                        error: function(error) {
+                            // Handle errors
+                            console.error("Error submitting form:", error);
+                        }
+                    });
+                });
+
+                function getBulkDiscounts(){
+                    $.ajax({
+                        url: "{{route('bulk-discounts.get')}}",
+                        data: $(this).serialize(), // Serialize the form data
+                        success: function(response) {
+                            $(".discountsAll").html(response);
+                        },
+                        error: function(error) {
+                            // Handle errors
+                            console.error("Error submitting form:", error);
+                        }
+                    });
+                }
+
 
 
                 $(document).on('change', 'select[name=make_1]', function () {
@@ -664,7 +822,7 @@
 
                                     // $("#make_id_" + temp).siblings('.select2-container--default').addClass('error-select');
                                 }
-
+                                
                                 $("#pasteContent").prop('disabled', false);
                                 $("#year_from_"+temp).val(response[i].year_from)
                                 $("#year_to_"+temp).val(response[i].year_to)
@@ -806,6 +964,7 @@
                         if (isConfirm) {
                             $("#priceManagerModal").modal('hide');
                             $("#filter_optionsModal").modal('hide');
+                            $("#bulkDiscountModal").modal('hide');
                             swal.close();
                         } else {
                             swal.close();
@@ -829,6 +988,7 @@
                         if (isConfirm) {
                             $("#priceManagerModal").modal('hide');
                             $("#filter_optionsModal").modal('hide');
+                            $("#bulkDiscountModal").modal('hide');
                             swal.close();
                         } else {
                             swal.close();
