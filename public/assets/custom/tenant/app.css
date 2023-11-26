@@ -506,9 +506,13 @@ label {
     text-transform: none;
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-     color: #000;
+    color: #000;
     line-height: 38px;
     background: #fff;
+}
+
+.error-select{
+    border: 1px solid red !important;
 }
 
 .mt-30{

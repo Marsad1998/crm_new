@@ -169,7 +169,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li></li>
                         </ul>
                     </div>
                 </div>
@@ -208,163 +207,6 @@
                     }
                 </style>
 
-                    <!-- DROPDOWN Menu on regular button Romove -->
-                    {{-- <div class="dropdown" id="filterDropdown">
-                        <button class="btn btn-primary mx-2 btn-c dropdown-toggle dropdown-btn" tabindex="0" aria-controls="priceManager" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><span><i class="fas fa-filter"></i> Filters</span></button>
-                        <ul class="dropdown-menu br-radius-10" aria-labelledby="dropdownMenuButton1" style="width:auto">
-                            <li>
-                                <div class="card-header padding-10">Filter Options</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label for="make_1">Make:</label>
-                                                <select name="make_1" id="make_1" class="form-control">
-                                                    <option value="">Select option</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label for="make_2">Make:</label>
-                                                <select name="make_2" id="make_2" class="form-control">
-                                                    <option value="">Select option</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label for="year">Year:</label>
-                                                <input type="text" name="year" id="year" class="form-control" placeholder="2023">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-6 col-xl-6">
-                                            <div class="form-group">
-                                                <label for="service">Service:</label>
-                                                <select name="service" id="service" class="form-control">
-                                                    <option value="">Select option</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-6 col-xl-6">
-                                            <div class="form-group">
-                                                <label for="key_type">Key Type:</label>
-                                                <select name="key_type" id="key_type" class="form-control">
-                                                    <option value="">Select option</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-6 col-xl-6">
-                                            <div class="form-group">
-                                                <label>Comfort Access:</label>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <input type="checkbox" name="comfort_accessYes" id="comfort_accessYes"> <label for="comfort_accessYes">Yes</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="comfort_accessNo" id="comfort_accessNo"> <label for="comfort_accessNo">No</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="comfort_accessUnset" id="comfort_accessUnset"> <label for="comfort_accessUnset">Unset</label>
-                                                    </div>
-                                                    <div></div><div></div><div></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-6 col-xl-6">
-                                            <div class="form-group">
-                                                <label>Manufacturer:</label>
-                                                <div class="d-flex justify-content-between">
-                                                        <div>
-                                                            <input type="checkbox" name="manufacturer_oem" id="manufacturer_oem"> <label for="manufacturer_oem">OEM</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="checkbox" name="manufacturer_aftermarket" id="manufacturer_aftermarket"> <label for="manufacturer_aftermarket">Aftermarket</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="checkbox" name="manufacturer_unset" id="manufacturer_unset"> <label for="manufacturer_unset">Unset</label>
-                                                        </div>
-                                                        <div></div><div></div><div></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label>AKL:</label>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <input type="checkbox" name="akl_Yes" id="akl_Yes"> <label for="akl_Yes">Yes</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="akl_No" id="akl_No"> <label for="akl_No">No</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="akl_Unset" id="akl_Unset"> <label for="akl_Unset">Unset</label>
-                                                    </div>
-                                                    <div></div><div></div><div></div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label>Has notes:</label>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <input type="checkbox" name="has_notesYes" id="has_notesYes"> <label for="has_notesYes">Yes</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="has_notesNo" id="has_notesNo"> <label for="has_notesNo">No</label>
-                                                    </div>
-                                                    <div></div><div></div><div></div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 col-lg-4 col-xl-4">
-                                            <div class="form-group">
-                                                <label for="has_image">Has image:</label>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <input type="checkbox" name="has_imageYes" id="has_imageYes"> <label for="has_imageYes">Yes</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="checkbox" name="has_imageNo" id="has_imageNo"> <label for="has_imageNo">No</label>
-                                                    </div>
-                                                    <div></div><div></div><div></div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <p>
-                                            <label for="price_range">Price Range:</label>
-                                            <input type="text" id="price_range" readonly style="border:0; color:#51B3DE; font-weight:bold;">
-                                        </p>
-                                        <div id="slider-range"></div>
-                                    </div>
-                                </div>
-                                <div class="card-footer padding-10 d-flex justify-content-end">
-                                    <div>
-                                        <button type="button" class="btn btn-light">Reset</button>
-                                        <button type="button" class="btn btn-primary">Apply</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li></li>
-                        </ul>
-                    </div> --}}
-
-
-
                 <div class="card-body table-responsive mt-3">
                     <table class="table table-striped table-hover table-bordered align-middle" id="priceManager">
                         <thead class="table-primary">
@@ -379,9 +221,9 @@
                                 <th>CA / Prox</th>
                                 <th>Manufacturer</th>
                                 <th>AKL</th>
-                                <th>Notes</th>
                                 <th>Amount</th>
                                 <th>Image</th>
+                                <th>Notes</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -410,6 +252,9 @@
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('price.create') }}" id="prcieForm" method="post">
+                    <div class="alert d-none bg-danger" id="existError">
+                        <i class="fas fa-exclamation-circle"></i> The Red Highlights That Make and Model Exists in Database.
+                    </div>
                     <div class="price-box shadow">
                         <div class="row">
                             <div class="col-sm-6">
@@ -513,7 +358,7 @@
                                         <img src="{{ global_asset('storage/common/camera_preview.jpg') }}" class="imagePreview" id="img_preveiw_1">
                                     </div>
 
-                                    <input type="file" name="file[0]" class="d-none" onchange="readURL(this, '1')" id="imgInput_1">
+                                    <input type="file" name="file[0]" class="" onchange="readURL(this, '1')" id="imgInput_1">
                                 </div>
                             </div> {{-- outer col --}}
                             <div class="col-sm-2 d-flex justify-content-center align-items-center">
@@ -553,7 +398,7 @@
     </div>
 
     <!-- Filter Option modal START -->
-    <div class="modal animate__animated animate__zoomIn animate__fasters" id="filter_optionsModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    {{-- <div class="modal animate__animated animate__zoomIn animate__fasters" id="filter_optionsModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
 
             <div class="modal-content br-radius-10">
@@ -699,7 +544,7 @@
             </div><!-- modal content -->
 
         </div><!-- modal dialog -->
-    </div>
+    </div> --}}
     <!-- Filter Option modal END -->
 
     @push('script')
@@ -712,7 +557,6 @@
 
                 $(document).on('change', 'select[name=make_1]', function () {
                     var data = $(this).val();
-                    // console.log(data)
                     $.ajax({
                         type: "POST",
                         url: "{{ route('price.get-models') }}",
@@ -742,36 +586,16 @@
                 });
 
                 $(document).on('click', "#addPriceButton", function () {
-                    $("#vehicle_inform").empty();
-                    $("#detail_inform").empty();
-
-                    x = 2;
-                    y = 2;
-
-                    $('#prcieForm').each(function() {
-                        this.reset();
-                        $(this).find('select.select2').val(null).trigger('change');
-                        $(this).find('textarea').val('');
-                        $(".icon-button-bottom").click();
-                    });
+                    resetForm();
+                    $("#copy_data").focus();
                     $("#prcieForm").attr('action', "{{ route('price.create') }}");
-
                     $("#priceManagerModal").modal('show')
                 });
 
-
-
                 $(document).on('click', '#pasteContent', function () {
                     var data = $("#copy_data").val();
-                    $('#prcieForm').each(function() {
-                        this.reset();
-                        $(this).find('select.select2').val(null).trigger('change');
-                        $(this).find('textarea').val('');
-                        $(".icon-button-bottom").click();
-                    });
-
-                    $("#make_id_1").val(null).trigger('change');
-                    $("#model_id_1").val(null).trigger('change');
+                    $("#pasteContent").prop('disabled', true);
+                    resetForm();
 
                     $.ajax({
                         type: "POST",
@@ -783,175 +607,77 @@
                         success: function (response) {
                             $("#copy_data").val('');
                             $("#pastVehicle").modal('hide');
-
+                            $("#existError").removeClass('d-none')
                             $("#vehicle_inform").empty();
                             x = 2;
                             for (var i = 0; i < response.length; i++) {
-                                if (i > 0) {
+                                console.log(i);
+                                console.log(response[i]);
+                                
+                                if (i < response.length-1) {
                                     addRow();
                                 }
-                                var temp = (+i+1);
+
+                                var temp = i+1;
                                 if (response[i].match_type == 'none') {
                                     var opt1 = new Option('~~ New Makes ~~', 'new', false, true);
                                     var opt2 = new Option('~~ New Model ~~', 'new', false, true);
-                                    $("#make_id_"+temp).append(opt1).trigger('change');
-                                    $("#model_id_"+temp).append(opt2).trigger('change');
-                                    $(".make_name_"+temp).find(':input').val(response[i].brand);
-                                    $(".model_name_"+temp).find(':input').val(response[i].model);
-                                }else if (response[i].match_type == 'both'){
+                                    $("#make_id_" + temp).append(opt1).trigger('change');
+                                    $("#model_id_" + temp).append(opt2).trigger('change');
+                                } else if (response[i].match_type == 'both_with_price') {
                                     var opt1 = new Option(response[i].brand, response[i].make_id, false, true);
                                     var opt2 = new Option(response[i].model, response[i].model_id, false, true);
-                                    $("#make_id_"+temp).append(opt1).trigger('change');
-                                    $("#model_id_"+temp).append(opt2).trigger('change');
-                                }else{
+                                    $("#make_id_" + temp).append(opt1).trigger('change');
+                                    $("#model_id_" + temp).append(opt2).trigger('change');
+
+                                    $("#make_id_" + temp).siblings('.select2-container--default').addClass('error-select');
+                                    $("#model_id_" + temp).siblings('.select2-container--default').addClass('error-select');
+                                } else if (response[i].match_type == 'both_without_price') {
+                                    var opt1 = new Option(response[i].brand, response[i].make_id, false, true);
+                                    var opt2 = new Option(response[i].model, response[i].model_id, false, true);
+                                    $("#make_id_" + temp).append(opt1).trigger('change');
+                                    $("#model_id_" + temp).append(opt2).trigger('change');
+                                } 
+                                else if(response[i].match_type == 'both') {
+                                    var opt1 = new Option(response[i].brand, response[i].make_id, false, true);
+                                    var opt2 = new Option(response[i].model, response[i].model_id, false, true);
+                                    $("#make_id_" + temp).append(opt1).trigger('change');
+                                    $("#model_id_" + temp).append(opt2).trigger('change');
+                                    
+                                    $("#make_id_" + temp).siblings('.select2-container--default').addClass('error-select');
+                                    $("#model_id_" + temp).siblings('.select2-container--default').addClass('error-select');
+                                }
+                                else if (response[i].match_type == 'makes') {
                                     var opt1 = new Option(response[i].brand, response[i].make_id, false, true);
                                     var opt2 = new Option('~~ New Model ~~', 'new', false, true);
-                                    $("#make_id_"+temp).append(opt1).trigger('change');
-                                    $("#model_id_"+temp).append(opt2).trigger('change');
-                                    $(".model_name_"+temp).find(':input').val(response[i].model);
+
+                                    $("#make_id_" + temp).append(opt1).trigger('change');
+                                    $("#model_id_" + temp).append(opt2).trigger('change');
+                                    $(".model_name_" + temp).find(':input').val(response[i].model);
+                                } else if (response[i].match_type == 'makes_without_price') {
+                                    var opt1 = new Option(response[i].brand, response[i].make_id, false, true);
+                                    var opt2 = new Option('~~ New Model ~~', 'new', false, true);
+
+                                    $("#make_id_" + temp).append(opt1).trigger('change');
+                                    $("#model_id_" + temp).append(opt2).trigger('change');
+                                    $(".model_name_" + temp).find(':input').val(response[i].model);
+
+                                    // $("#make_id_" + temp).siblings('.select2-container--default').addClass('error-select');
                                 }
-                                
+
+                                $("#pasteContent").prop('disabled', false);
                                 $("#year_from_"+temp).val(response[i].year_from)
                                 $("#year_to_"+temp).val(response[i].year_to)
                             }
                         }
                     });
                 });
-
-
-
-                let filterRecord = {}
-
-                function priceRenderDataTable(data=null){
-
-                    if(data){
-                        var priceManager = $("#priceManager").DataTable({
-                            dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
-                            stateSave: false,
-                            "ajax": {
-                                url: "{{ route('price.show') }}", // json datasource
-                                type: 'post', // method  , by default get
-                                data: data,
-                            },
-                            'order': [],
-                            processing: true,
-                            serverSide: true,
-                            buttons: [],
-                            columns: [
-                                {
-                                    data: 'id'
-                                },
-                                {
-                                    data: 'make_id'
-                                },
-                                {
-                                    data: 'model_id'
-                                },
-                                {
-                                    data: 'service_id'
-                                },
-                                {
-                                    data: 'year_start'
-                                },
-                                {
-                                    data: 'year_end'
-                                },
-                                {
-                                    data: 'key_type_id'
-                                },
-                                {
-                                    data: 'comfort_access'
-                                },
-                                {
-                                    data: 'manufacturer'
-                                },
-                                {
-                                    data: 'akl'
-                                },
-                                {
-                                    data: 'PN'
-                                },
-                                {
-                                    data: 'amount'
-                                },
-                                {
-                                    data: 'image'
-                                },
-                                {
-                                    data: 'action'
-                                },
-                            ]
-                        });
-                    }else{
-                        var priceManager = $("#priceManager").DataTable({
-                            dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
-                            stateSave: false,
-                            "ajax": {
-                                url: "{{ route('price.show') }}", // json datasource
-                                type: 'post', // method  , by default get
-                            },
-                            'order': [],
-                            processing: true,
-                            serverSide: true,
-                            buttons: [],
-                            columns: [
-                                {
-                                    data: 'id'
-                                },
-                                {
-                                    data: 'make_id'
-                                },
-                                {
-                                    data: 'model_id'
-                                },
-                                {
-                                    data: 'service_id'
-                                },
-                                {
-                                    data: 'year_start'
-                                },
-                                {
-                                    data: 'year_end'
-                                },
-                                {
-                                    data: 'key_type_id'
-                                },
-                                {
-                                    data: 'comfort_access'
-                                },
-                                {
-                                    data: 'manufacturer'
-                                },
-                                {
-                                    data: 'akl'
-                                },
-                                {
-                                    data: 'PN'
-                                },
-                                {
-                                    data: 'amount'
-                                },
-                                {
-                                    data: 'image'
-                                },
-                                {
-                                    data: 'action'
-                                },
-                            ]
-                        });
-                    }
-
-                }
-
+                
                 priceRenderDataTable(null);
-
-
-
-
-
+                
+                let filterRecord = {}
                 $(".btn-apply").on("click", function () {
                     // ... (your existing filter logic)
-
                     var makeValue = $("#make_1").val();
                     var modelValue = $("#make_2").val();
                     var yearValue = $("#year").val();
@@ -1060,8 +786,6 @@
                         filterRecord.price = price
                     }
 
-
-                    $('#priceManager').DataTable().destroy();
                     priceRenderDataTable(filterRecord);
 
                 });
@@ -1126,18 +850,9 @@
                         dataType: 'json',
                         success: function(response) {
                             $("#saveData").prop("disabled", false).text('Save').addClass('btn-primary').removeClass('btn-danger');
-                            priceManager.ajax.reload(null, false);
-                            $("#vehicle_inform").empty();
-                            $("#detail_inform").empty();
-                            x = 2;
-                            y = 2;
+                            priceRenderDataTable(null)
+                            resetForm();
 
-                            $('#prcieForm').each(function() {
-                                this.reset();
-                                $(this).find('select.select2').val(null).trigger('change');
-                                $(this).find('textarea').val('');
-                                $(".icon-button-bottom").click();
-                            });
                             $("#prcieForm").attr('action', "{{ route('price.create') }}");
 
                             notif({
@@ -1161,6 +876,9 @@
 
                 $(document).on('click', '.edit', function () {
                     var id = $(this).attr('id');
+                    resetForm();
+                    // $("#make_id_1").val(null).trigger('change')
+                    // $("#model_id_1").val(null).trigger('change')
                     $.ajax({
                         type: "POST",
                         url: "{{ route('price.edit', ['id' => ':id']) }}".replace(':id', $(this).attr('id')),
@@ -1226,7 +944,7 @@
                                 bottom: 10,
                                 time: 2000,
                             });
-                            priceManager.ajax.reload(null, false);
+                            priceRenderDataTable(null)
                         },
                         error: function (response) {
                             swal("Oops", response.responseJSON.message, "error");
@@ -1266,21 +984,20 @@
             var x = 2;
             function addRow() {
                 var data = "";
-
                 data = '<div class="animate__animated animate__fadeInDown animate__fasters">\
                             <hr style="border-bottom: 1px solid black">\
                             <div class="row">\
                                 <div class="col-sm-6">\
                                     <div class="form-group">\
                                         <label for="make_id_'+x+'">Make</label>\
-                                        <select class="form-control form-control-c" name="make_id['+x+']" id="make_id_'+x+'">\
+                                        <select class="form-control form-control-c" name="make_id['+(x-1)+']" id="make_id_'+x+'">\
                                         </select>\
                                     </div>\
                                 </div>\
                                 <div class="col-sm-6">\
                                     <div class="form-group">\
                                         <label for="model_id_'+x+'">Model</label>\
-                                        <select class="form-control form-control-c" name="model_id['+x+']" id="model_id_'+x+'">\
+                                        <select class="form-control form-control-c" name="model_id['+(x-1)+']" id="model_id_'+x+'">\
                                         </select>\
                                     </div>\
                                 </div>\
@@ -1289,13 +1006,13 @@
                                 <div class="col-sm-4">\
                                     <div class="form-group">\
                                         <label for="year_from_'+x+'">Year From</label>\
-                                        <input type="text" class="form-control form-control-c" name="year_from['+x+']" id="year_from_'+x+'">\
+                                        <input type="text" class="form-control form-control-c" name="year_from['+(x-1)+']" id="year_from_'+x+'">\
                                     </div>\
                                 </div>\
                                 <div class="col-sm-4">\
                                     <div class="form-group">\
                                         <label for="year_to_'+x+'">Year To</label>\
-                                        <input type="text" class="form-control form-control-c" name="year_to['+x+']" id="year_to_'+x+'">\
+                                        <input type="text" class="form-control form-control-c" name="year_to['+(x-1)+']" id="year_to_'+x+'">\
                                     </div>\
                                 </div>\
                                 <div class="col-sm-4 d-flex justify-content-center align-items-center">\
@@ -1487,7 +1204,7 @@
                         var name = '<div class="col-sm-3 model_name_'+(x)+'">\
                                             <div class="form-group">\
                                             <label for="model_name">New Model</label>\
-                                            <input class="form-control form-control-c" name="model_name['+(x)+']" id="model_name">\
+                                            <input class="form-control form-control-c" name="model_name['+(x-1)+']" id="model_name">\
                                         </div>\
                                     </div>';
 
@@ -1589,9 +1306,92 @@
                 }
             }
 
-            /* function filter_options() {
-                // $("#filter_optionsModal").modal('show');
-            } */
+            function resetForm() {  
+                $("#vehicle_inform").empty();
+                $("#detail_inform").empty();
+                $("#pasteContent").prop('disabled', false);
+                
+                x = 2;
+                y = 2;
+
+                $('#prcieForm').each(function() {
+                    this.reset();
+                    $(this).find('select.select2').val(null).trigger('change');
+                    $(this).find('textarea').val('');
+                    $(".icon-button-bottom").click();
+                });
+                $("#existError").addClass('d-none');
+
+                $("#make_id_1").val(null).trigger('change');
+                $("#model_id_1").val(null).trigger('change');
+                
+                $("#model_id_1").siblings('.select2-container--default').removeClass('error-select');
+                $("#make_id_1").siblings('.select2-container--default').removeClass('error-select');
+            }
+
+            function priceRenderDataTable(data){
+                $('#priceManager').DataTable().destroy();
+                $("#priceManager").DataTable({
+                    dom: '<"row"<"col-sm-4"l><"col-sm-4"B><"col-sm-4"f>>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
+                    stateSave: false,
+                    responsive: true,
+                    processing: true,
+                    serverSide: true,
+                    "ajax": {
+                        url: "{{ route('price.show') }}", // json datasource
+                        type: 'post', // method  , by default get
+                        data: {
+                            data: data
+                        },
+                    },
+                    'order': [],
+                    buttons: [],
+                    columns: [
+                        {
+                            data: 'id'
+                        },
+                        {
+                            data: 'make_id'
+                        },
+                        {
+                            data: 'model_id'
+                        },
+                        {
+                            data: 'service_id'
+                        },
+                        {
+                            data: 'year_start'
+                        },
+                        {
+                            data: 'year_end'
+                        },
+                        {
+                            data: 'key_type_id'
+                        },
+                        {
+                            data: 'comfort_access'
+                        },
+                        {
+                            data: 'manufacturer'
+                        },
+                        {
+                            data: 'akl'
+                        },
+                        {
+                            data: 'amount'
+                        },
+                        {
+                            data: 'image'
+                        },
+                        {
+                            data: 'PN'
+                        },
+                        {
+                            data: 'action'
+                        },
+                    ]
+                });
+            }
         </script>
     @endpush
 @endsection
