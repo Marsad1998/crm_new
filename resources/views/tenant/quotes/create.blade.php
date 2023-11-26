@@ -45,7 +45,7 @@
 
                             <div class="cstm-card-footer d-flex justify-content-between align-items-center footer-top-shadow">
                                 <p class="cstm-margin-0 text-danger" id="resultResponse"></p>
-                                <button type="submit" class="btn footer-btn">Add to Quote</button>
+                                <button type="submit" class="btn footer-btn addQuote">Add to Quote</button>
                             </div><!-- custom card footer {col-1} -->
                         </form>
 
@@ -296,15 +296,16 @@
                                             </div>
                                             <hr>`;
                                 });
-                                var options = {
-                                    title: 'Multiple Keys Found. Which One User wants?',
-                                    html: true,
-                                    text: text,
-                                };
-
-                                swal(options, function (isConfirm) {
-                                    fetchedService(response[$(".image-radio:checked").val()]);
-                                });
+                                // var options = {
+                                //     title: 'Multiple Keys Found. Which One User wants?',
+                                //     html: true,
+                                //     text: text,
+                                // };
+                                //
+                                // swal(options, function (isConfirm) {
+                                //     fetchedService(response[$(".image-radio:checked").val()]);
+                                // });
+                                alert("AAA");
                             }
 
                         },
@@ -644,6 +645,8 @@
 
                             if(prices.pts == 1){
                                 $("#lb_does-the-vehicle-use-push-to-start-or-knob-turn-to-start").prop("checked", true);
+                                $("#lb_does-the-vehicle-use-push-to-start-or-knob-turn-to-start").trigger("click");
+                                // $("#lb_is-there-comfort-access").
                             }
                             if(prices.pts == 1){
                                 $("#lb_year").val(prices.year_start);
@@ -659,17 +662,23 @@
                             $("#lb_locations").val(custom_price.locations).trigger('change');
                             $("#lb_caaaaa").val(custom_price.caa).trigger('change');
                             $("#lb_daynight").val(custom_price.day_night).trigger('change');
+                            $("#lb_caller-type").val(custom_price.day_night).trigger('change');
                             if(custom_price.lost_spare_keys){
                                 $("#lb_has-the-customer-lost-all-the-spare-keys").prop("checked", true);
                             }
                         }
 
                         // Assuming you want to check the radio button with value 2
-                        $('input[name="category"][value="'+response.categoryId+'"]').prop('checked', true);
-                        $('input[name="category"][value="'+response.categoryId+'"]').trigger('click');
+                        // $('input[name="category"][value="'+response.categoryId+'"]').prop('checked', true);
+                        // $('input[name="category"][value="'+response.categoryId+'"]').trigger('click');
+                        // setTimeout( () => {
+                        //     $("#service_id").val(response.serviceId).trigger('change');
+                        // }, 1500)
+
+
                         setTimeout( () => {
-                            $("#service_id").val(response.serviceId).trigger('change');
-                        }, 1500)
+                            $(".addQuote").trigger("click");
+                        }, 30000)
 
                         $("#leadCall").modal("hide")
                     }

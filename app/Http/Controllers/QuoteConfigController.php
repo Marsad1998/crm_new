@@ -159,6 +159,8 @@ class QuoteConfigController extends Controller
 
         $request->validate($rules);
 
+
+
         $data = $request->options;
 
         $li = "";
@@ -191,6 +193,7 @@ class QuoteConfigController extends Controller
             }
         }
 
+
         return PriceManager::with('makes', 'models')
             ->when(isset($request->model), function ($row) use ($request) {
                 $row->where('model_id', $request->model);
@@ -198,15 +201,15 @@ class QuoteConfigController extends Controller
             ->when(isset($request->service_id), function ($row) use ($request) {
                 $row->where('service_id', $request->service_id);
             })
-            ->when(isset($data['type-of-key']), function ($query) use ($data) {
-                return $query->where('key_type_id', $data['type-of-key']);
-            })
-            ->when(isset($data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']), function ($query) use ($data) {
-                return $query->where('pts', $data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']);
-            })
-            ->when(isset($data['is-there-comfort-access']), function ($query) use ($data) {
-                return $query->where('oem', $data['is-there-comfort-access']);
-            })
+//            ->when(isset($data['type-of-key']), function ($query) use ($data) {
+//                return $query->where('key_type_id', $data['type-of-key']);
+//            })
+//            ->when(isset($data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']), function ($query) use ($data) {
+//                return $query->where('pts', $data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']);
+//            })
+//            ->when(isset($data['is-there-comfort-access']), function ($query) use ($data) {
+//                return $query->where('oem', $data['is-there-comfort-access']);
+//            })
             ->when(isset($data['has-the-customer-lost-all-the-spare-keys']), function ($query) use ($data) {
                 return $query->where('akl', $data['has-the-customer-lost-all-the-spare-keys']);
             })
@@ -375,7 +378,7 @@ class QuoteConfigController extends Controller
             ], 200); // You can customize the HTTP status code as needed
         }
 
-        $options = $request->options;
+
 
         $item = [
             'phone' => $request->phone_number,
@@ -394,17 +397,38 @@ class QuoteConfigController extends Controller
             }
         }
 
+        $options = $request->options;
+
+        $year = null;
+        $akl = null;
+        $typeOfKey = null;
+        $pts = null;
+        if($options['year']){
+            $year = $options['year'];
+        }
+        if($options['type-of-key']){
+            $typeOfKey = $options['type-of-key'];
+        }
+        if($options['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']){
+            $pts = $options['does-the-vehicle-use-push-to-start-or-knob-turn-to-start'];
+        }
+        if($options['has-the-customer-lost-all-the-spare-keys']){
+            $akl = $options['has-the-customer-lost-all-the-spare-keys'];
+        }
+
+
+
         $modelPrices = [
             'model_id' => $request->model,
             'category_id' => $request->category_id,
             'make' => $request->make,
             'service_id' => $request->service_id,
-            'year_start' => $options["year"] ?? null,
-            'key_type_id' => $options["type-of-key"] ?? null,
+            'year_start' => $year,
+            'key_type_id' => $typeOfKey,
             'amount' => $request->quoted_price,
             'oem' => $oem,
-            'pts' => $options["does-the-vehicle-use-push-to-start-or-knob-turn-to-start"] ?? null,
-            'akl' => $options["has-the-customer-lost-all-the-spare-keys"] ?? null,
+            'pts' => $pts,
+            'akl' => $akl,
         ];
 
         $manager = PriceManager::create($modelPrices);
@@ -430,14 +454,37 @@ class QuoteConfigController extends Controller
         CallLog::create($call_log);
 
 
+        $callerType = null;
+        $locations = null;
+        $caaaaa = null;
+        $daynightRate = null;
+        $akl = null;
+        if($options['caller-type']){
+            $callerType = $options['caller-type'];
+        }
+        if($options['locations']){
+            $locations = $options['locations'];
+        }
+        if($options['caaaaa']){
+            $caaaaa = $options['caaaaa'];
+        }
+        if($options['daynight-rate']){
+            $daynightRate = $options['daynight-rate'];
+        }
+        if($options['locations']){
+            $locations = $options['locations'];
+        }
+        if($options['has-the-customer-lost-all-the-spare-keys']){
+            $akl = $options['has-the-customer-lost-all-the-spare-keys'];
+        }
 
         $custom_price = [
             'lead_id' => $res1->id,
-            'caller_type' => $options['caller-type'] ?? null,
-            'locations' => $options['locations'] ?? null,
-            'caa' => $options['caaaaa'] ?? null,
-            'day_night' => $options['daynight-rate'] ?? null,
-            'lost_spare_keys' => $options['has-the-customer-lost-all-the-spare-keys'] ?? null,
+            'caller_type' => $callerType,
+            'locations' => $locations,
+            'caa' => $caaaaa,
+            'day_night' => $daynightRate,
+            'lost_spare_keys' => $akl,
         ];
 
         CustomPrice::create($custom_price);
