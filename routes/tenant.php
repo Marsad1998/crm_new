@@ -181,6 +181,15 @@ Route::middleware([
             Route::post('/services', [PriceManagerController::class, 'services'])->name('services');
             Route::post('/key_type', [PriceManagerController::class, 'key_type'])->name('key_type');
         });
+
+        Route::group(['prefix' => 'bulk-discounts', 'as' => 'bulk-discounts.'], function () {
+            Route::post('create', [\App\Http\Controllers\Tenants\BulkDiscount\BulkDiscountController::class, 'store'])->name('create');
+            Route::get('get', [\App\Http\Controllers\Tenants\BulkDiscount\BulkDiscountController::class, 'index'])->name('get');
+            Route::get('toggle', [\App\Http\Controllers\Tenants\BulkDiscount\BulkDiscountController::class, 'toggle'])->name('toggle');
+        });
+
+
+
     });
 
     Auth::routes();
