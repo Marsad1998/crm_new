@@ -4,20 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Makes;
 use App\Models\Models;
+use App\Models\Option;
 use App\Models\Service;
 use App\Models\OptionValue;
 use Illuminate\Support\Str;
 use App\Models\PriceManager;
 use Illuminate\Http\Request;
+use League\Flysystem\Visibility;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 class PriceManagerController extends Controller
 {
     public function index()
     {
-        return view('tenant.price');
+
+        $makes = Makes::get();
+        $services = Service::get();
+        $keyType = OptionValue::where("option_id", 4)->get();
+
+        return view('tenant.price', compact('makes', 'services', 'keyType'));
     }
 
     public function makes(Request $request)
@@ -27,6 +35,14 @@ class PriceManagerController extends Controller
             $row->where('name', 'LIKE', '%' . $term . '%');
         })->get();
     }
+
+    public function getModel(Request $request)
+    {
+        $models = Models::where("make_id", $request->make_id)->get();
+        return view('tenant.makenmodel.ajax.model-option', compact('models'))->render();
+    }
+
+
 
     public function models(Request $request, $id)
     {
@@ -64,7 +80,6 @@ class PriceManagerController extends Controller
 
         foreach ($lines as $line) {
             $carInfo = explode(' ', $line);
-
             // key innovations = Done
             if (count($carInfo) == 3) {
                 $yearRange = explode('-', $carInfo[0]);
@@ -81,13 +96,6 @@ class PriceManagerController extends Controller
                     $yearFrom = $yearRange[0];
                     $yearTo = $yearRange[1];
                 }
-
-                $carData[] = [
-                    'brand' => $brand,
-                    'model' => $modelName,
-                    'year_from' => $yearFrom,
-                    'year_to' => $yearTo,
-                ];
             }
             // UHS = Done
             elseif (count($carInfo) == 5) {
@@ -95,38 +103,78 @@ class PriceManagerController extends Controller
                 $yearTo = $carInfo[2];
                 $brand = $carInfo[3];
                 $modelName = $carInfo[4];
-
-                $carData[] = [
-                    'brand' => $brand,
-                    'model' => $modelName,
-                    'year_from' => $yearFrom,
-                    'year_to' => $yearTo,
-                ];
+            } elseif (count($carInfo) == 6) {
+                $yearFrom = $carInfo[0];
+                $yearTo = $carInfo[2];
+                $brand = $carInfo[3];
+                $modelName = $carInfo[4] . " " . $carInfo[5];
             }
+
+            $carData[] = [
+                'brand' => $brand,
+                'model' => $modelName,
+                'year_from' => $yearFrom,
+                'year_to' => $yearTo,
+            ];
         }
 
         foreach ($carData as $x => $value) {
-            $makeMatched = PriceManager::with('makes')
+            // Check if the make and model prices exist
+            $makePrice = PriceManager::with('makes')
                 ->whereHas('makes', function ($row) use ($value) {
-                    $row->where('makes.name', $value['brand'])->orWhere('makes.name', 'LIKE', '%' . $value['brand']);
-                })
-                ->first();
+                    $row->where('makes.name', $value['brand'])
+                        ->orWhere('makes.name', 'LIKE', '%' . $value['brand'] . '%');
+                })->first();
 
-            $modelMatched = PriceManager::with('models')
+            $modelPrice = PriceManager::with('models')
+                ->whereHas('makes', function ($row) use ($value) {
+                    $row->where('makes.name', $value['brand'])
+                        ->orWhere('makes.name', 'LIKE', '%' . $value['brand'] . '%');
+                })
                 ->whereHas('models', function ($row) use ($value) {
-                    $row->where('models.name', $value['model'])->orWhere('models.name', 'LIKE', '%' . $value['model']);
+                    $row->where('models.name', $value['model'])
+                        ->orWhere('models.name', 'LIKE', '%' . $value['model'] . '%');
+                })->first();
+
+
+            // Check if the make and model exist in the Makes and Models tables
+            $makeMatched = Makes::where('name', $value['brand'])
+                ->orWhere('name', 'LIKE', '%' . $value['brand'] . '%')
+                ->first();
+
+            $modelMatched = Models::with('make')
+                ->where('name', $value['model'])
+                ->whereHas('make', function ($subQuery) use ($value) {
+                    $subQuery->where('name', $value['brand'])
+                        ->orWhere('name', 'LIKE', '%' . $value['brand'] . '%');
                 })
                 ->first();
 
-            if ($makeMatched && $modelMatched) {
-                // Both make and model matched
+
+            if (!is_null($makePrice) && !is_null($modelPrice)) {
+                // Both make and model matched in PriceManager
                 $carData[$x]['match_type'] = 'both';
-                $carData[$x]['make_id'] = $makeMatched->makes->id;
-                $carData[$x]['model_id'] = $modelMatched->models->id;
-            } elseif ($makeMatched) {
-                // Only make matched
+                $carData[$x]['make_id'] = $makePrice->makes->id;
+                $carData[$x]['model_id'] = $modelPrice->models->id;
+            } elseif (!is_null($makeMatched) && !is_null($modelMatched)) {
+                // Both make and model exist in Makes and Models tables
+                if (!is_null($makePrice) && !is_null($modelPrice)) {
+                    $carData[$x]['match_type'] = 'both_with_price';
+                    $carData[$x]['make_id'] = $makeMatched->id;
+                    $carData[$x]['model_id'] = $modelMatched->id;
+                } else {
+                    $carData[$x]['match_type'] = 'both_without_price';
+                    $carData[$x]['make_id'] = $makeMatched->id;
+                    $carData[$x]['model_id'] = $modelMatched->id;
+                }
+            } elseif (!is_null($makePrice)) {
+                // Only make matched in PriceManager
                 $carData[$x]['match_type'] = 'makes';
-                $carData[$x]['make_id'] = $makeMatched->makes->id;
+                $carData[$x]['make_id'] = $makePrice->makes->id;
+            } elseif (!is_null($makeMatched)) {
+                // Only make matched in Makes table
+                $carData[$x]['match_type'] = 'makes_without_price';
+                $carData[$x]['make_id'] = $makeMatched->id;
             } else {
                 // No match
                 $carData[$x]['match_type'] = 'none';
@@ -140,33 +188,56 @@ class PriceManagerController extends Controller
     {
         $make_id = $request->make_id;
         $service_id = $request->service_id;
-
-        foreach ($make_id as $x => $value) {
-
+        // foreach ($make_id as $x => $value) {
+        for ($x = 0; $x < count($make_id); $x++) {
             $model_name = $request->model_name[$x] ?? null;
             $make_name = $request->make_name[$x] ?? null;
             $model_id = ($request->model_id)[$x] ?? null;
 
-            if ($value == 'new' && $model_id == 'new' && $value != null && $model_id != null) {
-                $mak = Makes::create([
-                    'name' => $make_name,
-                ]);
-
-                $mod = Models::create(['make_id' => $mak->id, 'name' => $model_name])->id;
+            if ($make_id[$x] == 'new' && $model_id == 'new' && $make_id[$x] != null && $model_id != null) {
+                $makeExist = Models::where('name', $make_name)
+                    ->orWhere('name', 'LIKE', '%' . $make_name . '%')->first();
+                if (is_null($makeExist)) {
+                    $mak = Makes::create([
+                        'name' => $make_name,
+                    ]);
+                    $mod = Models::create(['make_id' => $mak->id, 'name' => $model_name])->id;
+                } else {
+                    $mod = Models::create(['make_id' => $makeExist->id, 'name' => $model_name])->id;
+                }
             } elseif ($model_id == 'new' && $model_id != null) {
-                $mod = Models::create(['make_id' => $value, 'name' => $model_name])->id;
+                $modelExist = Models::with('make')
+                    ->where('name', $model_name)
+                    ->where('make_id', $make_id[$x])
+                    ->first();
+
+                if (is_null($modelExist)) {
+                    $mod = Models::create(['make_id' => $make_id[$x], 'name' => $model_name])->id;
+                } else {
+                    $mod = $modelExist->id;
+                }
             } else {
                 $mod = $model_id;
             }
 
             foreach ($service_id as $y => $value1) {
-
                 $file = $request->file('file')[$y];
 
                 $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
-
-                $file->move("tenants/tenant" . tenant('id') . '/app/', $filename);
+                Storage::put('/', $file, $filename);
                 $path =  "tenants/tenant" . tenant('id') . '/app/' . $filename;
+
+                // $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
+                // $path = "tenants/tenant" . tenant('id') . '/app/' . $filename;
+                // Storage::put($path, $file, Visibility::PUBLIC);
+
+                // try {
+                //     $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
+                //     $path = "assets/";
+                //     $file->move("tenants/tenant" . tenant('id') . '/app/', $filename);
+                // } catch (\Throwable $th) {
+                //     Log::alert($th);
+                // }
 
                 $data = [
                     'model_id' => $mod,
@@ -182,15 +253,112 @@ class PriceManagerController extends Controller
                     'image' => $path,
                 ];
 
-                PriceManager::create($data);
+                $comfort_access = isset($request->comfort_access[$y]) ? $request->comfort_access[$y] : 1;
+                $akl = isset($request->akl[$y]) ? $request->akl[$y] : 1;
+
+                $exist = PriceManager::where('model_id', $mod)
+                    ->where('service_id', $value1)
+                    ->where('key_type_id', ($request->key_type)[$y])
+                    ->where('pts', $comfort_access)
+                    ->where('oem', ($request->key_manu)[$y])
+                    ->where('akl', $akl)
+                    ->first();
+                // if already exist
+                if (!is_null($exist)) {
+                    PriceManager::whereId($exist->id)->update($data);
+                } else {
+                    PriceManager::create($data);
+                }
             }
         }
+        // }
+
         return response()->json(['msg' => 'Price Added Successfully', 'sts' => 'success']);
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        $data = PriceManager::with(['models', 'makes'])->get();
+        $data = ($request->data);
+        $query = PriceManager::query();
+        if (isset($data['price'])) {
+            $price = explode("-", $data['price']);
+            $min = trim(str_replace("$", "", $price[0]));
+            $max = trim(str_replace("$", "", $price[1]));
+
+            $query->where("amount", ">=", $min)->where("amount", "<=", $max);
+        }
+        if (isset($data['modelValue'])) {
+            $query->where("model_id", $data['modelValue']);
+        }
+        if (isset($data['yearValue'])) {
+            $query->where("year_start", '>=', $data['yearValue']);
+        }
+        if (isset($data['serviceValue'])) {
+            $query->where("year_start", ">=", $data['serviceValue']);
+        }
+        if (isset($data['key_typeValue'])) {
+            $query->where("key_type_id",  $data['key_typeValue']);
+        }
+        if (isset($data['hasNotes'])) {
+            if (isset($data['hasNotes']) == 1) {
+                $query->whereNotNull("PN");
+            }
+            if (isset($data['hasNotes']) == 2) {
+                $query->whereNull("PN");
+            }
+        }
+        if (isset($data['hasImages'])) {
+            if (isset($data['hasImages']) == 1) {
+                $query->whereNotNull("image");
+            }
+            if (isset($data['hasImages']) == 2) {
+                $query->whereNull("image");
+            }
+        }
+        if (isset($data['manufacturer'])) {
+            $oem = explode("|", $data['manufacturer']);
+            $query->where(function ($query) use ($oem) {
+                if (in_array("1", $oem)) {
+                    $query->orWhere("oem", 1);
+                }
+                if (in_array("2", $oem)) {
+                    $query->orWhere("oem", 0);
+                }
+                if (in_array("null", $oem)) {
+                    $query->orWhereNull("oem");
+                }
+            });
+        }
+        if (isset($data['akl'])) {
+            $akl = explode("|", $data['akl']);
+            $query->where(function ($query) use ($akl) {
+                if (in_array("1", $akl)) {
+                    $query->orWhere("akl", 1);
+                }
+                if (in_array("2", $akl)) {
+                    $query->orWhere("akl", 0);
+                }
+                if (in_array("null", $akl)) {
+                    $query->orWhereNull("akl");
+                }
+            });
+        }
+        if (isset($data['comfortAccess'])) {
+            $comfortAccess = explode("|", $data['comfortAccess']);
+            $query->where(function ($query) use ($comfortAccess) {
+                if (in_array("1", $comfortAccess)) {
+                    $query->orWhere("comfort_access", 1);
+                }
+                if (in_array("2", $comfortAccess)) {
+                    $query->orWhere("comfort_access", 0);
+                }
+                if (in_array("null", $comfortAccess)) {
+                    $query->orWhereNull("comfort_access");
+                }
+            });
+        }
+
+        $data = $query->with(['models', 'makes'])->limit(100)->orderBy('id', 'DESC')->get();
         return Datatables::of($data)
             ->addColumn('model_id', function ($row) {
                 return !is_null($row->models) ? $row->models->name : 'N/A';

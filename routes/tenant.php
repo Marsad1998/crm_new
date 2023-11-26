@@ -177,6 +177,7 @@ Route::middleware([
             Route::post('/delete/{id}', [PriceManagerController::class, 'destroy'])->name('delete');
             Route::post('/makes', [PriceManagerController::class, 'makes'])->name('makes');
             Route::post('/models/{id}', [PriceManagerController::class, 'models'])->name('models');
+            Route::post('/get-model', [PriceManagerController::class, 'getModel'])->name('get-models');
             Route::post('/services', [PriceManagerController::class, 'services'])->name('services');
             Route::post('/key_type', [PriceManagerController::class, 'key_type'])->name('key_type');
         });

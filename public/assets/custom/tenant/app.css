@@ -435,7 +435,7 @@
 }
 
 .filterOptDropDMenu {
-    width: 530px;
+    width: 600px;
 }
 
 @media (max-width: 991px) {
@@ -506,9 +506,13 @@ label {
     text-transform: none;
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-     color: #000;
+    color: #000;
     line-height: 38px;
     background: #fff;
+}
+
+.error-select{
+    border: 1px solid red !important;
 }
 
 .mt-30{
@@ -594,9 +598,40 @@ label {
 .form-label{
     color: #000;
 }
+
 .modal-dialog-scrollable {
     height: unset;
 }
 .table-record-bg{
-    background: #eaf2f6;
+  background: #eaf2f6;
+}
+.text-normal-checbox label{
+    font-weight: normal;
+}
+.card-heading{
+    font-weight: bold;
+    font-size: 15px;
+}
+.ui-slider .ui-slider-range {
+    background: #009EF7;
+}
+.ui-slider .ui-slider-handle{
+    width: 1.5rem !important;
+    height: 1.5rem  !important;
+    border-radius: 50%;
+    background: #fff !important;
+    box-shadow: 1px -6px 18px -2px rgb(181 181 181 / 65%);
+}
+.price-btn-margin{
+    margin: 0px 5px;
+}
+
+@media (max-width: 400px) {
+    .price-btn-margin{
+        margin-left: 0px;
+        margin-top: 5px;
+    }
+}
+.select2-container--open .select2-dropdown {
+    z-index: 99999;
 }
