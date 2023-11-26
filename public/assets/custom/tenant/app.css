@@ -598,33 +598,9 @@ label {
 .form-label{
     color: #000;
 }
-.text-normal-checbox label{
-    font-weight: normal;
+.modal-dialog-scrollable {
+    height: unset;
 }
-.card-heading{
-    font-weight: bold;
-    font-size: 15px;
-}
-.ui-slider .ui-slider-range {
-    background: #009EF7;
-}
-.ui-slider .ui-slider-handle{
-    width: 1.5rem !important;
-    height: 1.5rem  !important;
-    border-radius: 50%;
-    background: #fff !important;
-    box-shadow: 1px -6px 18px -2px rgb(181 181 181 / 65%);
-}
-.price-btn-margin{
-    margin: 0px 5px;
-}
-
-@media (max-width: 400px) {
-    .price-btn-margin{
-        margin-left: 0px;
-        margin-top: 5px;
-    }
-}
-.select2-container--open .select2-dropdown {
-    z-index: 99999;
+.table-record-bg{
+    background: #eaf2f6;
 }

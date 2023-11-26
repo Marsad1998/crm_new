@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomPrice;
 use App\Models\Lead;
+use App\Models\Models;
 use App\Models\Option;
 use App\Models\CallLog;
 use App\Models\Service;
@@ -13,6 +15,7 @@ use App\Models\QuoteConfig;
 use Illuminate\Support\Str;
 use App\Models\PriceManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests\QuoteSearch;
 use Illuminate\Support\Facades\Crypt;
@@ -86,8 +89,8 @@ class QuoteConfigController extends Controller
                     }
                     $html .= '  <div class="col-lg-' . $item->width . ' col-md-' . $item->width . ' col-sm-12 mb-2" id="cus_' . $item->option->slug . '">
                                 <label for="lb_' . $item->option->slug . '">' . $item->option->name . '</label>
-                                <select class="form-control customSelect form-control-c" 
-                                data-name1="' . $item->option->name . '" 
+                                <select class="form-control customSelect form-control-c"
+                                data-name1="' . $item->option->name . '"
                                 data-slug="' . $item->option->slug . '"
                                 data-effect="' . $item->option->operator . '"
                                 name="options[' . $item->option->slug . ']" id="lb_' . $item->option->slug . '"
@@ -103,7 +106,7 @@ class QuoteConfigController extends Controller
                                     <input type="radio" class="custom-control-input" value="' . $values->id . '" name="options[' . $item->option->slug . ']" id="lb_' . $item->option->slug . $values->id . '" value="1" required>
                                     <span class="custom-control-label custom-control-label-md  tx-16">' . $values->name . '</span>
                                 </label>
-                                
+
                                 <span class="error-span text-danger " id="error-' . $item->option->slug . '"></span>';
                     }
 
@@ -156,6 +159,8 @@ class QuoteConfigController extends Controller
 
         $request->validate($rules);
 
+
+
         $data = $request->options;
 
         $li = "";
@@ -188,6 +193,7 @@ class QuoteConfigController extends Controller
             }
         }
 
+
         return PriceManager::with('makes', 'models')
             ->when(isset($request->model), function ($row) use ($request) {
                 $row->where('model_id', $request->model);
@@ -195,15 +201,15 @@ class QuoteConfigController extends Controller
             ->when(isset($request->service_id), function ($row) use ($request) {
                 $row->where('service_id', $request->service_id);
             })
-            ->when(isset($data['type-of-key']), function ($query) use ($data) {
-                return $query->where('key_type_id', $data['type-of-key']);
-            })
-            ->when(isset($data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']), function ($query) use ($data) {
-                return $query->where('pts', $data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']);
-            })
-            ->when(isset($data['is-there-comfort-access']), function ($query) use ($data) {
-                return $query->where('oem', $data['is-there-comfort-access']);
-            })
+//            ->when(isset($data['type-of-key']), function ($query) use ($data) {
+//                return $query->where('key_type_id', $data['type-of-key']);
+//            })
+//            ->when(isset($data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']), function ($query) use ($data) {
+//                return $query->where('pts', $data['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']);
+//            })
+//            ->when(isset($data['is-there-comfort-access']), function ($query) use ($data) {
+//                return $query->where('oem', $data['is-there-comfort-access']);
+//            })
             ->when(isset($data['has-the-customer-lost-all-the-spare-keys']), function ($query) use ($data) {
                 return $query->where('akl', $data['has-the-customer-lost-all-the-spare-keys']);
             })
@@ -286,7 +292,7 @@ class QuoteConfigController extends Controller
                             <i class="fe fe-trash"></i>
                         </button>
 
-                        <button class="show-models btn btn-sm ripple btn-outline-info" 
+                        <button class="show-models btn btn-sm ripple btn-outline-info"
                         id="row_' . $row->service_id . '" data-class="hide">
                             <i class="fe fe-plus"></i>
                         </button>';
@@ -341,12 +347,39 @@ class QuoteConfigController extends Controller
 
     public function search_call(Request $request)
     {
-        return $request;
+        $leads = Lead::with(["callLog", "leadLatest" => function($query){
+            $query->with("price");
+        }])->wherePhone($request->phone)->get();
+
+//        dd($leads);
+//        return $leads;
+
+        return view("tenant.quotes.ajax.records", compact('leads'))->render();
     }
 
     public function save_lead(Request $request)
     {
-        return $request;
+//        return $request->all();
+
+        $validation = Validator::make($request->all(), [
+            'status' => 'required', // Assuming it's a radio button with values 4 and 5
+            'phone_number' => 'required',
+        ]);
+
+        $validation->setCustomMessages([
+            'status.required' => 'Status field is required',
+        ]);
+
+        if ($validation->fails()) {
+            // If validation fails, return a JSON response with errors and input data
+            return response()->json([
+                'errors' => $validation->errors(),
+                'input' => $request->all(),
+            ], 200); // You can customize the HTTP status code as needed
+        }
+
+
+
         $item = [
             'phone' => $request->phone_number,
             'name' => $request->caller_name,
@@ -356,29 +389,59 @@ class QuoteConfigController extends Controller
 
         $res1 = Lead::create($item);
 
+        $oem = 0;
+        if($request->key_manufacturer){
+            $options = OptionValue::find($request->key_manufacturer);
+            if($options && ($options->name == "OEM")){
+                $oem = 1;
+            }
+        }
+
         $options = $request->options;
-        $custom_price = [
-            'service' => $request->service_id,
+
+        $year = null;
+        $akl = null;
+        $typeOfKey = null;
+        $pts = null;
+        if($options['year']){
+            $year = $options['year'];
+        }
+        if($options['type-of-key']){
+            $typeOfKey = $options['type-of-key'];
+        }
+        if($options['does-the-vehicle-use-push-to-start-or-knob-turn-to-start']){
+            $pts = $options['does-the-vehicle-use-push-to-start-or-knob-turn-to-start'];
+        }
+        if($options['has-the-customer-lost-all-the-spare-keys']){
+            $akl = $options['has-the-customer-lost-all-the-spare-keys'];
+        }
+
+
+
+        $modelPrices = [
+            'model_id' => $request->model,
+            'category_id' => $request->category_id,
             'make' => $request->make,
-            'model' => $request->model,
-            'year' => $options['year'],
-            // 'remote' => $options[''],
-            'key_type_id' => $options['type-of-key'],
-            'oem' => $options['key-manfacturer'],
-            'pts' => $options['does-the-vehicle-use-push-to-start-or-knob-turn-to-start'],
-            'akl' => $options['has-the-customer-lost-all-the-spare-keys'],
+            'service_id' => $request->service_id,
+            'year_start' => $year,
+            'key_type_id' => $typeOfKey,
+            'amount' => $request->quoted_price,
+            'oem' => $oem,
+            'pts' => $pts,
+            'akl' => $akl,
         ];
 
-        foreach ($request->model_price_id as $x => $value) {
-            $lead_items = [
-                'lead_id' => $res1->id,
-                'price_id' => $value,
-                // 'type' => $request,
-                'qty' => $request->model_qty[$x],
-            ];
+        $manager = PriceManager::create($modelPrices);
 
-            LeadItem::create($lead_items);
-        }
+
+        $lead_items = [
+            'lead_id' => $res1->id,
+            'price_id' => $manager->id,
+            'type' => "regular",
+            'qty' => 1,
+        ];
+
+        LeadItem::create($lead_items);
 
         $call_log = [
             'lead_id' => $res1->id,
@@ -390,7 +453,80 @@ class QuoteConfigController extends Controller
 
         CallLog::create($call_log);
 
+
+        $callerType = null;
+        $locations = null;
+        $caaaaa = null;
+        $daynightRate = null;
+        $akl = null;
+        if($options['caller-type']){
+            $callerType = $options['caller-type'];
+        }
+        if($options['locations']){
+            $locations = $options['locations'];
+        }
+        if($options['caaaaa']){
+            $caaaaa = $options['caaaaa'];
+        }
+        if($options['daynight-rate']){
+            $daynightRate = $options['daynight-rate'];
+        }
+        if($options['locations']){
+            $locations = $options['locations'];
+        }
+        if($options['has-the-customer-lost-all-the-spare-keys']){
+            $akl = $options['has-the-customer-lost-all-the-spare-keys'];
+        }
+
+        $custom_price = [
+            'lead_id' => $res1->id,
+            'caller_type' => $callerType,
+            'locations' => $locations,
+            'caa' => $caaaaa,
+            'day_night' => $daynightRate,
+            'lost_spare_keys' => $akl,
+        ];
+
+        CustomPrice::create($custom_price);
+
         return response()->json(['msg' => 'Quote Saved Successfully', 'sts' => 'success']);
+    }
+
+    public function getLeadDetail(Request $request){
+        $lead = Lead::with(["callLog", "customPrice", "leadLatest" => function($query){
+            $query->with("price");
+        }])->whereId($request->id)->first();
+
+        $categories = Category::has('services')->get();
+
+        $serviceId = null;
+        $categoryId = null;
+        $prices = null;
+        $makeId = null;
+        if($lead->leadLatest && $lead->leadLatest->price){
+            $serviceId = $lead->leadLatest->price->service_id;
+        }
+        if($lead->leadLatest && $lead->leadLatest->price){
+            $prices = $lead->leadLatest->price;
+        }
+        if($lead->leadLatest && $lead->leadLatest->price && $lead->leadLatest->price->services){
+            $categoryId = $lead->leadLatest->price->services->category_id;
+        }
+        if($prices){
+            $make = Models::find($prices->model_id);
+            if($make){
+                $makeId = $make->make_id;
+            }
+        }
+
+
+        $data["serviceId"] = $serviceId;
+        $data["categoryId"] = $categoryId;
+        $data["prices"] = $prices;
+        $data["lead"] = $lead;
+        $data["makeId"] = $makeId;
+
+        return $data;
     }
 
     public function create(Request $request)
