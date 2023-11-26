@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="inner-body">
+        <div class="inner-body quote-generator-box">
             <div class="row mt-lg-3 mt-md-4 mg-sm-t-70 mg-xs-t-70 mg-t-70 m-3">
 
                 <div class="col-sm-7 col-md-8 col-lg-5 col-xl-5 cstm-margin-0 pr-0">
@@ -45,7 +45,7 @@
 
                             <div class="cstm-card-footer d-flex justify-content-between align-items-center footer-top-shadow">
                                 <p class="cstm-margin-0 text-danger" id="resultResponse"></p>
-                                <button type="submit" class="btn footer-btn">Add to Quote</button>
+                                <button type="submit" class="btn footer-btn addQuote">Add to Quote</button>
                             </div><!-- custom card footer {col-1} -->
                         </form>
 
@@ -74,15 +74,15 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 pad-mar-0-imp">
                     <div class="card h-100 l-info-card shadow-right-border">
                         <div class="cstm-card-header cstm-border-top quote-page-card-header">Lead Info</div><!-- custom card header -->
-
+                        <form action="{{ route('quote.save_lead') }}" id="save_lead" method="post">
                         <div class="cstm-card-body">
 
-                            <form action="{{ route('quote.save_lead') }}" id="save_lead" method="post">
+
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="phone_number">Phone Number</label>
                                         <div class="input-group">
-                                            <input class="form-control form-control-c" placeholder="Search for..." type="text" name="phone_number" id="phone_number">
+                                            <input class="form-control form-control-c" placeholder="Search for..." value="877.514.9393" type="text" name="phone_number" id="phone_number">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary btn-c searchCallBtn" type="button">
                                                     <span class="input-group-btn">
@@ -91,11 +91,13 @@
                                                 </button>
                                             </span>
                                         </div>
+                                        <span class="error-span text-danger " id="error-phonenumber"></span>
                                     </div>
 
                                     <div class="col">
                                         <label for="caller_name">Caller Name</label>
                                         <input type="text" name="caller_name" class="form-control form-control-c" placeholder="John Smith">
+                                        <span class="error-span text-danger " id="error-caller_name"></span>
                                     </div>
                                 </div><!-- input-group number details -->
 
@@ -124,6 +126,7 @@
                                             <option value="Invalid">Invalid</option>
                                             <option value="Warranty">Warranty</option>
                                         </select>
+                                        <span class="error-span text-danger " id="error-status"></span>
                                     </div>
                                     <div class="col-12 mt-30">
                                         <div class="d-flex  cstm-margin-top-20">
@@ -139,22 +142,22 @@
                                                     <input type="radio" name="call_type" id="outgoing">
                                                     <label for="outgoing" class="radio-label">Outgoing</label>
                                                 </div>
-
                                             </div>
                                         </div><!-- input-group call type -->
+                                        <span class="error-span text-danger " id="error-call_type"></span>
                                     </div>
 
                                     <div class="col-12 mt-30">
                                         <label for="notes">Notes</label>
                                         <textarea name="notes" id="notes" rows="2" class="form-control textarea-c"></textarea>
+                                        <span class="error-span text-danger " id="error-notes"></span>
                                     </div><!-- input-group notes textarea -->
 
                                 </div>
 
 
-
                             </div><!-- custom card body -->
-                            
+
                             <div class="cstm-card-footer d-flex justify-content-end l-info-footer footer-top-shadow">
                                 <button type="submit" class="btn footer-btn">Save Call</button>
                             </div><!-- custom card footer -->
@@ -163,6 +166,46 @@
                 </div> <!-- col 3 -->
             </div> <!-- row -->
         </div>
+    </div>
+
+    <!-- Filter Option modal START -->
+    <div class="modal animate__animated animate__zoomIn animate__fasters" id="leadCall" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+
+            <div class="modal-content br-radius-10">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Select Which Lead</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div><!-- modal header -->
+                <div class="modal-body">
+                    <p class="color-black">Which lead is this regarding?</p>
+                    <div class="row">
+                        <table class="table table-stripped table-record-bg">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>ID</th>
+                                <th>Vehicle(s)</th>
+                                <th>Service(s)</th>
+                                <th>Last Call</th>
+                                <th>Quoted</th>
+                                <th>Notes</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody class="logsData">
+
+                            </tbody>
+                        </table>
+                    </div><!-- row -->
+                </div><!-- modal body -->
+                <div class="modal-footer m-auto border-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary getLead" >OK</button>
+                </div><!-- modal footer -->
+            </div><!-- modal content -->
+
+        </div><!-- modal dialog -->
     </div>
 
     @push('script')
@@ -174,7 +217,7 @@
                     var option = new Option('Key Replacement', 1, false, true);
                     $("#service_id").append(option).trigger('select2:select');
                 }, 1000);
-                
+
                 $(document).on('click', '.quote_category', function () {
                     $("#service_id").val(null).trigger('select2:select')
                     getServices($(".quote_category:checked").val())
@@ -197,9 +240,10 @@
                         data: {
                             phone: phone
                         },
-                        dataType: "json",
+                        dataType: "html",
                         success: function (response) {
-                            
+                            $(".logsData").html(response)
+                            $("#leadCall").modal("show")
                         }
                     });
                 });
@@ -211,7 +255,7 @@
 
                     $(".customSwitch").each(function () {
                         var id = $(this).attr('id').substr(3);
-                        
+
                         if ($("#cus_"+id).hasClass('d-none')) {
                             return false;
                         }
@@ -222,7 +266,7 @@
                             formData.append($("#lb_"+id).attr('name'), '0');
                         }
                     });
-                    
+
                     $.ajax({
                         type: 'POST',
                         url: form.attr('action'),
@@ -233,16 +277,16 @@
                         dataType: 'json',
                         success: function(response) {
                             $(".error-span").text('')
-                            
+
                             $('#resultResponse').text('No price found.');
-                            
+
                             $('#resultResponse').text(response.length+' result found.');
-                            
+
                             if (response.length > 0 && response.length < 2) {
                                 fetchedService(response[0])
                             }else{
                                 var text = '';
-                                $.each(response, function (index, value) { 
+                                $.each(response, function (index, value) {
                                     text += `<div class="imgContainer">
                                                 <input type="radio" id="image_`+value.id+`" class="image-radio" name="multi_img" value="`+index+`">
                                                 <label for="image_`+value.id+`">
@@ -252,22 +296,23 @@
                                             </div>
                                             <hr>`;
                                 });
-                                var options = {
-                                    title: 'Multiple Keys Found. Which One User wants?',
-                                    html: true,
-                                    text: text,
-                                };
-
-                                swal(options, function (isConfirm) {  
-                                    fetchedService(response[$(".image-radio:checked").val()]);
-                                });
+                                // var options = {
+                                //     title: 'Multiple Keys Found. Which One User wants?',
+                                //     html: true,
+                                //     text: text,
+                                // };
+                                //
+                                // swal(options, function (isConfirm) {
+                                //     fetchedService(response[$(".image-radio:checked").val()]);
+                                // });
+                                alert("AAA");
                             }
-                        
+
                         },
                         error: function (jqXhr) {
                             var errorResponse = $.parseJSON(jqXhr.responseText);
                             $(".error-span").text('')
-                            
+
                             $.each(errorResponse.errors, function (key, value) {
                                 var y = key.split('.');
                                 if (y.length > 1) {
@@ -285,20 +330,36 @@
                     $("#saveData").prop('disabled', true);
                     var form = $('#save_lead');
                     var formData = new FormData(this);
-                    
+
                     formData.append('sub_total', $("#subtotal").text().trim())
 
                     $('#quoteSearch :input[name]').each(function () {
                         formData.append($(this).attr('name'), $(this).val());
                     });
 
-                    $(".model_price_id").each(function () { 
+                    $(".model_price_id").each(function () {
                         formData.append('model_price_id[]', $(this).val());
                     });
 
-                    $(".model_qty").each(function () { 
+                    $(".model_qty").each(function () {
                         formData.append('model_qty[]', $(this).val());
                     });
+
+                    let selectedValue = $('input[name="options[key-manfacturer]"]:checked').val();
+                    if(selectedValue){
+                        formData.append('key_manufacturer', selectedValue)
+                    }
+                    let category = $('input[name="category"]:checked').val();
+                    if(category){
+                        formData.append('category_id', category)
+                    }
+
+                    let service_id = $('#service_id').val();
+                    if(service_id){
+                        formData.append('service_id', service_id)
+                    }
+
+
 
                     $.ajax({
                         type: 'POST',
@@ -309,6 +370,27 @@
                         processData: false,
                         dataType: 'json',
                         success: function(response) {
+                            console.log(response.errors.status)
+                            if(response.errors){
+                                let errors = response.errors
+                                if (errors.hasOwnProperty('status')) {
+                                    $("#error-status").text(errors.status)
+                                }
+                                if (errors.hasOwnProperty('caller_name')) {
+                                    $("#error-caller_name").text(errors.caller_name)
+                                }
+                                if (errors.hasOwnProperty('call_type')) {
+                                    $("#error-call_type").text(errors.call_type)
+                                }
+                                if (errors.hasOwnProperty('notes')) {
+                                    $("#error-notes").text(errors.notes)
+                                }
+                                if (errors.hasOwnProperty('phone_number')) {
+                                    $("#error-phonenumber").text(errors.phone_number)
+                                }
+
+
+                            }
                             $("#saveData").prop("disabled", false).text('Save').addClass('btn-primary').removeClass('btn-danger');
                             $('#save_lead').each(function() {
                                 this.reset();
@@ -320,7 +402,7 @@
                                 bottom: 10,
                                 time: 2000,
                             });
-                        }, 
+                        },
                         error: function (jqXhr) {
                             $("#saveData").prop("disabled", false);
                             var errorResponse = $.parseJSON(jqXhr.responseText);
@@ -331,7 +413,7 @@
                         }
                     }); //ajax call
                 });
-                
+
                 $(document).on('click', '.removePrice', function () {
                     var id = $(this).attr('id');
                     var type = $(this).data('type');
@@ -389,12 +471,12 @@
                                                 text: item.name,
                                             };
                                         });
-                                        
+
                                         return {
                                             results: dynamicOptions
                                         }
                                     },
-                                    cache: true,
+                                    cache: false,
                                 }
                             });
 
@@ -414,7 +496,7 @@
                                                 text: item.name,
                                             };
                                         });
-            
+
                                         return {
                                             results: dynamicOptions
                                         }
@@ -427,7 +509,7 @@
                 });
             });
 
-            function fetchedService(datta) {  
+            function fetchedService(datta) {
                 var gl_id = datta.id;
                 var lii = ` <div class="d-flex justify-content-center gen-quo-div"  id="quotaDiv_`+gl_id+`">
                                 <div class="p-2 gen-quo-div-data" style="width: 100%">
@@ -448,12 +530,12 @@
                                     <div class="d-flex justify-content-between">
                                         <span>Turn Key + Remote</span>
                                         <span>
-                                            Qty: <i id="quota_`+gl_id+`">1</i> 
+                                            Qty: <i id="quota_`+gl_id+`">1</i>
                                         </span>
                                     </div><!-- copy 3 -->
 
                                     <p class="pt-2 d-flex justify-content-center text-danger fw-bold">`+datta.PN+`</p>
-                                    
+
                                     <span id="quoteKeyQty_`+gl_id+`"></span>
                                     <input type="hidden" id="model_qty_`+gl_id+`" class="model_qty" value="`+gl_id+`"/>
                                 </div>
@@ -483,13 +565,12 @@
                 $(".basPrice").each(function () {
                     var id = $(this).attr('id')
                     var qty = 0;
-                    $('.nextQtyPrice_'+id).each(function () { 
+                    $('.nextQtyPrice_'+id).each(function () {
                         qty += +$(this).text().substr(1);
                     });
                     price += +$(this).text().substr(1) + qty;
                 })
-                
-                console.log(price);
+
 
                 $(".servicesEf").each(function () {
                     var operator = $(this).data('operator');
@@ -510,8 +591,8 @@
                 console.log(price);
                 $("#subtotal").text(price.toFixed(2))
             }
-            
-            function getServices(id) {  
+
+            function getServices(id) {
                 $("#service_id").select2({
                     placeholder: '~~ Select Service ~~',
                     width: "100%",
@@ -526,7 +607,7 @@
                                     text: item.name,
                                 };
                             });
-                            
+
                             return {
                                 results: dynamicOptions
                             }
@@ -535,6 +616,77 @@
                     },
                 })
             }
+
+            $(document).on("click", ".getLead", function (){
+                var id = $('.get-call-data:checked').val();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('quote.get-lead-detail') }}",
+                    data: {
+                        id: id
+                    },
+                    // dataType: "html",
+                    success: function (response) {
+                        // $("#lb_does-the-vehicle-use-push-to-start-or-knob-turn-to-start").prop("checked", true);
+                        // $("input[name=options\\[key-manfacturer\\]]").val(0);
+
+                        // $(".quote-generator-box").html(response)
+                        // $(".select2").select2();
+                        // $("#leadCall").modal("show")
+                        var prices = response.prices
+                        var custom_price = response.lead.custom_price
+
+                        if(prices){
+                            if(prices.oem == 0){
+                                $("#lb_key-manfacturer5").prop("checked", true);
+                            }if(prices.oem == 1){
+                                $("#lb_key-manfacturer4").prop("checked", true);
+                            }
+
+                            if(prices.pts == 1){
+                                $("#lb_does-the-vehicle-use-push-to-start-or-knob-turn-to-start").prop("checked", true);
+                                $("#lb_does-the-vehicle-use-push-to-start-or-knob-turn-to-start").trigger("click");
+                                // $("#lb_is-there-comfort-access").
+                            }
+                            if(prices.pts == 1){
+                                $("#lb_year").val(prices.year_start);
+                            }
+
+                            $("#lb_type-of-key").val(prices.key_type_id).trigger('change');
+                            $("#select2-lb_caaaaa-results").val(prices.key_type_id).trigger('change');
+
+
+                        }
+
+                        if(custom_price){
+                            $("#lb_locations").val(custom_price.locations).trigger('change');
+                            $("#lb_caaaaa").val(custom_price.caa).trigger('change');
+                            $("#lb_daynight").val(custom_price.day_night).trigger('change');
+                            $("#lb_caller-type").val(custom_price.day_night).trigger('change');
+                            if(custom_price.lost_spare_keys){
+                                $("#lb_has-the-customer-lost-all-the-spare-keys").prop("checked", true);
+                            }
+                        }
+
+                        // Assuming you want to check the radio button with value 2
+                        // $('input[name="category"][value="'+response.categoryId+'"]').prop('checked', true);
+                        // $('input[name="category"][value="'+response.categoryId+'"]').trigger('click');
+                        // setTimeout( () => {
+                        //     $("#service_id").val(response.serviceId).trigger('change');
+                        // }, 1500)
+
+
+                        setTimeout( () => {
+                            $(".addQuote").trigger("click");
+                        }, 30000)
+
+                        $("#leadCall").modal("hide")
+                    }
+                });
+            });
+
+
+
         </script>
     @endpush
 

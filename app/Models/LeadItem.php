@@ -18,6 +18,10 @@ class LeadItem extends Model
         'qty',
     ];
 
+    public function price(){
+        return $this->belongsTo(PriceManager::class, "price_id");
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logAll(['*']);

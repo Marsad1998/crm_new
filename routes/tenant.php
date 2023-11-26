@@ -163,6 +163,7 @@ Route::middleware([
             Route::post('/search', [QuoteConfigController::class, 'search'])->name('search');
             Route::post('/save_lead', [QuoteConfigController::class, 'save_lead'])->name('save_lead');
             Route::post('/search_call', [QuoteConfigController::class, 'search_call'])->name('search_call');
+            Route::post('get-lead-detail', [QuoteConfigController::class, 'getLeadDetail'])->name('get-lead-detail');
         });
 
         Route::group(['prefix' => 'price', 'as' => 'price.'], function () {

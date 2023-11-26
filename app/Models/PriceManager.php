@@ -14,6 +14,7 @@ class PriceManager extends Model
 
     protected $fillable = [
         'model_id',
+        'category_id',
         'is_range',
         'year_start',
         'year_end',
