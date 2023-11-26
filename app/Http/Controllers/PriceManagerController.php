@@ -27,7 +27,7 @@ class PriceManagerController extends Controller
         $keyType = OptionValue::where("option_id", 4)->get();
         $bulkDiscounts = BulkDiscount::with("KeyType")->get();
 
-//        dd($bulkDiscounts);
+        //        dd($bulkDiscounts);
 
         return view('tenant.price', compact('makes', 'services', 'keyType', 'bulkDiscounts'));
     }
@@ -225,24 +225,6 @@ class PriceManagerController extends Controller
             }
 
             foreach ($service_id as $y => $value1) {
-                $file = $request->file('file')[$y];
-
-                $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
-                Storage::put('/', $file, $filename);
-                $path =  "tenants/tenant" . tenant('id') . '/app/' . $filename;
-
-                // $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
-                // $path = "tenants/tenant" . tenant('id') . '/app/' . $filename;
-                // Storage::put($path, $file, Visibility::PUBLIC);
-
-                // try {
-                //     $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
-                //     $path = "assets/";
-                //     $file->move("tenants/tenant" . tenant('id') . '/app/', $filename);
-                // } catch (\Throwable $th) {
-                //     Log::alert($th);
-                // }
-
                 $data = [
                     'model_id' => $mod,
                     'year_start' => ($request->year_from)[$x] ?? null,
@@ -254,8 +236,15 @@ class PriceManagerController extends Controller
                     'oem' => ($request->key_manu)[$y] ?? null,
                     'akl' => ($request->akl)[$y] ?? null,
                     'amount' => ($request->amount)[$y] ?? null,
-                    'image' => $path,
                 ];
+
+                if ($request->has('file')) {
+                    $file = $request->file('file')[$y];
+                    $filename = uniqid(rand()) . "." . $file->getClientOriginalExtension();
+                    $file->move("tenants/tenant" . tenant('id') . '/app/', $filename);
+                    $path =  "tenants/tenant" . tenant('id') . '/app/' . $filename;
+                    $data['image'] = $path;
+                }
 
                 $comfort_access = isset($request->comfort_access[$y]) ? $request->comfort_access[$y] : 1;
                 $akl = isset($request->akl[$y]) ? $request->akl[$y] : 1;
@@ -362,7 +351,7 @@ class PriceManagerController extends Controller
             });
         }
 
-        $data = $query->with(['models', 'makes'])->limit(100)->orderBy('id', 'DESC')->get();
+        $data = $query->with(['models', 'makes'])->orderBy('id', 'DESC')->get();
         return Datatables::of($data)
             ->addColumn('model_id', function ($row) {
                 return !is_null($row->models) ? $row->models->name : 'N/A';
