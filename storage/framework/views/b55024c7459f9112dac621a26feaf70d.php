@@ -63,7 +63,12 @@
 		
 		<link href="<?php echo e(global_asset('assets/plugins/darggable/jquery-ui-darggable.css')); ?>" rel="stylesheet">
 
-		<!-- Scripts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+
+        <!-- Scripts -->
 		<?php echo app('Illuminate\Foundation\Vite')([]); ?>
 		<style>
 			/* Customized the Default Primary */
@@ -305,6 +310,8 @@
 		<script src="<?php echo e(global_asset('assets/plugins/darggable/jquery-ui-darggable.min.js')); ?>"></script>
 		
 		
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
 		<script>
 			$.ajaxSetup({

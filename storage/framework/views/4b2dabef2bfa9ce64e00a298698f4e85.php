@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="container-fluid">
         <div class="inner-body quote-generator-box">
@@ -10,19 +8,19 @@
                     <div class="card h-100 shadow-right-border">
                         <div class="cstm-card-header cstm-border-top quote-page-card-header">Vehicle Informations</div>
 
-                        <form action="{{ route('quote.search') }}" method="post" id="quoteSearch">
+                        <form action="<?php echo e(route('quote.search')); ?>" method="post" id="quoteSearch">
                             <div class="cstm-card-body g-quote-body">
                                 <div class="d-flex justify-content-evenly cstm-margin-top-10">
                                     <div class="col-2 pl-0">
                                         <label for="category">Category</label>
                                     </div>
                                     <div class="col">
-                                        @foreach ($categories as $x => $category)
+                                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x => $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <div class="radio mt-0 d-inline-block">
-                                                <input type="radio" name="category" id="{{ Str::slug($category->name) }}" value="{{ $category->id }}" {{ $category->id == 1 ? "checked": "" }} class="quote_category">
-                                                <label class="radio-label" for="{{ Str::slug($category->name) }}">{{ $category->name }}</label>
+                                                <input type="radio" name="category" id="<?php echo e(Str::slug($category->name)); ?>" value="<?php echo e($category->id); ?>" <?php echo e($category->id == 1 ? "checked": ""); ?> class="quote_category">
+                                                <label class="radio-label" for="<?php echo e(Str::slug($category->name)); ?>"><?php echo e($category->name); ?></label>
                                             </div>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
 
                                 </div><!-- category -->
@@ -74,7 +72,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 pad-mar-0-imp">
                     <div class="card h-100 l-info-card shadow-right-border">
                         <div class="cstm-card-header cstm-border-top quote-page-card-header">Lead Info</div><!-- custom card header -->
-                        <form action="{{ route('quote.save_lead') }}" id="save_lead" method="post">
+                        <form action="<?php echo e(route('quote.save_lead')); ?>" id="save_lead" method="post">
                         <div class="cstm-card-body">
 
 
@@ -208,7 +206,7 @@
         </div><!-- modal dialog -->
     </div>
 
-    @push('script')
+    <?php $__env->startPush('script'); ?>
         <script>
             $(document).ready(function () {
                 getServices(1);
@@ -236,7 +234,7 @@
                     var phone = $("#phone_number").val();
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('quote.search_call') }}",
+                        url: "<?php echo e(route('quote.search_call')); ?>",
                         data: {
                             phone: phone
                         },
@@ -436,7 +434,7 @@
                 $("#service_id").on('select2:select', function () {
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('quote.parameters', ['id' => ':id']) }}".replace(':id', $("#service_id").val()),
+                        url: "<?php echo e(route('quote.parameters', ['id' => ':id'])); ?>".replace(':id', $("#service_id").val()),
                         dataType: "html",
                         success: function (response) {
                             $("#quoteFormFields").empty().append(response)
@@ -462,7 +460,7 @@
                                 width: "100%",
                                 ajax: {
                                     method: 'post',
-                                    url: '{{ route("price.makes") }}',
+                                    url: '<?php echo e(route("price.makes")); ?>',
                                     dataType: 'json',
                                     processResults: function (data) {
                                         var dynamicOptions = $.map(data, function (item) {
@@ -486,7 +484,7 @@
                                 ajax: {
                                     method: 'post',
                                     url: function () {
-                                        return "{{ route('price.models', ['id' => ':id']) }}".replace(':id', $("#make_id").val())
+                                        return "<?php echo e(route('price.models', ['id' => ':id'])); ?>".replace(':id', $("#make_id").val())
                                     },
                                     dataType: 'json',
                                     processResults: function (data) {
@@ -598,7 +596,7 @@
                     width: "100%",
                     ajax: {
                         method: 'post',
-                        url: "{{ route('quote.service', ['id' => ':id']) }}".replace(':id', id),
+                        url: "<?php echo e(route('quote.service', ['id' => ':id'])); ?>".replace(':id', id),
                         dataType: 'json',
                         processResults: function (data) {
                             var dynamicOptions = $.map(data, function (item) {
@@ -621,7 +619,7 @@
                 var id = $('.get-call-data:checked').val();
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('quote.get-lead-detail') }}",
+                    url: "<?php echo e(route('quote.get-lead-detail')); ?>",
                     data: {
                         id: id
                     },
@@ -688,6 +686,8 @@
 
 
         </script>
-    @endpush
+    <?php $__env->stopPush(); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\upwork\monties\resources\views/tenant/quotes/create.blade.php ENDPATH**/ ?>
