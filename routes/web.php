@@ -18,9 +18,11 @@ use Spatie\Activitylog\Models\Activity;
 
 
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+// Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
+// Route::post('/login', [App\Http\Controllers\HomeController::class, 'verify'])->name('login');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    //     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 });
 

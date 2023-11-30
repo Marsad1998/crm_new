@@ -25,12 +25,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make("secret"),
         ]);
 
-        $tenant = Tenant::create([
-            'id' => 'quotegen',
-        ]);
+        // $tenant = Tenant::create([
+        //     'id' => 'quotegen',
+        // ]);
 
-        $tenant->domains()->create([
-            'domain' => 'test.localhost',
-        ]);
+        // $tenant->domains()->create([
+        //     'domain' => 'test.localhost',
+        // ]);
     }
 }

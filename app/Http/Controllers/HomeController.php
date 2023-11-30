@@ -5,40 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    use AuthenticatesUsers;
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    protected $redirectTo = '/home';
+
     public function index()
     {
-        // $tenant = Tenant::create([
-        //     'id' => 'quotegen1',
-        // ]);
-
-        // $tenant->domains()->create([
-        //     'domain' => 'test1.localhost',
-        // ]);
-        // return;
-        return view('central.index');
+        return view('welcome');
     }
 
-    public function index2()
+    public function login()
     {
-        return view('tenant.index');
+        return view('auth.login');
+    }
+
+    public function verify(Request $request)
+    {
     }
 
     public function logout(Request $request)
